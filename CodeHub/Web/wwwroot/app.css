@@ -734,6 +734,7 @@ header {
     margin-bottom: 1rem;
     position: relative;
     display: inline-block;
+    margin-left: auto;
 }
 
 .section-title::after {
