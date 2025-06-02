@@ -24,18 +24,9 @@
                 <AuthorizeView>
                     <Authorized>
                         <div class="">
-                            <NavLink class="nav-link" href="Account/Manage">
+                            <NavLink class="nav-link" href="profile_page">
                                 <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
                             </NavLink>
-                        </div>
-                        <div class="">
-                            <form action="Account/Logout" method="post">
-                                <AntiforgeryToken/>
-                                <input type="hidden" name="ReturnUrl" value="@currentUrl"/>
-                                <button type="submit" class="nav-link">
-                                    <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
-                                </button>
-                            </form>
                         </div>
                     </Authorized>
                     <NotAuthorized>

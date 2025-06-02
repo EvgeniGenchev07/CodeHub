@@ -1,0 +1,50 @@
+﻿@page "/profile_page"
+<main class="profile-section">
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-picture">
+                <div class="profile-info">
+                    <h1>CodeMaster</h1>
+                    <div class="profile-points">
+                        <i class="fas fa-star"></i> 1250 точки
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-courses">
+                <h2>Записани курсове</h2>
+                <div class="courses-list">
+                    <div class="course-item">
+                        <span>Python за начинаещи</span>
+                        <span class="course-progress">70% завършен</span>
+                    </div>
+                    <div class="course-item">
+                        <span>JavaScript и React</span>
+                        <span class="course-progress">45% завършен</span>
+                    </div>
+                    <div class="course-item">
+                        <span>Алгоритми и структури от данни</span>
+                        <span class="course-progress">20% завършен</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="profile_edit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Редактирай профил
+                </a>
+                <a href="#" class="btn btn-outline">
+                    <i class="fas fa-chart-line"></i> Виж прогрес
+                </a>
+                <a href="#" class="btn btn-danger">
+                    <i class="fas fa-sign-out-alt"></i> Изход
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+@code {
+
+}
