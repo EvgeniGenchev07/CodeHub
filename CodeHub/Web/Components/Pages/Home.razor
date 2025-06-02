@@ -1,18 +1,6 @@
 ﻿@page "/"
 
 <PageTitle>Home</PageTitle>
-<div class="floating-code code-1">
-        <pre>function helloWorld() {
-  console.log("Hello, World!");
-}</pre>
-</div>
-<div class="floating-code code-2">
-    <pre>public class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello World");
-  }
-}</pre>
-</div>
 <section class="hero">
   <div class="container">
     <div class="hero-content">
@@ -27,7 +15,6 @@
         </a>
       </div>
     </div>
-    <img src="https://via.placeholder.com/800x600?text=Code+Illustration" alt="Code Illustration" class="hero-image">
   </div>
 </section>
 
@@ -149,60 +136,45 @@
         </div>
       </div>
     </section>
+        <section class="duels-grid" id="duelsGrid">
+            <!-- Duel 1 -->
+            <div class="duel-card" data-status="active">
+                <div class="duel-header">
+                    <h3 class="duel-title">Създаване на REST API</h3>
+                    <span class="duel-timer"><i class="fas fa-clock"></i> 25:14</span>
+                </div>
+                <p class="duel-problem">Създайте REST API с 3 endpoints за управление на продукти. Използвайте избрания от вас език и framework. Оценява се кодовата структура, ефективност и използване на best practices.</p>
+                <span class="duel-status active">Активен</span>
+                <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-flag"></i> Започни двубой
+                </a>
+            </div>
 
-    <section id="duels">
-      <h2 class="section-title">Активни Двубои</h2>
-      <div class="duels-grid">
-        <!-- Duel 1 -->
-        <div class="duel-card">
-          <div class="duel-header">
-            <h3 class="duel-title">Създаване на REST API</h3>
-            <span class="duel-timer"><i class="fas fa-clock"></i> 25:14</span>
-          </div>
-          <p class="duel-problem">Създайте REST API с 3 endpoints за управление на продукти. Използвайте избрания от вас език и framework. Оценява се кодовата структура, ефективност и използване на best practices.</p>
-          <div class="duel-participants">
-            <div class="participant">
-              <img src="https://via.placeholder.com/60x60?text=User1" alt="Participant 1" class="participant-avatar">
-              <p class="participant-name">Иван Иванов</p>
-              <p class="participant-points">1450 точки</p>
+            <!-- Duel 2 -->
+            <div class="duel-card" data-status="active">
+                <div class="duel-header">
+                    <h3 class="duel-title">Сортиране на масив</h3>
+                    <span class="duel-timer"><i class="fas fa-clock"></i> 15:42</span>
+                </div>
+                <p class="duel-problem">Имплементирайте алгоритъм за сортиране на масив от числа. Оценява се времевата сложност, използваната памет и четливост на кода. Допуска се използване на всеки език за програмиране.</p>
+                <span class="duel-status active">Активен</span>
+                <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-flag"></i> Започни двубой
+                </a>
             </div>
-            <div class="vs">VS</div>
-            <div class="participant">
-              <img src="https://via.placeholder.com/60x60?text=User2" alt="Participant 2" class="participant-avatar">
-              <p class="participant-name">Мария Петрова</p>
-              <p class="participant-points">1120 точки</p>
-            </div>
-          </div>
-          <a href="#" class="btn btn-secondary" style="width: 100%;">
-            <i class="fas fa-flag"></i> Започни двубой
-          </a>
-        </div>
 
-        <!-- Duel 2 -->
-        <div class="duel-card">
-          <div class="duel-header">
-            <h3 class="duel-title">Сортиране на масив</h3>
-            <span class="duel-timer"><i class="fas fa-clock"></i> 15:42</span>
-          </div>
-          <p class="duel-problem">Имплементирайте алгоритъм за сортиране на масив от числа. Оценява се времевата сложност, използваната памет и четливост на кода. Допуска се използване на всеки език за програмиране.</p>
-          <div class="duel-participants">
-            <div class="participant">
-              <img src="https://via.placeholder.com/60x60?text=User3" alt="Participant 1" class="participant-avatar">
-              <p class="participant-name">Георги Димитров</p>
-              <p class="participant-points">980 точки</p>
+            <!-- Duel 3 -->
+            <div class="duel-card" data-status="upcoming">
+                <div class="duel-header">
+                    <h3 class="duel-title">Оптимизация на алгоритъм</h3>
+                    <span class="duel-timer upcoming"><i class="fas fa-clock"></i> Започва след 2 часа</span>
+                </div>
+                <p class="duel-problem">Оптимизирайте алгоритъм за търсене в граф. Оценява се ефективността и използването на подходящи структури от данни.</p>
+                <span class="duel-status upcoming">Предстоящ</span>
+                <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-bell"></i> Регистрирай се
+                </a>
             </div>
-            <div class="vs">VS</div>
-            <div class="participant">
-              <img src="https://via.placeholder.com/60x60?text=User4" alt="Participant 2" class="participant-avatar">
-              <p class="participant-name">Анна Стоянова</p>
-              <p class="participant-points">1320 точки</p>
-            </div>
-          </div>
-          <a href="#" class="btn btn-secondary" style="width: 100%;">
-            <i class="fas fa-flag"></i> Започни двубой
-          </a>
-        </div>
-      </div>
-    </section>
+        </section>
   </div>
 </main>
