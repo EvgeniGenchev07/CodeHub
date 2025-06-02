@@ -12,6 +12,10 @@ public class User: IdentityUser
     {
         
     }
+    public User(string id, string fullName, string email, string userName) : this (fullName, email, userName)
+    {
+        Id = id;
+    }
 
     public User(string fullName, string email, string userName)
     {
