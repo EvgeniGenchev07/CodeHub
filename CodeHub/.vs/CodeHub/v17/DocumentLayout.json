@@ -1,146 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\html\\CodeHub\\CodeHub\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\profileedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\profileedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\profilepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\profilepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\lockout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\lockout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\resendemailconfirmation.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\resendemailconfirmation.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\identityredirectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\identityredirectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\web\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\web\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\codehub\\businesslayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\web\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\businesslayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\loginwithrecoverycode.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\loginwithrecoverycode.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\registerconfirmation.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\registerconfirmation.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\identityrevalidatingauthenticationstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\identityrevalidatingauthenticationstateprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\identityuseraccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\identityuseraccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|c:\\html\\codehub\\codehub\\datalayer\\datalayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\datalayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\identitynoopemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\identitynoopemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\identitycomponentsendpointroutebuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\identitycomponentsendpointroutebuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\managenavmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\managenavmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\externalloginpicker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\externalloginpicker.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\managelayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\managelayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\statusmessage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\statusmessage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\showrecoverycodes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\showrecoverycodes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\shared\\redirecttologin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\shared\\redirecttologin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\exercises.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\exercises.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\error.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\error.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\duels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\duels.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\courses.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\courses.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\account\\pages\\accessdenied.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\account\\pages\\accessdenied.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\components\\pages\\auth.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\auth.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\html\\codehub\\codehub\\web\\web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub\\datalayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -150,477 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProfileEdit.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\ProfileEdit.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\ProfileEdit.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\ProfileEdit.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\ProfileEdit.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAApAAAAAAAAAA==",
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Web\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Web\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:58:10.789Z",
+              "WhenOpened": "2025-06-02T14:43:04.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Web\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Web\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-02T14:43:03.411Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "app.css",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\wwwroot\\app.css",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\wwwroot\\app.css",
               "RelativeDocumentMoniker": "Web\\wwwroot\\app.css",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\wwwroot\\app.css",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\wwwroot\\app.css",
               "RelativeToolTip": "Web\\wwwroot\\app.css",
-              "ViewState": "AgIAAHQJAAAAAAAAAAAAAI4JAAAXAAAAAAAAAA==",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAAAHAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-02T13:19:04.375Z",
+              "WhenOpened": "2025-06-02T13:51:29.819Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProfilePage.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\ProfilePage.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\ProfilePage.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\ProfilePage.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\ProfilePage.razor",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABcAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:15:00.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Lockout.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Lockout.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\Lockout.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Lockout.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\Lockout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:53:40.141Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Web\\Data\\ApplicationUser.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
               "RelativeToolTip": "Web\\Data\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:45:33.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Web\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Web\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:45:38.328Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IdentityRedirectManager.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityRedirectManager.cs",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\IdentityRedirectManager.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityRedirectManager.cs",
-              "RelativeToolTip": "Web\\Components\\Account\\IdentityRedirectManager.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAAwDsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:43:02.456Z",
+              "WhenOpened": "2025-06-02T13:45:03.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ResendEmailConfirmation.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\ResendEmailConfirmation.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\ResendEmailConfirmation.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\ResendEmailConfirmation.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\ResendEmailConfirmation.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:44:17.016Z",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\DataLayer\\Class1.cs",
+              "RelativeDocumentMoniker": "DataLayer\\Class1.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\DataLayer\\Class1.cs",
+              "RelativeToolTip": "DataLayer\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T13:44:48.356Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Login.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Login.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\Login.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Login.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\Login.razor",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAE0AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:10:22.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainLayout.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Layout\\MainLayout.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Layout\\MainLayout.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Layout\\MainLayout.razor",
-              "RelativeToolTip": "Web\\Components\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:19:08.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "Web\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAABsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T13:16:08.56Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Program.cs",
-              "RelativeDocumentMoniker": "Web\\Program.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Program.cs",
-              "RelativeToolTip": "Web\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:19:20.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\BusinessLayer\\Class1.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\BusinessLayer\\Class1.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\Class1.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\BusinessLayer\\Class1.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\BusinessLayer\\Class1.cs",
               "RelativeToolTip": "BusinessLayer\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:43:26.179Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "LoginWithRecoveryCode.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\LoginWithRecoveryCode.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\LoginWithRecoveryCode.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\LoginWithRecoveryCode.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\LoginWithRecoveryCode.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:44:03.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Register.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Register.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\Register.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\Register.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\Register.razor",
-              "ViewState": "AgIAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:33:49.701Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "RegisterConfirmation.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\RegisterConfirmation.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\RegisterConfirmation.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\RegisterConfirmation.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\RegisterConfirmation.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:44:06.02Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IdentityRevalidatingAuthenticationStateProvider.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityRevalidatingAuthenticationStateProvider.cs",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\IdentityRevalidatingAuthenticationStateProvider.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityRevalidatingAuthenticationStateProvider.cs",
-              "RelativeToolTip": "Web\\Components\\Account\\IdentityRevalidatingAuthenticationStateProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:43:03.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IdentityUserAccessor.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityUserAccessor.cs",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\IdentityUserAccessor.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityUserAccessor.cs",
-              "RelativeToolTip": "Web\\Components\\Account\\IdentityUserAccessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:43:05.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "IdentityNoOpEmailSender.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityNoOpEmailSender.cs",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\IdentityNoOpEmailSender.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityNoOpEmailSender.cs",
-              "RelativeToolTip": "Web\\Components\\Account\\IdentityNoOpEmailSender.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:43:00.951Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "DataLayer",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\DataLayer\\DataLayer.csproj",
-              "RelativeDocumentMoniker": "DataLayer\\DataLayer.csproj",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\DataLayer\\DataLayer.csproj",
-              "RelativeToolTip": "DataLayer\\DataLayer.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-02T13:14:49.736Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "IdentityComponentsEndpointRouteBuilderExtensions.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityComponentsEndpointRouteBuilderExtensions.cs",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\IdentityComponentsEndpointRouteBuilderExtensions.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\IdentityComponentsEndpointRouteBuilderExtensions.cs",
-              "RelativeToolTip": "Web\\Components\\Account\\IdentityComponentsEndpointRouteBuilderExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T14:42:59.16Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ExternalLoginPicker.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ExternalLoginPicker.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\ExternalLoginPicker.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ExternalLoginPicker.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\ExternalLoginPicker.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:29:11.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ManageNavMenu.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\ManageNavMenu.razor",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAqwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T13:17:09.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "StatusMessage.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\StatusMessage.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\StatusMessage.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\StatusMessage.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\StatusMessage.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:29:08.877Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ShowRecoveryCodes.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ShowRecoveryCodes.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\ShowRecoveryCodes.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ShowRecoveryCodes.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\ShowRecoveryCodes.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:29:06.892Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "RedirectToLogin.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\RedirectToLogin.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\RedirectToLogin.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\RedirectToLogin.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\RedirectToLogin.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:29:05.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Exercises.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Exercises.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Exercises.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Exercises.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Exercises.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:25:58.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Error.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Error.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Error.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Error.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Error.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:27:42.286Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Duels.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Duels.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Duels.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Duels.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Duels.razor",
-              "ViewState": "AgIAADUAAAAAAAAAAAAAAEgAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:04:09.807Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ManageLayout.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ManageLayout.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Shared\\ManageLayout.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Shared\\ManageLayout.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Shared\\ManageLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T13:17:13.809Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "Courses.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Courses.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Courses.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Courses.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Courses.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:20:27.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "AccessDenied.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\AccessDenied.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Account\\Pages\\AccessDenied.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Account\\Pages\\AccessDenied.razor",
-              "RelativeToolTip": "Web\\Components\\Account\\Pages\\AccessDenied.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:19:38.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Auth.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Auth.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Auth.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Auth.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Auth.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T14:09:52.82Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Home.razor",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Home.razor",
-              "RelativeToolTip": "Web\\Components\\Pages\\Home.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T13:15:57.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Web",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub\\Web\\Web.csproj",
-              "RelativeDocumentMoniker": "Web\\Web.csproj",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub\\Web\\Web.csproj",
-              "RelativeToolTip": "Web\\Web.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-02T13:14:51.03Z",
+              "WhenOpened": "2025-06-02T13:44:16.207Z",
               "EditorCaption": ""
             }
           ]
