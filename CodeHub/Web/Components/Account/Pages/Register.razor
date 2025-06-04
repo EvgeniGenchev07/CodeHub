@@ -1,8 +1,8 @@
 ﻿@page "/Account/Register"
 @using System.ComponentModel.DataAnnotations
 @using BusinessLayer
-@using DataLayer
-@inject ApplicationDbContext DbContext
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
 @inject NavigationManager NavigationManager
 @inject ILogger<Register> Logger
 
@@ -66,18 +66,22 @@
                     UserName = Input.Email,
                     Email = Input.Email,
                     FullName = Input.FullName,
-                    PasswordHash = Input.Password,
                     Points = 0,
-                    Level = 1,
-                    EmailConfirmed = true
+                    Level = 1
                 };
 
+            var result = await UserManager.CreateAsync(user, Input.Password);
 
-            DbContext.Users.Add(user);
-            await DbContext.SaveChangesAsync();
-
-            Logger.LogInformation("User created a new account.");
-            NavigationManager.NavigateTo(ReturnUrl ?? "/");
+            if (result.Succeeded)
+            {
+                Logger.LogInformation("User created a new account.");
+                //NavigationManager.NavigateTo('/Account/');
+            }
+            else
+            {
+                Message = string.Join("; ", result.Errors.Select(e => e.Description));
+                Logger.LogWarning("User creation failed: {Errors}", Message);
+            }
         }
         catch (Exception ex)
         {
