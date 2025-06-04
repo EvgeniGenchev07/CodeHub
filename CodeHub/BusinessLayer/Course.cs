@@ -21,12 +21,12 @@ namespace BusinessLayer
         {
             
         }
-        public Course(string name, string description, Difficulty difficulty, List<Lector> lectors, List<Lesson> lessons)
+        public Course(string name, string description, Difficulty difficulty)
         {
             Name = name;
             Description = description;
-            Lectors = lectors;
-            Lessons = lessons;
+            Lectors = new List<Lector>();
+            Lessons = new List<Lesson>();
             Difficulty = difficulty;
         }
 

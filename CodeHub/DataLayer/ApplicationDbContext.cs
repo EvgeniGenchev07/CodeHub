@@ -7,7 +7,7 @@ namespace DataLayer;
 public class ApplicationDbContext : IdentityDbContext<User>
 {
     internal DbSet<Course> Courses { get; set; }
-    internal DbSet<Exercise> Exercise { get; set; }
+    internal DbSet<Exercise> Exercises { get; set; }
     internal DbSet<Lector> Lectors { get; set; }
     internal DbSet<Lesson> Lessons { get; set; }
     public ApplicationDbContext() : base()
