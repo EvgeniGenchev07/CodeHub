@@ -20,12 +20,12 @@ namespace BusinessLayer
         {
             
         }
-        public Lesson(string title, string description, byte[] video, List<Exercise> exercises)
+        public Lesson(string title, string description, byte[] video)
         {
             Title = title;
             Description = description;
             Video = video;
-            Exercises = exercises;
+            Exercises = new List<Exercise>();
         }
 
     }
