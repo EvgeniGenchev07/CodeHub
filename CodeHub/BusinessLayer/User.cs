@@ -10,7 +10,10 @@ public class User: IdentityUser
     public int Level { get; set; }
     public User()
     {
-        
+        FullName = string.Empty; // Default to empty string to avoid null
+        Courses = new List<Course>(); // Initialize to avoid null
+        Points = 0; // Default value
+        Level = 1; // Default value, starting at 1 instead of 0
     }
     public User(string id, string fullName, string email, string userName) : this (fullName, email, userName)
     {
