@@ -59,7 +59,8 @@ namespace DataLayer
                     return null;
                 }
 
-                IdentityResult result = await _userManager.PasswordValidators[1].ValidateAsync(_userManager, user, password);
+                IdentityResult result =
+                    await _userManager.PasswordValidators[1].ValidateAsync(_userManager, user, password);
 
                 if (result.Succeeded)
                 {
@@ -100,29 +101,29 @@ namespace DataLayer
             }
         }
 
-       /* public async Task UpdateUserAsync(string id, string username, string name, int age)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(username))
-                {
-                    User user = await context.Users.FindAsync(id);
-                    context.Entry(user).CurrentValues.SetValues(user);
-                    await userManager.UpdateAsync(user);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-*/
+        /* public async Task UpdateUserAsync(string id, string username, string name, int age)
+         {
+             try
+             {
+                 if (!string.IsNullOrEmpty(username))
+                 {
+                     User user = await context.Users.FindAsync(id);
+                     context.Entry(user).CurrentValues.SetValues(user);
+                     await userManager.UpdateAsync(user);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+         }
+ */
         public async Task DeleteUserByNameAsync(string name)
         {
             try
             {
                 User user = await FindUserByNEmailAsync(name);
-                
+
                 if (user == null)
                 {
                     throw new InvalidOperationException("User not found for deletion!");
@@ -150,6 +151,5 @@ namespace DataLayer
         }
 
         #endregion
-
     }
 }

@@ -4,7 +4,8 @@
 <main class="container">
     <section class="duels-header">
         <h2 class="section-title">Код Двубои</h2>
-        <p style="color: #94a3b8; margin-bottom: 2rem;">Състезавайте се с други програмисти в реално време и изпробвайте уменията си</p>
+        <p style="color: #94a3b8; margin-bottom: 2rem;">Състезавайте се с други програмисти в реално време и изпробвайте
+            уменията си</p>
 
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
@@ -25,7 +26,8 @@
                 <h3 class="duel-title">Създаване на REST API</h3>
                 <span class="duel-timer"><i class="fas fa-clock"></i> 25:14</span>
             </div>
-            <p class="duel-problem">Създайте REST API с 3 endpoints за управление на продукти. Използвайте избрания от вас език и framework. Оценява се кодовата структура, ефективност и използване на best practices.</p>
+            <p class="duel-problem">Създайте REST API с 3 endpoints за управление на продукти. Използвайте избрания от
+                вас език и framework. Оценява се кодовата структура, ефективност и използване на best practices.</p>
             <span class="duel-status active">Активен</span>
             <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
                 <i class="fas fa-flag"></i> Започни двубой
@@ -38,7 +40,9 @@
                 <h3 class="duel-title">Сортиране на масив</h3>
                 <span class="duel-timer"><i class="fas fa-clock"></i> 15:42</span>
             </div>
-            <p class="duel-problem">Имплементирайте алгоритъм за сортиране на масив от числа. Оценява се времевата сложност, използваната памет и четливост на кода. Допуска се използване на всеки език за програмиране.</p>
+            <p class="duel-problem">Имплементирайте алгоритъм за сортиране на масив от числа. Оценява се времевата
+                сложност, използваната памет и четливост на кода. Допуска се използване на всеки език за
+                програмиране.</p>
             <span class="duel-status active">Активен</span>
             <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
                 <i class="fas fa-flag"></i> Започни двубой
@@ -51,7 +55,8 @@
                 <h3 class="duel-title">Оптимизация на алгоритъм</h3>
                 <span class="duel-timer upcoming"><i class="fas fa-clock"></i> Започва след 2 часа</span>
             </div>
-            <p class="duel-problem">Оптимизирайте алгоритъм за търсене в граф. Оценява се ефективността и използването на подходящи структури от данни.</p>
+            <p class="duel-problem">Оптимизирайте алгоритъм за търсене в граф. Оценява се ефективността и използването
+                на подходящи структури от данни.</p>
             <span class="duel-status upcoming">Предстоящ</span>
             <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
                 <i class="fas fa-bell"></i> Регистрирай се
@@ -64,7 +69,8 @@
                 <h3 class="duel-title">Динамично програмиране</h3>
                 <span class="duel-timer upcoming"><i class="fas fa-clock"></i> Започва след 4 часа</span>
             </div>
-            <p class="duel-problem">Решете задача за раницата с динамично програмиране. Оценява се коректността и оптимизацията на решението.</p>
+            <p class="duel-problem">Решете задача за раницата с динамично програмиране. Оценява се коректността и
+                оптимизацията на решението.</p>
             <span class="duel-status upcoming">Предстоящ</span>
             <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
                 <i class="fas fa-bell"></i> Регистрирай се
@@ -96,7 +102,8 @@
                     </div>
                     <div class="vs">VS</div>
                     <div class="participant">
-                        <img src="https://via.placeholder.com/60x60?text=Searching" alt="Searching" class="participant-avatar">
+                        <img src="https://via.placeholder.com/60x60?text=Searching" alt="Searching"
+                             class="participant-avatar">
                         <p class="participant-name">Търсене на опонент</p>
                         <p class="participant-points">Моля, изчакайте...</p>
                     </div>
@@ -110,18 +117,20 @@
     var gk_isXlsx = false;
     var gk_xlsxFileLookup = {};
     var gk_fileData = {};
+
     function filledCell(cell) {
         return cell !== '' && cell != null;
     }
+
     function loadFileData(filename) {
         if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
             try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var workbook = XLSX.read(gk_fileData[filename], {type: 'base64'});
                 var firstSheetName = workbook.SheetNames[0];
                 var worksheet = workbook.Sheets[firstSheetName];
 
                 // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1, blankrows: false, defval: ''});
                 // Filter out blank rows (rows where all cells are empty, null, or undefined)
                 var filteredData = jsonData.filter(row => row.some(filledCell));
 
@@ -136,7 +145,7 @@
 
                 // Convert filtered JSON back to CSV
                 var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                csv = XLSX.utils.sheet_to_csv(csv, {header: 1});
                 return csv;
             } catch (e) {
                 console.error(e);
@@ -146,6 +155,7 @@
         return gk_fileData[filename] || "";
     }
 </script>
+
 @code {
-    
+
 }

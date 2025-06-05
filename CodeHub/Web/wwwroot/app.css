@@ -20,9 +20,9 @@ html, body {
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
 
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
@@ -108,21 +108,21 @@ header {
 }
 
 .nav-menu {
-    display:flex;
+    display: flex;
     list-style: none;
     gap: 2.1rem;
     align-items: center;
 }
 
-    .nav-menu a {
-        color: var(--light);
-        text-decoration: none;
-        font-weight: 500;
-        position: relative;
-        padding: 0.5rem 0;
-        transition: color 0.3s;
-        margin-bottom: 10px;
-    }
+.nav-menu a {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s;
+    margin-bottom: 10px;
+}
 
 .nav-menu a:hover {
     color: var(--neon);
@@ -724,6 +724,7 @@ header {
         font-size: 1rem;
     }
 }
+
 /* Exercises Grid */
 
 /* Filters and Search */
@@ -1031,6 +1032,7 @@ header {
     color: var(--darker);
     box-shadow: 0 4px 15px rgba(0, 247, 255, 0.3);
 }
+
 @media (max-width: 992px) {
     .exercises-grid {
         grid-template-columns: 1fr;
@@ -1048,6 +1050,7 @@ header {
         max-width: 200px;
     }
 }
+
 /* end exercise grid */
 /* Filters and Search */
 .duels-header {
@@ -1385,6 +1388,7 @@ header {
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     transform: translateY(-2px);
 }
+
 /* end duels */
 /*Auth*/
 .auth-section {
@@ -1413,7 +1417,7 @@ header {
     margin-bottom: 2rem;
 }
 
-.auth-tab , .auth-tab:hover {
+.auth-tab, .auth-tab:hover {
     flex: 1;
     padding: 1rem;
     text-align: center;
@@ -1549,6 +1553,7 @@ header {
 .auth-links a:hover {
     text-decoration: underline;
 }
+
 @media (max-width: 992px) {
     .auth-buttons {
         display: none;
@@ -1585,6 +1590,7 @@ header {
         border-left: none;
     }
 }
+
 /*end Auth*/
 /*Course info*/
 /* Course Hero Section */
@@ -1904,6 +1910,7 @@ header {
     background: rgba(239, 68, 68, 0.1);
     color: #ef4444;
 }
+
 /*End course info*/
 /*Footer*/
 footer {
