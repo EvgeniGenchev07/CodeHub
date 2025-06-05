@@ -1,11 +1,14 @@
 ﻿@page "/Account/Register"
 @using System.ComponentModel.DataAnnotations
 @using BusinessLayer
+@using DataLayer
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<User> UserManager
-@inject NavigationManager NavigationManager
+@inject ApplicationDbContext context
+@inject SignInManager<User> _signInManager
 @inject ILogger<Register> Logger
-
+@inject IdentityRedirectManager RedirectManager
+@inject DataLayer.IdentityContext _identityContext
 <PageTitle>Register</PageTitle>
 
 <main class="auth-section">
@@ -55,33 +58,18 @@
     {
         try
         {
+            context.Roles.Add(new IdentityRole(Role.USER.ToString()));
+            context.Roles.Add(new IdentityRole(Role.ADMINISTRATOR.ToString()));
             if (Input.Password != Input.ConfirmPassword)
             {
                 Message = "The password and confirmation password do not match.";
                 return;
             }
 
-            var user = new User
-                {
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    FullName = Input.FullName,
-                    Points = 0,
-                    Level = 1
-                };
-
-            var result = await UserManager.CreateAsync(user, Input.Password);
-
-            if (result.Succeeded)
-            {
-                Logger.LogInformation("User created a new account.");
-                //NavigationManager.NavigateTo('/Account/');
-            }
-            else
-            {
-                Message = string.Join("; ", result.Errors.Select(e => e.Description));
-                Logger.LogWarning("User creation failed: {Errors}", Message);
-            }
+            User user = new User( Input.Email,Input.FullName);
+            await _identityContext.CreateUserAsync(user,Input.Password, Role.USER);
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            RedirectManager.RedirectTo("/");
         }
         catch (Exception ex)
         {

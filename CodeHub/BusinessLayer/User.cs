@@ -31,4 +31,15 @@ public class User: IdentityUser
         Points = 0;
         Level = 0;
     }
+    public User(string email, string userName)
+    {
+        FullName = userName;
+        NormalizedEmail = email.ToUpper();
+        NormalizedUserName = email.ToUpper();
+        UserName = email;
+        Email = email;
+        Courses = new List<Course>();
+        Points = 0;
+        Level = 0;
+    }
 }

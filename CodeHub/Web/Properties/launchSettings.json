@@ -10,6 +10,7 @@
     },
     "profiles": {
       "http": {
+        "workingDirectory": "../DataLayer",
         "commandName": "Project",
         "dotnetRunMessages": true,
         "launchBrowser": false,

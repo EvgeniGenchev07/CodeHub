@@ -5,7 +5,6 @@ using DataLayer;
 using BusinessLayer;
 using Web.Components.Account;
 using Web.Components;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
@@ -21,7 +20,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+builder.Services.AddScoped<LessonsContext>();
+builder.Services.AddScoped<LectorsContext>();
+builder.Services.AddScoped<IdentityContext>();
 builder.Services.AddIdentityCore<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -44,7 +45,6 @@ builder.Services.AddAuthentication(options =>
 })
     .AddIdentityCookies();
 
-builder.Services.AddScoped<UserContext>();
 
 builder.Services.AddLogging();
 

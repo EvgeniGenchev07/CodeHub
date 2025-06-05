@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seeder", "Seeder\Seeder.csproj", "{3A1B1933-AD2C-4427-A681-E5C46CA010D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
