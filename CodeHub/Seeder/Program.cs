@@ -17,7 +17,7 @@ try
     options.Password.RequiredLength = 5;
 
     DbContextOptionsBuilder<ApplicationDbContext> builder = new DbContextOptionsBuilder<ApplicationDbContext>();
-    builder.UseSqlite("DataSource=../DataLayer/codehub.db3;Cache=Shared");
+    builder.UseSqlite("DataSource=../../../../DataLayer/codehub.db3");
 
     ApplicationDbContext dbContext = new ApplicationDbContext(builder.Options);
     UserManager<User> userManager = new UserManager<User>(
