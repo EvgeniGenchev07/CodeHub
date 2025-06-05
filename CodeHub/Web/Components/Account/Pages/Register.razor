@@ -8,7 +8,7 @@
 @inject SignInManager<User> _signInManager
 @inject ILogger<Register> Logger
 @inject IdentityRedirectManager RedirectManager
-@inject DataLayer.IdentityContext _identityContext
+@inject IdentityContext _identityContext
 <PageTitle>Register</PageTitle>
 
 <main class="auth-section">
@@ -18,25 +18,29 @@
             <div class="auth-tab active" data-tab="register">Регистрация</div>
         </div>
 
-        <StatusMessage Message="@Message" />
+        <StatusMessage Message="@Message"/>
         <EditForm Model="Input" method="post" class="auth-form active" OnValidSubmit="RegisterUser" FormName="register">
-            <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert" />
+            <DataAnnotationsValidator/>
+            <ValidationSummary class="text-danger" role="alert"/>
             <div class="form-group">
-                <InputText @bind-Value="Input.FullName" class="form-control" autocomplete="name" aria-required="true" placeholder="Full Name" />
-                <ValidationMessage For="() => Input.FullName" class="text-danger" />
+                <InputText @bind-Value="Input.FullName" class="form-control" autocomplete="name" aria-required="true"
+                           placeholder="Full Name"/>
+                <ValidationMessage For="() => Input.FullName" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email" />
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
+                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true"
+                           placeholder="Email"/>
+                <ValidationMessage For="() => Input.Email" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password"
+                           aria-required="true" placeholder="Password"/>
+                <ValidationMessage For="() => Input.Password" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
-                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control"
+                           autocomplete="new-password" aria-required="true" placeholder="Confirm Password"/>
+                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger"/>
             </div>
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-user-plus"></i> Регистрация
@@ -48,11 +52,9 @@
 @code {
     private string? Message { get; set; }
 
-    [SupplyParameterFromForm]
-    private InputModel Input { get; set; } = new();
+    [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
-    [SupplyParameterFromQuery]
-    private string? ReturnUrl { get; set; }
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
     private async Task RegisterUser()
     {
@@ -66,10 +68,10 @@
                 return;
             }
 
-            User user = new User( Input.Email,Input.FullName);
-            await _identityContext.CreateUserAsync(user,Input.Password, Role.USER);
+            User user = new User(Input.Email, Input.FullName);
+            await _identityContext.CreateUserAsync(user, Input.Password, Role.USER);
             await _signInManager.SignInAsync(user, isPersistent: false);
-            RedirectManager.RedirectTo("/");
+            RedirectManager.RedirectTo("");
         }
         catch (Exception ex)
         {
@@ -101,4 +103,5 @@
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
     }
+
 }

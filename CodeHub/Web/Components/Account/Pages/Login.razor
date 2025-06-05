@@ -16,7 +16,8 @@
     <div class="auth-container">
         <div class="auth-tabs">
             <div class="auth-tab active" data-tab="login">Вход</div>
-            <a href="Account/Register" style="text-decoration: none" class="auth-tab" data-tab="register">Регистрация</a>
+            <a href="Account/Register" style="text-decoration: none" class="auth-tab"
+               data-tab="register">Регистрация</a>
         </div>
 
         <!-- Login Form -->
@@ -25,11 +26,13 @@
             <DataAnnotationsValidator/>
             <ValidationSummary class="text-danger" role="alert"/>
             <div class="form-group">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email"/>
+                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true"
+                           placeholder="Email"/>
                 <ValidationMessage For="() => Input.Email" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText type="password" @bind-Value="Input.Password" autocomplete="current-password" aria-required="true" placeholder="Password"/>
+                <InputText type="password" @bind-Value="Input.Password" autocomplete="current-password"
+                           aria-required="true" placeholder="Password"/>
                 <ValidationMessage For="() => Input.Password" class="text-danger"/>
             </div>
             <div class="checkbox mb-3">
@@ -75,6 +78,7 @@
         if (result.Succeeded)
         {
             Logger.LogInformation("User logged in.");
+            Console.WriteLine(ReturnUrl);
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.RequiresTwoFactor)
