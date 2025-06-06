@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MVC.Controllers
 {
-    public class CourseController : Controller
+    public class CoursesController : Controller
     {
         private readonly CoursesContext _coursesContext;
 
-        public CourseController(CoursesContext coursesContext)
+        public CoursesController(CoursesContext coursesContext)
         {
             _coursesContext = coursesContext;
         }

@@ -1,8 +1,187 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Научете да <span>кодите</span> по иновативен начин</h1>
+      <p>Интерактивни видео уроци, практически предизвикателства и реални код двубои с други програмисти.
+        Усъвършенствайте уменията си в забавна и конкурентна среда.</p>
+      <div class="hero-buttons">
+        <a href="#courses" class="btn btn-primary btn-lg">
+          <i class="fas fa-play"></i> Започнете сега
+        </a>
+        <a href="#duels" class="btn btn-outline btn-lg">
+          <i class="fas fa-trophy"></i> Двубои
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<main class="main-content">
+  <div class="container">
+    <section id="courses">
+      <h2 class="section-title">Наши Курсове</h2>
+      <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card">
+          <img src="https://via.placeholder.com/400x225?text=Python+Pro" alt="Python Pro" class="course-thumbnail">
+          <div class="course-info">
+            <h3 class="course-title">Python за напреднали</h3>
+            <p class="course-description">Научете усъвършенствани техники в Python, включително декоратори, генератори и
+              метакласове.</p>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 5 часа</span>
+              <span><i class="far fa-list-alt"></i> 18 урока</span>
+            </div>
+            <span class="course-difficulty advanced">Напреднал</span>
+            <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+              <i class="fas fa-play"></i> Започни
+            </a>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card">
+          <img src="https://via.placeholder.com/400x225?text=Modern+JavaScript" alt="Modern JavaScript"
+               class="course-thumbnail">
+          <div class="course-info">
+            <h3 class="course-title">Модерен JavaScript</h3>
+            <p class="course-description">ES6+, асинхронен код, Web APIs и съвременни практики за JavaScript
+              разработка.</p>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 4 часа</span>
+              <span><i class="far fa-list-alt"></i> 15 урока</span>
+            </div>
+            <span class="course-difficulty intermediate">Средно ниво</span>
+            <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+              <i class="fas fa-play"></i> Започни
+            </a>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card">
+          <img src="https://via.placeholder.com/400x225?text=C%23+ASP.NET" alt="C# ASP.NET" class="course-thumbnail">
+          <div class="course-info">
+            <h3 class="course-title">C# и ASP.NET Core</h3>
+            <p class="course-description">Научете да създавате професионални уеб приложения с C# и ASP.NET Core MVC.</p>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 6 часа</span>
+              <span><i class="far fa-list-alt"></i> 22 урока</span>
+            </div>
+            <span class="course-difficulty intermediate">Средно ниво</span>
+            <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+              <i class="fas fa-play"></i> Започни
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercises">
+      <h2 class="section-title">Последни Упражнения</h2>
+      <div class="exercises-container">
+        <!-- Exercise 1 -->
+        <div class="exercise-item">
+          <div class="exercise-info">
+            <div class="exercise-icon">
+              <i class="fab fa-python"></i>
+            </div>
+            <div>
+              <h4 class="exercise-title">Оптимизация на алгоритъм</h4>
+              <p class="exercise-language">Python - Алгоритми</p>
+            </div>
+          </div>
+          <span class="exercise-status completed">Завършено</span>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise-item">
+          <div class="exercise-info">
+            <div class="exercise-icon">
+              <i class="fab fa-js"></i>
+            </div>
+            <div>
+              <h4 class="exercise-title">Създаване на REST API</h4>
+              <p class="exercise-language">JavaScript - Node.js</p>
+            </div>
+          </div>
+          <span class="exercise-status pending">В процес</span>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise-item">
+          <div class="exercise-info">
+            <div class="exercise-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div>
+              <h4 class="exercise-title">Оптимизация на SQL заявки</h4>
+              <p class="exercise-language">SQL - Бази данни</p>
+            </div>
+          </div>
+          <span class="exercise-status pending">В процес</span>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise-item">
+          <div class="exercise-info">
+            <div class="exercise-icon">
+              <i class="fab fa-microsoft"></i>
+            </div>
+            <div>
+              <h4 class="exercise-title">Entity Framework Core</h4>
+              <p class="exercise-language">C# - .NET Core</p>
+            </div>
+          </div>
+          <span class="exercise-status">Ново</span>
+        </div>
+      </div>
+    </section>
+    <section class="duels-grid" id="duelsGrid">
+      <!-- Duel 1 -->
+      <div class="duel-card" data-status="active">
+        <div class="duel-header">
+          <h3 class="duel-title">Създаване на REST API</h3>
+          <span class="duel-timer"><i class="fas fa-clock"></i> 25:14</span>
+        </div>
+        <p class="duel-problem">Създайте REST API с 3 endpoints за управление на продукти. Използвайте избрания от вас
+          език и framework. Оценява се кодовата структура, ефективност и използване на best practices.</p>
+        <span class="duel-status active">Активен</span>
+        <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+          <i class="fas fa-flag"></i> Започни двубой
+        </a>
+      </div>
+
+      <!-- Duel 2 -->
+      <div class="duel-card" data-status="active">
+        <div class="duel-header">
+          <h3 class="duel-title">Сортиране на масив</h3>
+          <span class="duel-timer"><i class="fas fa-clock"></i> 15:42</span>
+        </div>
+        <p class="duel-problem">Имплементирайте алгоритъм за сортиране на масив от числа. Оценява се времевата сложност,
+          използваната памет и четливост на кода. Допуска се използване на всеки език за програмиране.</p>
+        <span class="duel-status active">Активен</span>
+        <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+          <i class="fas fa-flag"></i> Започни двубой
+        </a>
+      </div>
+
+      <!-- Duel 3 -->
+      <div class="duel-card" data-status="upcoming">
+        <div class="duel-header">
+          <h3 class="duel-title">Оптимизация на алгоритъм</h3>
+          <span class="duel-timer upcoming"><i class="fas fa-clock"></i> Започва след 2 часа</span>
+        </div>
+        <p class="duel-problem">Оптимизирайте алгоритъм за търсене в граф. Оценява се ефективността и използването на
+          подходящи структури от данни.</p>
+        <span class="duel-status upcoming">Предстоящ</span>
+        <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <i class="fas fa-bell"></i> Регистрирай се
+        </a>
+      </div>
+    </section>
+  </div>
+</main>

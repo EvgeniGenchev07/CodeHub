@@ -10,26 +10,37 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial"/>
-            </div>
-        </div>
-    </nav>
+    <div class="container header-container">
+        <a asp-controller="Home" asp-action="Index" class="logo">
+            <i class="fas fa-code"></i>
+            CodeFlow
+        </a>
+
+        <button onclick="ToggleMenu" class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+            <li>
+                <a asp-controller="Courses" asp-action="Index">Курсове</a>
+            </li>
+            <li>
+                <a asp-controller="Exercise" asp-action="Index">Упражнения</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Двубои</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Форум</a>
+            </li>
+            <li>
+                <div style="margin-top: 10px">
+                    <partial name="_LoginPartial"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </header>
 <div class="container">
     <main role="main" class="pb-3">
@@ -37,11 +48,65 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer>
     <div class="container">
-        &copy; 2025 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">CodeHub</div>
+                <p>Иновативна платформа за обучение по програмиране чрез интерактивни видеа, практически
+                    предизвикателства и код двубои.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Курсове</h3>
+                <ul>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">C# & .NET</a></li>
+                    <li><a href="#">Java</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Ресурси</h3>
+                <ul>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Често задавани въпроси</a></li>
+                    <li><a href="#">Форум</a></li>
+                    <li><a href="#">Код двубои</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">За нас</a></li>
+                    <li><a href="#">Екип</a></li>
+                    <li><a href="#">Кариери</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © @DateTime.Now.Year.ToString() CodeFlow. Всички права запазени. | <a href="#" style="color: #64748b;">Условия
+                за ползване</a> | <a href="#" style="color: #64748b;">Политика за поверителност</a>
+        </div>
     </div>
 </footer>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
