@@ -3,125 +3,126 @@ using DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MVC.Controllers
 {
-    public class ExerciseController : Controller
+    public class CoursesController : Controller
     {
-        private readonly ExercisesContext _exercisesContext;
+        private readonly CoursesContext _coursesContext;
 
-        public ExerciseController(ExercisesContext exercisesContext)
+        public CoursesController(CoursesContext coursesContext)
         {
-            _exercisesContext = exercisesContext;
+            _coursesContext = coursesContext;
         }
 
-        // GET: Exercise
+        // GET: Course
         public IActionResult Index()
         {
             try
             {
-                List<Exercise> exercises = _exercisesContext.ReadAll();
-                return View(exercises);
+                List<Course> courses = _coursesContext.ReadAll(useNavigationalProperties: true);
+                return View(courses);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error retrieving exercises: {ex.Message}";
-                return View(new List<Exercise>());
+                TempData["ErrorMessage"] = $"Error retrieving courses: {ex.Message}";
+                return View(new List<Course>());
             }
         }
 
-        // GET: Exercise/Details/5
+        // GET: Course/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
             {
-                TempData["ErrorMessage"] = "Exercise ID not provided";
+                TempData["ErrorMessage"] = "Course ID not provided";
                 return RedirectToAction(nameof(Index));
             }
 
             try
             {
-                var exercise = _exercisesContext.Read(id.Value);
-                if (exercise == null)
+                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                if (course == null)
                 {
-                    TempData["ErrorMessage"] = $"Exercise with ID {id} not found";
+                    TempData["ErrorMessage"] = $"Course with ID {id} not found";
                     return RedirectToAction(nameof(Index));
                 }
-                return View(exercise);
+                return View(course);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error retrieving exercise details: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error retrieving course details: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        // GET: Exercise/Create
+        // GET: Course/Create
         public IActionResult Create()
         {
             ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
             return View();
         }
 
-        // POST: Exercise/Create
+        // POST: Course/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Title,Description,Points,Difficulty")] Exercise exercise)
+        public IActionResult Create([Bind("Id,Name,Description,Difficulty")] Course course)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _exercisesContext.Create(exercise);
-                    TempData["SuccessMessage"] = "Exercise created successfully";
+                    _coursesContext.Create(course);
+                    TempData["SuccessMessage"] = "Course created successfully";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", $"Error creating exercise: {ex.Message}");
+                    ModelState.AddModelError("", $"Error creating course: {ex.Message}");
                 }
             }
 
             ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
-            return View(exercise);
+            return View(course);
         }
 
-        // GET: Exercise/Edit/5
+        // GET: Course/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
-                TempData["ErrorMessage"] = "Exercise ID not provided";
+                TempData["ErrorMessage"] = "Course ID not provided";
                 return RedirectToAction(nameof(Index));
             }
 
             try
             {
-                var exercise = _exercisesContext.Read(id.Value);
-                if (exercise == null)
+                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                if (course == null)
                 {
-                    TempData["ErrorMessage"] = $"Exercise with ID {id} not found";
+                    TempData["ErrorMessage"] = $"Course with ID {id} not found";
                     return RedirectToAction(nameof(Index));
                 }
 
                 ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
-                return View(exercise);
+                return View(course);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error retrieving exercise for edit: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error retrieving course for edit: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        // POST: Exercise/Edit/5
+        // POST: Course/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Title,Description,Points,Difficulty")] Exercise exercise)
+        public IActionResult Edit(int id, [Bind("Id,Name,Description,Difficulty,Lectors,Lessons")] Course course)
         {
-            if (id != exercise.Id)
+            if (id != course.Id)
             {
-                TempData["ErrorMessage"] = "Exercise ID mismatch";
+                TempData["ErrorMessage"] = "Course ID mismatch";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -129,60 +130,60 @@ namespace MVC.Controllers
             {
                 try
                 {
-                    _exercisesContext.Update(exercise);
-                    TempData["SuccessMessage"] = "Exercise updated successfully";
+                    _coursesContext.Update(course, useNavigationalProperties: true);
+                    TempData["SuccessMessage"] = "Course updated successfully";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", $"Error updating exercise: {ex.Message}");
+                    ModelState.AddModelError("", $"Error updating course: {ex.Message}");
                 }
             }
 
             ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
-            return View(exercise);
+            return View(course);
         }
 
-        // GET: Exercise/Delete/5
+        // GET: Course/Delete/5
         public IActionResult Delete(int? id)
         {
             if (id == null)
             {
-                TempData["ErrorMessage"] = "Exercise ID not provided";
+                TempData["ErrorMessage"] = "Course ID not provided";
                 return RedirectToAction(nameof(Index));
             }
 
             try
             {
-                var exercise = _exercisesContext.Read(id.Value);
-                if (exercise == null)
+                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                if (course == null)
                 {
-                    TempData["ErrorMessage"] = $"Exercise with ID {id} not found";
+                    TempData["ErrorMessage"] = $"Course with ID {id} not found";
                     return RedirectToAction(nameof(Index));
                 }
 
-                return View(exercise);
+                return View(course);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error retrieving exercise for deletion: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error retrieving course for deletion: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        // POST: Exercise/Delete/5
+        // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             try
             {
-                _exercisesContext.Delete(id);
-                TempData["SuccessMessage"] = "Exercise deleted successfully";
+                _coursesContext.Delete(id);
+                TempData["SuccessMessage"] = "Course deleted successfully";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Error deleting exercise: {ex.Message}";
+                TempData["ErrorMessage"] = $"Error deleting course: {ex.Message}";
             }
 
             return RedirectToAction(nameof(Index));
