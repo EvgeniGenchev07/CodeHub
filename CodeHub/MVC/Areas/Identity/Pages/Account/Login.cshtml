@@ -1,153 +1,78 @@
-﻿@page
-@model LoginModel
-
-@{
-    ViewData["Title"] = "Log in";
-}
-<style>
-    :root {
-        --primary: #4361ee;
-        --primary-light: #3f37c9;
-        --text: #2b2d42;
-        --light: #f8f9fa;
-        --border: #e0e0e0;
-    }
-
-    .auth-container {
-        width: 100%;
-        max-width: 400px;
-        background: white;
-        border-radius: 16px 16px 0 0;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        overflow: hidden;
-        margin: 0 auto;
-    }
-
-    .auth-tabs {
-        display: flex;
-        position: relative;
-    }
-
-    .auth-tab {
-        flex: 1;
-        text-align: center;
-        padding: 1.25rem;
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: #666;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        z-index: 1;
-    }
-
-    .auth-tab.active {
-        color: var(--primary);
-    }
-
-    .indicator {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 3px;
-        width: 50%;
-        background-color: var(--primary);
-        border-radius: 3px 0 0 3px;
-        transition: all 0.3s ease;
-    }
-
-    .auth-tab:nth-child(2).active ~ .indicator {
-        transform: translateX(100%);
-        border-radius: 0 3px 3px 0;
-    }
-
-    /* Card styling that matches the tabs */
-    .form-card {
-        background: white;
-        border-radius: 0 0 16px 16px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        padding: 2rem;
-        margin: 0 auto;
-        max-width: 400px;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Maintain all existing card-3d styles */
-    .card-3d-wrap {
-        perspective: 1000px;
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .card-3d-wrapper {
-        transform-style: preserve-3d;
-        position: relative;
-    }
-
-    .card-front {
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
-        transition: all 0.8s ease;
-    }
-</style>
-
-<div class="section">
-    <div class="container">
-        <div class="row full-height justify-content-center">
-            <div class="col-12 text-center align-self-center py-5">
-                <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                    <!-- Tabs Container -->
-                    <div class="auth-container">
-                        <div class="auth-tabs">
-                            <a asp-area="Identity" asp-page="/Account/Login" class="auth-tab active" data-tab="login">Login</a>
-                            <a asp-area="Identity" asp-page="/Account/Register" class="auth-tab" data-tab="signup">Sign Up</a>
-                            <div class="indicator"></div>
-                        </div>
-                    </div>
-
-                    <!-- Form Card - Matches with tabs -->
-                    <div class="form-card">
-                        <div class="card-3d-wrap mx-auto">
-                            <div class="card-3d-wrapper">
-                                <!-- Login Form -->
-                                <div class="card-front">
-                                    <div class="center-wrap">
-                                        <div class="section text-center">
-                                            <form id="account" method="post">
-                                                <h4 class="mb-4 pb-3">Log In</h4>
-                                                <div class="form-group">
-                                                    <input asp-for="Input.Email" class="form-style" placeholder="Email"/>
-                                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                                    <i class="input-icon uil uil-at"></i>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <input asp-for="Input.Password" class="form-style" placeholder="Password"/>
-                                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                </div>
-                                                <p class="mb-0 mt-4 text-end"><a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a></p>
-                                                <div class="form-group">
-                                                    <div class="form-check text-start">
-                                                        <input asp-for="Input.RememberMe" style="display: inline-block" class="form-check-input"/>
-                                                        <label asp-for="Input.RememberMe" class="form-check-label"></label>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn mt-4">Submit</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+﻿<main class="auth-section">
+    <div class="auth-container">
+        <div class="auth-tabs">
+            <div class="auth-tab active" data-tab="login">Вход</div>
+            <a href="Account/Register" style="text-decoration: none" class="auth-tab" data-tab="register">Регистрация</a>
         </div>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+        <!-- Login Form -->
+        <form class="auth-form active" method="post" action="/Account/Login">
+            <div id="status-message" class="status-message" style="display: none;"></div>
+
+            <div class="form-group">
+                <input type="email" id="email" name="email" class="form-control" autocomplete="email" aria-required="true"
+                       placeholder="Email" required />
+                <span class="text-danger" id="email-error"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" autocomplete="current-password"
+                       aria-required="true" placeholder="Password" required />
+                <span class="text-danger" id="password-error"></span>
+            </div>
+            <div class="checkbox mb-3">
+                <label class="form-label">
+                    <input type="checkbox" id="rememberMe" name="rememberMe" class="darker-border-checkbox form-check-input" />
+                    Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Вход
+            </button>
+            <div class="auth-links">
+                <a href="Account/ForgotPassword">Забравена парола?</a>
+            </div>
+        </form>
+    </div>
+</main>
+<script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+
+    function filledCell(cell) {
+        return cell !== '' && cell != null;
+    }
+
+    function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], {type: 'base64'});
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1, blankrows: false, defval: ''});
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                    row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                    headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, {header: 1});
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+    }
+</script>
