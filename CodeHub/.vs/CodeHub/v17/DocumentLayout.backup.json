@@ -3,36 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\views\\exercises\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\exercises\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\web\\components\\pages\\exercises.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\exercises.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\views\\lessons\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\lessons\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\web\\components\\pages\\courses.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\courses.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D178DCF-58EB-47CA-AE40-E8A716043252}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2BB715EC-F9E6-40D1-B93F-D3C55B4385CD}|Web\\Web.csproj|solutionrelative:web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F230834-242C-4FF9-A5A3-D91CB910A324}|MVC\\MVC.csproj|solutionrelative:mvc\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|c:\\users\\rtt\\music\\codehub\\codehub\\mvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D45CB50-AA43-40C5-B2C7-5AB494050284}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,101 +54,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Exercise.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\BusinessLayer\\Exercise.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Exercise.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\BusinessLayer\\Exercise.cs",
-              "RelativeToolTip": "BusinessLayer\\Exercise.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T20:01:02.388Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExercisesContext.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\DataLayer\\ExercisesContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\ExercisesContext.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\DataLayer\\ExercisesContext.cs",
-              "RelativeToolTip": "DataLayer\\ExercisesContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T20:00:52.884Z"
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Exercises\\Index.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Exercises\\Index.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Exercises\\Index.cshtml*",
+              "RelativeToolTip": "MVC\\Views\\Exercises\\Index.cshtml*",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAqwG0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:28:23.702Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ExerciseController.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\ExerciseController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\ExerciseController.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\ExerciseController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\ExerciseController.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAADwv7IAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T20:00:47.041Z",
+              "Title": "Exercises.razor",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Exercises.razor",
+              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Exercises.razor",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Exercises.razor",
+              "RelativeToolTip": "Web\\Components\\Pages\\Exercises.razor",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAqwG0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:28:15.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Courses.razor",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Courses.razor",
+              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Courses.razor",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Courses.razor",
+              "RelativeToolTip": "Web\\Components\\Pages\\Courses.razor",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAqwIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:27:18.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Lessons\\Index.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Lessons\\Index.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Lessons\\Index.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Lessons\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:27:08.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Web\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\Web\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Web\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAAALsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:25:47.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-06T20:25:38.091Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\CourseController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\CourseController.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\CourseController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\CourseController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T20:00:11.764Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CoursesContext.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\DataLayer\\CoursesContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\CoursesContext.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\DataLayer\\CoursesContext.cs",
-              "RelativeToolTip": "DataLayer\\CoursesContext.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAswF8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T19:58:28.986Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Course.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\BusinessLayer\\Course.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Course.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\BusinessLayer\\Course.cs",
-              "RelativeToolTip": "BusinessLayer\\Course.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T19:58:17.825Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T19:57:05.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_ValidationScriptsPartial.cshtml",
-              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Pages\\_ValidationScriptsPartial.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Pages\\_ValidationScriptsPartial.cshtml",
-              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Pages\\_ValidationScriptsPartial.cshtml",
-              "RelativeToolTip": "MVC\\Pages\\_ValidationScriptsPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Music\\CodeHub\\CodeHub\\MVC\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-06T19:56:34.293Z"
+              "WhenOpened": "2025-06-06T20:11:31.53Z",
+              "EditorCaption": ""
             }
           ]
         }
