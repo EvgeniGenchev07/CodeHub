@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using BusinessLayer
+@using Microsoft.JSInterop
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
@@ -10,63 +11,52 @@
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 }
+@inject IJSRuntime JS;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GiftShop</title>
-    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true"/>
+    <link rel="icon" href="~/favicon.png" type="image/x-icon"/>
 </head>
 <body>
-<div class="hero_area">
-    <!-- header section starts -->
-    <div class="hero_area">
-        <!-- header section starts -->
-        <header class="header_section">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                    <span>Giftos</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class=""></span>
-                </button>
+<header>
+    <div class="container header-container">
+        <a asp-controller="Home" asp-action="Index" class="logo">
+            <i class="fas fa-code"></i>
+            CodeFlow
+        </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item @(currentController == "Products" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Products" asp-action="Index">Shop</a>
-                        </li>
-                        <li class="nav-item @(currentController == "WhyUs" ? "active" : "")">
-                            <a class="nav-link" asp-controller="WhyUs" asp-action="Index">Why Us</a>
-                        </li>
-                        <li class="nav-item @(currentController == "Feedbacks" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Feedbacks" asp-action="Index">Testimonial</a>
-                        </li>
-                        <li class="nav-item @(currentController == "Contacts" ? "active" : "")">
-                            <a class="nav-link" asp-controller="Contacts" asp-action="Index">Contact Us</a>
-                        </li>
-                    </ul>
+        <button onclick="@ToggleMenu" class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
 
-                    <div class="user_option">
-                        <a asp-controller="Orders" asp-action="Create">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        </a>
-                        <partial name="_LoginPartial"/>
-                    </div>
+        <ul class="nav-menu" id="navMenu">
+            <li>
+                <a asp-controller="Courses" asp-action="Index">Курсове</a>
+            </li>
+            <li>
+                <a asp-controller="Exercises" asp-action="Index">Упражнения</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Двубои</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Форум</a>
+            </li>
+            <li>
+                <div style="margin-top: 10px">
+                    <partial name="_LoginPartial"/>
                 </div>
-            </nav>
-        </header>
-        </div>
-</div>
+            </li>
+        </ul>
+    </div>
+
+</header>
     <div class="container">
         <main role="main" class="pb-3">
             @if (SignInManager.IsSignedIn(User))
@@ -93,67 +83,73 @@
         </main>
     </div>
 
-    <section class="info_section layout_padding2-top">
-        <div class="social_container">
-            <div class="social_box">
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        <div class="info_container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3">
-                        <h6>ABOUT US</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="info_form">
-                            <h5>Newsletter</h5>
-                            <form action="#">
-                                <input type="email" placeholder="Enter your email" />
-                                <button>Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h6>NEED HELP</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h6>CONTACT US</h6>
-                        <div class="info_link-box">
-                            <a href="https://maps.app.goo.gl/MjNHBWgp5H2CzXhJ8" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Somewhere Plovdiv, BG</span></a>
-                            <a href="tel:+01 12345678901"><i class="fa fa-phone" aria-hidden="true"></i><span>+01 12345678901</span></a>
-                            <a href="mailto:giftshop@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i><span>giftshop@gmail.com</span></a>
-                        </div>
-                    </div>
+  <footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">CodeHub</div>
+                <p>Иновативна платформа за обучение по програмиране чрез интерактивни видеа, практически
+                    предизвикателства и код двубои.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
-        </div>
-        <!-- footer section -->
-        <footer class="footer_section">
-            <div class="container">
-                <p>&copy; @DateTime.Now.Year All Rights Reserved By GiftShop</p>
+
+            <div class="footer-links">
+                <h3>Курсове</h3>
+                <ul>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">C# & .NET</a></li>
+                    <li><a href="#">Java</a></li>
+                </ul>
             </div>
-        </footer>
-    </section>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+            <div class="footer-links">
+                <h3>Ресурси</h3>
+                <ul>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Често задавани въпроси</a></li>
+                    <li><a href="#">Форум</a></li>
+                    <li><a href="#">Код двубои</a></li>
+                </ul>
+            </div>
 
-    @if (IsSectionDefined("Scripts"))
+            <div class="footer-links">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">За нас</a></li>
+                    <li><a href="#">Екип</a></li>
+                    <li><a href="#">Кариери</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © @DateTime.Now.Year.ToString() CodeFlow. Всички права запазени. | <a href="#" style="color: #64748b;">Условия
+                за ползване</a> | <a href="#" style="color: #64748b;">Политика за поверителност</a>
+        </div>
+    </div>
+</footer>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+@{
+    async Task ToggleMenu()
     {
-        await RenderSectionAsync("Scripts", required: true);
+        await JS.InvokeVoidAsync("toggleMenu");
     }
-    else
-    {
-        IgnoreSection("Scripts");
-    }
-
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
