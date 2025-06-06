@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace MVC.Controllers
 {
-    public class ExerciseController : Controller
+    public class ExercisesController : Controller
     {
         private readonly ExercisesContext _exercisesContext;
 
-        public ExerciseController(ExercisesContext exercisesContext)
+        public ExercisesController(ExercisesContext exercisesContext)
         {
             _exercisesContext = exercisesContext;
         }
