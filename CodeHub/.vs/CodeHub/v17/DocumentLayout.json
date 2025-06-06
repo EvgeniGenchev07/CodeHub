@@ -63,7 +63,7 @@
       "RelativeMoniker": "D:0:0:{AFB43559-BEA5-4F1C-A335-1D258DD03E7E}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\businesslayer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\DataLayer\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -301,11 +301,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
-              "RelativeToolTip": "..\\..\\..\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\ApplicationUser.cs",
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\User.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\User.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\User.cs",
+              "RelativeToolTip": "..\\..\\..\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub\\Web\\Data\\User.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-02T13:45:03.958Z"
             },

@@ -16,15 +16,12 @@
 <Routes @rendermode="RenderModeForPage"/>
 <script src="site.js"></script>
 <script src="_framework/blazor.web.js"></script>
-</body>
+</body> 
 
 </html>
 
 @code {
     [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
-    private IComponentRenderMode? RenderModeForPage => HttpContext.Request.Path.StartsWithSegments("/Account")
-        ? null
-        : InteractiveServer;
-
+    private IComponentRenderMode RenderModeForPage => InteractiveServer;
 }

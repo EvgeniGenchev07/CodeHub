@@ -7,9 +7,10 @@
 @inject ApplicationDbContext context
 @inject SignInManager<User> _signInManager
 @inject ILogger<Register> Logger
-@inject IdentityRedirectManager RedirectManager
-@inject IdentityContext _identityContext
 @inject NavigationManager NavigationManager
+@inject IdentityContext _identityContext
+@inject IdentityRedirectManager RedirectManager
+
 <PageTitle>Register</PageTitle>
 
 <main class="auth-section">
@@ -57,6 +58,8 @@
 
     [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
 
+    [CascadingParameter] private HttpContext? HttpContext { get; set; }
+
     private async Task RegisterUser()
     {
         try
@@ -69,10 +72,10 @@
 
             User user = new User(Input.Email, Input.FullName);
             await _identityContext.CreateUserAsync(user, Input.Password, Role.USER);
-            await _signInManager.SignInAsync(user, isPersistent: false);
-        
-            var redirectUrl = string.IsNullOrEmpty(ReturnUrl) ? "/" : ReturnUrl;
-            NavigationManager.NavigateTo(redirectUrl, forceLoad: true);
+            
+            // After successful registration, redirect to login page with a success message
+            var loginUrl = $"/Account/Login?registered=true&returnUrl={Uri.EscapeDataString(ReturnUrl ?? "/")}";
+            NavigationManager.NavigateTo(loginUrl, forceLoad: true);
         }
         catch (Exception ex)
         {

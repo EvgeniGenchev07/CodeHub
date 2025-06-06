@@ -24,7 +24,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<LessonsContext>();
 builder.Services.AddScoped<LectorsContext>();
 builder.Services.AddScoped<IdentityContext>();
-builder.Services.AddIdentityCore<User>(options =>
+
+builder.Services.AddIdentity<User, IdentityRole>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
         options.Password.RequireDigit = false;
@@ -34,18 +35,8 @@ builder.Services.AddIdentityCore<User>(options =>
         options.Password.RequiredLength = 5;
         options.User.RequireUniqueEmail = true;
     })
-    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddSignInManager()
     .AddDefaultTokenProviders();
-
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = IdentityConstants.ApplicationScheme;
-        options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-    })
-    .AddIdentityCookies();
-
 
 builder.Services.AddLogging();
 
