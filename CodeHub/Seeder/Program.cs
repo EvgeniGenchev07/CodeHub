@@ -35,6 +35,7 @@ try
     await dbContext.SaveChangesAsync();
     Console.WriteLine("Roles added succssfully!");
     var user = new User("admin", "admincho@abv.bg");
+    user.ProfilePicture = new byte[] { 2, 3, 3, 4, 2, 55, 6, 4, 7 };
     await identityContext.CreateUserAsync(user, "admin", Role.ADMINISTRATOR);
 
     Console.WriteLine("Admin account added successfully!");

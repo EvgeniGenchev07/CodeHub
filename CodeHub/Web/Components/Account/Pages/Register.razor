@@ -9,6 +9,7 @@
 @inject ILogger<Register> Logger
 @inject IdentityRedirectManager RedirectManager
 @inject IdentityContext _identityContext
+@inject NavigationManager NavigationManager
 <PageTitle>Register</PageTitle>
 
 <main class="auth-section">
@@ -60,8 +61,6 @@
     {
         try
         {
-            context.Roles.Add(new IdentityRole(Role.USER.ToString()));
-            context.Roles.Add(new IdentityRole(Role.ADMINISTRATOR.ToString()));
             if (Input.Password != Input.ConfirmPassword)
             {
                 Message = "The password and confirmation password do not match.";
@@ -71,7 +70,9 @@
             User user = new User(Input.Email, Input.FullName);
             await _identityContext.CreateUserAsync(user, Input.Password, Role.USER);
             await _signInManager.SignInAsync(user, isPersistent: false);
-            RedirectManager.RedirectTo("");
+        
+            var redirectUrl = string.IsNullOrEmpty(ReturnUrl) ? "/" : ReturnUrl;
+            NavigationManager.NavigateTo(redirectUrl, forceLoad: true);
         }
         catch (Exception ex)
         {
