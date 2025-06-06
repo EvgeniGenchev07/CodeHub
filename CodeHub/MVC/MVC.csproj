@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>aspnet-MVC-18af5f0b-f56d-4eb3-9be2-eaff0ebc37e1</UserSecretsId>
+        <UserSecretsId>aspnet-MVC-bb14b93a-8ccd-4078-b9c9-ef33c462aa31</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,11 +12,12 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.16"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.16"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.16" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.16"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
       <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
     </ItemGroup>
 

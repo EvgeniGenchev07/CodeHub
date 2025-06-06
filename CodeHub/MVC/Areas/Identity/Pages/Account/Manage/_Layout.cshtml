@@ -1,0 +1,159 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BusinessLayer
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GiftShop</title>
+    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true" />
+</head>
+<body>
+<div class="hero_area">
+    <!-- header section starts -->
+    <div class="hero_area">
+        <!-- header section starts -->
+        <header class="header_section">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <span>Giftos</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item @(currentController == "Products" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">Shop</a>
+                        </li>
+                        <li class="nav-item @(currentController == "WhyUs" ? "active" : "")">
+                            <a class="nav-link" asp-controller="WhyUs" asp-action="Index">Why Us</a>
+                        </li>
+                        <li class="nav-item @(currentController == "Feedbacks" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Feedbacks" asp-action="Index">Testimonial</a>
+                        </li>
+                        <li class="nav-item @(currentController == "Contacts" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Contacts" asp-action="Index">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    <div class="user_option">
+                        <a asp-controller="Orders" asp-action="Create">
+                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        </a>
+                        <partial name="_LoginPartial"/>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        </div>
+</div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <h2>Manage your account</h2>
+
+                <div>
+                    <h4>Change your account settings</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <partial name="./Manage/_ManageNav" />
+                        </div>
+                        <div class="col-md-9">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @RenderBody()
+            }
+        </main>
+    </div>
+
+    <section class="info_section layout_padding2-top">
+        <div class="social_container">
+            <div class="social_box">
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="info_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <h6>ABOUT US</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="info_form">
+                            <h5>Newsletter</h5>
+                            <form action="#">
+                                <input type="email" placeholder="Enter your email" />
+                                <button>Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h6>NEED HELP</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h6>CONTACT US</h6>
+                        <div class="info_link-box">
+                            <a href="https://maps.app.goo.gl/MjNHBWgp5H2CzXhJ8" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Somewhere Plovdiv, BG</span></a>
+                            <a href="tel:+01 12345678901"><i class="fa fa-phone" aria-hidden="true"></i><span>+01 12345678901</span></a>
+                            <a href="mailto:giftshop@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i><span>giftshop@gmail.com</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer section -->
+        <footer class="footer_section">
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year All Rights Reserved By GiftShop</p>
+            </div>
+        </footer>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @if (IsSectionDefined("Scripts"))
+    {
+        await RenderSectionAsync("Scripts", required: true);
+    }
+    else
+    {
+        IgnoreSection("Scripts");
+    }
+
+</body>
+</html>
+

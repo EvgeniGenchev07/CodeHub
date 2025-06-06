@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seeder", "Seeder\Seeder.csproj", "{3A1B1933-AD2C-4427-A681-E5C46CA010D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{7F230834-242C-4FF9-A5A3-D91CB910A324}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{8D45CB50-AA43-40C5-B2C7-5AB494050284}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A1B1933-AD2C-4427-A681-E5C46CA010D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F230834-242C-4FF9-A5A3-D91CB910A324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F230834-242C-4FF9-A5A3-D91CB910A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F230834-242C-4FF9-A5A3-D91CB910A324}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F230834-242C-4FF9-A5A3-D91CB910A324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D45CB50-AA43-40C5-B2C7-5AB494050284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D45CB50-AA43-40C5-B2C7-5AB494050284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D45CB50-AA43-40C5-B2C7-5AB494050284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D45CB50-AA43-40C5-B2C7-5AB494050284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
