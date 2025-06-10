@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BusinessLayer
+@using Microsoft.JSInterop
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+@inject IJSRuntime JS;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true"/>
+    <link rel="icon" href="~/favicon.png" type="image/x-icon"/>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a asp-controller="Home" asp-action="Index" class="logo">
+            <i class="fas fa-code"></i>
+            CodeFlow
+        </a>
+
+        <button onclick="@ToggleMenu" class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+            <li>
+                <a asp-controller="Courses" asp-action="Index">Курсове</a>
+            </li>
+            <li>
+                <a asp-controller="Exercises" asp-action="Index">Упражнения</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Двубои</a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">Форум</a>
+            </li>
+            <li>
+                <div style="margin-top: 10px">
+                    <partial name="_LoginPartial"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <h2>Manage your account</h2>
+
+                <div>
+                    <h4>Change your account settings</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <partial name="./Manage/_ManageNav" />
+                        </div>
+                        <div class="col-md-9">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @RenderBody()
+            }
+        </main>
+    </div>
+
+  <footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">CodeHub</div>
+                <p>Иновативна платформа за обучение по програмиране чрез интерактивни видеа, практически
+                    предизвикателства и код двубои.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Курсове</h3>
+                <ul>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">C# & .NET</a></li>
+                    <li><a href="#">Java</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Ресурси</h3>
+                <ul>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Често задавани въпроси</a></li>
+                    <li><a href="#">Форум</a></li>
+                    <li><a href="#">Код двубои</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">За нас</a></li>
+                    <li><a href="#">Екип</a></li>
+                    <li><a href="#">Кариери</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © @DateTime.Now.Year.ToString() CodeFlow. Всички права запазени. | <a href="#" style="color: #64748b;">Условия
+                за ползване</a> | <a href="#" style="color: #64748b;">Политика за поверителност</a>
+        </div>
+    </div>
+</footer>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+@{
+    async Task ToggleMenu()
+    {
+        await JS.InvokeVoidAsync("toggleMenu");
+    }
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
