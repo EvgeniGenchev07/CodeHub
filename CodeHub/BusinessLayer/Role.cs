@@ -8,8 +8,8 @@ namespace BusinessLayer
 {
     public enum Role
     {
-        Administrator,
-        User,
+        ADMINISTRATOR,
+        USER,
         Anonymous
     }
 }

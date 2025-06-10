@@ -71,7 +71,7 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("LessonId");
 
-                    b.ToTable("Exercise");
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("BusinessLayer.Lector", b =>
@@ -177,6 +177,10 @@ namespace DataLayer.Migrations
 
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("ProfilePicture")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");

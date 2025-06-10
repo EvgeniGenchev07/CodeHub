@@ -1,10 +1,15 @@
 ﻿@page "/Account/Register"
 @using System.ComponentModel.DataAnnotations
 @using BusinessLayer
+@using DataLayer
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<User> UserManager
-@inject NavigationManager NavigationManager
+@inject ApplicationDbContext context
+@inject SignInManager<User> _signInManager
 @inject ILogger<Register> Logger
+@inject NavigationManager NavigationManager
+@inject IdentityContext _identityContext
+@inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Register</PageTitle>
 
@@ -15,25 +20,29 @@
             <div class="auth-tab active" data-tab="register">Регистрация</div>
         </div>
 
-        <StatusMessage Message="@Message" />
+        <StatusMessage Message="@Message"/>
         <EditForm Model="Input" method="post" class="auth-form active" OnValidSubmit="RegisterUser" FormName="register">
-            <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert" />
+            <DataAnnotationsValidator/>
+            <ValidationSummary class="text-danger" role="alert"/>
             <div class="form-group">
-                <InputText @bind-Value="Input.FullName" class="form-control" autocomplete="name" aria-required="true" placeholder="Full Name" />
-                <ValidationMessage For="() => Input.FullName" class="text-danger" />
+                <InputText @bind-Value="Input.FullName" class="form-control" autocomplete="name" aria-required="true"
+                           placeholder="Full Name"/>
+                <ValidationMessage For="() => Input.FullName" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email" />
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
+                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" aria-required="true"
+                           placeholder="Email"/>
+                <ValidationMessage For="() => Input.Email" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password"
+                           aria-required="true" placeholder="Password"/>
+                <ValidationMessage For="() => Input.Password" class="text-danger"/>
             </div>
             <div class="form-group">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
-                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control"
+                           autocomplete="new-password" aria-required="true" placeholder="Confirm Password"/>
+                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger"/>
             </div>
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-user-plus"></i> Регистрация
@@ -45,11 +54,11 @@
 @code {
     private string? Message { get; set; }
 
-    [SupplyParameterFromForm]
-    private InputModel Input { get; set; } = new();
+    [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
 
-    [SupplyParameterFromQuery]
-    private string? ReturnUrl { get; set; }
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+
+    [CascadingParameter] private HttpContext? HttpContext { get; set; }
 
     private async Task RegisterUser()
     {
@@ -61,27 +70,12 @@
                 return;
             }
 
-            var user = new User
-                {
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    FullName = Input.FullName,
-                    Points = 0,
-                    Level = 1
-                };
-
-            var result = await UserManager.CreateAsync(user, Input.Password);
-
-            if (result.Succeeded)
-            {
-                Logger.LogInformation("User created a new account.");
-                //NavigationManager.NavigateTo('/Account/');
-            }
-            else
-            {
-                Message = string.Join("; ", result.Errors.Select(e => e.Description));
-                Logger.LogWarning("User creation failed: {Errors}", Message);
-            }
+            User user = new User(Input.Email, Input.FullName);
+            await _identityContext.CreateUserAsync(user, Input.Password, Role.USER);
+            
+            // After successful registration, redirect to login page with a success message
+            var loginUrl = $"/Account/Login?registered=true&returnUrl={Uri.EscapeDataString(ReturnUrl ?? "/")}";
+            NavigationManager.NavigateTo(loginUrl, forceLoad: true);
         }
         catch (Exception ex)
         {
@@ -113,4 +107,5 @@
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
     }
+
 }

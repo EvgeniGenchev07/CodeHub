@@ -15,33 +15,44 @@
         </button>
 
         <ul class="nav-menu" id="navMenu">
-            <li><NavLink href="courses">Курсове</NavLink></li>
-            <li><NavLink href="exercises">Упражнения</NavLink></li>
-            <li><NavLink href="duels">Двубои</NavLink></li>
-            <li><NavLink href="forum">Форум</NavLink></li>
+            <li>
+                <NavLink href="courses">Курсове</NavLink>
+            </li>
+            <li>
+                <NavLink href="exercises">Упражнения</NavLink>
+            </li>
+            <li>
+                <NavLink href="duels">Двубои</NavLink>
+            </li>
+            <li>
+                <NavLink href="forum">Форум</NavLink>
+            </li>
             <li>
                 <div style="margin-top: 10px">
-                <AuthorizeView>
-                    <Authorized>
-                        <div class="">
-                            <NavLink class="nav-link" href="profile_page">
-                                <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
-                            </NavLink>
-                        </div>
-                    </Authorized>
-                    <NotAuthorized>
-                        <div style="display: flex" class="">
-                            <NavLink style="border-radius: 25px" class="nav-link btn btn-primary" href="Account/Login">
-                                <span class="bi bi-person-nav-menu" style="margin-left: 10px;margin-right: 10px;" aria-hidden="true"></span>
-                            </NavLink>
-                        </div>
-                    </NotAuthorized>
-                </AuthorizeView>
+                    <AuthorizeView>
+                        <Authorized>
+                            <div class="">
+                                <NavLink class="nav-link" href="Account/Manage/">
+                                    <span class="bi bi-person-fill-nav-menu"
+                                          aria-hidden="true"></span> @context.User.Identity?.Name
+                                </NavLink>
+                            </div>
+                        </Authorized>
+                        <NotAuthorized>
+                            <div style="display: flex" class="">
+                                <NavLink style="border-radius: 25px" class="nav-link btn btn-primary"
+                                         href="Account/Login">
+                                    <span class="bi bi-person-nav-menu" style="margin-left: 10px;margin-right: 10px;"
+                                          aria-hidden="true"></span>
+                                </NavLink>
+                            </div>
+                        </NotAuthorized>
+                    </AuthorizeView>
                 </div>
             </li>
         </ul>
     </div>
-   
+
 </header>
 
 @code {
@@ -63,8 +74,10 @@
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
+
     private async Task ToggleMenu()
     {
         await JS.InvokeVoidAsync("toggleMenu");
     }
+
 }

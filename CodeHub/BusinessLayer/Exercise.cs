@@ -9,8 +9,7 @@ namespace BusinessLayer
 {
     public class Exercise
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Points { get; set; }
@@ -18,8 +17,8 @@ namespace BusinessLayer
 
         public Exercise()
         {
-            
         }
+
         public Exercise(string title, string description, int points, Difficulty difficulty)
         {
             Title = title;
