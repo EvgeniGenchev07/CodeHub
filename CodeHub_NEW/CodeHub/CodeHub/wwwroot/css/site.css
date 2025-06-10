@@ -1,0 +1,448 @@
+﻿/* shared.css - Общи стилове за цялото приложение */
+:root {
+    --primary: #00f7ff;
+    --secondary: #ff00e4;
+    --dark: #0a0a1a;
+    --darker: #050510;
+    --light: #ffffff;
+    --gray: #cccccc;
+    --success: #27c93f;
+    --warning: #ffbd2e;
+    --danger: #ff5f56;
+    --neon-glow: 0 0 10px var(--primary);
+    --text-glow: 0 0 5px var(--primary);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(10, 10, 26, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo-icon {
+    color: var(--primary);
+    text-shadow: var(--text-glow);
+}
+
+.logo-text {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin-right: auto;
+    margin-left: 40px;
+    gap: 20px;
+}
+
+    .nav-links a {
+        color: var(--gray);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 20px;
+    }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            text-shadow: var(--text-glow);
+            background-color: rgba(0, 247, 255, 0.1);
+        }
+
+    .nav-links i {
+        font-size: 0.9rem;
+    }
+
+.user-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Buttons - Общи стилове за бутони */
+.btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+    .btn-outline:hover {
+        background: rgba(0, 247, 255, 0.1);
+        box-shadow: var(--neon-glow);
+    }
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--darker);
+    font-weight: 600;
+    background-size: 200% auto;
+    animation: gradientBG 3s ease infinite;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px var(--primary);
+    }
+
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    padding: 6px 15px;
+    font-size: 0.85rem;
+}
+
+/* Анимации */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Responsive Design за хедъра и навигацията */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(10, 10, 26, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        border-top: 1px solid rgba(0, 247, 255, 0.2);
+        border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    }
+
+        .nav-menu.active {
+            display: flex;
+            max-height: 500px;
+            animation: slideDown 0.5s ease;
+        }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin: 0;
+    }
+
+        .nav-links a {
+            justify-content: flex-start;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            background-color: rgba(0, 247, 255, 0.05);
+        }
+
+            .nav-links a:hover {
+                background-color: rgba(0, 247, 255, 0.2);
+                transform: translateX(5px);
+            }
+
+    .user-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin: 20px 0 0 0;
+    }
+
+        .user-actions .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+/* Ефект при hover на лого */
+.logo:hover .logo-icon {
+    animation: float 2s ease infinite;
+}
+/* Footer Styles */
+footer {
+    background-color: var(--darker);
+    padding: 50px 5% 20px;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-about {
+    max-width: 300px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+    .footer-logo .logo-icon {
+        color: var(--primary);
+        text-shadow: var(--text-glow);
+    }
+
+    .footer-logo .logo-text {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+.footer-text {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.footer-links h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+    .footer-links a:hover {
+        color: var(--primary);
+    }
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--gray);
+        transition: all 0.3s;
+    }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--darker);
+            transform: translateY(-3px);
+        }
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-about {
+        max-width: 100%;
+    }
+}
+/*Loader*/
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darker, #0d1117);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s;
+    overflow: hidden;
+}
+
+.loader-text {
+    color: #00ff88;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88;
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    z-index: 10001;
+    margin-top: 20px;
+    animation: neon-flicker 1.5s infinite alternate;
+}
+
+.matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 40px rgba(0, 255, 136, 0.8);
+    }
+
+    20%, 24%, 55% {
+        text-shadow: 0 0 2px #00ff88, 0 0 5px #00ff88, 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+}
+
+@media (max-width: 600px) {
+    .loader-text {
+        margin-top: 10px;
+        letter-spacing: 2px;
+    }
+}

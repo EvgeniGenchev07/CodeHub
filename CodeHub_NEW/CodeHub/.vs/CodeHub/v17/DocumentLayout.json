@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ivan_\\Documents\\CodeHub\\CodeHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|CodeHub\\CodeHub.csproj|c:\\users\\ivan_\\documents\\codehub\\codehub\\codehub\\wwwroot\\css\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|CodeHub\\CodeHub.csproj|solutionrelative:codehub\\wwwroot\\css\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|CodeHub\\CodeHub.csproj|c:\\users\\ivan_\\documents\\codehub\\codehub\\codehub\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|CodeHub\\CodeHub.csproj|solutionrelative:codehub\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "auth.css",
+              "DocumentMoniker": "C:\\Users\\ivan_\\Documents\\CodeHub\\CodeHub\\CodeHub\\wwwroot\\css\\auth.css",
+              "RelativeDocumentMoniker": "CodeHub\\wwwroot\\css\\auth.css",
+              "ToolTip": "C:\\Users\\ivan_\\Documents\\CodeHub\\CodeHub\\CodeHub\\wwwroot\\css\\auth.css",
+              "RelativeToolTip": "CodeHub\\wwwroot\\css\\auth.css",
+              "ViewState": "AgIAANIAAAAAAAAAAAAiwPQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-09T08:11:14.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\ivan_\\Documents\\CodeHub\\CodeHub\\CodeHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "CodeHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\ivan_\\Documents\\CodeHub\\CodeHub\\CodeHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "CodeHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAACMAAAAAAAAAAAAmwEQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T08:10:14.842Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

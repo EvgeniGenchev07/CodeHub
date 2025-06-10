@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CodeHub</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeHub.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="loader" id="loader">
+        <canvas id="matrix" class="matrix-canvas"></canvas>
+        <div class="loader-text">Зареждане на CodeHub...</div>
+    </div>
+    <header>
+    <div class="logo">
+        <span class="logo-icon"><i class="fas fa-code"></i></span>
+        <span class="logo-text">CodeHub</span>
+    </div>
+
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+            <li><a href="/" class="active"><i class="fas fa-home"></i> Начало</a></li>
+            <li><a href="/courses"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
+            <li><a href="/battles"><i class="fas fa-trophy"></i> Двубои</a></li>
+            <li><a href="/forum"><i class="fas fa-comments"></i> Форум</a></li>
+            <li><a href="/exercises"><i class="fas fa-dumbbell"></i> Упражнения</a></li>
+        </ul>
+
+        <div class="user-actions">
+            <button class="btn btn-outline"><i class="fas fa-sign-in-alt"></i> Вход</button>
+            <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Регистрация</button>
+        </div>
+    </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <span class="logo-icon"><i class="fas fa-code"></i></span>
+                    <span class="logo-text">CodeHub</span>
+                </div>
+                <p class="footer-text">Научи програмирането чрез игри, двубои и реални предизвикателства. Присъедини се към нашата общност днес!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Курсове</h4>
+                <ul>
+                    <li><a href="#">JavaScript Основи</a></li>
+                    <li><a href="#">DOM Манипулация</a></li>
+                    <li><a href="#">Асинхронен JS</a></li>
+                    <li><a href="#">React & Vue</a></li>
+                    <li><a href="#">Node.js</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Ресурси</h4>
+                <ul>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Често задавани въпроси</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Партньори</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>За нас</h4>
+                <ul>
+                    <li><a href="#">Екип</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#">Условия</a></li>
+                    <li><a href="#">Поверителност</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © @DateTime.Now.Year CodeBattle. Всички права запазени.
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const hamburgerIcon = hamburger.querySelector('i');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburgerIcon.classList.toggle('fa-bars');
+                hamburgerIcon.classList.toggle('fa-times');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburgerIcon.classList.add('fa-bars');
+                    hamburgerIcon.classList.remove('fa-times');
+                });
+            });
+
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+
+            let fontSize = Math.max(12, Math.min(16, window.innerWidth / 60));
+            let columns = Math.floor(window.innerWidth / fontSize);
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+
+            const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%';
+            const colors = ['#00ff88', '#ff00ff', '#00ffff', '#ffcc00'];
+            const drops = [];
+
+            function initDrops() {
+                drops.length = 0;
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = {
+                        y: Math.random() * canvas.height / fontSize,
+                        speed: Math.random() * 0.5 + (window.innerWidth < 600 ? 0.3 : 0.5),
+                        color: colors[Math.floor(Math.random() * colors.length)]
+                    };
+                }
+            }
+
+            initDrops();
+
+            function draw() {
+                ctx.fillStyle = 'rgba(13, 17, 23, 0.15)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    ctx.fillStyle = drops[i].color;
+                    ctx.shadowColor = drops[i].color;
+                    ctx.shadowBlur = 10;
+                    ctx.fillText(text, i * fontSize, drops[i].y * fontSize);
+
+                    drops[i].y += drops[i].speed;
+                    if (drops[i].y * fontSize > canvas.height && Math.random() > 0.95) {
+                        drops[i].y = 0;
+                        drops[i].color = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                }
+                ctx.shadowBlur = 0;
+            }
+
+            setInterval(draw, 50);
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    canvas.height = window.innerHeight;
+                    canvas.width = window.innerWidth;
+                    fontSize = Math.max(12, Math.min(16, window.innerWidth / 60));
+                    columns = Math.floor(canvas.width / fontSize);
+                    ctx.font = fontSize + 'px monospace';
+                    initDrops();
+                }, 100);
+            });
+
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
