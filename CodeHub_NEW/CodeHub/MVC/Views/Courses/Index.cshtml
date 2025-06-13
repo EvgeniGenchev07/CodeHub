@@ -1,5 +1,168 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@section Styles {
+<link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
 }
+<!-- Page Header -->
+<div class="page-header">
+    <h1 class="page-title">Нашите <span class="text-gradient">Курсове</span></h1>
+    <p class="page-subtitle">Открий най-добрите JavaScript курсове и стани експерт в програмирането чрез интерактивно обучение</p>
+
+    <div class="stats-row">
+        <div class="stat-item">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Курса</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5000+</span>
+            <span class="stat-label">Ученици</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Успеваемост</span>
+        </div>
+    </div>
+</div>
+
+<!-- Filters Section -->
+<div class="filters-section">
+    <h3 class="filters-title">
+        <i class="fas fa-filter"></i>
+        Филтри и търсене
+    </h3>
+
+    <div class="filters-grid">
+        <div class="filter-group">
+            <label class="filter-label">Търсене</label>
+            <input type="text" class="filter-input" placeholder="Търси курс..." id="search-input">
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Ниво</label>
+            <select class="filter-select" id="level-filter">
+                <option value="">Всички нива</option>
+                <option value="beginner">Начинаещ</option>
+                <option value="intermediate">Средно ниво</option>
+                <option value="advanced">Напреднал</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Категория</label>
+            <select class="filter-select" id="category-filter">
+                <option value="">Всички категории</option>
+                <option value="javascript">JavaScript</option>
+                <option value="frontend">Frontend</option>
+                <option value="backend">Backend</option>
+                <option value="frameworks">Frameworks</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Продължителност</label>
+            <select class="filter-select" id="duration-filter">
+                <option value="">Всички</option>
+                <option value="short">До 10 часа</option>
+                <option value="medium">10-30 часа</option>
+                <option value="long">Над 30 часа</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="filter-group" style="margin-top: 20px;">
+        <label class="filter-label">Популярни тагове</label>
+        <div class="filter-tags">
+            <button class="filter-tag" data-tag="javascript">JavaScript</button>
+            <button class="filter-tag" data-tag="react">React</button>
+            <button class="filter-tag" data-tag="vue">Vue.js</button>
+            <button class="filter-tag" data-tag="node">Node.js</button>
+            <button class="filter-tag" data-tag="typescript">TypeScript</button>
+            <button class="filter-tag" data-tag="algorithms">Алгоритми</button>
+            <button class="filter-tag" data-tag="api">API</button>
+            <button class="filter-tag" data-tag="database">База данни</button>
+        </div>
+    </div>
+</div>
+
+<!-- Courses Grid -->
+<div class="courses-container" id="courses-container">
+    <!-- Course Card 1 -->
+    <div class="course-card" data-level="beginner" data-category="javascript" data-duration="short">
+        <div class="course-header">
+            <span class="course-badge badge-beginner">Начинаещ</span>
+            <div class="course-rating">
+                <span class="stars">★★★★★</span>
+                <span>4.9</span>
+            </div>
+        </div>
+
+        <div class="course-icon">
+            <i class="fab fa-js"></i>
+        </div>
+
+        <h3 class="course-title">JavaScript Основи</h3>
+        <p class="course-description">Научи основите на JavaScript от нулата - променливи, функции, масиви, обекти и DOM манипулация. Идеален курс за начинаещи.</p>
+
+        <div class="course-meta">
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>8 часа</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-users"></i>
+                <span>1200+ ученици</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-play-circle"></i>
+                <span>25 урока</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-certificate"></i>
+                <span>Сертификат</span>
+            </div>
+        </div>
+
+        <div class="course-progress">
+            <div class="progress-label">
+                <span>Напредък</span>
+                <span>65%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 65%;"></div>
+            </div>
+        </div>
+
+        <div class="course-tags">
+            <span class="course-tag">JavaScript</span>
+            <span class="course-tag">DOM</span>
+            <span class="course-tag">ES6</span>
+        </div>
+
+        <div class="course-actions">
+            <button class="btn btn-primary">Продължи</button>
+            <button class="btn btn-outline">Детайли</button>
+        </div>
+    </div>
+
+    <!-- Course Card 2 -->
+    <div class="course-card" data-level="intermediate" data-category="frontend" data-duration="medium">
+        <div class="course-header">
+            <span class="course-badge badge-intermediate">Средно ниво</span>
+            <div class="course-rating">
+                <span class="stars">★★★★☆</span>
+                <span>4.7</span>
+            </div>
+        </div>
+
+        <div class="course-icon">
+            <i class="fab fa-react"></i>
+        </div>
+
+        <h3 class="course-title">React за начинаещи</h3>
+        <p class="course-description">Създавай модерни уеб приложения с React. Научи компоненти, hooks, state management и как да интегрираш API-та.</p>
+
+        <div class="course-meta">
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>15 часа</span>
+            </div>
+        </div>
+

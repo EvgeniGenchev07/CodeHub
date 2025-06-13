@@ -1,0 +1,124 @@
+﻿@section Styles {
+<link rel="stylesheet" href="~/css/exercises.css" asp-append-version="true" />
+}
+<!-- Exercises Section -->
+<section class="section" id="exercises">
+    <h2 class="section-title">JavaScript <span class="text-gradient">Упражнения</span></h2>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <button class="filter-btn active"><i class="fas fa-list"></i> Всички</button>
+            <button class="filter-btn"><i class="fas fa-star"></i> Популярни</button>
+            <button class="filter-btn"><i class="fas fa-fire"></i> Препоръчани</button>
+        </div>
+
+        <div class="filter-group">
+            <button class="filter-btn"><i class="fas fa-bolt"></i> Лесни</button>
+            <button class="filter-btn"><i class="fas fa-layer-group"></i> Средни</button>
+            <button class="filter-btn"><i class="fas fa-skull"></i> Трудни</button>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Търси упражнения...">
+        </div>
+    </div>
+
+    <div class="exercises-container">
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-easy">Лесна</div>
+                <i class="fas fa-star" style="color: var(--warning);"></i>
+            </div>
+            <h3 class="exercise-title">Сума на числа в масив</h3>
+            <p class="exercise-description">Напишете функция, която приема масив от числа и връща сумата им. Ако масивът е празен, върнете 0.</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 1250</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 85%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-medium">Средна</div>
+                <i class="far fa-star" style="color: var(--gray);"></i>
+            </div>
+            <h3 class="exercise-title">Палиндром проверка</h3>
+            <p class="exercise-description">Напишете функция, която проверява дали даден низ е палиндром (чете се еднакво отляво надясно и отдясно наляво).</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 980</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 72%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-hard">Трудна</div>
+                <i class="fas fa-star" style="color: var(--warning);"></i>
+            </div>
+            <h3 class="exercise-title">Най-дълга обща последователност</h3>
+            <p class="exercise-description">Напишете функция, която намира дължината на най-дългата обща последователност между два низа.</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 650</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 45%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-medium">Средна</div>
+                <i class="fas fa-star" style="color: var(--warning);"></i>
+            </div>
+            <h3 class="exercise-title">Филтриране на уникални елементи</h3>
+            <p class="exercise-description">Напишете функция, която връща нов масив, съдържащ само уникалните елементи от оригиналния масив.</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 1100</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 68%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-easy">Лесна</div>
+                <i class="far fa-star" style="color: var(--gray);"></i>
+            </div>
+            <h3 class="exercise-title">Факториел</h3>
+            <p class="exercise-description">Напишете функция, която изчислява факториела на дадено неотрицателно цяло число.</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 1500</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 90%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-difficulty difficulty-hard">Трудна</div>
+                <i class="fas fa-star" style="color: var(--warning);"></i>
+            </div>
+            <h3 class="exercise-title">Мрежово закъснение</h3>
+            <p class="exercise-description">Имплементирайте функция за извикване на API с повторни опити при грешка и експоненциално backoff закъснение.</p>
+            <div class="exercise-footer">
+                <div class="exercise-stats">
+                    <div class="exercise-stat"><i class="fas fa-users"></i> 420</div>
+                    <div class="exercise-stat"><i class="fas fa-check-circle"></i> 38%</div>
+                </div>
+                <button class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
