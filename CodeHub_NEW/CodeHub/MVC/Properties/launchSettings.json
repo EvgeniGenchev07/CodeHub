@@ -13,6 +13,7 @@
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,
+      "workingDirectory": "../DataLayer",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7034;http://localhost:5266",
       "environmentVariables": {

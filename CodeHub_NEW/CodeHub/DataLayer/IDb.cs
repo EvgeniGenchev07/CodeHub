@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace DataLayer;
 
-namespace DataLayer
+public interface IDb<T,K>
 {
-    interface IDb<T,K>
-    {
-        void Create(T item);
-        T Read(K key, bool useNavigationalProperties = false, bool isReadOnly = false);
-        List<T> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false);
-
-        void Update(T item, bool useNavigationalProperties = false);
-
-        void Delete(K key);
-    }
+    Task Create(T entity);
+    Task<T> Read(K id, bool useNavigationProperties = false,bool isReadOnly = false);
+    Task<List<T>> ReadAll(bool useNavigationProperties = false, bool isReadOnly = false);
+    Task Update(T entity, bool useNavigationProperties = false);
+    Task Delete(K id);
 }

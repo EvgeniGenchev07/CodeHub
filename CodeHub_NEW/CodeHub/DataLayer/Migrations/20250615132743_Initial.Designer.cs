@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CodeHubDbContext))]
-    [Migration("20250615085420_initial")]
-    partial class initial
+    [Migration("20250615132743_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,38 @@ namespace DataLayer.Migrations
                     b.HasIndex("LessonId");
 
                     b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("BusinessLayer.Forum", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Views")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Forums");
                 });
 
             modelBuilder.Entity("BusinessLayer.Lector", b =>
@@ -349,6 +381,17 @@ namespace DataLayer.Migrations
                         .HasForeignKey("LessonId");
                 });
 
+            modelBuilder.Entity("BusinessLayer.Forum", b =>
+                {
+                    b.HasOne("BusinessLayer.User", "Author")
+                        .WithMany("Forums")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
             modelBuilder.Entity("BusinessLayer.Lector", b =>
                 {
                     b.HasOne("BusinessLayer.Course", null)
@@ -429,6 +472,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("BusinessLayer.User", b =>
                 {
                     b.Navigation("Courses");
+
+                    b.Navigation("Forums");
                 });
 #pragma warning restore 612, 618
         }
