@@ -16,7 +16,7 @@ namespace BusinessLayer
         public byte[] ProfilePicture { get; set; }
         public int Points { get; set; }
         public int Level { get; set; }
-
+        public List<Forum> Forums { get; set; }
         public User()
         {
             FullName = string.Empty;

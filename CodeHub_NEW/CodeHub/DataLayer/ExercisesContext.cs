@@ -10,7 +10,7 @@ namespace DataLayer
 {
     public class ExercisesContext
     {
-        CodeHubDbContext dbContext;
+        private readonly CodeHubDbContext dbContext;
 
         public ExercisesContext(CodeHubDbContext dbContext)
         {

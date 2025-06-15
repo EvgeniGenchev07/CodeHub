@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer;
+using DataLayer;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CodeHub.Controllers
 {
     public class ForumController : Controller
     {
-        public IActionResult Index()
+        private readonly IDb<Forum, int> _forumContext;
+        public ForumController(ForumContext forumContext)
         {
-            return View();
+            _forumContext = forumContext;
+        }
+        public async Task<IActionResult> Index()
+        {
+            return View(await _forumContext.ReadAll());
         }
     }
 }

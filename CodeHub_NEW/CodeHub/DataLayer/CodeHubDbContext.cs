@@ -15,6 +15,7 @@ namespace DataLayer
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Lector> Lectors { get; set; }
+        public DbSet<Forum> Forums { get; set; }
 
         public CodeHubDbContext() : base()
         {
@@ -30,7 +31,7 @@ namespace DataLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data Source=../DataLayer/codehub.db3");
+                optionsBuilder.UseSqlite("Data Source=codehub.db3");
             }
             base.OnConfiguring(optionsBuilder);
         }

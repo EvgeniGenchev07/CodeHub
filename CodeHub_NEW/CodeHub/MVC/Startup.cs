@@ -29,6 +29,7 @@ namespace MVC
             services.AddControllersWithViews();
             services.AddScoped<IdentityContext>();
             services.AddScoped<LessonsContext>();
+            services.AddScoped<ForumContext>();
             services.AddScoped<LectorsContext>();
             services.AddScoped<CoursesContext>();
             services.AddScoped<ExercisesContext>();
