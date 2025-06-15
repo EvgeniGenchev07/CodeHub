@@ -27,7 +27,9 @@
             <button type="button" class="toggle-password" onclick="togglePassword(this)">👁</button>
             <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
-
+        <div class="form-group text-end">
+            <a class="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
+        </div>
         <button type="submit" class="login-btn">Влез</button>
     </form>
 
