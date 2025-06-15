@@ -16,10 +16,10 @@ try
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 5;
 
-    DbContextOptionsBuilder<ApplicationDbContext> builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+    DbContextOptionsBuilder<CodeHubDbContext> builder = new DbContextOptionsBuilder<CodeHubDbContext>();
     builder.UseSqlite("DataSource=../../../../DataLayer/codehub.db3");
 
-    ApplicationDbContext dbContext = new ApplicationDbContext(builder.Options);
+    CodeHubDbContext dbContext = new CodeHubDbContext(builder.Options);
     UserManager<User> userManager = new UserManager<User>(
         new UserStore<User>(dbContext), Options.Create(options),
         new PasswordHasher<User>(), new List<IUserValidator<User>>() { new UserValidator<User>() },
@@ -34,7 +34,7 @@ try
     dbContext.Roles.Add(new IdentityRole("User") { NormalizedName = "USER" });
     await dbContext.SaveChangesAsync();
     Console.WriteLine("Roles added succssfully!");
-    var user = new User("admin", "admincho@abv.bg");
+    var user = new User( "admincho@abv.bg","admin");
     user.ProfilePicture = new byte[] { 2, 3, 3, 4, 2, 55, 6, 4, 7 };
     await identityContext.CreateUserAsync(user, "admin", Role.ADMINISTRATOR);
 

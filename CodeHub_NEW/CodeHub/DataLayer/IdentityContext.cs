@@ -12,28 +12,13 @@ namespace DataLayer
     public class IdentityContext
     {
         UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         CodeHubDbContext _context;
 
-        public IdentityContext(CodeHubDbContext context, UserManager<User> userManager, 
-            RoleManager<IdentityRole> roleManager)
+        public IdentityContext(CodeHubDbContext context, UserManager<User> userManager)
         {
             this._context = context;
             this._userManager = userManager;
-            _roleManager = roleManager;
-            InitializeRoles().Wait();
         }
-        private async Task InitializeRoles()
-        {
-            foreach (var roleName in Enum.GetNames(typeof(Role)))
-            {
-                if (!await _roleManager.RoleExistsAsync(roleName))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-        }
-        #region CRUD
 
         public async Task CreateUserAsync(User user, string password, Role role)
         {
@@ -50,7 +35,7 @@ namespace DataLayer
                 {
                     await _userManager.AddToRoleAsync(user, Role.ADMINISTRATOR.ToString());
                 }
-                else
+                else if (role == Role.USER)
                 {
                     await _userManager.AddToRoleAsync(user, Role.USER.ToString());
                 }
@@ -154,6 +139,5 @@ namespace DataLayer
             }
         }
 
-        #endregion
     }
 }

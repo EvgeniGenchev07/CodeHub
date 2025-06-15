@@ -1,23 +1,25 @@
-﻿using BusinessLayer;
+using BusinessLayer;
 using DataLayer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
+[AllowAnonymous]
 public class RegisterModel : PageModel
 {
     private readonly IdentityContext _identityContext;
-
-    public RegisterModel(IdentityContext identityContext)
+    private readonly SignInManager<User> _signInManager;
+    public RegisterModel(IdentityContext identityContext,SignInManager<User> signInManager)
     {
         _identityContext = identityContext;
+        _signInManager = signInManager;
     }
 
     [BindProperty]
     public InputModel Input { get; set; }
 
-    public string ReturnUrl { get; set; }
 
     public class InputModel
     {
@@ -38,14 +40,8 @@ public class RegisterModel : PageModel
         public string ConfirmPassword { get; set; }
     }
 
-    public void OnGet(string returnUrl = null)
+    public async Task<IActionResult> OnPostAsync()
     {
-        ReturnUrl = returnUrl ?? Url.Content("~/");
-    }
-
-    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-    {
-        returnUrl ??= Url.Content("~/");
 
         if (ModelState.IsValid)
         {
@@ -58,16 +54,15 @@ public class RegisterModel : PageModel
             try
             {
                 await _identityContext.CreateUserAsync(user, Input.Password, Role.USER);
-                await _identityContext.LogInUserAsync(Input.Email, Input.Password);
-                return LocalRedirect(returnUrl);
+                var newUser = await _signInManager.UserManager.FindByEmailAsync(user.Email);
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+                return LocalRedirect("/");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
         }
-
-        // Something failed, redisplay form
         return Page();
     }
 }
