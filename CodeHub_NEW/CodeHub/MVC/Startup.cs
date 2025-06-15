@@ -38,7 +38,7 @@ namespace MVC
             //services.AddScoped(typeof(MVCDbContext));
 
             services.AddDbContext<CodeHubDbContext>(options =>
-                options.UseSqlite("Data Source=../DataLayer/codehub.db3").EnableSensitiveDataLogging());
+    options.UseSqlite(Configuration.GetConnectionString("CodeHubDbContext")).EnableSensitiveDataLogging());
 
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<CodeHubDbContext>()

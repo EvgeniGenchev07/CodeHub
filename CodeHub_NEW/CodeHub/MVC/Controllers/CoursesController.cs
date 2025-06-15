@@ -30,7 +30,12 @@ namespace MVC.Controllers
                 return View(new List<Course>());
             }
         }
-
+        //This is only for test the design
+        public IActionResult Details()
+        {
+            return View();
+        }
+        /*
         // GET: Course/Details/5
         public IActionResult Details(int? id)
         {
@@ -55,7 +60,7 @@ namespace MVC.Controllers
                 TempData["ErrorMessage"] = $"Error retrieving course details: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
-        }
+        }*/
 
         // GET: Course/Create
         public IActionResult Create()

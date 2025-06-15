@@ -30,7 +30,7 @@ namespace DataLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data Source=codehub.db");
+                optionsBuilder.UseSqlite("Data Source=../DataLayer/codehub.db3");
             }
             base.OnConfiguring(optionsBuilder);
         }

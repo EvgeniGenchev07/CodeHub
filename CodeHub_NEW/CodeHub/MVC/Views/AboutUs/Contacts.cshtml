@@ -1,0 +1,166 @@
+﻿
+@section Styles{
+    <link rel="stylesheet" href="~/css/contact.css">
+}
+<section class="contact-header">
+    <h1 class="contact-title">Свържи се с <span class="text-gradient">нас</span></h1>
+    <p class="contact-subtitle">
+        Имате въпроси или нужда от помощ? Нашият екип е винаги готов да ви помогне.
+        Използвайте формата за контакт или се свържете с нас директно чрез предоставените методи.
+    </p>
+</section>
+
+<!-- Contact Content -->
+<div class="contact-content">
+    <!-- Contact Form -->
+    <section class="contact-form">
+        <h2 class="form-title"><i class="fas fa-paper-plane"></i> Изпратете съобщение</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name" class="form-label">Име</label>
+                <input type="text" id="name" class="form-control" placeholder="Вашето име" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Имейл</label>
+                <input type="email" id="email" class="form-control" placeholder="Вашият имейл" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" class="form-label">Тема</label>
+                <input type="text" id="subject" class="form-control" placeholder="Тема на съобщението" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message" class="form-label">Съобщение</label>
+                <textarea id="message" class="form-control" placeholder="Вашето съобщение..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+                <i class="fas fa-paper-plane"></i> Изпрати съобщение
+            </button>
+        </form>
+    </section>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+        <div class="info-card">
+            <h2 class="info-title"><i class="fas fa-map-marker-alt"></i> Адрес</h2>
+            <div class="info-content">
+                <p>ул. "Програмистка" №42, етаж 5</p>
+                <p>София 1000, България</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2 class="info-title"><i class="fas fa-phone-alt"></i> Телефон</h2>
+            <div class="info-content">
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="info-text">
+                            <p><strong>Поддръжка:</strong></p>
+                            <a href="tel:+359888123456">+359 888 123 456</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="info-text">
+                            <p><strong>Служба за клиенти:</strong></p>
+                            <a href="tel:+359887654321">+359 887 654 321</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2 class="info-title"><i class="fas fa-envelope"></i> Имейл</h2>
+            <div class="info-content">
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="info-text">
+                            <p><strong>Общи въпроси:</strong></p>
+                            <a href="mailto:info@codebattle.bg">info@codebattle.bg</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="info-text">
+                            <p><strong>Поддръжка:</strong></p>
+                            <a href="mailto:support@codebattle.bg">support@codebattle.bg</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="map-section">
+    <div class="map-placeholder">
+        <div class="map-icon">
+            <i class="fas fa-map-marked-alt"></i>
+        </div>
+        <h3>Нашето местоположение в Пловдив</h3>
+        <p>ул. "Чемшир" 11, Пловдив 4000</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Чемшир+11,+Пловдив"
+           target="_blank"
+           class="btn btn-outline map-link">
+            <i class="fas fa-external-link-alt"></i> Виж на Google Maps
+        </a>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Info card hover effect
+            const infoCards = document.querySelectorAll('.info-card');
+            infoCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.info-icon');
+                    if (icon) {
+                        icon.style.transform = 'rotate(15deg) scale(1.1)';
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.info-icon');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg) scale(1)';
+                    }
+                });
+            });
+        });
+    </script>
+}

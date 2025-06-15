@@ -12,14 +12,27 @@ namespace DataLayer
     public class IdentityContext
     {
         UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         CodeHubDbContext _context;
 
-        public IdentityContext(CodeHubDbContext context, UserManager<User> userManager)
+        public IdentityContext(CodeHubDbContext context, UserManager<User> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             this._context = context;
             this._userManager = userManager;
+            _roleManager = roleManager;
+            InitializeRoles().Wait();
         }
-
+        private async Task InitializeRoles()
+        {
+            foreach (var roleName in Enum.GetNames(typeof(Role)))
+            {
+                if (!await _roleManager.RoleExistsAsync(roleName))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+        }
         #region CRUD
 
         public async Task CreateUserAsync(User user, string password, Role role)
@@ -53,27 +66,18 @@ namespace DataLayer
             try
             {
                 User user = await _userManager.FindByEmailAsync(email);
-
                 if (user == null)
                 {
                     return null;
                 }
 
-                IdentityResult result =
-                    await _userManager.PasswordValidators[1].ValidateAsync(_userManager, user, password);
-
-                if (result.Succeeded)
-                {
-                    return await _context.Users.FindAsync(user.Id);
-                }
-                else
-                {
-                    return null;
-                }
+                // Проверка на паролата с правилния метод
+                var passwordValid = await _userManager.CheckPasswordAsync(user, password);
+                return passwordValid ? user : null;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Грешка при влизане", ex);
             }
         }
 

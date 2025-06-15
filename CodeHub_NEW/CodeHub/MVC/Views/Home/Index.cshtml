@@ -58,7 +58,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Двубои срещу други</h3>
             <p>Състезавай се с реални хора в реално време и докажи своите умения</p>
-            <button class="btn btn-outline btn-sm">Виж двубоите</button>
+            <button id="battleBtn" class="btn btn-outline btn-sm">Виж двубоите</button>
         </div>
 
         <div class="feature-card">
@@ -67,7 +67,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Интерактивни курсове</h3>
             <p>Учи чрез практика с нашия интерактивен code editor и реални проекти</p>
-            <button class="btn btn-outline btn-sm">Виж курсовете</button>
+            <button id="courseBtn" class="btn btn-outline btn-sm">Виж курсовете</button>
         </div>
 
         <div class="feature-card">
@@ -76,7 +76,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Активен форум</h3>
             <p>Получавай помощ, споделяй знания и обсъждай с други програмисти</p>
-            <button class="btn btn-outline btn-sm">Виж форума</button>
+            <button id="forumBtn" class="btn btn-outline btn-sm">Виж форума</button>
         </div>
     </div>
 </section>
@@ -334,5 +334,17 @@ console.log(result);</code></pre>
                    clearInterval(typingInterval);
                }
            }, 20);
+
+           //Add location to button
+              document.getElementById("forumBtn").addEventListener('click', function() {
+                  window.location.href = '/Forum/Index';
+              });
+              document.getElementById("courseBtn").addEventListener('click', function() {
+                    window.location.href = '/Courses/Index';
+                  });
+              document.getElementById("battleBtn").addEventListener('click', function() {
+                    window.location.href = '/Battles/Index';
+                  });
+
     </script>
 }

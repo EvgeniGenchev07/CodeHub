@@ -446,3 +446,51 @@ footer {
         letter-spacing: 2px;
     }
 }
+
+/* Add this to your site.css or a relevant CSS file */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    cursor: pointer;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 10px 0;
+}
+
+    .dropdown-menu a, .dropdown-menu button {
+        padding: 8px 16px;
+        text-decoration: none;
+        display: block;
+        color: #333;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+    }
+
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background-color: #f1f1f1;
+        }
+
+.user-dropdown.active .dropdown-menu {
+    display: block;
+}

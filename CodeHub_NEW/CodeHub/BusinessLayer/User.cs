@@ -23,6 +23,7 @@ namespace BusinessLayer
             Courses = new List<Course>();
             Points = 0;
             Level = 1;
+            ProfilePicture = Array.Empty<byte>();
         }
 
         public User(string id, string fullName, string email, string userName) : this(fullName, email, userName)
@@ -38,6 +39,7 @@ namespace BusinessLayer
             UserName = userName;
             Email = email;
             Courses = new List<Course>();
+            ProfilePicture = Array.Empty<byte>();
             Points = 0;
             Level = 0;
         }
@@ -49,7 +51,7 @@ namespace BusinessLayer
             NormalizedUserName = email.ToUpper();
             UserName = email;
             Email = email;
-            ProfilePicture = new byte[] { 3, 4, 5, 6, 7, 8, 9, 10 };
+            ProfilePicture = Array.Empty<byte>();
             Courses = new List<Course>();
             Points = 0;
             Level = 0;
