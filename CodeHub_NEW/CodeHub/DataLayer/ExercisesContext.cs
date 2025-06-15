@@ -3,14 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class ExercisesContext
+    public class ExercisesContext : IDb<Exercise, int>
     {
-        CodeHubDbContext dbContext;
+        private readonly CodeHubDbContext dbContext;
 
         public ExercisesContext(CodeHubDbContext dbContext)
         {
@@ -23,33 +21,38 @@ namespace DataLayer
             dbContext.SaveChanges();
         }
 
-        public Exercise Read(int key, bool isReadOnly = false)
+        public Exercise Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Exercise> query = dbContext.Exercises;
 
-            if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
+            // Future enhancement: useNavigationalProperties to include related entities
+            if (isReadOnly)
+                query = query.AsNoTrackingWithIdentityResolution();
 
-            Exercise exercise = query.FirstOrDefault(r => r.Id == key);
+            Exercise exercise = query.FirstOrDefault(e => e.Id == key);
 
-            if (exercise == null) throw new ArgumentException($"Exercise with id = {key} does not exist!");
+            if (exercise == null)
+                throw new ArgumentException($"Exercise with id = {key} does not exist!");
 
             return exercise;
         }
 
-        public List<Exercise> ReadAll(bool isReadOnly = false)
+        public List<Exercise> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Exercise> query = dbContext.Exercises;
 
-            if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
+            // Future enhancement: useNavigationalProperties to include related entities
+            if (isReadOnly)
+                query = query.AsNoTrackingWithIdentityResolution();
 
             return query.ToList();
         }
 
-        public void Update(Exercise item)
+        public void Update(Exercise item, bool useNavigationalProperties = false)
         {
-            Exercise exerciseFromDb = Read(item.Id);
+            Exercise exerciseFromDb = Read(item.Id, useNavigationalProperties);
 
-            dbContext.Entry<Exercise>(exerciseFromDb).CurrentValues.SetValues(item);
+            dbContext.Entry(exerciseFromDb).CurrentValues.SetValues(item);
 
             dbContext.SaveChanges();
         }

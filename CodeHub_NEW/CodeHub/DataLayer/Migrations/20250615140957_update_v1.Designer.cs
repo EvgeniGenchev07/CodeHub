@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CodeHubDbContext))]
-    [Migration("20250615135522_update_v1")]
+    [Migration("20250615140957_update_v1")]
     partial class update_v1
     {
         /// <inheritdoc />
@@ -19,6 +19,44 @@ namespace DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
+
+            modelBuilder.Entity("BusinessLayer.Battle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstPlayerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RewardXP")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecondPlayerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FirstPlayerId");
+
+                    b.HasIndex("SecondPlayerId");
+
+                    b.ToTable("Battles");
+                });
 
             modelBuilder.Entity("BusinessLayer.Course", b =>
                 {
@@ -333,6 +371,21 @@ namespace DataLayer.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("BusinessLayer.Battle", b =>
+                {
+                    b.HasOne("BusinessLayer.User", "FirstPlayer")
+                        .WithMany()
+                        .HasForeignKey("FirstPlayerId");
+
+                    b.HasOne("BusinessLayer.User", "SecondPlayer")
+                        .WithMany()
+                        .HasForeignKey("SecondPlayerId");
+
+                    b.Navigation("FirstPlayer");
+
+                    b.Navigation("SecondPlayer");
                 });
 
             modelBuilder.Entity("BusinessLayer.Course", b =>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace BusinessLayer
 {
     public class Battle
     {
+        [Key]
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -19,7 +22,9 @@ namespace BusinessLayer
         public Battle()
         {
         }
-        public Battle(string title, string description, DateTime startDate, DateTime endDate, User firstPlayer, User secondPlayer, int rewardXP)
+        public Battle(string title, string description, 
+            DateTime startDate, DateTime endDate, User firstPlayer, 
+            User secondPlayer, int rewardXP)
         {
             Title = title;
             Description = description;

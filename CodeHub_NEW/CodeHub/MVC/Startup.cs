@@ -32,6 +32,7 @@ namespace MVC
             services.AddScoped<LectorsContext>();
             services.AddScoped<CoursesContext>();
             services.AddScoped<ExercisesContext>();
+            services.AddScoped<BattlesContext>();
             services.AddHttpContextAccessor();
 
             // Default for controllers is scoped!

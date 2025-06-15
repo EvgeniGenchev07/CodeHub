@@ -23,13 +23,11 @@
     <!-- Admin Navigation -->
     <nav class="admin-nav" id="admin-nav">
         <ul class="admin-nav-links">
-            <li><a href="#" class="active"><i class="fas fa-home"></i> Табло</a></li>
-            <li><a href="#"><i class="fas fa-chart-line"></i> Статистика</a></li>
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Начало</a></li>
             <li><a href="#"><i class="fas fa-trophy"></i> Двубои</a></li>
             <li><a href="#"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
-            <li><a href="#"><i class="fas fa-users"></i> Потребители</a></li>
+            <li><a href="#"><i class="fas fa-graduation-cap"></i> Упражнения</a></li>
             <li><a href="#"><i class="fas fa-comments"></i> Форум</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
             <li><a href="#"><i class="fas fa-sign-out-alt"></i> Изход</a></li>
         </ul>
     </nav>
@@ -41,34 +39,30 @@
             <!-- Dashboard Section -->
             <section id="dashboard">
                 <div class="admin-header">
-                    <h1 class="admin-title">Администраторско Табло</h1>
-                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Създай нов курс</button>
+                    <h1 class="admin-title">Статистика</h1>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Създай курс</button>
                 </div>
 
                 <!-- Stats -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-title">Активни потребители</div>
-                        <div class="stat-value">1,248</div>
-                        <div class="stat-change stat-up"><i class="fas fa-arrow-up"></i> 12% от миналия месец</div>
+                        <div class="stat-value">@ViewBag.ActiveUsers</div>
                     </div>
 
                     <div class="stat-card">
-                        <div class="stat-title">Активни двубои</div>
-                        <div class="stat-value">24</div>
-                        <div class="stat-change stat-up"><i class="fas fa-arrow-up"></i> 5% от миналия месец</div>
+                        <div class="stat-title">Двубои</div>
+                        <div class="stat-value">@ViewBag.Battles</div>
                     </div>
 
                     <div class="stat-card">
-                        <div class="stat-title">Завършени курсове</div>
-                        <div class="stat-value">356</div>
-                        <div class="stat-change stat-down"><i class="fas fa-arrow-down"></i> 3% от миналия месец</div>
+                        <div class="stat-title">Курсове</div>
+                        <div class="stat-value">@ViewBag.Courses</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-title">Форум постове</div>
-                        <div class="stat-value">1,892</div>
-                        <div class="stat-change stat-up"><i class="fas fa-arrow-up"></i> 8% от миналия месец</div>
+                        <div class="stat-value">@ViewBag.ForumPosts</div>
                     </div>
                 </div>
 
@@ -79,60 +73,11 @@
                         <tr>
                             <th>Име</th>
                             <th>Статус</th>
-                            <th>Участници</th>
                             <th>Награда</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Оптимизиране на алгоритъм</td>
-                            <td><span class="status-badge status-active">Активен</span></td>
-                            <td>15</td>
-                            <td>50 XP</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Създай най-добрия UI</td>
-                            <td><span class="status-badge status-pending">Започва скоро</span></td>
-                            <td>8</td>
-                            <td>75 XP</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Code Golf - Най-кратко решение</td>
-                            <td><span class="status-badge status-ended">Завършен</span></td>
-                            <td>22</td>
-                            <td>30 XP</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Решаване на грешки</td>
-                            <td><span class="status-badge status-active">Активен</span></td>
-                            <td>12</td>
-                            <td>40 XP</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -190,31 +135,31 @@
 
                 <!-- Add New Battle Form -->
                 <h2 class="admin-title">Създай нов двубой</h2>
-                <form class="admin-form">
+                <form class="admin-form" id="battleForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Име на двубоя</label>
-                            <input type="text" class="form-control" placeholder="Въведете име на двубоя">
+                            <input type="text" class="form-control" name="title" placeholder="Въведете име на двубоя" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Описание</label>
-                        <textarea class="form-control" placeholder="Описание на двубоя и правилата"></textarea>
+                        <textarea class="form-control" name="description" placeholder="Описание на двубоя и правилата"></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Начална дата</label>
-                            <input type="datetime-local" class="form-control">
+                            <input type="datetime-local" class="form-control" name="startDate" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Крайна дата</label>
-                            <input type="datetime-local" class="form-control">
+                            <input type="datetime-local" class="form-control" name="endDate" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Награда (XP)</label>
-                            <input type="number" class="form-control" placeholder="XP точки">
+                            <input type="number" class="form-control" name="rewardXP" placeholder="XP точки" required min="1">
                         </div>
                     </div>
 
@@ -228,20 +173,20 @@
     </main>
 
     <script>
-        // Hamburger menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
+        // Хамбургер меню
+        document.addEventListener('DOMContentLoaded', function () {
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
 
-            hamburger.addEventListener('click', function() {
+            hamburger.addEventListener('click', function () {
                 adminNav.classList.toggle('active');
                 const icon = this.querySelector('i');
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-times');
             });
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
+            // Затвори меню при клик извън него
+            document.addEventListener('click', function (event) {
                 if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
                     adminNav.classList.remove('active');
                     hamburger.querySelector('i').classList.add('fa-bars');
@@ -249,9 +194,9 @@
                 }
             });
 
-            // Add active class to clicked nav item
+            // Активен линк в менюто
             document.querySelectorAll('.admin-nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     document.querySelectorAll('.admin-nav-links a').forEach(item => {
                         item.classList.remove('active');
                     });
@@ -259,15 +204,114 @@
                 });
             });
 
-            // Close menu when scrolling
-            window.addEventListener('scroll', function() {
+            // Скриване на меню при скрол
+            window.addEventListener('scroll', function () {
                 if (adminNav.classList.contains('active')) {
                     adminNav.classList.remove('active');
                     hamburger.querySelector('i').classList.add('fa-bars');
                     hamburger.querySelector('i').classList.remove('fa-times');
                 }
             });
+
+            // Зареждане на двубоите и форма
+            document.querySelector('.admin-form').addEventListener('submit', createNewBattle);
+            document.querySelector('.btn-outline[type="button"]').addEventListener('click', clearForm);
+            loadBattles();
         });
+
+        // Изчистване на формата при "Отказ"
+        function clearForm() {
+            document.getElementById('battleForm').reset();
+        }
+
+        // Създаване на нов двубой
+        async function createNewBattle(event) {
+            event.preventDefault();
+
+            const form = event.target;
+
+            const formData = new URLSearchParams();
+            formData.append("title", form.elements['title'].value);
+            formData.append("description", form.elements['description'].value);
+            formData.append("startDate", form.elements['startDate'].value);
+            formData.append("endDate", form.elements['endDate'].value);
+            formData.append("rewardXP", form.elements['rewardXP'].value);
+
+            try {
+                const response = await fetch('/Admin/CreateBattle', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
+
+                const result = await response.json();
+                alert(result.message);
+                form.reset();
+                loadBattles();
+            } catch (error) {
+                console.error('Грешка:', error);
+                alert(error.message || 'Възникна грешка при създаването на двубоя!');
+            }
+        }
+
+        async function loadBattles() {
+            try {
+                const response = await fetch('/Admin/GetAllBattles');
+                const battles = await response.json();
+
+                const now = new Date();
+
+                battles.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+
+                const recentBattles = battles.slice(0, 3);
+
+                const tableBody = document.querySelector('.admin-table:first-of-type tbody');
+                tableBody.innerHTML = '';
+
+                recentBattles.forEach(battle => {
+                    const start = new Date(battle.startDate);
+                    const end = new Date(battle.endDate);
+
+                    let statusClass = '';
+                    let statusText = '';
+
+                    if (now < start) {
+                        statusClass = 'status-pending';
+                        statusText = 'Започва скоро';
+                    } else if (now >= start && now <= end) {
+                        statusClass = 'status-active';
+                        statusText = 'Активен';
+                    } else {
+                        statusClass = 'status-ended';
+                        statusText = 'Завършен';
+                    }
+
+                    const row = `
+                        <tr>
+                            <td>${battle.title}</td>
+                            <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                            <td>${battle.rewardXP} XP</td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', row);
+                });
+
+            } catch (error) {
+                console.error('Грешка при зареждане на двубои:', error);
+            }
+        }
     </script>
+
 </body>
 </html>

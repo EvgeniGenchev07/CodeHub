@@ -15,7 +15,7 @@ namespace DataLayer
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Lector> Lectors { get; set; }
-
+        public DbSet<Battle> Battles { get; set; }
         public CodeHubDbContext() : base()
         {
         }
