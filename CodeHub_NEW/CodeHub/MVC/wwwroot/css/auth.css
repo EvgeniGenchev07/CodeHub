@@ -114,3 +114,12 @@ label {
         font-size: 0.95rem;
     }
 }
+.forgot-password {
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: var(--primary);
+    text-shadow: var(--neon-glow);
+}
