@@ -7,7 +7,7 @@ namespace CodeHub.Controllers
     public class ForumController : Controller
     {
         private readonly IDb<Forum, int> _forumContext;
-        private const int ForumPageSize = 10;
+        private const int ForumPageSize = 1;
         public ForumController(ForumContext forumContext)
         {
             _forumContext = forumContext;
@@ -27,8 +27,30 @@ namespace CodeHub.Controllers
             {
                 forums = forums.Where(f => f.Title.ToLower().Contains(search.ToLower())).ToList();
             }
+            ViewBag.TotalPages = (int)Math.Ceiling(forums.Count / (double)ForumPageSize);
             var pagedForums = forums.Skip((page - 1) * ForumPageSize).Take(ForumPageSize).ToList();
             return View(pagedForums);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        public async  Task<IActionResult> Details(int? id)
+        {
+            if (id != null)
+            {
+                var forum = await _forumContext.Read(id.Value, true, true);
+                if (forum == null)
+                {
+                    return NotFound();
+                }
+
+                forum.Views++;
+                await _forumContext.Update(forum);
+                return View(forum);
+            }
+            return RedirectToAction();
         }
     }
 }

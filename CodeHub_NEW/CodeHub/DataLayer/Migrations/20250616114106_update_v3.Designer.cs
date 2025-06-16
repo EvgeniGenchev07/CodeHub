@@ -3,6 +3,7 @@ using System;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CodeHubDbContext))]
-    partial class CodeHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250616114106_update_v3")]
+    partial class update_v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -53,35 +56,6 @@ namespace DataLayer.Migrations
                     b.HasIndex("SecondPlayerId");
 
                     b.ToTable("Battles");
-                });
-
-            modelBuilder.Entity("BusinessLayer.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ForumId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("ForumId");
-
-                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("BusinessLayer.Course", b =>
@@ -454,25 +428,6 @@ namespace DataLayer.Migrations
                     b.Navigation("SecondPlayer");
                 });
 
-            modelBuilder.Entity("BusinessLayer.Comment", b =>
-                {
-                    b.HasOne("BusinessLayer.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BusinessLayer.Forum", "Forum")
-                        .WithMany("Comments")
-                        .HasForeignKey("ForumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Forum");
-                });
-
             modelBuilder.Entity("BusinessLayer.Course", b =>
                 {
                     b.HasOne("BusinessLayer.User", null)
@@ -568,11 +523,6 @@ namespace DataLayer.Migrations
                     b.Navigation("Lectors");
 
                     b.Navigation("Lessons");
-                });
-
-            modelBuilder.Entity("BusinessLayer.Forum", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("BusinessLayer.Lesson", b =>

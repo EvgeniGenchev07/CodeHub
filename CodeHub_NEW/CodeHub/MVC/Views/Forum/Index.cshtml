@@ -1,5 +1,6 @@
 ﻿@using Azure.Core
 @using BusinessLayer
+@using System.Web
 @model List<BusinessLayer.Forum>
 @section Styles {
 <link rel="stylesheet" href="~/css/forum.css" asp-append-version="true" />
@@ -7,7 +8,7 @@
 <!-- Forum Header -->
 <div class="forum-header">
     <div>
-        <h1 class="forum-title">Форум</h1>
+        <h1 style="text-decoration: none" class="forum-title">Форум</h1>
         <p class="forum-subtitle">Задавай въпроси, споделяй знания и обсъждай с други програмисти в нашата общност.</p>
     </div>
 
@@ -21,19 +22,21 @@
 
 <!-- Categories -->
 <div class="forum-categories">
-    <button onclick="window.location.href = '?filter=@Filters.All'" class="category-btn @(ViewBag.Filter==Filters.All?"active":"")">Всички</button>
-    <button onclick="window.location.href = '?filter=@Filters.Js'" class="category-btn @(ViewBag.Filter==Filters.Js?"active":"")">JavaScript</button>
-    <button onclick="window.location.href = '?filter=@Filters.Algorithms'" class="category-btn @(ViewBag.Filter==Filters.Algorithms?"active":"")">Алгоритми</button>
-    <button onclick="window.location.href = '?filter=@Filters.DOMAssembly'" class="category-btn @(ViewBag.Filter==Filters.DOMAssembly?"active":"")">DOM</button>
-    <button onclick="window.location.href = '?filter=@Filters.Asynchronous'" class="category-btn @(ViewBag.Filter==Filters.Asynchronous?"active":"")">Асинхронен код</button>
-    <button onclick="window.location.href = '?filter=@Filters.Interviews'" class="category-btn @(ViewBag.Filter==Filters.Interviews?"active":"")">Интервюта</button>
-    <button onclick="window.location.href = '?filter=@Filters.Projects'" class="category-btn @(ViewBag.Filter==Filters.Projects?"active":"")">Проекти</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.All`" class="category-btn @(ViewBag.Filter==Filters.All?"active":"")">Всички</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.Js`" class="category-btn @(ViewBag.Filter==Filters.Js?"active":"")">JavaScript</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.Algorithms`" class="category-btn @(ViewBag.Filter==Filters.Algorithms?"active":"")">Алгоритми</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.DOMAssembly`" class="category-btn @(ViewBag.Filter==Filters.DOMAssembly?"active":"")">DOM</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.Asynchronous`" class="category-btn @(ViewBag.Filter==Filters.Asynchronous?"active":"")">Асинхронен код</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.Interviews`" class="category-btn @(ViewBag.Filter==Filters.Interviews?"active":"")">Интервюта</button>
+    <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&filter=@Filters.Projects`" class="category-btn @(ViewBag.Filter==Filters.Projects?"active":"")">Проекти</button>
 </div>
 
 <!-- Forum Posts -->
 <div class="forum-posts">
     @foreach (var post in Model)
     {
+        <a style="text-decoration: none" asp-action="Details" asp-controller="Forum" asp-route-id="@post.Id" class="forum-post" id="post@(post.Id)">
+            
         <div class="forum-card">
             <div class="user-avatar"><img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(post.Author.ProfilePicture)"/></div>
             <div class="post-content">
@@ -59,24 +62,31 @@
                 </div>
             </div>
         </div>
+        </a>
+        
 
     }
 </div>
 <!-- Pagination -->
 <div class="pagination">
-    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
-    <button class="page-btn active">1</button>
-    <button onclick="window.location.href = `?search=${encodeURIComponent(@ViewBag.Search)}&page=2&filter=@ViewBag.Filter`" class="page-btn">2</button>
-    <button class="page-btn">3</button>
-    <button class="page-btn">4</button>
-    <button class="page-btn">5</button>
-    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+    @if (ViewBag.Page > 1)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page-1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-left"></i></button>
+    }
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@i&filter=@ViewBag.Filter`" class="page-btn @(i==ViewBag.Page?"active":"")">@i</button>
+    }
+    @if (ViewBag.Page < ViewBag.TotalPages)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page+1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+    }
 </div>
 
 <!-- New Post Button -->
-<button class="new-post-btn" id="newPostBtn">
+<a asp-action="Create" asp-controller="Forum" class="new-post-btn" id="newPostBtn">
     <i class="fas fa-plus"></i>
-</button>
+</a>
 @{
     static string PostTime(DateTime postTime)
     {
