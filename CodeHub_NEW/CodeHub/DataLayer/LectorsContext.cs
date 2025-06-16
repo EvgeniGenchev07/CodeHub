@@ -23,7 +23,7 @@ namespace DataLayer
             dbContext.SaveChanges();
         }
 
-        public async Task<Lector> Read(int key, bool isReadOnly = false)
+        public async Task<Lector> Read(int key, bool useNavigationProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lector> query = dbContext.Lectors;
 
@@ -36,7 +36,7 @@ namespace DataLayer
             return lector;
         }
 
-        public async Task<List<Lector>> ReadAll(bool isReadOnly = false)
+        public async Task<List<Lector>> ReadAll(bool useNavigationProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lector> query = dbContext.Lectors;
 
@@ -45,9 +45,9 @@ namespace DataLayer
             return query.ToList();
         }
 
-        public async Task Update(Lector item)
+        public async Task Update(Lector item, bool useNavigationProperties = false)
         {
-            Lector lectorFromDb = Read(item.Id);
+            Lector lectorFromDb = await Read(item.Id);
 
             dbContext.Entry<Lector>(lectorFromDb).CurrentValues.SetValues(item);
 
@@ -56,7 +56,7 @@ namespace DataLayer
 
         public async Task Delete(int key)
         {
-            Lector lectorFromDb = Read(key);
+            Lector lectorFromDb = await Read(key);
             dbContext.Lectors.Remove(lectorFromDb);
             dbContext.SaveChanges();
         }

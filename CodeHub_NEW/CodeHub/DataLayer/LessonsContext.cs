@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class LessonsContext : IDb<Exercise, int>
+    public class LessonsContext : IDb<Lesson, int>
     {
         CodeHubDbContext dbContext;
 
@@ -53,7 +53,7 @@ namespace DataLayer
 
         public async Task Update(Lesson item, bool useNavigationalProperties = false)
         {
-            Lesson lessonFromDb = Read(item.Id, useNavigationalProperties);
+            Lesson lessonFromDb = await Read(item.Id, useNavigationalProperties);
 
             dbContext.Entry<Lesson>(lessonFromDb).CurrentValues.SetValues(item);
 
@@ -75,7 +75,7 @@ namespace DataLayer
 
         public async Task Delete(int key)
         {
-            Lesson lesson = Read(key);
+            Lesson lesson = await Read(key);
             dbContext.Lessons.Remove(lesson);
             dbContext.SaveChanges();
         }

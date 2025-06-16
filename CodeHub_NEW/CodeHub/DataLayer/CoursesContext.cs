@@ -50,7 +50,7 @@ namespace DataLayer
 
         public async Task Update(Course item, bool useNavigationalProperties = false)
         {
-            Course courseFromDb = Read(item.Id, useNavigationalProperties);
+            Course courseFromDb = await Read(item.Id, useNavigationalProperties);
 
             dbContext.Entry<Course>(courseFromDb).CurrentValues.SetValues(item);
 
@@ -82,7 +82,7 @@ namespace DataLayer
 
         public async Task Delete(int key)
         {
-            Course course = Read(key);
+            Course course = await Read(key);
             dbContext.Courses.Remove(course);
             dbContext.SaveChanges();
         }
