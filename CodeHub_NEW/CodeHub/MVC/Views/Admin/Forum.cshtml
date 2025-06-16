@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeBattle Admin - Форуми</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/admin_forum.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-code"></i></span>
+            <span class="logo-text">CodeBattle <span class="admin-badge">ADMIN</span></span>
+        </div>
+
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav" id="admin-nav">
+        <ul class="admin-nav-links">
+            <li><a href="#"><i class="fas fa-tachometer-alt"></i> Табло</a></li>
+            <li><a href="#battles"><i class="fas fa-trophy"></i> Двубои</a></li>
+            <li><a href="#courses"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
+            <li><a href="#forums" class="active"><i class="fas fa-comments"></i> Форуми</a></li>
+            <li><a href="#users"><i class="fas fa-users"></i> Потребители</a></li>
+            <li><a href="#settings"><i class="fas fa-cog"></i> Настройки</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Content -->
+        <div class="admin-content">
+            <section id="forums">
+                <div class="admin-header">
+                    <h1 class="admin-title">Форумни дискусии</h1>
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="createPostBtn"><i class="fas fa-plus"></i> Нов пост</button>
+                    </div>
+                </div>
+
+                <!-- Forum Posts -->
+                <div class="forum-container" id="forumPosts">
+                    <!-- Постовете ще се зареждат тук чрез JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <ul class="pagination" id="pagination">
+                        <!-- Пагинацията ще се генерира тук -->
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="addPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Създаване на нов пост</h3>
+                <button class="close-modal" id="closeAddPostModal">&times;</button>
+            </div>
+            <form id="addPostForm">
+                <div class="form-group">
+                    <label class="form-label">Заглавие</label>
+                    <input type="text" class="form-control" id="postTitle" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Съдържание</label>
+                    <textarea class="form-control" id="postContent" rows="5" required></textarea>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-outline" id="cancelAddPost">Отказ</button>
+                    <button type="submit" class="btn btn-primary">Публикувай</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Comment Modal -->
+    <div class="modal" id="addCommentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Добавяне на коментар</h3>
+                <button class="close-modal" id="closeAddCommentModal">&times;</button>
+            </div>
+            <form id="addCommentForm">
+                <input type="hidden" id="commentPostId">
+                <div class="form-group">
+                    <label class="form-label">Коментар</label>
+                    <textarea class="form-control" id="commentContent" rows="5" required></textarea>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-outline" id="cancelAddComment">Отказ</button>
+                    <button type="submit" class="btn btn-primary">Публикувай</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+            // Данни за демонстрация
+            let demoPosts = [
+                {
+                    id: 1,
+                    title: "Как да започна с програмирането?",
+                    content: "Здравейте, искам да науча основите на програмирането. От къде да започна и какви езици да изучавам?",
+                    author: "Иван Петров",
+                    authorId: 101,
+                    date: "2023-05-15T10:30:00",
+                    comments: [
+                        {
+                            id: 1,
+                            content: "Започни с Python - много е лесен за научаване и има много ресурси онлайн.",
+                            author: "Мария Иванова",
+                            authorId: 102,
+                            date: "2023-05-15T11:45:00",
+                            isAdmin: false
+                        },
+                        {
+                            id: 2,
+                            content: "Съгласен съм с Мария. Python е чудесен избор за начинаещи. Можеш да провериш нашите уроци за начинаещи в секцията с курсове.",
+                            author: "Администратор",
+                            authorId: 1,
+                            date: "2023-05-15T12:20:00",
+                            isAdmin: true
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Проблем с JavaScript код",
+                    content: "Имам проблем със следния код:\n\n```javascript\nfunction test() {\n  console.log('Hello');\n}\n```\nНе мога да разбера защо не работи правилно.",
+                    author: "Георги Димитров",
+                    authorId: 103,
+                    date: "2023-05-16T09:15:00",
+                    comments: []
+                },
+                {
+                    id: 3,
+                    title: "Препоръки за книги по алгоритми",
+                    content: "Кои книги бихте препоръчали за изучаване на алгоритми и структури от данни?",
+                    author: "Анна Стоянова",
+                    authorId: 104,
+                    date: "2023-05-17T14:20:00",
+                    comments: [
+                        {
+                            id: 3,
+                            content: "Introduction to Algorithms на Cormen е класика в областта. Силно препоръчвам!",
+                            author: "Администратор",
+                            authorId: 1,
+                            date: "2023-05-17T15:30:00",
+                            isAdmin: true
+                        }
+                    ]
+                }
+            ];
+
+            // Конфигурация на пагинацията
+            let currentPage = 1;
+            let itemsPerPage = 5;
+
+            // Инициализация на страницата
+            document.addEventListener('DOMContentLoaded', function() {
+                // Хамбургер меню
+                const hamburger = document.getElementById('hamburger');
+                const adminNav = document.getElementById('admin-nav');
+
+                hamburger.addEventListener('click', function() {
+                    adminNav.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
+                        adminNav.classList.remove('active');
+                        hamburger.querySelector('i').classList.add('fa-bars');
+                        hamburger.querySelector('i').classList.remove('fa-times');
+                    }
+                });
+
+                // Инициализиране на форумните постове
+                updateForumPosts();
+
+                // Слушатели за модалните прозорци
+                document.getElementById('createPostBtn').addEventListener('click', openAddPostModal);
+                document.getElementById('closeAddPostModal').addEventListener('click', closeAddPostModal);
+                document.getElementById('cancelAddPost').addEventListener('click', closeAddPostModal);
+                document.getElementById('closeAddCommentModal').addEventListener('click', closeAddCommentModal);
+                document.getElementById('cancelAddComment').addEventListener('click', closeAddCommentModal);
+
+                // Слушатели за формите
+                document.getElementById('addPostForm').addEventListener('submit', addNewPost);
+                document.getElementById('addCommentForm').addEventListener('submit', addNewComment);
+            });
+
+            // Функция за обновяване на форумните постове
+            function updateForumPosts() {
+                const forumContainer = document.getElementById('forumPosts');
+                const pagination = document.getElementById('pagination');
+
+                const totalPages = Math.ceil(demoPosts.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, demoPosts.length);
+                const currentPosts = demoPosts.slice(startIndex, endIndex);
+
+                forumContainer.innerHTML = '';
+
+                currentPosts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'forum-post';
+
+                    // Форматиране на датата
+                    const postDate = new Date(post.date);
+                    const formattedDate = postDate.toLocaleDateString('bg-BG', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    postElement.innerHTML = `
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="author-avatar">${post.author.charAt(0)}</div>
+                                <div class="author-info">
+                                    <span class="author-name">${post.author}</span>
+                                    <span class="post-date">${formattedDate}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="post-title">${post.title}</h3>
+                        <div class="post-content">${post.content.replace(/\n/g, '<br>')}</div>
+                        <div class="comments-section">
+                            <h4 class="comments-title">Коментари (${post.comments.length})</h4>
+                            ${renderComments(post.comments)}
+                            <button class="btn btn-primary btn-sm" onclick="openAddCommentModal(${post.id})">
+                                <i class="fas fa-plus"></i> Добави коментар
+                            </button>
+                        </div>
+                    `;
+
+                    forumContainer.appendChild(postElement);
+                });
+
+                renderPagination(totalPages);
+            }
+
+            // Функция за рендиране на коментарите
+            function renderComments(comments) {
+                if (comments.length === 0) {
+                    return '<p>Все още няма коментари.</p>';
+                }
+
+                return comments.map(comment => {
+                    const commentDate = new Date(comment.date);
+                    const formattedDate = commentDate.toLocaleDateString('bg-BG', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    const adminBadge = comment.isAdmin ? '<span class="admin-badge">ADMIN</span>' : '';
+
+                    return `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-author">
+                                    <div class="comment-avatar">${comment.author.charAt(0)}</div>
+                                    <div>
+                                        <strong>${comment.author}</strong> ${adminBadge}
+                                        <div class="post-date">${formattedDate}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-content">${comment.content.replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Функция за рендиране на пагинацията
+            function renderPagination(totalPages) {
+                const pagination = document.getElementById('pagination');
+                pagination.innerHTML = '';
+
+                const prevItem = document.createElement('li');
+                prevItem.className = 'page-item';
+                prevItem.innerHTML = `
+                    <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
+                       onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                `;
+                pagination.appendChild(prevItem);
+
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+
+                if (startPage > 1) {
+                    const firstItem = document.createElement('li');
+                    firstItem.className = 'page-item';
+                    firstItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
+                    pagination.appendChild(firstItem);
+
+                    if (startPage > 2) {
+                        const dotsItem = document.createElement('li');
+                        dotsItem.className = 'page-item';
+                        dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                        pagination.appendChild(dotsItem);
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageItem = document.createElement('li');
+                    pageItem.className = 'page-item';
+                    pageItem.innerHTML = `
+                        <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
+                           onclick="changePage(${i}); return false;">${i}</a>
+                    `;
+                    pagination.appendChild(pageItem);
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dotsItem = document.createElement('li');
+                        dotsItem.className = 'page-item';
+                        dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                        pagination.appendChild(dotsItem);
+                    }
+
+                    const lastItem = document.createElement('li');
+                    lastItem.className = 'page-item';
+                    lastItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
+                    pagination.appendChild(lastItem);
+                }
+
+                const nextItem = document.createElement('li');
+                nextItem.className = 'page-item';
+                nextItem.innerHTML = `
+                    <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
+                       onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                `;
+                pagination.appendChild(nextItem);
+            }
+
+            // Функция за промяна на страницата
+            function changePage(page) {
+                currentPage = page;
+                updateForumPosts();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Функции за модалните прозорци
+            function openAddPostModal() {
+                document.getElementById('addPostModal').style.display = 'flex';
+            }
+
+            function closeAddPostModal() {
+                document.getElementById('addPostModal').style.display = 'none';
+                document.getElementById('addPostForm').reset();
+            }
+
+            function openAddCommentModal(postId) {
+                document.getElementById('commentPostId').value = postId;
+                document.getElementById('addCommentModal').style.display = 'flex';
+            }
+
+            function closeAddCommentModal() {
+                document.getElementById('addCommentModal').style.display = 'none';
+                document.getElementById('addCommentForm').reset();
+            }
+
+            // Функции за обработка на формите
+            async function addNewPost(e) {
+                e.preventDefault();
+
+                const title = document.getElementById('postTitle').value;
+                const content = document.getElementById('postContent').value;
+
+                const newId = demoPosts.length > 0 ? Math.max(...demoPosts.map(p => p.id)) + 1 : 1;
+
+                const newPost = {
+                    id: newId,
+                    title,
+                    content,
+                    author: "Администратор",
+                    authorId: 1,
+                    date: new Date().toISOString(),
+                    comments: []
+                };
+
+                // В реален проект:
+                // await fetch('/Forum/CreatePost', { method: 'POST', body: JSON.stringify(newPost) });
+                demoPosts.unshift(newPost); // Добавяме в началото, за да са най-новите постове първи
+                updateForumPosts();
+                closeAddPostModal();
+                alert('Постът беше публикуван успешно!');
+            }
+
+            async function addNewComment(e) {
+                e.preventDefault();
+
+                const postId = parseInt(document.getElementById('commentPostId').value);
+                const content = document.getElementById('commentContent').value;
+
+                const post = demoPosts.find(p => p.id === postId);
+                if (!post) return;
+
+                const newCommentId = post.comments.length > 0 ? Math.max(...post.comments.map(c => c.id)) + 1 : 1;
+
+                const newComment = {
+                    id: newCommentId,
+                    content,
+                    author: "Администратор",
+                    authorId: 1,
+                    date: new Date().toISOString(),
+                    isAdmin: true
+                };
+
+                // В реален проект:
+                // await fetch(`/Forum/AddComment/${postId}`, { method: 'POST', body: JSON.stringify(newComment) });
+                post.comments.push(newComment);
+                updateForumPosts();
+                closeAddCommentModal();
+                alert('Коментарът беше добавен успешно!');
+            }
+             // Функции за модалните прозорци
+        function openAddPostModal() {
+            document.getElementById('addPostModal').classList.add('active');
+        }
+
+        function closeAddPostModal() {
+            document.getElementById('addPostModal').classList.remove('active');
+            document.getElementById('addPostForm').reset();
+        }
+
+        function openAddCommentModal(postId) {
+            document.getElementById('commentPostId').value = postId;
+            document.getElementById('addCommentModal').classList.add('active');
+        }
+
+        function closeAddCommentModal() {
+            document.getElementById('addCommentModal').classList.remove('active');
+            document.getElementById('addCommentForm').reset();
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.getElementById('addPostForm').reset();
+                document.getElementById('addCommentForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,100 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\",
+  "WorkspaceRootPath": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\views\\admin\\forum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\forum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\views\\courses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\courses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\views\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\battlescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\battlescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\identitycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\identitycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\idb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\idb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\forumcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\forumcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\lessonscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\lessonscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\lectorscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\lectorscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\datalayer\\codehubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\codehubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\codehub_new\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\views\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -122,297 +47,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CoursesController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\CoursesController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\CoursesController.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\CoursesController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\CoursesController.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAgwBkAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T10:25:56.688Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Index.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Courses\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Index.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Courses\\Index.cshtml",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAFcAAAAhAAAAAAAAAA==",
+              "Title": "Forum.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Forum.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Forum.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Forum.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Admin\\Forum.cshtml",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T10:09:58.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BattlesContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\BattlesContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\BattlesContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\BattlesContext.cs",
-              "RelativeToolTip": "DataLayer\\BattlesContext.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAA7wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T10:09:41.252Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "LessonsContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\LessonsContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\LessonsContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\LessonsContext.cs",
-              "RelativeToolTip": "DataLayer\\LessonsContext.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowE0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T10:02:10.886Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IdentityContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\IdentityContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\IdentityContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\IdentityContext.cs",
-              "RelativeToolTip": "DataLayer\\IdentityContext.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:59:03.135Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ExercisesContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ExercisesContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\ExercisesContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ExercisesContext.cs",
-              "RelativeToolTip": "DataLayer\\ExercisesContext.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:59:00.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CodeHubDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\CodeHubDbContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\CodeHubDbContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\CodeHubDbContext.cs",
-              "RelativeToolTip": "DataLayer\\CodeHubDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:58:58.751Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CoursesContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\CoursesContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\CoursesContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\CoursesContext.cs",
-              "RelativeToolTip": "DataLayer\\CoursesContext.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAgwDQAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:58:18.687Z",
+              "WhenOpened": "2025-06-16T11:03:06.032Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Battle.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Battle.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Battle.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Battle.cs",
-              "RelativeToolTip": "BusinessLayer\\Battle.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Details.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Courses\\Details.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Details.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Courses\\Details.cshtml",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAAIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T10:57:23.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Lesson.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lesson.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Lesson.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lesson.cs",
+              "RelativeToolTip": "BusinessLayer\\Lesson.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T06:33:54.409Z",
+              "WhenOpened": "2025-06-16T10:32:41.879Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Details.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Courses\\Details.cshtml",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Courses\\Details.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Courses\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T10:22:27.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LectorsContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\LectorsContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\LectorsContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\LectorsContext.cs",
-              "RelativeToolTip": "DataLayer\\LectorsContext.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAgwDoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T09:58:03.553Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IDb.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\IDb.cs",
-              "RelativeDocumentMoniker": "DataLayer\\IDb.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\IDb.cs",
-              "RelativeToolTip": "DataLayer\\IDb.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T07:47:35.415Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ForumContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ForumContext.cs",
-              "RelativeDocumentMoniker": "DataLayer\\ForumContext.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ForumContext.cs",
-              "RelativeToolTip": "DataLayer\\ForumContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:04:59.864Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Course.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Course.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Course.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Course.cs",
-              "RelativeToolTip": "BusinessLayer\\Course.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:22:52.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ForumFilters.cs",
-              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
-              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:21:50.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Role.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Role.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Role.cs",
-              "RelativeToolTip": "BusinessLayer\\Role.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAQwA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:21:49.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Difficulty.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Difficulty.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Difficulty.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Difficulty.cs",
-              "RelativeToolTip": "BusinessLayer\\Difficulty.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:23:00.287Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Exercise.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Exercise.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
-              "RelativeToolTip": "BusinessLayer\\Exercise.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAzwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:23:25.796Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Forum.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Forum.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
-              "RelativeToolTip": "BusinessLayer\\Forum.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAmwBwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:05:02.506Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Lector.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lector.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Lector.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lector.cs",
-              "RelativeToolTip": "BusinessLayer\\Lector.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:23:48.715Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ForumController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\ForumController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\ForumController.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\ForumController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\ForumController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:04:55.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Lesson.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lesson.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Lesson.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lesson.cs",
-              "RelativeToolTip": "BusinessLayer\\Lesson.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAzwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:01:45.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
               "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
               "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA1wBgAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAAAGkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T07:58:07.062Z"
+              "WhenOpened": "2025-06-16T10:32:41.881Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 1,
               "Title": "Courses.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Courses.cshtml",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeToolTip": "MVC\\Views\\Admin\\Courses.cshtml",
-              "ViewState": "AgIAANkEAAAAAAAAAAAIwOgEAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADsBAAAAAAAAAAAwwD8BAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T07:56:44.921Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2025-06-16T10:32:41.882Z",
+              "EditorCaption": ""
             }
           ]
         }
