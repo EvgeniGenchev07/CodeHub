@@ -17,7 +17,7 @@ namespace MVC.Controllers
         }
 
         // GET: Course
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null,[FromQuery] Difficulty level = 0)
         {
             try
             {

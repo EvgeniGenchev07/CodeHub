@@ -17,6 +17,7 @@ public class Forum
     [Required]
     public DateTime Date { get; set; }
     public int Views { get; set; }
+    public List<ForumFilters> Filters { get; set; }
     public Forum(){}
     public Forum(string title, string content, User author)
     {

@@ -2,6 +2,7 @@
 {
     public enum Difficulty
     {
+        All,
         Easy,
         Intermidiate,
         Hard,
