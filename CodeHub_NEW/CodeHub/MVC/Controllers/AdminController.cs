@@ -26,7 +26,7 @@ namespace CodeHub.Controllers
             ViewBag.ActiveUsers = await _dbContext.Users.CountAsync()-1;
             ViewBag.Battles = await _dbContext.Battles.CountAsync();
             ViewBag.Courses = await _dbContext.Courses.CountAsync();
-            ViewBag.ForumPosts = 1892; 
+            ViewBag.ForumPosts = await _dbContext.Forums.CountAsync(); 
 
             return PartialView();
         }
@@ -70,11 +70,11 @@ namespace CodeHub.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllBattles()
+        public async Task<IActionResult> GetAllBattles()
         {
             try
             {
-                var battles = _battlesContext.ReadAll();
+                var battles = await  _battlesContext.ReadAll();
                 return Ok(battles);
             }
             catch (Exception ex)

@@ -75,7 +75,6 @@ namespace MVC.Controllers
             {
                 try
                 {
-                    // Handle video upload
                     if (Request.Form.Files.Count > 0)
                     {
                         var file = Request.Form.Files[0];
@@ -89,13 +88,12 @@ namespace MVC.Controllers
                         }
                     }
 
-                    // Handle selected exercises
                     if (selectedExercises != null)
                     {
                         lesson.Exercises = new List<Exercise>();
                         foreach (var exerciseId in selectedExercises)
                         {
-                            var exercise = _exercisesContext.Read(exerciseId);
+                            var exercise = await _exercisesContext.Read(exerciseId);
                             if (exercise != null)
                             {
                                 lesson.Exercises.Add(exercise);
@@ -160,7 +158,6 @@ namespace MVC.Controllers
             {
                 try
                 {
-                    // Handle video upload
                     if (Request.Form.Files.Count > 0)
                     {
                         var file = Request.Form.Files[0];
@@ -175,18 +172,16 @@ namespace MVC.Controllers
                     }
                     else
                     {
-                        // Preserve existing video if no new file uploaded
                         var existingLesson = _lessonsContext.Read(id);
                         lesson.Video = existingLesson.Video;
                     }
 
-                    // Handle selected exercises
                     if (selectedExercises != null)
                     {
                         lesson.Exercises = new List<Exercise>();
                         foreach (var exerciseId in selectedExercises)
                         {
-                            var exercise = _exercisesContext.Read(exerciseId);
+                            var exercise = await _exercisesContext.Read(exerciseId); // Await the Task to get the Exercise object
                             if (exercise != null)
                             {
                                 lesson.Exercises.Add(exercise);

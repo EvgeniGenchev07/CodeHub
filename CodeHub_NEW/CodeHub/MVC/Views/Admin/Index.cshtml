@@ -24,7 +24,7 @@
     <nav class="admin-nav" id="admin-nav">
         <ul class="admin-nav-links">
             <li><a href="#" class="active"><i class="fas fa-home"></i> Начало</a></li>
-            <li><a href="#"><i class="fas fa-trophy"></i> Двубои</a></li>
+            <li><a href="/admin/battles"><i class="fas fa-trophy"></i> Двубои</a></li>
             <li><a href="#"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
             <li><a href="#"><i class="fas fa-graduation-cap"></i> Упражнения</a></li>
             <li><a href="#"><i class="fas fa-comments"></i> Форум</a></li>
@@ -185,7 +185,6 @@
                 icon.classList.toggle('fa-times');
             });
 
-            // Затвори меню при клик извън него
             document.addEventListener('click', function (event) {
                 if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
                     adminNav.classList.remove('active');
@@ -194,17 +193,7 @@
                 }
             });
 
-            // Активен линк в менюто
-            document.querySelectorAll('.admin-nav-links a').forEach(link => {
-                link.addEventListener('click', function () {
-                    document.querySelectorAll('.admin-nav-links a').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
 
-            // Скриване на меню при скрол
             window.addEventListener('scroll', function () {
                 if (adminNav.classList.contains('active')) {
                     adminNav.classList.remove('active');
@@ -213,18 +202,15 @@
                 }
             });
 
-            // Зареждане на двубоите и форма
             document.querySelector('.admin-form').addEventListener('submit', createNewBattle);
             document.querySelector('.btn-outline[type="button"]').addEventListener('click', clearForm);
             loadBattles();
         });
 
-        // Изчистване на формата при "Отказ"
         function clearForm() {
             document.getElementById('battleForm').reset();
         }
 
-        // Създаване на нов двубой
         async function createNewBattle(event) {
             event.preventDefault();
 

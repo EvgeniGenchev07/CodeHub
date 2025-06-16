@@ -14,54 +14,64 @@ namespace DataLayer
         {
             this.dbContext = dbContext;
         }
-
-        public void Create(Exercise item)
+        public async Task Create(Exercise item)
         {
-            dbContext.Exercises.Add(item);
-            dbContext.SaveChanges();
+            try
+            {
+                await dbContext.Exercises.AddAsync(item);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("Failed to create exercise. Possible duplicate or invalid data.", ex);
+            }
         }
 
-        public Exercise Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<Exercise> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Exercise> query = dbContext.Exercises;
 
-            // Future enhancement: useNavigationalProperties to include related entities
             if (isReadOnly)
-                query = query.AsNoTrackingWithIdentityResolution();
+            {
+                query = query.AsNoTracking();
+            }
 
-            Exercise exercise = query.FirstOrDefault(e => e.Id == key);
+            var exercise = await query.FirstOrDefaultAsync(e => e.Id == key);
 
-            if (exercise == null)
-                throw new ArgumentException($"Exercise with id = {key} does not exist!");
-
-            return exercise;
+            return exercise ?? throw new KeyNotFoundException($"Exercise with id {key} not found");
         }
 
-        public List<Exercise> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<List<Exercise>> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Exercise> query = dbContext.Exercises;
 
-            // Future enhancement: useNavigationalProperties to include related entities
             if (isReadOnly)
-                query = query.AsNoTrackingWithIdentityResolution();
+            {
+                query = query.AsNoTracking();
+            }
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
 
-        public void Update(Exercise item, bool useNavigationalProperties = false)
+        public async Task Update(Exercise item, bool useNavigationalProperties = false)
         {
-            Exercise exerciseFromDb = Read(item.Id, useNavigationalProperties);
-
-            dbContext.Entry(exerciseFromDb).CurrentValues.SetValues(item);
-
-            dbContext.SaveChanges();
+            try
+            {
+                var existingExercise = await Read(item.Id);
+                dbContext.Entry(existingExercise).CurrentValues.SetValues(item);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                throw new Exception("Exercise was modified or deleted by another user.", ex);
+            }
         }
 
-        public void Delete(int key)
+        public async Task Delete(int key)
         {
-            Exercise exerciseFromDb = Read(key);
-            dbContext.Exercises.Remove(exerciseFromDb);
-            dbContext.SaveChanges();
+            var exercise = await Read(key);
+            dbContext.Exercises.Remove(exercise);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

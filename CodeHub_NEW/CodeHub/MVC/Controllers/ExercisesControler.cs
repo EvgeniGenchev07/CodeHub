@@ -16,11 +16,11 @@ namespace MVC.Controllers
         }
 
         // GET: Exercise
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             try
             {
-                List<Exercise> exercises = _exercisesContext.ReadAll();
+                List<Exercise> exercises = await _exercisesContext.ReadAll();
                 return View(exercises);
             }
             catch (Exception ex)
