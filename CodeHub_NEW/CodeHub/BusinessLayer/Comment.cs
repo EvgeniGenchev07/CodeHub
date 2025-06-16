@@ -10,4 +10,12 @@ public class Comment
     public DateTime Date { get; set; }
     public string Content { get; set; }
     public Forum Forum { get; set; }
+    public Comment(){}
+    public Comment(User author, string content, Forum forum)
+    {
+        Author = author;
+        Content = content;
+        Date = DateTime.Now;
+        Forum = forum;
+    }
 }

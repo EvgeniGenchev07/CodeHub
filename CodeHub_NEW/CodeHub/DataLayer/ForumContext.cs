@@ -21,7 +21,7 @@ public class ForumContext:IDb<Forum,int>
     public async Task<Forum> Read(int key,bool useNavigationalProperties = false, bool isReadOnly = false)
     {
         IQueryable<Forum> query = _dbContext.Forums;
-        if (useNavigationalProperties) query = query.Include(f => f.Author);
+        if (useNavigationalProperties) query = query.Include(f => f.Author).Include(f=>f.Comments).ThenInclude(c=>c.Author);
         if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
         Forum exercise = await query.FirstOrDefaultAsync(r => r.Id == key);
@@ -34,7 +34,7 @@ public class ForumContext:IDb<Forum,int>
     public async Task<List<Forum>> ReadAll(bool useNavigationalProperties = false,bool isReadOnly = false)
     {
         IQueryable<Forum> query = _dbContext.Forums;
-        if (useNavigationalProperties) query = query.Include(f => f.Author);
+        if (useNavigationalProperties) query = query.Include(f => f.Author).Include(f=>f.Comments).ThenInclude(c=>c.Author);
 
         if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
@@ -46,7 +46,17 @@ public class ForumContext:IDb<Forum,int>
         Forum forumFromDb = await Read(item.Id);
 
         _dbContext.Entry<Forum>(forumFromDb).CurrentValues.SetValues(item);
-
+        if (useNavigationalProperties)
+        {
+            List<Comment> comments = new List<Comment>(item.Comments.Count);
+            foreach (var comment in item.Comments)
+            {
+                var commentFromDb = await _dbContext.Comments.FirstOrDefaultAsync(c=>c.Id==comment.Id);
+                if (commentFromDb != null) comments.Add(commentFromDb);
+                else comments.Add(comment);
+            }
+            item.Comments = comments;
+        }
         await _dbContext.SaveChangesAsync();
     }
 

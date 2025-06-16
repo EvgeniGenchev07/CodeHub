@@ -483,9 +483,18 @@
         <div class="post-container">
             <div class="post-header">
                 <div class="post-user">
-                    <div class="user-avatar"><img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Author.ProfilePicture)"/></div>
+                    <div class="user-avatar">
+                        @if (Model.Author.ProfilePicture.Length == 0)
+                        {
+                            <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Author.ProfilePicture)"/>
+                        }
+                        else
+                        {
+                            <span class="fa fa-user"></span>
+                        }
+                        </div>
                     <div class="user-info">
-                        <h3>@Model.Author.FullName</h3>
+                        <h3>@Model.Author.UserName</h3>
                     </div>
                 </div>
                 <div class="post-time">@PostTime(@Model.Date)</div>
@@ -515,10 +524,11 @@
             <!-- Comment Form -->
             <div class="comment-form">
                 <h3>Добави коментар</h3>
-                <form id="commentForm">
+                <form asp-action="Details" asp-controller="Forum" method="post" id="commentForm">
                     <div class="form-group">
+                        <input type="hidden" name="post-id" value="@Model.Id" />
                         <label for="comment">Твоят отговор</label>
-                        <textarea id="comment" placeholder="Напиши своя коментар тук..." required></textarea>
+                        <textarea id="comment" name="comment" placeholder="Напиши своя коментар тук..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Публикувай</button>
                 </form>
@@ -533,9 +543,25 @@
                 <div class="comment-card">
                     <div class="comment-header">
                         <div class="comment-user">
-                            <div class="comment-avatar">МГ</div>
+                            <div class="comment-avatar">
+                                @if (comment.Author is not null)
+                                {
+                                    if (Model.Author.ProfilePicture.Length == 0)
+                                    {
+                                        <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Author.ProfilePicture)"/>
+                                    }
+                                    else
+                                    {
+                                        <span class="fa fa-user"></span>
+                                    }
+                                }
+                                else
+                                {
+                                    <div>A</div>
+                                }
+                            </div>
                             <div class="comment-user-info">
-                                <h4>@comment.Author.FullName</h4>
+                                <h4>@(comment.Author is not null?comment.Author.UserName:"Anonymous")</h4>
                             </div>
                         </div>
                         <div class="comment-time">@PostTime(comment.Date)</div>

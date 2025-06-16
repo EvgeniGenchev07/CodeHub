@@ -17,6 +17,7 @@ namespace DataLayer
         public DbSet<Lector> Lectors { get; set; }
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Battle> Battles { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public CodeHubDbContext() : base()
         {
             

@@ -1,16 +1,18 @@
 ﻿using BusinessLayer;
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNet.Identity;
 namespace CodeHub.Controllers
 {
     public class ForumController : Controller
     {
         private readonly IDb<Forum, int> _forumContext;
-        private const int ForumPageSize = 1;
-        public ForumController(ForumContext forumContext)
+        private readonly IdentityContext _identityContext;
+        private const int ForumPageSize = 10;
+        public ForumController(ForumContext forumContext,IdentityContext context)
         {
             _forumContext = forumContext;
+            _identityContext = context;
         }
         public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] Filters filter = Filters.All,string search = null)
         {
@@ -51,6 +53,23 @@ namespace CodeHub.Controllers
                 return View(forum);
             }
             return RedirectToAction();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Details(int? id,IFormCollection data)
+        {
+            if (id != data["post-id"]) NotFound();
+            string content = data["comment"];
+            User user = await _identityContext.ReadUserAsync(User.Identity.GetUserId<string>());
+            var forum = await _forumContext.Read(id.Value, true);
+            if (forum == null)
+            {
+                return NotFound();
+            }
+
+            Comment comment = new Comment(user,content, forum);
+            forum.Comments.Add(comment);
+            await _forumContext.Update(forum,true);
+            return RedirectToAction(nameof(Details), new { id = id });
         }
     }
 }
