@@ -8,18 +8,18 @@ namespace DataLayer
 {
     public class ExercisesContext : IDb<Exercise, int>
     {
-        private readonly CodeHubDbContext dbContext;
+        private readonly CodeHubDbContext _dbContext;
 
         public ExercisesContext(CodeHubDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
         public async Task Create(Exercise item)
         {
             try
             {
-                await dbContext.Exercises.AddAsync(item);
-                await dbContext.SaveChangesAsync();
+                await _dbContext.Exercises.AddAsync(item);
+                await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
             {
@@ -29,7 +29,7 @@ namespace DataLayer
 
         public async Task<Exercise> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
-            IQueryable<Exercise> query = dbContext.Exercises;
+            IQueryable<Exercise> query = _dbContext.Exercises;
 
             if (isReadOnly)
             {
@@ -43,7 +43,7 @@ namespace DataLayer
 
         public async Task<List<Exercise>> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
         {
-            IQueryable<Exercise> query = dbContext.Exercises;
+            IQueryable<Exercise> query = _dbContext.Exercises;
 
             if (isReadOnly)
             {
@@ -58,8 +58,8 @@ namespace DataLayer
             try
             {
                 var existingExercise = await Read(item.Id);
-                dbContext.Entry(existingExercise).CurrentValues.SetValues(item);
-                await dbContext.SaveChangesAsync();
+                _dbContext.Entry(existingExercise).CurrentValues.SetValues(item);
+                await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -70,8 +70,8 @@ namespace DataLayer
         public async Task Delete(int key)
         {
             var exercise = await Read(key);
-            dbContext.Exercises.Remove(exercise);
-            await dbContext.SaveChangesAsync();
+            _dbContext.Exercises.Remove(exercise);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
