@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
 {
-    public class CoursesContext
+    public class CoursesContext : IDb<Course, int>
     {
         CodeHubDbContext dbContext;
 
@@ -12,13 +12,13 @@ namespace DataLayer
             this.dbContext = dbContext;
         }
 
-        public void Create(Course item)
+        public async Task Create(Course item)
         {
             dbContext.Courses.Add(item);
             dbContext.SaveChanges();
         }
 
-        public Course Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<Course> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Course> query = dbContext.Courses;
 
@@ -35,7 +35,7 @@ namespace DataLayer
             return course;
         }
 
-        public List<Course> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<List<Course>> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Course> query = dbContext.Courses;
 
@@ -48,7 +48,7 @@ namespace DataLayer
             return query.ToList();
         }
 
-        public void Update(Course item, bool useNavigationalProperties = false)
+        public async Task Update(Course item, bool useNavigationalProperties = false)
         {
             Course courseFromDb = Read(item.Id, useNavigationalProperties);
 
@@ -80,7 +80,7 @@ namespace DataLayer
             dbContext.SaveChanges();
         }
 
-        public void Delete(int key)
+        public async Task Delete(int key)
         {
             Course course = Read(key);
             dbContext.Courses.Remove(course);
