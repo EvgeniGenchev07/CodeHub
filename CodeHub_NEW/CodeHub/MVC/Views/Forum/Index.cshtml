@@ -1,4 +1,6 @@
-﻿@model List<BusinessLayer.Forum>
+﻿@using Azure.Core
+@using BusinessLayer
+@model List<BusinessLayer.Forum>
 @section Styles {
 <link rel="stylesheet" href="~/css/forum.css" asp-append-version="true" />
 }
@@ -12,21 +14,20 @@
     <div class="forum-actions">
         <div class="forum-search">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Търсене във форума...">
+            <input type="text" value="@(ViewBag.Search??"")" placeholder="Търсене във форума..." onchange="window.location.href = `?search=${encodeURIComponent(this.value)}&page=@ViewBag.Page&filter=@ViewBag.Filter`" class="forum-search-input">
         </div>
-        <button class="btn btn-primary"><i class="fas fa-filter"></i> Филтри</button>
     </div>
 </div>
 
 <!-- Categories -->
 <div class="forum-categories">
-    <button class="category-btn active">Всички</button>
-    <button class="category-btn">JavaScript</button>
-    <button class="category-btn">Алгоритми</button>
-    <button class="category-btn">DOM</button>
-    <button class="category-btn">Асинхронен код</button>
-    <button class="category-btn">Интервюта</button>
-    <button class="category-btn">Проекти</button>
+    <button onclick="window.location.href = '?filter=@Filters.All'" class="category-btn @(ViewBag.Filter==Filters.All?"active":"")">Всички</button>
+    <button onclick="window.location.href = '?filter=@Filters.Js'" class="category-btn @(ViewBag.Filter==Filters.Js?"active":"")">JavaScript</button>
+    <button onclick="window.location.href = '?filter=@Filters.Algorithms'" class="category-btn @(ViewBag.Filter==Filters.Algorithms?"active":"")">Алгоритми</button>
+    <button onclick="window.location.href = '?filter=@Filters.DOMAssembly'" class="category-btn @(ViewBag.Filter==Filters.DOMAssembly?"active":"")">DOM</button>
+    <button onclick="window.location.href = '?filter=@Filters.Asynchronous'" class="category-btn @(ViewBag.Filter==Filters.Asynchronous?"active":"")">Асинхронен код</button>
+    <button onclick="window.location.href = '?filter=@Filters.Interviews'" class="category-btn @(ViewBag.Filter==Filters.Interviews?"active":"")">Интервюта</button>
+    <button onclick="window.location.href = '?filter=@Filters.Projects'" class="category-btn @(ViewBag.Filter==Filters.Projects?"active":"")">Проекти</button>
 </div>
 
 <!-- Forum Posts -->
@@ -34,18 +35,19 @@
     @foreach (var post in Model)
     {
         <div class="forum-card">
-            <div class="user-avatar"><img src="@post.Author.ProfilePicture"></div>
+            <div class="user-avatar"><img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(post.Author.ProfilePicture)"/></div>
             <div class="post-content">
                 <div class="post-header">
                     <span class="post-user">@post.Author.FullName</span>
-                    <span class="post-time">преди 2 часа</span>
+                    <span class="post-time">@PostTime(@post.Date)</span>
                 </div>
-                <h3 class="post-title">Как да оптимизирам този алгоритъм за сортиране?</h3>
-                <p class="post-text">Имам проблем с оптимизирането на моя алгоритъм за сортиране. Някой може ли да ми помогне да го направя по-бърз? Текущото ми решение използва bubble sort, но е твърде бавно за големи масиви...</p>
+                <h3 class="post-title">@post.Title</h3>
+                <p class="post-text">@post.Content.Substring(0,post.Content.Length>70?70:post.Content.Length)@(post.Content.Length>70?"...":"")</p>
                 <div class="post-tags">
-                    <span class="post-tag">Алгоритми</span>
-                    <span class="post-tag">Оптимизация</span>
-                    <span class="post-tag">JavaScript</span>
+                    @foreach (var filter in post.Filters)
+                    {
+                        <span class="post-tag">@filter.ToString()</span>
+                    }
                 </div>
                 <div class="post-stats">
                     <div class="post-stat">
@@ -64,7 +66,7 @@
 <div class="pagination">
     <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
     <button class="page-btn active">1</button>
-    <button class="page-btn">2</button>
+    <button onclick="window.location.href = `?search=${encodeURIComponent(@ViewBag.Search)}&page=2&filter=@ViewBag.Filter`" class="page-btn">2</button>
     <button class="page-btn">3</button>
     <button class="page-btn">4</button>
     <button class="page-btn">5</button>
@@ -75,3 +77,22 @@
 <button class="new-post-btn" id="newPostBtn">
     <i class="fas fa-plus"></i>
 </button>
+@{
+    static string PostTime(DateTime postTime)
+    {
+        var timeSpan = DateTime.Now - postTime;
+
+        if (timeSpan.TotalMinutes < 1)
+            return "преди няколко секунди";
+        if (timeSpan.TotalMinutes < 60)
+            return $"преди {Math.Floor(timeSpan.TotalMinutes)} минути";
+        if (timeSpan.TotalHours < 24)
+            return $"преди {Math.Floor(timeSpan.TotalHours)} часа";
+        if (timeSpan.TotalDays < 30)
+            return $"преди {Math.Floor(timeSpan.TotalDays)} дни";
+        if (timeSpan.TotalDays < 365)
+            return $"преди {Math.Floor(timeSpan.TotalDays / 30)} месеца";
+
+        return $"преди {Math.Floor(timeSpan.TotalDays / 365)} години";
+    }
+}

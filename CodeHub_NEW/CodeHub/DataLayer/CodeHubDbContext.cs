@@ -19,9 +19,11 @@ namespace DataLayer
         public DbSet<Battle> Battles { get; set; }
         public CodeHubDbContext() : base()
         {
+            
         }
         public CodeHubDbContext(DbContextOptions<CodeHubDbContext> options) : base(options)
         {
+           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

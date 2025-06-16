@@ -21,6 +21,8 @@ namespace CodeHub.Controllers
             return PartialView();
         }
 
+        public async Task<IActionResult> Courses()
+        { return PartialView(); }
         public async Task<IActionResult> Index()
         {
             ViewBag.ActiveUsers = await _dbContext.Users.CountAsync()-1;

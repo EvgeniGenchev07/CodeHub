@@ -1,5 +1,1256 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeBattle Admin - Курсове</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e4;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --light: #ffffff;
+            --gray: #cccccc;
+            --success: #27c93f;
+            --warning: #ffbd2e;
+            --danger: #ff5f56;
+            --neon-glow: 0 0 10px var(--primary);
+            --text-glow: 0 0 5px var(--primary);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            text-shadow: var(--text-glow);
+        }
+
+        .logo-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .admin-badge {
+            background-color: var(--secondary);
+            color: var(--darker);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        /* Admin Navigation */
+        .admin-nav {
+            display: flex;
+            background-color: var(--darker);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+
+        .admin-nav-links {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .admin-nav-links li {
+            flex: 1 1 0;
+            text-align: center;
+        }
+
+        .admin-nav-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            min-height: 56px;
+            box-sizing: border-box;
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 15px 20px;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .admin-nav-links a:hover,
+        .admin-nav-links a.active {
+            color: var(--primary);
+            text-shadow: var(--text-glow);
+            background-color: rgba(0, 247, 255, 0.1);
+            border-bottom-color: var(--primary);
+        }
+
+        .admin-nav-links i {
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .admin-main {
+            flex: 1;
+            padding: 30px 5%;
+        }
+
+        /* Admin Content */
+        .admin-content {
+            width: 100%;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-title {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--darker);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .btn-lg {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .btn-sm {
+            padding: 6px 15px;
+            font-size: 0.85rem;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #e04a4a;
+            box-shadow: 0 0 20px var(--danger);
+        }
+
+        /* Tables */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: rgba(10, 10, 26, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+        }
+
+        .admin-table th {
+            background-color: rgba(0, 247, 255, 0.1);
+            color: var(--primary);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .admin-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+            color: var(--gray);
+            vertical-align: middle;
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-table tr:hover td {
+            background-color: rgba(0, 247, 255, 0.05);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-beginner {
+            background-color: rgba(39, 201, 63, 0.2);
+            color: var(--success);
+        }
+
+        .status-intermediate {
+            background-color: rgba(255, 189, 46, 0.2);
+            color: var(--warning);
+        }
+
+        .status-advanced {
+            background-color: rgba(255, 95, 86, 0.2);
+            color: var(--danger);
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-item {
+            list-style: none;
+        }
+
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .page-link:hover {
+            background-color: rgba(0, 247, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .page-link.active {
+            background-color: var(--primary);
+            color: var(--darker);
+            font-weight: 600;
+        }
+
+        .page-link.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Table Controls */
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 20px;
+            color: var(--light);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 20px;
+            color: var(--light);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--darker);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        media (max-width: 1024px) {
+            .admin-main {
+                flex-direction: column;
+            }
+
+            .admin-nav-links {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .admin-nav-links a {
+                white-space: nowrap;
+            }
+        }
+
+        media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .admin-nav {
+                display: none;
+            }
+
+            .admin-nav.active {
+                display: block;
+            }
+
+            .admin-nav-links {
+                flex-direction: column;
+            }
+
+            .admin-nav-links a {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                justify-content: flex-start;
+                min-height: auto;
+            }
+
+            .admin-nav-links a.active {
+                border-left-color: var(--primary);
+            }
+
+            .table-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .filter-group {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .pagination-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        media (max-width: 600px) {
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .admin-title {
+                font-size: 1.5rem;
+            }
+
+            .table-actions {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .btn-sm {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-footer {
+                flex-direction: column;
+            }
+
+            .form-footer .btn {
+                width: 100%;
+            }
+        }
+
+        media (max-width: 480px) {
+            .pagination {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-link {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-code"></i></span>
+            <span class="logo-text">CodeBattle <span class="admin-badge">ADMIN</span></span>
+        </div>
+
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav" id="admin-nav">
+        <ul class="admin-nav-links">
+            <li><a href="#"><i class="fas fa-tachometer-alt"></i> Табло</a></li>
+            <li><a href="#battles"><i class="fas fa-trophy"></i> Двубои</a></li>
+            <li><a href="#courses" class="active"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
+            <li><a href="#users"><i class="fas fa-users"></i> Потребители</a></li>
+            <li><a href="#settings"><i class="fas fa-cog"></i> Настройки</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Content -->
+        <div class="admin-content">
+            <section id="courses">
+                <div class="admin-header">
+                    <h1 class="admin-title">Всички Курсове</h1>
+                    <button class="btn btn-primary" id="createCourseBtn"><i class="fas fa-plus"></i> Нов курс</button>
+                </div>
+
+                <!-- Table Controls -->
+                <div class="table-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="searchInput" placeholder="Търсене на курсове...">
+                    </div>
+
+                    <div class="filter-group">
+                        <select class="filter-select" id="difficultyFilter">
+                            <option value="">Всички нива</option>
+                            <option value="beginner">Начинаещи</option>
+                            <option value="intermediate">Напреднали</option>
+                            <option value="advanced">Експерти</option>
+                        </select>
+
+                        <select class="filter-select" id="sortBy">
+                            <option value="newest">Най-нови</option>
+                            <option value="oldest">Най-стари</option>
+                            <option value="name-asc">Име (А-Я)</option>
+                            <option value="name-desc">Име (Я-А)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Courses Table -->
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Име</th>
+                            <th>Описание</th>
+                            <th>Ниво</th>
+                            <th>Лектори</th>
+                            <th>Уроци</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="coursesTableBody">
+                        <!-- Данните ще се зареждат тук чрез JavaScript -->
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <div class="items-per-page">
+                        <span>Брой на страница:</span>
+                        <select class="items-select" id="itemsPerPage">
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+
+                    <ul class="pagination" id="pagination">
+                        <!-- Пагинацията ще се генерира тук -->
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add Course Modal -->
+    <div class="modal" id="addCourseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Добавяне на нов курс</h3>
+                <button class="close-modal" id="closeAddModal">&times;</button>
+            </div>
+            <form id="addCourseForm">
+                <div class="form-group">
+                    <label class="form-label">Име на курса</label>
+                    <input type="text" class="form-control" id="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="form-control" id="courseDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ниво на трудност</label>
+                    <select class="form-control" id="courseDifficulty" required>
+                        <option value="beginner">Начинаещ</option>
+                        <option value="intermediate">Напреднал</option>
+                        <option value="advanced">Експерт</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Лектори</label>
+                    <div id="lectorsContainer">
+                        <!-- Лекторите ще се добавят динамично тук -->
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm" id="addLectorBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Добави лектор
+                    </button>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-outline" id="cancelAdd">Отказ</button>
+                    <button type="submit" class="btn btn-primary">Създай курс</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Course Modal -->
+    <div class="modal" id="editCourseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Редактиране на курс</h3>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <form id="editCourseForm">
+                <input type="hidden" id="editCourseId">
+                <div class="form-group">
+                    <label class="form-label">Име на курса</label>
+                    <input type="text" class="form-control" id="editCourseName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="form-control" id="editCourseDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ниво на трудност</label>
+                    <select class="form-control" id="editCourseDifficulty" required>
+                        <option value="beginner">Начинаещ</option>
+                        <option value="intermediate">Напреднал</option>
+                        <option value="advanced">Експерт</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Лектори</label>
+                    <div id="editLectorsContainer">
+                        <!-- Лекторите ще се добавят динамично тук -->
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm" id="editAddLectorBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Добави лектор
+                    </button>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="btn btn-outline" id="cancelEdit">Отказ</button>
+                    <button type="submit" class="btn btn-primary">Запази промените</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Потвърждение за изтриване</h3>
+                <button class="close-modal" id="closeDeleteModal">&times;</button>
+            </div>
+            <p>Сигурни ли сте, че искате да изтриете този курс? Всички свързани уроци и упражнения също ще бъдат изтрити.</p>
+            <input type="hidden" id="deleteCourseId">
+            <div class="form-footer">
+                <button type="button" class="btn btn-outline" id="cancelDelete">Отказ</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Изтрий</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данни за демонстрация (в реален проект ще се взимат от API)
+        let demoCourses = [
+            {
+                id: 1,
+                name: "Въведение в програмирането",
+                description: "Научи основите на програмирането с Python",
+                difficulty: "beginner",
+                lectors: ["Иван Петров", "Мария Иванова"],
+                lessons: 5
+            },
+            {
+                id: 2,
+                name: "Уеб разработка с JavaScript",
+                description: "Създаване на модерни уеб приложения",
+                difficulty: "intermediate",
+                lectors: ["Георги Димитров"],
+                lessons: 8
+            },
+            {
+                id: 3,
+                name: "Машинно обучение",
+                description: "Напреднали техники за машинно обучение",
+                difficulty: "advanced",
+                lectors: ["Анна Стоянова", "Петър Георгиев", "Стефан Киров"],
+                lessons: 12
+            },
+            {
+                id: 4,
+                name: "Бази данни и SQL",
+                description: "Проектиране и работа с релационни бази данни",
+                difficulty: "intermediate",
+                lectors: ["Димитър Василев"],
+                lessons: 6
+            },
+            {
+                id: 5,
+                name: "Основен HTML и CSS",
+                description: "Създаване на статични уеб страници",
+                difficulty: "beginner",
+                lectors: ["Елена Маркова"],
+                lessons: 4
+            }
+        ];
+
+        // Конфигурация на пагинацията
+        let currentPage = 1;
+        let itemsPerPage = 10;
+        let filteredCourses = [...demoCourses];
+
+        // Инициализация на страницата
+        document.addEventListener('DOMContentLoaded', function() {
+            // Хамбургер меню
+            const hamburger = document.getElementById('hamburger');
+            const adminNav = document.getElementById('admin-nav');
+
+            hamburger.addEventListener('click', function() {
+                adminNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Затваряне на менюто при клик извън него
+            document.addEventListener('click', function(event) {
+                if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
+                    adminNav.classList.remove('active');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                }
+            });
+
+            // Инициализиране на таблицата и пагинацията
+            updateTable();
+
+            // Слушатели за промени във филтрите
+            document.getElementById('searchInput').addEventListener('input', filterCourses);
+            document.getElementById('difficultyFilter').addEventListener('change', filterCourses);
+            document.getElementById('sortBy').addEventListener('change', filterCourses);
+            document.getElementById('itemsPerPage').addEventListener('change', function() {
+                itemsPerPage = parseInt(this.value);
+                currentPage = 1;
+                updateTable();
+            });
+
+            // Слушатели за модалните прозорци
+            document.getElementById('createCourseBtn').addEventListener('click', openAddModal);
+            document.getElementById('closeAddModal').addEventListener('click', closeAddModal);
+            document.getElementById('cancelAdd').addEventListener('click', closeAddModal);
+            document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
+            document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
+            document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
+            document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
+            document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
+
+            // Слушатели за формите
+            document.getElementById('addCourseForm').addEventListener('submit', addNewCourse);
+            document.getElementById('editCourseForm').addEventListener('submit', saveCourseChanges);
+
+            // Слушатели за бутоните за добавяне на лектори
+            document.getElementById('addLectorBtn').addEventListener('click', addLectorField);
+            document.getElementById('editAddLectorBtn').addEventListener('click', addEditLectorField);
+        });
+
+        // Функция за филтриране на курсовете
+        function filterCourses() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const difficultyFilter = document.getElementById('difficultyFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+
+            // Филтриране по търсене
+            filteredCourses = demoCourses.filter(course =>
+                course.name.toLowerCase().includes(searchTerm) ||
+                course.description.toLowerCase().includes(searchTerm)
+            );
+
+            // Филтриране по ниво на трудност
+            if (difficultyFilter) {
+                filteredCourses = filteredCourses.filter(course =>
+                    course.difficulty === difficultyFilter
+                );
+            }
+
+            // Сортиране
+            filteredCourses.sort((a, b) => {
+                if (sortBy === 'newest') {
+                    return b.id - a.id;
+                } else if (sortBy === 'oldest') {
+                    return a.id - b.id;
+                } else if (sortBy === 'name-asc') {
+                    return a.name.localeCompare(b.name);
+                } else if (sortBy === 'name-desc') {
+                    return b.name.localeCompare(a.name);
+                }
+                return 0;
+            });
+
+            currentPage = 1;
+            updateTable();
+        }
+
+        // Функция за обновяване на таблицата и пагинацията
+        function updateTable() {
+            const tableBody = document.getElementById('coursesTableBody');
+            const pagination = document.getElementById('pagination');
+
+            // Изчисляване на общия брой страници
+            const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
+
+            // Изчисляване на начален и краен индекс за текущата страница
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, filteredCourses.length);
+            const currentCourses = filteredCourses.slice(startIndex, endIndex);
+
+            // Изчистване и попълване на таблицата
+            tableBody.innerHTML = '';
+
+            currentCourses.forEach(course => {
+                let difficultyClass = '';
+                let difficultyText = '';
+
+                switch(course.difficulty) {
+                    case 'beginner':
+                        difficultyClass = 'status-beginner';
+                        difficultyText = 'Начинаещ';
+                        break;
+                    case 'intermediate':
+                        difficultyClass = 'status-intermediate';
+                        difficultyText = 'Напреднал';
+                        break;
+                    case 'advanced':
+                        difficultyClass = 'status-advanced';
+                        difficultyText = 'Експерт';
+                        break;
+                }
+
+                const row = `
+                    <tr>
+                        <td>${course.id}</td>
+                        <td>${course.name}</td>
+                        <td>${course.description}</td>
+                        <td><span class="status-badge ${difficultyClass}">${difficultyText}</span></td>
+                        <td>${course.lectors.join(', ')}</td>
+                        <td>${course.lessons}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn btn-outline btn-sm" onclick="openEditModal(${course.id})">
+                                    <i class="fas fa-edit"></i> Редактирай
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${course.id})">
+                                    <i class="fas fa-trash"></i> Изтрий
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
+
+            // Генериране на пагинация
+            pagination.innerHTML = '';
+
+            // Бутон "Предишна"
+            const prevItem = document.createElement('li');
+            prevItem.className = 'page-item';
+            prevItem.innerHTML = `
+                <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
+                   onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            `;
+            pagination.appendChild(prevItem);
+
+            // Номерация на страниците
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            if (startPage > 1) {
+                const firstItem = document.createElement('li');
+                firstItem.className = 'page-item';
+                firstItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
+                pagination.appendChild(firstItem);
+
+                if (startPage > 2) {
+                    const dotsItem = document.createElement('li');
+                    dotsItem.className = 'page-item';
+                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                    pagination.appendChild(dotsItem);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageItem = document.createElement('li');
+                pageItem.className = 'page-item';
+                pageItem.innerHTML = `
+                    <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
+                       onclick="changePage(${i}); return false;">${i}</a>
+                `;
+                pagination.appendChild(pageItem);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const dotsItem = document.createElement('li');
+                    dotsItem.className = 'page-item';
+                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                    pagination.appendChild(dotsItem);
+                }
+
+                const lastItem = document.createElement('li');
+                lastItem.className = 'page-item';
+                lastItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
+                pagination.appendChild(lastItem);
+            }
+
+            // Бутон "Следваща"
+            const nextItem = document.createElement('li');
+            nextItem.className = 'page-item';
+            nextItem.innerHTML = `
+                <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
+                   onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            `;
+            pagination.appendChild(nextItem);
+        }
+
+        // Функция за промяна на страницата
+        function changePage(page) {
+            currentPage = page;
+            updateTable();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Функции за модалните прозорци
+        function openAddModal() {
+            document.getElementById('addCourseModal').style.display = 'flex';
+            document.getElementById('lectorsContainer').innerHTML = '';
+            addLectorField(); // Добавяне на първо поле за лектор по подразбиране
+        }
+
+        function closeAddModal() {
+            document.getElementById('addCourseModal').style.display = 'none';
+            document.getElementById('addCourseForm').reset();
+        }
+
+        function openEditModal(courseId) {
+            const course = demoCourses.find(c => c.id === courseId);
+            if (!course) return;
+
+            document.getElementById('editCourseId').value = course.id;
+            document.getElementById('editCourseName').value = course.name;
+            document.getElementById('editCourseDescription').value = course.description;
+            document.getElementById('editCourseDifficulty').value = course.difficulty;
+
+            const lectorsContainer = document.getElementById('editLectorsContainer');
+            lectorsContainer.innerHTML = '';
+
+            course.lectors.forEach(lector => {
+                addEditLectorField(lector);
+            });
+
+            document.getElementById('editCourseModal').style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editCourseModal').style.display = 'none';
+            document.getElementById('editCourseForm').reset();
+        }
+
+        function openDeleteModal(courseId) {
+            document.getElementById('deleteCourseId').value = courseId;
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+
+        function confirmDelete() {
+            const courseId = parseInt(document.getElementById('deleteCourseId').value);
+            demoCourses = demoCourses.filter(course => course.id !== courseId);
+            filterCourses();
+            closeDeleteModal();
+
+            // Показване на съобщение за успех
+            alert('Курсът беше изтрит успешно!');
+        }
+
+        // Функции за добавяне на лектори
+        function addLectorField(value = '') {
+            const lectorsContainer = document.getElementById('lectorsContainer');
+            const lectorId = Date.now();
+
+            const lectorDiv = document.createElement('div');
+            lectorDiv.className = 'form-row';
+            lectorDiv.innerHTML = `
+                <div class="form-group" style="flex: 1;">
+                    <input type="text" class="form-control" value="${value}" placeholder="Име на лектор" required>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm" onclick="removeLectorField(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+
+            lectorsContainer.appendChild(lectorDiv);
+        }
+
+        function addEditLectorField(value = '') {
+            const lectorsContainer = document.getElementById('editLectorsContainer');
+            const lectorId = Date.now();
+
+            const lectorDiv = document.createElement('div');
+            lectorDiv.className = 'form-row';
+            lectorDiv.innerHTML = `
+                <div class="form-group" style="flex: 1;">
+                    <input type="text" class="form-control" value="${value}" placeholder="Име на лектор" required>
+                </div>
+                <button type="button" class="btn btn-danger btn-sm" onclick="removeLectorField(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+
+            lectorsContainer.appendChild(lectorDiv);
+        }
+
+        function removeLectorField(button) {
+            button.parentElement.remove();
+        }
+
+        // Функции за обработка на формите
+        function addNewCourse(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('courseName').value;
+            const description = document.getElementById('courseDescription').value;
+            const difficulty = document.getElementById('courseDifficulty').value;
+
+            // Събиране на лекторите
+            const lectorInputs = document.querySelectorAll('#lectorsContainer input');
+            const lectors = Array.from(lectorInputs).map(input => input.value.trim()).filter(lector => lector !== '');
+
+            if (lectors.length === 0) {
+                alert('Моля, добавете поне един лектор!');
+                return;
+            }
+
+            // Генериране на ново ID
+            const newId = demoCourses.length > 0 ? Math.max(...demoCourses.map(c => c.id)) + 1 : 1;
+
+            // Създаване на нов курс
+            const newCourse = {
+                id: newId,
+                name,
+                description,
+                difficulty,
+                lectors,
+                lessons: 0 // По подразбиране няма уроци
+            };
+
+            demoCourses.push(newCourse);
+            filterCourses();
+            closeAddModal();
+
+            // Показване на съобщение за успех
+            alert('Курсът беше създаден успешно!');
+        }
+
+        function saveCourseChanges(e) {
+            e.preventDefault();
+
+            const courseId = parseInt(document.getElementById('editCourseId').value);
+            const name = document.getElementById('editCourseName').value;
+            const description = document.getElementById('editCourseDescription').value;
+            const difficulty = document.getElementById('editCourseDifficulty').value;
+
+            // Събиране на лекторите
+            const lectorInputs = document.querySelectorAll('#editLectorsContainer input');
+            const lectors = Array.from(lectorInputs).map(input => input.value.trim()).filter(lector => lector !== '');
+
+            if (lectors.length === 0) {
+                alert('Моля, добавете поне един лектор!');
+                return;
+            }
+
+            // Намиране и обновяване на курса
+            const courseIndex = demoCourses.findIndex(c => c.id === courseId);
+            if (courseIndex !== -1) {
+                demoCourses[courseIndex] = {
+                    ...demoCourses[courseIndex],
+                    name,
+                    description,
+                    difficulty,
+                    lectors
+                };
+
+                filterCourses();
+                closeEditModal();
+
+                // Показване на съобщение за успех
+                alert('Промените бяха запазени успешно!');
+            }
+        }
+    </script>
+</body>
+</html>
