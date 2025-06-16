@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\forumfilters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\forumfilters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\datalayer\\forumcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -29,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\datalayer\\idb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\idb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\rtt\\pictures\\codehub\\codehub_new\\codehub\\businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\battle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +82,98 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Lector.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lector.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Lector.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lector.cs",
+              "RelativeToolTip": "BusinessLayer\\Lector.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:23:48.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Exercise.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Exercise.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
+              "RelativeToolTip": "BusinessLayer\\Exercise.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAzwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:23:25.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Difficulty.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Difficulty.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Difficulty.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Difficulty.cs",
+              "RelativeToolTip": "BusinessLayer\\Difficulty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:23:00.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Course.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Course.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Course.cs",
+              "RelativeToolTip": "BusinessLayer\\Course.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:22:52.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ForumFilters.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\ForumFilters.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\ForumFilters.cs",
+              "RelativeToolTip": "BusinessLayer\\ForumFilters.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:21:50.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Role.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Role.cs",
+              "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Role.cs",
+              "RelativeToolTip": "BusinessLayer\\Role.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T08:21:49.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Forum.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\Forum.cs",
               "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
               "RelativeToolTip": "BusinessLayer\\Forum.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAmwBwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T08:05:02.506Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ForumContext.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ForumContext.cs",
               "RelativeDocumentMoniker": "DataLayer\\ForumContext.cs",
@@ -79,12 +181,11 @@
               "RelativeToolTip": "DataLayer\\ForumContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:04:59.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T08:04:59.864Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "ForumController.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\ForumController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\ForumController.cs",
@@ -92,8 +193,7 @@
               "RelativeToolTip": "MVC\\Controllers\\ForumController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T08:04:55.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T08:04:55.457Z"
             },
             {
               "$type": "Document",
@@ -103,14 +203,14 @@
               "RelativeDocumentMoniker": "BusinessLayer\\Lesson.cs",
               "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Lesson.cs",
               "RelativeToolTip": "BusinessLayer\\Lesson.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAzwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T08:01:45.406Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
@@ -118,12 +218,11 @@
               "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAA1wBgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T07:58:07.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T07:58:07.062Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Courses.cshtml",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Courses.cshtml",
@@ -131,12 +230,11 @@
               "RelativeToolTip": "MVC\\Views\\Admin\\Courses.cshtml",
               "ViewState": "AgIAANkEAAAAAAAAAAAIwOgEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T07:56:44.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T07:56:44.921Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "IDb.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\IDb.cs",
               "RelativeDocumentMoniker": "DataLayer\\IDb.cs",
@@ -144,18 +242,17 @@
               "RelativeToolTip": "DataLayer\\IDb.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T07:47:35.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T07:47:35.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Battle.cs",
               "DocumentMoniker": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Battle.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\Battle.cs",
               "ToolTip": "C:\\Users\\RTT\\Pictures\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Battle.cs",
               "RelativeToolTip": "BusinessLayer\\Battle.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABUAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAA1wCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T06:33:54.409Z",
               "EditorCaption": ""
