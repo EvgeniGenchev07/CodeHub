@@ -1,6 +1,6 @@
 namespace BusinessLayer;
 
-public enum ForumFilters
+public enum Filters
 {
     All,
     Js,

@@ -12,10 +12,21 @@ namespace CodeHub.Controllers
         {
             _forumContext = forumContext;
         }
-        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] ForumFilters filter = ForumFilters.All)
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] Filters filter = Filters.All,string search = null)
         {
-            var forums = await _forumContext.ReadAll();
-            forums = forums.Where(f=>f.Filters.Any(ff=>ff==filter)).ToList();
+            var forums = await _forumContext.ReadAll(true,true);
+            ViewBag.Filter = filter;
+            ViewBag.Page = page;
+            ViewBag.Search = search;
+            if (filter != Filters.All)
+            {
+                forums = forums.Where(f => f.Filters.Any(ff => ff == filter)).ToList();
+            }
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                forums = forums.Where(f => f.Title.ToLower().Contains(search.ToLower())).ToList();
+            }
             var pagedForums = forums.Skip((page - 1) * ForumPageSize).Take(ForumPageSize).ToList();
             return View(pagedForums);
         }
