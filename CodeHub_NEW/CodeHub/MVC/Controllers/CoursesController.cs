@@ -17,11 +17,11 @@ namespace MVC.Controllers
         }
 
         // GET: Course
-        public IActionResult Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null,[FromQuery] Difficulty level = 0)
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null,[FromQuery] Difficulty level = 0)
         {
             try
             {
-                List<Course> courses = _coursesContext.ReadAll(useNavigationalProperties: true);
+                List<Course> courses = await _coursesContext.ReadAll(useNavigationalProperties: true);
                 return View(courses);
             }
             catch (Exception ex)

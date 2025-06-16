@@ -19,11 +19,11 @@ namespace MVC.Controllers
         }
 
         // GET: Lesson
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             try
             {
-                List<Lesson> lessons = _lessonsContext.ReadAll(useNavigationalProperties: true);
+                List<Lesson> lessons = await _lessonsContext.ReadAll(useNavigationalProperties: true);
                 return View(lessons);
             }
             catch (Exception ex)
@@ -172,7 +172,7 @@ namespace MVC.Controllers
                     }
                     else
                     {
-                        var existingLesson = _lessonsContext.Read(id);
+                        var existingLesson = await _lessonsContext.Read(id);
                         lesson.Video = existingLesson.Video;
                     }
 

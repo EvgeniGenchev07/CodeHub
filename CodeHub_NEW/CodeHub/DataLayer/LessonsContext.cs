@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class LessonsContext
+    public class LessonsContext : IDb<Lesson, int>
     {
         CodeHubDbContext dbContext;
 
@@ -17,13 +17,13 @@ namespace DataLayer
             this.dbContext = dbContext;
         }
 
-        public void Create(Lesson item)
+        public async Task Create(Lesson item)
         {
             dbContext.Lessons.Add(item);
             dbContext.SaveChanges();
         }
 
-        public Lesson Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<Lesson> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lesson> query = dbContext.Lessons;
 
@@ -39,7 +39,7 @@ namespace DataLayer
             return lesson;
         }
 
-        public List<Lesson> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
+        public async Task<List<Lesson>> ReadAll(bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lesson> query = dbContext.Lessons;
 
@@ -51,9 +51,9 @@ namespace DataLayer
             return query.ToList();
         }
 
-        public void Update(Lesson item, bool useNavigationalProperties = false)
+        public async Task Update(Lesson item, bool useNavigationalProperties = false)
         {
-            Lesson lessonFromDb = Read(item.Id, useNavigationalProperties);
+            Lesson lessonFromDb = await Read(item.Id, useNavigationalProperties);
 
             dbContext.Entry<Lesson>(lessonFromDb).CurrentValues.SetValues(item);
 
@@ -73,9 +73,9 @@ namespace DataLayer
             dbContext.SaveChanges();
         }
 
-        public void Delete(int key)
+        public async Task Delete(int key)
         {
-            Lesson lesson = Read(key);
+            Lesson lesson = await Read(key);
             dbContext.Lessons.Remove(lesson);
             dbContext.SaveChanges();
         }

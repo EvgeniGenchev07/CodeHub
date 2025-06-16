@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class LectorsContext
+    public class LectorsContext : IDb<Lector, int>
     {
         CodeHubDbContext dbContext;
 
@@ -17,13 +17,13 @@ namespace DataLayer
             this.dbContext = dbContext;
         }
 
-        public void Create(Lector item)
+        public async Task Create(Lector item)
         {
             dbContext.Lectors.Add(item);
             dbContext.SaveChanges();
         }
 
-        public Lector Read(int key, bool isReadOnly = false)
+        public async Task<Lector> Read(int key, bool useNavigationProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lector> query = dbContext.Lectors;
 
@@ -36,7 +36,7 @@ namespace DataLayer
             return lector;
         }
 
-        public List<Lector> ReadAll(bool isReadOnly = false)
+        public async Task<List<Lector>> ReadAll(bool useNavigationProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lector> query = dbContext.Lectors;
 
@@ -45,18 +45,18 @@ namespace DataLayer
             return query.ToList();
         }
 
-        public void Update(Lector item)
+        public async Task Update(Lector item, bool useNavigationProperties = false)
         {
-            Lector lectorFromDb = Read(item.Id);
+            Lector lectorFromDb = await Read(item.Id);
 
             dbContext.Entry<Lector>(lectorFromDb).CurrentValues.SetValues(item);
 
             dbContext.SaveChanges();
         }
 
-        public void Delete(int key)
+        public async Task Delete(int key)
         {
-            Lector lectorFromDb = Read(key);
+            Lector lectorFromDb = await Read(key);
             dbContext.Lectors.Remove(lectorFromDb);
             dbContext.SaveChanges();
         }
