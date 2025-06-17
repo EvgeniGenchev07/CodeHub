@@ -2,6 +2,8 @@
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace CodeHub.Controllers
 {
     public class ForumController : Controller
@@ -33,7 +35,7 @@ namespace CodeHub.Controllers
             var pagedForums = forums.Skip((page - 1) * ForumPageSize).Take(ForumPageSize).ToList();
             return View(pagedForums);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -70,6 +72,52 @@ namespace CodeHub.Controllers
             forum.Comments.Add(comment);
             await _forumContext.Update(forum,true);
             return RedirectToAction(nameof(Details), new { id = id });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CreatePost([FromBody] Forum post)
+        {
+            if (post == null)
+            {
+                Console.WriteLine("Received null post object");
+                return BadRequest("Post object is null");
+            }
+
+            // Clear ModelState errors for fields set server-side
+            ModelState.Remove("Author");
+            ModelState.Remove("Date");
+            // Remove Comments if it's causing validation errors (optional, based on model)
+            ModelState.Remove("Comments");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                );
+                Console.WriteLine("ModelState errors: " + System.Text.Json.JsonSerializer.Serialize(errors));
+                return BadRequest(errors);
+            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            User user = await _identityContext.ReadUserAsync(userId);
+
+
+            var newPost = new Forum
+            {
+                Title = post.Title,
+                Content = post.Content,
+                Author = user,
+                Date = DateTime.Now,
+                Views = 0,
+                Filters = post.Filters ?? new List<Filters>(),
+                Code = post.Code,
+                Comments = new List<Comment>()
+            };
+
+            await _forumContext.Create(newPost);
+
+            return Ok(new { success = true, message = "Постът е създаден успешно!", postId = newPost.Id });
         }
     }
 }

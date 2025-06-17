@@ -1,0 +1,288 @@
+﻿@section Styles{
+    <link rel="stylesheet" href="/css/forum_create.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    }
+    <div class="container">
+        <!-- Forum Header -->
+        <div class="forum-header">
+            <div>
+                <h1 class="forum-title">Създай нов пост</h1>
+                <p class="forum-subtitle">Сподели своя въпрос или знание с общността на програмисти.</p>
+            </div>
+        </div>
+
+        <!-- Create Post Form -->
+        <div class="create-post-container">
+            <form class="create-post-form" method="post">
+                <div class="form-group">
+                    <label for="post-title" class="form-label">Заглавие</label>
+                    <input type="text" id="post-title" class="form-control" placeholder="Въведете заглавие на поста..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-content" class="form-label">Съдържание</label>
+                    <textarea id="post-content" class="form-control" placeholder="Опишете подробно вашия въпрос или тема..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Категории</label>
+                    <div class="dropdown-container">
+                        <button type="button" class="dropdown-toggle" id="filterDropdown">
+                            <span>Избери категории</span>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-all" class="filter-checkbox" name="filters" value="all">
+                                    <label for="filter-all">Всички</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-js" class="filter-checkbox" name="filters" value="js">
+                                    <label for="filter-js">JS</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-algorithms" class="filter-checkbox" name="filters" value="algorithms">
+                                    <label for="filter-algorithms">Алгоритми</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-csharp" class="filter-checkbox" name="filters" value="csharp">
+                                    <label for="filter-csharp">C#</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-python" class="filter-checkbox" name="filters" value="python">
+                                    <label for="filter-python">Python</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-java" class="filter-checkbox" name="filters" value="java">
+                                    <label for="filter-java">Java</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-c" class="filter-checkbox" name="filters" value="c">
+                                    <label for="filter-c">C</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-cplusplus" class="filter-checkbox" name="filters" value="cplusplus">
+                                    <label for="filter-cplusplus">C++</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-ruby" class="filter-checkbox" name="filters" value="ruby">
+                                    <label for="filter-ruby">Ruby</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-go" class="filter-checkbox" name="filters" value="go">
+                                    <label for="filter-go">Go</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-rust" class="filter-checkbox" name="filters" value="rust">
+                                    <label for="filter-rust">Rust</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-swift" class="filter-checkbox" name="filters" value="swift">
+                                    <label for="filter-swift">Swift</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-projects" class="filter-checkbox" name="filters" value="projects">
+                                    <label for="filter-projects">Проекти</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-interviews" class="filter-checkbox" name="filters" value="interviews">
+                                    <label for="filter-interviews">Интервюта</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-asynchronous" class="filter-checkbox" name="filters" value="asynchronous">
+                                    <label for="filter-asynchronous">Асинхронен код</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-synchronous" class="filter-checkbox" name="filters" value="synchronous">
+                                    <label for="filter-synchronous">Синхронен код</label>
+                                </div>
+                                <div class="dropdown-item">
+                                    <input type="checkbox" id="filter-domassembly" class="filter-checkbox" name="filters" value="domassembly">
+                                    <label for="filter-domassembly">DOM/Assembly</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selected-filters" id="selectedFilters"></div>
+                </div>
+
+                <div class="form-group code-editor-container">
+                    <div class="code-editor-header">
+                        <label class="code-editor-label">Код (по избор)</label>
+                        <button type="button" class="toggle-code-editor">
+                            <i class="fas fa-code"></i> Добави код
+                        </button>
+                    </div>
+                    <textarea id="post-code" class="code-editor" placeholder="Добавете вашия код тук..."></textarea>
+                </div>
+
+                <div class="form-footer">
+                    <a href="#" class="btn btn-cancel">Отказ</a>
+                    <button type="submit" class="btn btn-submit">Публикувай</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Enum helper for frontend
+        const Filters = {
+            All: 0,
+            Js: 1,
+            Algorithms: 2,
+            Csharp: 3,
+            Python: 4,
+            Java: 5,
+            C: 6,
+            CPlusPlus: 7,
+            Ruby: 8,
+            Go: 9,
+            Rust: 10,
+            Swift: 11,
+            Projects: 12,
+            Interviews: 13,
+            Asynchronous: 14,
+            Synchronous: 15,
+            DOMAssembly: 16
+        };
+
+        // Dropdown functionality
+        const dropdownToggle = document.getElementById('filterDropdown');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const selectedFiltersContainer = document.getElementById('selectedFilters');
+        const checkboxes = document.querySelectorAll('.filter-checkbox');
+
+        // Toggle dropdown
+        dropdownToggle.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+            dropdownToggle.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+                dropdownToggle.classList.remove('active');
+            }
+        });
+
+        // Update selected filters display
+        function updateSelectedFilters() {
+            selectedFiltersContainer.innerHTML = '';
+            const selected = [];
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.id !== 'filter-all') {
+                    const label = document.querySelector(`label[for="${checkbox.id}"]`).textContent;
+                    selected.push({ value: checkbox.value, label });
+                }
+            });
+
+            if (selected.length === 0) {
+                const emptyTag = document.createElement('span');
+                emptyTag.className = 'filter-tag';
+                emptyTag.textContent = 'Няма избрани категории';
+                selectedFiltersContainer.appendChild(emptyTag);
+            } else {
+                selected.forEach(filter => {
+                    const tag = document.createElement('div');
+                    tag.className = 'filter-tag';
+                    tag.innerHTML = `
+                        ${filter.label}
+                        <button type="button" data-value="${filter.value}">×</button>
+                    `;
+                    selectedFiltersContainer.appendChild(tag);
+
+                    // Add click handler for remove button
+                    tag.querySelector('button').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const checkbox = document.querySelector(`input[value="${filter.value}"]`);
+                        checkbox.checked = false;
+                        updateSelectedFilters();
+                    });
+                });
+            }
+
+            const allChecked = document.getElementById('filter-all').checked;
+            dropdownToggle.querySelector('span').textContent = allChecked ? 'Всички категории' :
+                selected.length > 0 ? `Избрани: ${selected.length}` : 'Избери категории';
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.id === 'filter-all' && e.target.checked) {
+                    checkboxes.forEach(cb => {
+                        if (cb.id !== 'filter-all') cb.checked = false;
+                    });
+                } else if (e.target.id !== 'filter-all' && e.target.checked) {
+                    document.getElementById('filter-all').checked = false;
+                }
+                updateSelectedFilters();
+            });
+        });
+
+        document.querySelector('.toggle-code-editor').addEventListener('click', function() {
+            const codeEditor = document.querySelector('.code-editor');
+            const isVisible = codeEditor.style.display === 'block';
+
+            codeEditor.style.display = isVisible ? 'none' : 'block';
+            this.innerHTML = isVisible
+                ? '<i class="fas fa-code"></i> Добави код'
+                : '<i class="fas fa-times"></i> Скрий код';
+        });
+
+        document.querySelector('.create-post-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            const code = document.getElementById('post-code').value;
+
+            const selectedFilters = [];
+            document.querySelectorAll('.filter-checkbox:checked').forEach(checkbox => {
+                const enumValue = Filters[checkbox.value.charAt(0).toUpperCase() + checkbox.value.slice(1)];
+                if (enumValue !== undefined) {
+                    selectedFilters.push(enumValue);
+                }
+            });
+
+            // Prepare data for submission
+            const postData = {
+                Title: title,
+                Content: content,
+                Filters: selectedFilters,
+                Code: code
+            };
+
+            try {
+                const response = await fetch('/Forum/CreatePost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = `/Forum/Details/${result.postId}`;
+                } else {
+                    throw new Error(result.message || 'Грешка при създаване на пост');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`Грешка: ${error.message}`);
+            }
+
+            // Reset form
+            this.reset();
+            document.querySelector('.code-editor').style.display = 'none';
+            document.querySelector('.toggle-code-editor').innerHTML = '<i class="fas fa-code"></i> Добави код';
+            updateSelectedFilters();
+        });
+
+        // Initialize
+        updateSelectedFilters();
+    </script>

@@ -12,13 +12,19 @@ namespace CodeHub.Controllers
         private readonly BattlesContext _battlesContext;
         private readonly CodeHubDbContext _dbContext;
         private readonly CoursesContext _coursesContext;
-        public AdminController(BattlesContext battlesContext, 
-            CodeHubDbContext dbContext,CoursesContext coursesContext)
+        private readonly ExercisesContext _exercisesContext;
+        private readonly LessonsContext _lessonsContext;
+        public AdminController(BattlesContext battlesContext,
+            CodeHubDbContext dbContext, CoursesContext coursesContext)
         {
             _battlesContext = battlesContext;
             _dbContext = dbContext;
             _coursesContext = coursesContext;
         }
+        public async Task<IActionResult> Exercises()
+        {
+            return PartialView();
+        }   
         public async Task<IActionResult> Battles()
         {
             return PartialView();
@@ -86,6 +92,10 @@ namespace CodeHub.Controllers
             try
             {
                 var battles = await _battlesContext.ReadAll();
+                if (battles == null)
+                {
+                    return Ok(new List<Battle>());
+                }
                 return Ok(battles);
             }
             catch (Exception ex)
@@ -98,7 +108,11 @@ namespace CodeHub.Controllers
         {
             try
             {
-                var courses = _coursesContext.ReadAll(useNavigationalProperties: true, isReadOnly: true);
+                var courses = _coursesContext.ReadAll();
+                if (courses == null)
+                {
+                    return Ok(new List<Course>());
+                }
                 return Ok(courses);
             }
             catch (Exception ex)
@@ -147,16 +161,39 @@ namespace CodeHub.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllLessons()
+        public async Task<IActionResult> GetAllExercises()
         {
             try
             {
-                var lessons = await _dbContext.Lessons.ToListAsync();
-                return Ok(lessons);
+                var exercises = await _dbContext.Exercises.ToListAsync();
+
+                if (exercises == null)
+                {
+                    return Ok(new List<Exercise>());
+                }
+
+                return Ok(exercises);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Грешка при извличане на уроци: {ex.Message}");
+                return StatusCode(500, $"Грешка при извличане на упражнения: {ex.Message}");
+            }
+        }
+        [HttpPost]
+        public IActionResult CreateExercise([FromBody] Exercise exercise)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(exercise.Title))
+                    return BadRequest("Заглавието на упражнението е задължително!");
+                if (string.IsNullOrWhiteSpace(exercise.Description))
+                    return BadRequest("Описанието на упражнението е задължително!");
+                _exercisesContext.Create(exercise);
+                return Ok(new { success = true, message = "Упражнението е създадено успешно!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Грешка при създаване на упражнение: {ex.Message}");
             }
         }
     }

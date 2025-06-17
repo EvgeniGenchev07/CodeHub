@@ -281,7 +281,11 @@
     const currentBattles = filteredBattles.slice(startIndex, endIndex);
 
     tableBody.innerHTML = '';
-
+         if (currentBattles.length === 0) 
+         {
+             tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Няма налични упражнения</td></tr>';
+             return;
+         }
     const now = new Date();
     currentBattles.forEach(battle => {
     const start = new Date(battle.startDate);
