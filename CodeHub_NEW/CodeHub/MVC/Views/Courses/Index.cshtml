@@ -87,16 +87,16 @@
     <!-- Course Card 1 -->
     @foreach (var course in Model)
     {
-        <div class="course-card" data-level="@course.Level" data-category="@course.Category" data-duration="@course.DurationCategory">
+        <div class="course-card" data-level="@course.Difficulty" data-category="@course.Filters" data-duration="@course.DurationCategory">
             <div class="course-header">
-                <span class="course-badge badge-@course.Level.ToLower()">@course.Level</span>
+                <span class="course-badge badge-@course.Difficulty.ToLower()">@course.Difficulty</span>
             </div>
 
             <div class="course-icon">
                 <i class="@course.IconClass"></i>
             </div>
 
-            <h3 class="course-title">@course.Title</h3>
+            <h3 class="course-title">@course.Name</h3>
             <p class="course-description">@course.Description</p>
 
             <div class="course-meta">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-play-circle"></i>
-                    <span>@course.LessonCount урока</span>
+                    <span>@course.Lessons.Count() урока</span>
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-certificate"></i>

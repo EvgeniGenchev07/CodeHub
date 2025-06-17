@@ -9,21 +9,20 @@
         <i class="fas fa-chevron-right"></i>
         <a href="#">Курсове</a>
         <i class="fas fa-chevron-right"></i>
-        <span>JavaScript Основи</span>
+        <span>@Model.Name</span>
     </div>
 
     <div class="course-title-section">
         <div class="course-title-content">
             <span class="course-badge badge-beginner">Начинаещ</span>
-            <h1 class="course-title">JavaScript <span class="text-gradient">Основи</span></h1>
+            <h1 class="course-title">@Model.Name</h1>
             <p class="course-description">
-                Научи основите на JavaScript - синтаксис, променливи, оператори, условни конструкции, цикли и функции.
-                Това е идеалният курс за начинаещи, които искат да започнат своето пътешествие в света на програмирането.
+                @Model.Description
             </p>
 
             <div class="course-meta">
                 <div class="meta-item">
-                    <i class="fas fa-clock"></i> 20 урока
+                    <i class="fas fa-clock"></i> @Model.Lessons.Count()
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-chart-line"></i> 1500+ ученици

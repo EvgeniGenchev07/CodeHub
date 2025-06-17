@@ -7,6 +7,7 @@ namespace BusinessLayer
         [Key] public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<Filters> Filters { get; set; }
         public Difficulty Difficulty { get; set; }
         public List<Lector> Lectors { get; set; }
         public List<Lesson> Lessons { get; set; }
@@ -19,6 +20,7 @@ namespace BusinessLayer
         {
             Name = name;
             Description = description;
+            Filters = new List<Filters>();
             Lectors = new List<Lector>();
             Lessons = new List<Lesson>();
             Difficulty = difficulty;
