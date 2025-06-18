@@ -15,11 +15,13 @@ namespace CodeHub.Controllers
         private readonly ExercisesContext _exercisesContext;
         private readonly LessonsContext _lessonsContext;
         public AdminController(BattlesContext battlesContext,
-            CodeHubDbContext dbContext, CoursesContext coursesContext)
+            CodeHubDbContext dbContext, CoursesContext coursesContext,
+            ExercisesContext exerciseContext)
         {
             _battlesContext = battlesContext;
             _dbContext = dbContext;
             _coursesContext = coursesContext;
+            _exercisesContext = exerciseContext;
         }
         public async Task<IActionResult> Exercises()
         {
@@ -180,20 +182,66 @@ namespace CodeHub.Controllers
             }
         }
         [HttpPost]
-        public IActionResult CreateExercise([FromBody] Exercise exercise)
+        public async Task<IActionResult> CreateExercise([FromBody] Exercise exercise)
         {
+            if (exercise == null)
+            {
+                return BadRequest("Exercise data is required");
+            }
+
+            // Manual validation
+            if (string.IsNullOrWhiteSpace(exercise.Title))
+            {
+                ModelState.AddModelError("Title", "Title is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(exercise.Description))
+            {
+                ModelState.AddModelError("Description", "Description is required");
+            }
+
+            if (exercise.Points <= 0)
+            {
+                ModelState.AddModelError("Points", "Points must be positive");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                if (string.IsNullOrWhiteSpace(exercise.Title))
-                    return BadRequest("Заглавието на упражнението е задължително!");
-                if (string.IsNullOrWhiteSpace(exercise.Description))
-                    return BadRequest("Описанието на упражнението е задължително!");
-                _exercisesContext.Create(exercise);
-                return Ok(new { success = true, message = "Упражнението е създадено успешно!" });
+                await _exercisesContext.Create(exercise);
+                return Ok(new { message = "Exercise created successfully!" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Грешка при създаване на упражнение: {ex.Message}");
+                return StatusCode(500, $"Error creating exercise: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteExercise(int id)
+        {
+            try
+            {
+                var exercise = await _dbContext.Exercises.FindAsync(id);
+                if (exercise == null)
+                    return NotFound("Упражнението не е намерено!");
+
+                _dbContext.Exercises.Remove(exercise);
+                await _dbContext.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Упражнението е изтрито успешно!"
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Грешка при изтриване на упражнение: {ex.Message}");
             }
         }
     }

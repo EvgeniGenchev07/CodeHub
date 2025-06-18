@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\codehub_new\\codehub\\mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\codehub_new\\codehub\\mvc\\views\\admin\\exercises.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\exercises.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\codehub_new\\codehub\\businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\html\\codehub\\codehub_new\\codehub\\datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\exercisescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\codehub_new\\codehub\\mvc\\views\\forum\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\forum\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\codehub_new\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\codehub_new\\codehub\\businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\codehub_new\\codehub\\businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,41 +50,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Forum.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Forum.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Forum.cs",
-              "RelativeToolTip": "BusinessLayer\\Forum.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAiwBQAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Filters.cs",
+              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Filters.cs",
+              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeToolTip": "BusinessLayer\\Filters.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T19:49:10.766Z",
+              "WhenOpened": "2025-06-18T09:50:07.827Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ForumController.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\ForumController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\ForumController.cs",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\ForumController.cs*",
-              "RelativeToolTip": "MVC\\Controllers\\ForumController.cs*",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAowHMAAAAOAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ExercisesContext.cs",
+              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ExercisesContext.cs",
+              "RelativeDocumentMoniker": "DataLayer\\ExercisesContext.cs",
+              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\DataLayer\\ExercisesContext.cs",
+              "RelativeToolTip": "DataLayer\\ExercisesContext.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwEAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T20:07:24.296Z",
+              "WhenOpened": "2025-06-18T09:31:43.944Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Forum\\Create.cshtml",
-              "RelativeDocumentMoniker": "MVC\\Views\\Forum\\Create.cshtml",
-              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Forum\\Create.cshtml",
-              "RelativeToolTip": "MVC\\Views\\Forum\\Create.cshtml",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAuwPcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T08:48:09.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Exercise.cs",
+              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Exercise.cs",
+              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\BusinessLayer\\Exercise.cs",
+              "RelativeToolTip": "BusinessLayer\\Exercise.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T08:46:33.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercises.cshtml",
+              "DocumentMoniker": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Exercises.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Exercises.cshtml",
+              "ToolTip": "C:\\html\\CodeHub\\CodeHub_NEW\\CodeHub\\MVC\\Views\\Admin\\Exercises.cshtml*",
+              "RelativeToolTip": "MVC\\Views\\Admin\\Exercises.cshtml*",
+              "ViewState": "AgIAAAEBAAAAAAAAAAAAADQBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-17T19:30:25.847Z",
+              "WhenOpened": "2025-06-18T08:45:44.324Z",
               "EditorCaption": ""
             }
           ]
