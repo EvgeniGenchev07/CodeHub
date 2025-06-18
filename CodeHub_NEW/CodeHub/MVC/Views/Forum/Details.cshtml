@@ -548,11 +548,11 @@
                                 {
                                     if (Model.Author.ProfilePicture.Length == 0)
                                     {
-                                        <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Author.ProfilePicture)"/>
+                                        <span style="color: #f0f0f0" class="fa fa-user"></span>
                                     }
                                     else
                                     {
-                                        <span class="fa fa-user"></span>
+                                        <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Author.ProfilePicture)"/>
                                     }
                                 }
                                 else

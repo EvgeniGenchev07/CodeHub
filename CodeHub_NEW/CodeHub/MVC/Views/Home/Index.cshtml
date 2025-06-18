@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 @section Styles {
@@ -49,7 +50,7 @@ console.log(result);</code></pre>
 
 <!-- Features Section -->
 <section class="section">
-    <h2 class="section-title">Защо <span class="text-gradient">CodeBattle</span>?</h2>
+    <h2 class="section-title">Защо <span class="text-gradient">CodeHub</span>?</h2>
 
     <div class="features">
         <div class="feature-card">
@@ -58,7 +59,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Двубои срещу други</h3>
             <p>Състезавай се с реални хора в реално време и докажи своите умения</p>
-            <button id="battleBtn" class="btn btn-outline btn-sm">Виж двубоите</button>
+            <a asp-action="Index" asp-controller="Battles" class="btn btn-outline btn-sm">Виж двубоите</a>
         </div>
 
         <div class="feature-card">
@@ -67,7 +68,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Интерактивни курсове</h3>
             <p>Учи чрез практика с нашия интерактивен code editor и реални проекти</p>
-            <button id="courseBtn" class="btn btn-outline btn-sm">Виж курсовете</button>
+            <a asp-action="Index" asp-controller="Courses" class="btn btn-outline btn-sm">Виж курсовете</a>
         </div>
 
         <div class="feature-card">
@@ -76,7 +77,7 @@ console.log(result);</code></pre>
             </div>
             <h3>Активен форум</h3>
             <p>Получавай помощ, споделяй знания и обсъждай с други програмисти</p>
-            <button id="forumBtn" class="btn btn-outline btn-sm">Виж форума</button>
+            <a asp-action="Index" asp-controller="Forum" class="btn btn-outline btn-sm">Виж форума</a>
         </div>
     </div>
 </section>
@@ -224,67 +225,61 @@ console.log(result);</code></pre>
     <h2 class="section-title">Последни <span class="text-gradient">Дискусии</span></h2>
 
     <div class="forum-posts">
-        <div class="forum-card">
-            <div class="user-avatar">ИВ</div>
-            <div class="post-content">
-                <div class="post-header">
-                    <span class="post-user">Иван Василев</span>
-                    <span class="post-time">преди 2 часа</span>
-                </div>
-                <h4 class="post-title">Как да оптимизирам този алгоритъм?</h4>
-                <p class="post-text">Имам проблем с оптимизирането на моя алгоритъм за сортиране. Някой може ли да ми помогне да го направя по-бърз? Кодът е в първия коментар...</p>
-                <div class="post-stats">
-                    <div class="post-stat">
-                        <i class="fas fa-comment"></i> 7 отговора
+        @foreach (var post in Model.Forums)
+        {
+            <a style="text-decoration: none" asp-action="Details" asp-controller="Forum" asp-route-id="@post.Id" class="forum-post" id="post@(post.Id)">
+            
+                <div class="forum-card">
+                    <div class="user-avatar">
+                        @if (post.Author.ProfilePicture.Length == 0)
+                        {
+                            <span style="color: #f0f0f0" class="fa fa-user"></span>
+                        }
+                        else
+                        {
+                            <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(post.Author.ProfilePicture)"/>
+                        }
                     </div>
-                    <div class="post-stat">
-                        <i class="fas fa-eye"></i> 42 прегледа
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="forum-card">
-            <div class="user-avatar">МГ</div>
-            <div class="post-content">
-                <div class="post-header">
-                    <span class="post-user">Мария Георгиева</span>
-                    <span class="post-time">преди 5 часа</span>
-                </div>
-                <h4 class="post-title">Най-добри практики за async/await</h4>
-                <p class="post-text">Споделете вашите най-добри практики при работа с асинхронен код. Как избягвате "callback hell" и как обработвате грешките...</p>
-                <div class="post-stats">
-                    <div class="post-stat">
-                        <i class="fas fa-comment"></i> 12 отговора
-                    </div>
-                    <div class="post-stat">
-                        <i class="fas fa-eye"></i> 89 прегледа
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-user">@post.Author.UserName</span>
+                            <span class="post-time">@PostTime(@post.Date)</span>
+                        </div>
+                        <h3 class="post-title">@post.Title</h3>
+                        <p class="post-text">@post.Content.Substring(0,post.Content.Length>70?70:post.Content.Length)@(post.Content.Length>70?"...":"")</p>
+                        <div class="post-stats">
+                            <div class="post-stat">
+                                <i class="fas fa-comment"></i> @post.Comments.Count отговора
+                            </div>
+                            <div class="post-stat">
+                                <i class="fas fa-eye"></i> @post.Views прегледа
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="forum-card">
-            <div class="user-avatar">ПК</div>
-            <div class="post-content">
-                <div class="post-header">
-                    <span class="post-user">Петър Колев</span>
-                    <span class="post-time">преди 1 ден</span>
-                </div>
-                <h4 class="post-title">Как да подготвя интервю за JavaScript разработчик?</h4>
-                <p class="post-text">Имам интервю след 2 седмици за junior JavaScript позиция. Какви теми трябва да разгледам и какви видове въпроси мога да очаквам...</p>
-                <div class="post-stats">
-                    <div class="post-stat">
-                        <i class="fas fa-comment"></i> 15 отговора
-                    </div>
-                    <div class="post-stat">
-                        <i class="fas fa-eye"></i> 120 прегледа
-                    </div>
-                </div>
-            </div>
-        </div>
+            </a>
+        }
     </div>
 </section>
+@{
+    static string PostTime(DateTime postTime)
+    {
+        var timeSpan = DateTime.Now - postTime;
+
+        if (timeSpan.TotalMinutes < 1)
+            return "преди няколко секунди";
+        if (timeSpan.TotalMinutes < 60)
+            return $"преди {Math.Floor(timeSpan.TotalMinutes)} минути";
+        if (timeSpan.TotalHours < 24)
+            return $"преди {Math.Floor(timeSpan.TotalHours)} часа";
+        if (timeSpan.TotalDays < 30)
+            return $"преди {Math.Floor(timeSpan.TotalDays)} дни";
+        if (timeSpan.TotalDays < 365)
+            return $"преди {Math.Floor(timeSpan.TotalDays / 30)} месеца";
+
+        return $"преди {Math.Floor(timeSpan.TotalDays / 365)} години";
+    }
+}
 @section Scripts {
     <script>
         // Run Code Button

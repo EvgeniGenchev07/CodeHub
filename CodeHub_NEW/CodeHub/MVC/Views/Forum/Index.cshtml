@@ -41,11 +41,11 @@
             <div class="user-avatar">
                 @if (post.Author.ProfilePicture.Length == 0)
                 {
-                    <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(post.Author.ProfilePicture)"/>
+                    <span style="color: #f0f0f0" class="fa fa-user"></span>
                 }
                 else
                 {
-                    <span class="fa fa-user-circle fa-3x"></span>
+                    <img alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(post.Author.ProfilePicture)"/>
                 }
             </div>
             <div class="post-content">
