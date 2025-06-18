@@ -4,7 +4,7 @@
     {
         All,
         Easy,
-        Intermidiate,
+        Intermediate,
         Hard,
         Extreme,
         Insane,

@@ -9,19 +9,35 @@ namespace MVC.Controllers
     public class ExercisesController : Controller
     {
         private readonly ExercisesContext _exercisesContext;
-
+        private const int exercisePageSize = 10;
         public ExercisesController(ExercisesContext exercisesContext)
         {
             _exercisesContext = exercisesContext;
         }
 
         // GET: Exercise
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] Difficulty difficulty = Difficulty.All,[FromQuery]string search = null,[FromQuery] SpecialFilter type = SpecialFilter.All)
         {
             try
             {
-                List<Exercise> exercises = await _exercisesContext.ReadAll();
-                return View(exercises);
+                var exercises = await _exercisesContext.ReadAll(false,true); 
+                ViewBag.Difficulty = difficulty;
+                ViewBag.Page = page;
+                ViewBag.Search = search;
+                ViewBag.Type = type;
+                if (type == SpecialFilter.New) exercises = exercises.OrderBy(e=>e.Date).Take(10).ToList();
+                if (type == SpecialFilter.Popular) exercises = exercises.Where(e=>e.Views>=100).OrderBy(e=>e.Views).ToList();
+                if (difficulty != Difficulty.All)
+                {
+                    exercises = exercises.Where(f => f.Difficulty== difficulty).ToList();
+                }
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    exercises = exercises.Where(e => e.Title.ToLower().Contains(search.ToLower())).ToList();
+                }
+                ViewBag.TotalPages = (int)Math.Ceiling(exercises.Count / (double)exercisePageSize);
+                var pagedExercises = exercises.Skip((page - 1) * exercisePageSize).Take(exercisePageSize).ToList();
+                return View(pagedExercises);
             }
             catch (Exception ex)
             {

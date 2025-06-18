@@ -10,7 +10,7 @@ namespace CodeHub.Controllers
     {
         private readonly IDb<Forum, int> _forumContext;
         private readonly IdentityContext _identityContext;
-        private const int ForumPageSize = 10;
+        private const int forumPageSize = 10;
         public ForumController(ForumContext forumContext,IdentityContext context)
         {
             _forumContext = forumContext;
@@ -31,8 +31,8 @@ namespace CodeHub.Controllers
             {
                 forums = forums.Where(f => f.Title.ToLower().Contains(search.ToLower())).ToList();
             }
-            ViewBag.TotalPages = (int)Math.Ceiling(forums.Count / (double)ForumPageSize);
-            var pagedForums = forums.Skip((page - 1) * ForumPageSize).Take(ForumPageSize).ToList();
+            ViewBag.TotalPages = (int)Math.Ceiling(forums.Count / (double)forumPageSize);
+            var pagedForums = forums.Skip((page - 1) * forumPageSize).Take(forumPageSize).ToList();
             return View(pagedForums);
         }
 
@@ -89,50 +89,5 @@ namespace CodeHub.Controllers
             }
             return View(forum);
         }
-        /*[Authorize]
-        [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] Forum post)
-        {
-            if (post == null)
-            {
-                Console.WriteLine("Received null post object");
-                return BadRequest("Post object is null");
-            }
-
-            // Clear ModelState errors for fields set server-side
-            ModelState.Remove("Author");
-            ModelState.Remove("Date");
-            // Remove Comments if it's causing validation errors (optional, based on model)
-            ModelState.Remove("Comments");
-
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.ToDictionary(
-                    kvp => kvp.Key,
-                    kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
-                );
-                Console.WriteLine("ModelState errors: " + System.Text.Json.JsonSerializer.Serialize(errors));
-                return BadRequest(errors);
-            }
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            User user = await _identityContext.ReadUserAsync(userId);
-
-
-            var newPost = new Forum
-            {
-                Title = post.Title,
-                Content = post.Content,
-                Author = user,
-                Date = DateTime.Now,
-                Views = 0,
-                Filters = post.Filters ?? new List<Filters>(),
-                Code = post.Code,
-                Comments = new List<Comment>()
-            };
-
-            await _forumContext.Create(newPost);
-
-            return Ok(new { success = true, message = "Постът е създаден успешно!", postId = newPost.Id });
-        }*/
     }
 }

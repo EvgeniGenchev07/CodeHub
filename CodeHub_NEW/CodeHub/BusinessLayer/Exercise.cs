@@ -13,6 +13,9 @@ namespace BusinessLayer
         public string Title { get; set; }
         public string Description { get; set; }
         public int Points { get; set; }
+        public int Views { get; set; }
+        public int Solutions { get; set; }
+        public DateTime Date { get; set; }
         public Difficulty Difficulty { get; set; }
 
         public Exercise()
