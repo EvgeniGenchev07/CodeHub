@@ -92,19 +92,9 @@
     }
 </div>
 
-<!-- New Post Button -->
-@if (User.Identity.IsAuthenticated)
-{
-    <a asp-action="Create" asp-controller="Forum" class="new-post-btn" id="newPostBtn">
+    <a style="text-decoration: none" asp-action="Create" asp-controller="Forum" class="new-post-btn" id="newPostBtn">
         <i class="fas fa-plus"></i>
     </a>
-}
-else
-{
-    <a href="/Identity/Account/Login" class="new-post-btn" id="newPostBtn" title="Влезте в профила си за да създадете пост">
-        <i class="fas fa-plus"></i>
-    </a>
-}
 @{
     static string PostTime(DateTime postTime)
     {

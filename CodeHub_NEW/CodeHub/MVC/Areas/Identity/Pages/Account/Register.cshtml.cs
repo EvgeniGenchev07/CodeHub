@@ -19,7 +19,7 @@ public class RegisterModel : PageModel
 
     [BindProperty]
     public InputModel Input { get; set; }
-
+    public string ReturnUrl { get; set; }
 
     public class InputModel
     {
@@ -39,10 +39,13 @@ public class RegisterModel : PageModel
         [Compare("Password", ErrorMessage = "Паролите не съвпадат")]
         public string ConfirmPassword { get; set; }
     }
-
-    public async Task<IActionResult> OnPostAsync()
+    public async Task OnGetAsync(string? returnUrl)
     {
-
+        ReturnUrl = returnUrl;
+    }
+    public async Task<IActionResult> OnPostAsync(string? returnUrl)
+    {
+        ReturnUrl = returnUrl ?? Url.Content("~/");
         if (ModelState.IsValid)
         {
             var user = new User

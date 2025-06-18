@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CodeHubDbContext))]
-    [Migration("20250616064046_initial")]
+    [Migration("20250618060212_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -58,6 +58,34 @@ namespace DataLayer.Migrations
                     b.ToTable("Battles");
                 });
 
+            modelBuilder.Entity("BusinessLayer.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ForumId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("ForumId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("BusinessLayer.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +98,10 @@ namespace DataLayer.Migrations
 
                     b.Property<int>("Difficulty")
                         .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("Filters")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -125,11 +157,18 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.PrimitiveCollection<string>("Filters")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -420,6 +459,23 @@ namespace DataLayer.Migrations
                     b.Navigation("SecondPlayer");
                 });
 
+            modelBuilder.Entity("BusinessLayer.Comment", b =>
+                {
+                    b.HasOne("BusinessLayer.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("BusinessLayer.Forum", "Forum")
+                        .WithMany("Comments")
+                        .HasForeignKey("ForumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Forum");
+                });
+
             modelBuilder.Entity("BusinessLayer.Course", b =>
                 {
                     b.HasOne("BusinessLayer.User", null)
@@ -515,6 +571,11 @@ namespace DataLayer.Migrations
                     b.Navigation("Lectors");
 
                     b.Navigation("Lessons");
+                });
+
+            modelBuilder.Entity("BusinessLayer.Forum", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("BusinessLayer.Lesson", b =>

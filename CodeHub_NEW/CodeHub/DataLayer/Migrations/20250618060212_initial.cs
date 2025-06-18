@@ -197,6 +197,7 @@ namespace DataLayer.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Filters = table.Column<string>(type: "TEXT", nullable: false),
                     Difficulty = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -220,7 +221,9 @@ namespace DataLayer.Migrations
                     Content = table.Column<string>(type: "TEXT", nullable: false),
                     AuthorId = table.Column<string>(type: "TEXT", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Views = table.Column<int>(type: "INTEGER", nullable: false)
+                    Views = table.Column<int>(type: "INTEGER", nullable: false),
+                    Filters = table.Column<string>(type: "TEXT", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -272,6 +275,33 @@ namespace DataLayer.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AuthorId = table.Column<string>(type: "TEXT", nullable: true),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Content = table.Column<string>(type: "TEXT", nullable: false),
+                    ForumId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Comments_Forums_ForumId",
+                        column: x => x.ForumId,
+                        principalTable: "Forums",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -344,6 +374,16 @@ namespace DataLayer.Migrations
                 column: "SecondPlayerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_AuthorId",
+                table: "Comments",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ForumId",
+                table: "Comments",
+                column: "ForumId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Courses_UserId",
                 table: "Courses",
                 column: "UserId");
@@ -391,16 +431,19 @@ namespace DataLayer.Migrations
                 name: "Battles");
 
             migrationBuilder.DropTable(
-                name: "Exercises");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Forums");
+                name: "Exercises");
 
             migrationBuilder.DropTable(
                 name: "Lectors");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Forums");
 
             migrationBuilder.DropTable(
                 name: "Lessons");

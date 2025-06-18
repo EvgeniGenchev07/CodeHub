@@ -34,7 +34,7 @@ namespace MVC.Areas.Identity.Pages.Account
 
         [BindProperty]
         public InputModel Input { get; set; }
-
+        public string ReturnUrl { get; set; }
         [TempData]
         public string ErrorMessage { get; set; }
 
@@ -50,8 +50,9 @@ namespace MVC.Areas.Identity.Pages.Account
 
         }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string? returnUrl)
         {
+            ReturnUrl = returnUrl;
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
@@ -59,8 +60,9 @@ namespace MVC.Areas.Identity.Pages.Account
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
+            ReturnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
@@ -69,7 +71,7 @@ namespace MVC.Areas.Identity.Pages.Account
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect("/");
+                    return LocalRedirect(returnUrl);
                 }
                 if (result.IsLockedOut)
                 {

@@ -1,4 +1,5 @@
-﻿@section Styles{
+﻿@model BusinessLayer.Forum
+@section Styles{
     <link rel="stylesheet" href="/css/forum_create.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     }
@@ -10,18 +11,19 @@
                 <p class="forum-subtitle">Сподели своя въпрос или знание с общността на програмисти.</p>
             </div>
         </div>
-
         <!-- Create Post Form -->
         <div class="create-post-container">
-            <form class="create-post-form" method="post">
+            <form asp-action="Create" asp-controller="Forum" class="create-post-form" method="post">
                 <div class="form-group">
                     <label for="post-title" class="form-label">Заглавие</label>
-                    <input type="text" id="post-title" class="form-control" placeholder="Въведете заглавие на поста..." required>
+                    <input type="text" asp-for="Title" id="post-title" class="form-control" placeholder="Въведете заглавие на поста..." required>
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="post-content" class="form-label">Съдържание</label>
-                    <textarea id="post-content" class="form-control" placeholder="Опишете подробно вашия въпрос или тема..." required></textarea>
+                    <textarea id="post-content" asp-for="Content" class="form-control" placeholder="Опишете подробно вашия въпрос или тема..." required></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -105,7 +107,6 @@
                     </div>
                     <div class="selected-filters" id="selectedFilters"></div>
                 </div>
-
                 <div class="form-group code-editor-container">
                     <div class="code-editor-header">
                         <label class="code-editor-label">Код (по избор)</label>
@@ -113,52 +114,29 @@
                             <i class="fas fa-code"></i> Добави код
                         </button>
                     </div>
-                    <textarea id="post-code" class="code-editor" placeholder="Добавете вашия код тук..."></textarea>
+                    <textarea id="post-code" class="code-editor" asp-for="Code" placeholder="Добавете вашия код тук..."></textarea>
+                    <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
 
                 <div class="form-footer">
-                    <a href="#" class="btn btn-cancel">Отказ</a>
-                    <button type="submit" class="btn btn-submit">Публикувай</button>
+                    <a asp-action="Index" asp-controller="Forum" class="btn btn-cancel">Отказ</a>
+                    <button type="submit" value="create" class="btn btn-submit">Публикувай</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // Enum helper for frontend
-        const Filters = {
-            All: 0,
-            Js: 1,
-            Algorithms: 2,
-            Csharp: 3,
-            Python: 4,
-            Java: 5,
-            C: 6,
-            CPlusPlus: 7,
-            Ruby: 8,
-            Go: 9,
-            Rust: 10,
-            Swift: 11,
-            Projects: 12,
-            Interviews: 13,
-            Asynchronous: 14,
-            Synchronous: 15,
-            DOMAssembly: 16
-        };
-
-        // Dropdown functionality
         const dropdownToggle = document.getElementById('filterDropdown');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const selectedFiltersContainer = document.getElementById('selectedFilters');
         const checkboxes = document.querySelectorAll('.filter-checkbox');
 
-        // Toggle dropdown
         dropdownToggle.addEventListener('click', () => {
             dropdownMenu.classList.toggle('show');
             dropdownToggle.classList.toggle('active');
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.remove('show');
@@ -166,7 +144,6 @@
             }
         });
 
-        // Update selected filters display
         function updateSelectedFilters() {
             selectedFiltersContainer.innerHTML = '';
             const selected = [];
@@ -193,7 +170,6 @@
                     `;
                     selectedFiltersContainer.appendChild(tag);
 
-                    // Add click handler for remove button
                     tag.querySelector('button').addEventListener('click', (e) => {
                         e.stopPropagation();
                         const checkbox = document.querySelector(`input[value="${filter.value}"]`);
@@ -231,58 +207,5 @@
                 : '<i class="fas fa-times"></i> Скрий код';
         });
 
-        document.querySelector('.create-post-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const title = document.getElementById('post-title').value;
-            const content = document.getElementById('post-content').value;
-            const code = document.getElementById('post-code').value;
-
-            const selectedFilters = [];
-            document.querySelectorAll('.filter-checkbox:checked').forEach(checkbox => {
-                const enumValue = Filters[checkbox.value.charAt(0).toUpperCase() + checkbox.value.slice(1)];
-                if (enumValue !== undefined) {
-                    selectedFilters.push(enumValue);
-                }
-            });
-
-            // Prepare data for submission
-            const postData = {
-                Title: title,
-                Content: content,
-                Filters: selectedFilters,
-                Code: code
-            };
-
-            try {
-                const response = await fetch('/Forum/CreatePost', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postData)
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert(result.message);
-                    window.location.href = `/Forum/Details/${result.postId}`;
-                } else {
-                    throw new Error(result.message || 'Грешка при създаване на пост');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert(`Грешка: ${error.message}`);
-            }
-
-            // Reset form
-            this.reset();
-            document.querySelector('.code-editor').style.display = 'none';
-            document.querySelector('.toggle-code-editor').innerHTML = '<i class="fas fa-code"></i> Добави код';
-            updateSelectedFilters();
-        });
-
-        // Initialize
         updateSelectedFilters();
     </script>

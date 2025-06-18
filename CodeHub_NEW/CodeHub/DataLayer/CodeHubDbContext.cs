@@ -28,6 +28,11 @@ namespace DataLayer
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Forum>(f =>
+            {
+                f.Property(p=>p.Date).IsRequired();
+                f.HasOne(p=>p.Author).WithMany(u=>u.Forums);
+            });
             base.OnModelCreating(modelBuilder);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

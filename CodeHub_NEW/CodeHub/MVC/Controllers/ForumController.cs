@@ -35,10 +35,6 @@ namespace CodeHub.Controllers
             var pagedForums = forums.Skip((page - 1) * ForumPageSize).Take(ForumPageSize).ToList();
             return View(pagedForums);
         }
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
 
         public async  Task<IActionResult> Details(int? id)
         {
@@ -73,8 +69,27 @@ namespace CodeHub.Controllers
             await _forumContext.Update(forum,true);
             return RedirectToAction(nameof(Details), new { id = id });
         }
-
-        [Authorize]
+        [Authorize(Roles = "Administrator,  User")]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Administrator,  User")]
+        [HttpPost]
+        public async Task<IActionResult> Create(Forum forum)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _identityContext.ReadUserAsync(User.Identity.GetUserId());
+                if (user == null) return Redirect("/Identity/Account/Login?ReturnUrl=/Forum/Create");
+                forum.Author = user;
+                forum.Date = DateTime.Now;
+                await _forumContext.Create(forum);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(forum);
+        }
+        /*[Authorize]
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromBody] Forum post)
         {
@@ -118,6 +133,6 @@ namespace CodeHub.Controllers
             await _forumContext.Create(newPost);
 
             return Ok(new { success = true, message = "Постът е създаден успешно!", postId = newPost.Id });
-        }
+        }*/
     }
 }

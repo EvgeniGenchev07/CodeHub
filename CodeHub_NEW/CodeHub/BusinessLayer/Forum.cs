@@ -12,14 +12,12 @@ public class Forum
     public string Title { get; set; }
     [Required]
     public string Content { get; set; }
-    [Required]
-    public User Author { get; set; }
-    [Required]
+    public User? Author { get; set; }
     public DateTime Date { get; set; }
     public int Views { get; set; }
     public List<Filters> Filters { get; set; }
-    public string Code { get; set; }
-    public List<Comment> Comments { get; set; }
+    public string? Code { get; set; }
+    public List<Comment>? Comments { get; set; }
     public Forum(){}
     public Forum(string title, string content, User author)
     {

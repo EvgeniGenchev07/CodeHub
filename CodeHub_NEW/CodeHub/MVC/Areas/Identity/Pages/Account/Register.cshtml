@@ -29,7 +29,7 @@
         </div>
         <button type="submit" class="btn-submit">Регистрирай се</button>
     </form>
-    <a asp-area="Identity" asp-page="/Account/Login" class="return-link">Вече имаш акаунт? Вход</a>
+    <a asp-area="Identity" asp-page="/Account/Login" asp-route-ReturnUrl="@Model.ReturnUrl" class="return-link">Вече имаш акаунт? Вход</a>
 </div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

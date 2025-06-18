@@ -96,6 +96,10 @@ namespace DataLayer.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("INTEGER");
 
+                    b.PrimitiveCollection<string>("Filters")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -151,7 +155,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
