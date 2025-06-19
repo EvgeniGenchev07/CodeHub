@@ -3,6 +3,7 @@ using DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CodeHub.Controllers
@@ -14,19 +15,21 @@ namespace CodeHub.Controllers
         private readonly CoursesContext _coursesContext;
         private readonly ExercisesContext _exercisesContext;
         private readonly LessonsContext _lessonsContext;
+        private readonly ForumContext _forumContext;
         public AdminController(BattlesContext battlesContext,
             CodeHubDbContext dbContext, CoursesContext coursesContext,
-            ExercisesContext exerciseContext)
+            ExercisesContext exerciseContext, ForumContext forumContext)
         {
             _battlesContext = battlesContext;
             _dbContext = dbContext;
             _coursesContext = coursesContext;
             _exercisesContext = exerciseContext;
+            _forumContext = forumContext;
         }
         public async Task<IActionResult> Exercises()
         {
             return PartialView();
-        }   
+        }
         public async Task<IActionResult> Battles()
         {
             return PartialView();
@@ -189,7 +192,7 @@ namespace CodeHub.Controllers
                 return BadRequest("Exercise data is required");
             }
 
-            // Manual validation
+
             if (string.IsNullOrWhiteSpace(exercise.Title))
             {
                 ModelState.AddModelError("Title", "Title is required");
@@ -212,6 +215,7 @@ namespace CodeHub.Controllers
 
             try
             {
+                exercise.Date = exercise.Date == default ? DateTime.UtcNow : exercise.Date;
                 await _exercisesContext.Create(exercise);
                 return Ok(new { message = "Exercise created successfully!" });
             }
@@ -220,15 +224,62 @@ namespace CodeHub.Controllers
                 return StatusCode(500, $"Error creating exercise: {ex.Message}");
             }
         }
+        [HttpPut]
+        [Route("Admin/UpdateExercise")]
+        public async Task<IActionResult> UpdateExercise([FromBody] Exercise exercise)
+        {
+            if (exercise == null)
+            {
+                return BadRequest("Exercise data is required");
+            }
+
+            if (exercise.Id <= 0)
+            {
+                ModelState.AddModelError("Id", "Valid exercise ID is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(exercise.Title))
+            {
+                ModelState.AddModelError("Title", "Title is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(exercise.Description))
+            {
+                ModelState.AddModelError("Description", "Description is required");
+            }
+
+            if (exercise.Points <= 0)
+            {
+                ModelState.AddModelError("Points", "Points must be positive");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+
+                await _exercisesContext.Update(exercise);
+
+                return Ok(new { message = "Упражнението е обновено успешно!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Грешка при обновяване на упражнение: {ex.Message}" });
+            }
+        }
 
         [HttpDelete("{id}")]
+        [Route("Admin/DeleteExercise/{id}")]
         public async Task<IActionResult> DeleteExercise(int id)
         {
             try
             {
                 var exercise = await _dbContext.Exercises.FindAsync(id);
                 if (exercise == null)
-                    return NotFound("Упражнението не е намерено!");
+                    return NotFound(new { message = "Упражнението не е намерено!" });
 
                 _dbContext.Exercises.Remove(exercise);
                 await _dbContext.SaveChangesAsync();
@@ -241,8 +292,46 @@ namespace CodeHub.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Грешка при изтриване на упражнение: {ex.Message}");
+                return StatusCode(500, new { message = $"Грешка при изтриване на упражнение: {ex.Message}" });
             }
         }
+        [HttpDelete("{id}")]
+        [Route("Admin/DeleteBattle/{id}")]
+        public async Task<IActionResult> DeleteBattle(int id)
+        {
+            try
+            {
+                var battle = await _battlesContext.Read(id);
+                if (battle == null)
+                    return NotFound(new { message = "Двубоят не е намерен!" });
+
+                await _battlesContext.Delete(id);
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Двубоят е изтрит успешно!"
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Грешка при изтриване на двубой: {ex.Message}" });
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllForumPosts()
+        {
+            try
+            {
+                var forumPosts = await _forumContext.ReadAll(true, true);
+
+                return Ok(forumPosts);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error fetching forum posts: {ex.Message}");
+            }
+        }
+
     }
 }

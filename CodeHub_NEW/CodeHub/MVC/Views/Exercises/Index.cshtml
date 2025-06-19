@@ -4,61 +4,118 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/exercises.css" asp-append-version="true" />
 }
-<!-- Exercises Section -->
+
 <section class="section" id="exercises">
     <h2 class="section-title"><span class="text-gradient">Упражнения</span></h2>
 
     <div class="filter-bar">
         <div class="filter-group">
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.All`" class="filter-btn @(ViewBag.Type==SpecialFilter.All?"active":"")"><i class="fas fa-list"></i> Всички</button>
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.Popular`" class="filter-btn @(ViewBag.Type==SpecialFilter.Popular?"active":"")"><i class="fas fa-star"></i> Популярни</button>
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.New`" class="filter-btn @(ViewBag.Type==SpecialFilter.New?"active":"")"><i class="fas fa-fire"></i> Нови</button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.All'"
+                    class="filter-btn @(ViewBag.Type==SpecialFilter.All?"active":"")">
+                <i class="fas fa-list"></i> Всички
+            </button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.Popular'"
+                    class="filter-btn @(ViewBag.Type==SpecialFilter.Popular?"active":"")">
+                <i class="fas fa-star"></i> Популярни
+            </button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@ViewBag.Difficulty&type=@SpecialFilter.New'"
+                    class="filter-btn @(ViewBag.Type==SpecialFilter.New?"active":"")">
+                <i class="fas fa-fire"></i> Нови
+            </button>
         </div>
 
         <div class="filter-group">
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@Difficulty.Easy&type=@ViewBag.Type`" class="filter-btn @(ViewBag.Difficulty==Difficulty.Easy?"active":"")"><i class="fas fa-bolt"></i> Лесни</button>
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@Difficulty.Intermediate&type=@ViewBag.Type`" class="filter-btn @(ViewBag.Difficulty==Difficulty.Intermediate?"active":"")"><i class="fas fa-layer-group"></i> Средни</button>
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@ViewBag.Page&difficulty=@Difficulty.Hard&type=@ViewBag.Type`" class="filter-btn @(ViewBag.Difficulty==Difficulty.Hard?"active":"")"><i class="fas fa-skull"></i> Трудни</button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Easy&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Easy?"active":"")">
+                <i class="fas fa-bolt"></i> Лесни
+            </button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Intermediate&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Intermediate?"active":"")">
+                <i class="fas fa-layer-group"></i> Средни
+            </button>
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Hard&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Hard?"active":"")">
+                <i class="fas fa-skull"></i> Трудни
+            </button>
         </div>
 
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" value="@(ViewBag.Search??"")" placeholder="Търси упражнения..." onchange="window.location.href = `?search=${encodeURIComponent(this.value)}&page=@ViewBag.Page&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type`" class="search-input">
+            <input type="text" value="@(ViewBag.Search??"")"
+                   placeholder="Търси упражнения..."
+                   onchange="window.location.href='?search='+encodeURIComponent(this.value)+'&page=1&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type'"
+                   class="search-input">
         </div>
     </div>
 
     <div class="exercises-container">
-        @foreach (var exercise in Model)
+        @if (Model?.Any() == true)
         {
-            <div class="exercise-card">
-                <div class="exercise-header">
-                    <div class="exercise-difficulty @(exercise.Difficulty == Difficulty.Easy ? "difficulty-easy" : exercise.Difficulty == Difficulty.Intermediate ? "difficulty-medium" : "difficulty-hard")">@exercise.Difficulty</div>
-                    <i class=" fa-star @(exercise.Views >= 100?"fas star-warning":"far star-grey")"></i>
-                </div>
-                <h3 class="exercise-title">@exercise.Title</h3>
-                <p class="exercise-description">@(exercise.Description.Length<=115?exercise.Description:exercise.Description.Substring(0,110)+"...")</p>
-                <div class="exercise-footer">
-                    <div class="exercise-stats">
-                        <div class="exercise-stat"><i class="fas fa-users"></i> @exercise.Views</div>
-                        <div class="exercise-stat"><i class="fas fa-check-circle"></i> @(exercise.Solutions* 100 / exercise.Views)%</div>
+            @foreach (var exercise in Model)
+            {
+                <div class="exercise-card">
+                    <div class="exercise-header">
+                        <div class="exercise-difficulty @(exercise.Difficulty == Difficulty.Easy ? "difficulty-easy" :
+                                                      exercise.Difficulty == Difficulty.Intermediate ? "difficulty-medium" : "difficulty-hard")">
+                            @exercise.Difficulty
+                        </div>
+                        <i class="fa-star @(exercise.Views >= 100?"fas star-warning":"far star-grey")"></i>
                     </div>
-                    <a asp-action="Details" asp-controller="Forum" asp-route-id="@exercise.Id" class="exercise-btn">Реши <i class="fas fa-arrow-right"></i></a>
+                    <h3 class="exercise-title">@exercise.Title</h3>
+                    <p class="exercise-description">
+                        @(exercise.Description.Length <= 115 ? exercise.Description :
+                            exercise.Description.Substring(0, 110) + "...")
+                    </p>
+                    <div class="exercise-footer">
+                        <div class="exercise-stats">
+                            <div class="exercise-stat"><i class="fas fa-users"></i> @exercise.Views</div>
+                            <div class="exercise-stat">
+                                <i class="fas fa-check-circle"></i>
+                                @(exercise.Views > 0 ? (exercise.Solutions * 100 / exercise.Views) : 0)%
+                            </div>
+                        </div>
+                        <a asp-action="Details" asp-controller="Forum" asp-route-id="@exercise.Id" class="exercise-btn">
+                            Реши <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
+            }
+        }
+        else
+        {
+            <div class="no-exercises">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Няма намерени упражнения</p>
             </div>
         }
     </div>
-    <div class="pagination">
-        @if (ViewBag.Page > 1)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page-1)&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type`" class="page-btn"><i class="fas fa-chevron-left"></i></button>
-        }
-        @for (int i = 1; i <= ViewBag.TotalPages; i++)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@i&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type`" class="page-btn @(i==ViewBag.Page?"active":"")">@i</button>
-        }
-        @if (ViewBag.Page < ViewBag.TotalPages)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page+1)&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type`" class="page-btn"><i class="fas fa-chevron-right"></i></button>
-        }
-    </div>
+
+    @if (ViewBag.TotalPages > 1)
+    {
+        <div class="pagination">
+            @if (ViewBag.Page > 1)
+            {
+                <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@(ViewBag.Page-1)&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type'"
+                        class="page-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@i&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type'"
+                        class="page-btn @(i==ViewBag.Page?"active":"")">
+                    @i
+                </button>
+            }
+
+            @if (ViewBag.Page < ViewBag.TotalPages)
+            {
+                <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=@(ViewBag.Page+1)&difficulty=@ViewBag.Difficulty&type=@ViewBag.Type'"
+                        class="page-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            }
+        </div>
+    }
 </section>

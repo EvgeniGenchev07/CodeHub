@@ -57,8 +57,17 @@ namespace DataLayer
         {
             try
             {
-                var existingExercise = await Read(item.Id);
-                _dbContext.Entry(existingExercise).CurrentValues.SetValues(item);
+                var existingExercise = await _dbContext.Exercises.FindAsync(item.Id);
+                if (existingExercise == null)
+                    throw new KeyNotFoundException($"Exercise with id {item.Id} not found");
+                existingExercise.Title = item.Title;
+                existingExercise.Description = item.Description;
+                existingExercise.Points = item.Points;
+                existingExercise.Views = item.Views;
+                existingExercise.Solutions = item.Solutions;
+                existingExercise.Date = item.Date;
+                existingExercise.Difficulty = item.Difficulty;
+
                 await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException ex)
@@ -66,6 +75,7 @@ namespace DataLayer
                 throw new Exception("Exercise was modified or deleted by another user.", ex);
             }
         }
+
 
         public async Task Delete(int key)
         {

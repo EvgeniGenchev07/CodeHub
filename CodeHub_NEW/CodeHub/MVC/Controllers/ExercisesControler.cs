@@ -16,27 +16,56 @@ namespace MVC.Controllers
         }
 
         // GET: Exercise
-        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] Difficulty difficulty = Difficulty.All,[FromQuery]string search = null,[FromQuery] SpecialFilter type = SpecialFilter.All)
+        public async Task<IActionResult> Index(
+         [FromQuery] int page = 1,
+         [FromQuery] Difficulty difficulty = Difficulty.All,
+         [FromQuery] string search = null,
+         [FromQuery] SpecialFilter type = SpecialFilter.All)
         {
             try
             {
-                var exercises = await _exercisesContext.ReadAll(false,true); 
-                ViewBag.Difficulty = difficulty;
-                ViewBag.Page = page;
-                ViewBag.Search = search;
-                ViewBag.Type = type;
-                if (type == SpecialFilter.New) exercises = exercises.OrderBy(e=>e.Date).Take(10).ToList();
-                if (type == SpecialFilter.Popular) exercises = exercises.Where(e=>e.Views>=100).OrderBy(e=>e.Views).ToList();
+                var exercises = (await _exercisesContext.ReadAll(false, true)).ToList();
+
+                // Apply type filter
+                exercises = type switch
+                {
+                    SpecialFilter.New => exercises.OrderByDescending(e => e.Date).Take(10).ToList(),
+                    SpecialFilter.Popular => exercises.Where(e => e.Views >= 100)
+                                                    .OrderByDescending(e => e.Views)
+                                                    .ToList(),
+                    _ => exercises
+                };
+
+                // Apply difficulty filter
                 if (difficulty != Difficulty.All)
                 {
-                    exercises = exercises.Where(f => f.Difficulty== difficulty).ToList();
+                    exercises = exercises.Where(e => e.Difficulty == difficulty).ToList();
                 }
+
+                // Apply search filter
                 if (!string.IsNullOrWhiteSpace(search))
                 {
-                    exercises = exercises.Where(e => e.Title.ToLower().Contains(search.ToLower())).ToList();
+                    exercises = exercises.Where(e =>
+                        e.Title.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
-                ViewBag.TotalPages = (int)Math.Ceiling(exercises.Count / (double)exercisePageSize);
-                var pagedExercises = exercises.Skip((page - 1) * exercisePageSize).Take(exercisePageSize).ToList();
+
+                // Calculate pagination
+                var totalCount = exercises.Count;
+                var totalPages = (int)Math.Ceiling(totalCount / (double)exercisePageSize);
+                page = Math.Clamp(page, 1, totalPages == 0 ? 1 : totalPages);
+
+                ViewBag.TotalPages = totalPages;
+                ViewBag.Page = page;
+                ViewBag.Difficulty = difficulty;
+                ViewBag.Search = search;
+                ViewBag.Type = type;
+
+                // Apply pagination
+                var pagedExercises = exercises
+                    .Skip((page - 1) * exercisePageSize)
+                    .Take(exercisePageSize)
+                    .ToList();
+
                 return View(pagedExercises);
             }
             catch (Exception ex)

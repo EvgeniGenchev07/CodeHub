@@ -242,3 +242,31 @@
     color: var(--darker);
     font-weight: bold;
 }
+/* Add this to your existing CSS */
+.no-exercises {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray);
+    font-size: 1.2rem;
+    border: 1px dashed rgba(0, 247, 255, 0.3);
+    border-radius: 10px;
+}
+
+    .no-exercises i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: rgba(0, 247, 255, 0.3);
+    }
+
+/* Fix typo in media query */
+@media (max-width: 768px) {
+    .exercises-container { /* Fixed spelling */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ensure solution percentage doesn't break layout */
+.exercise-stat:nth-child(2) {
+    min-width: 80px;
+}

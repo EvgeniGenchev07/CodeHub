@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeBattle Admin - Упражнения</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="~/css/admin_exercises.css" />
+    <link rel="stylesheet" href="/css/admin_exercises.css">
 </head>
 <body>
     <!-- Header -->
@@ -13,7 +13,6 @@
             <span class="logo-icon"><i class="fas fa-code"></i></span>
             <span class="logo-text">CodeBattle <span class="admin-badge">ADMIN</span></span>
         </div>
-
         <button class="hamburger" id="hamburger">
             <i class="fas fa-bars"></i>
         </button>
@@ -34,7 +33,6 @@
 
     <!-- Main Content -->
     <main class="admin-main">
-        <!-- Content -->
         <div class="admin-content">
             <section id="exercises">
                 <div class="admin-header">
@@ -43,49 +41,12 @@
                         <button class="btn btn-primary" id="createExerciseBtn"><i class="fas fa-plus"></i> Ново упражнение</button>
                     </div>
                 </div>
-
-                <!-- Search and Filter -->
                 <div class="search-filter-container">
                     <div class="search-box">
                         <input type="text" id="searchInput" placeholder="Търсене по заглавие...">
                         <button class="btn btn-primary" id="searchBtn"><i class="fas fa-search"></i></button>
                     </div>
-<<<<<<< Updated upstream
-                    <div class="filter-box">
-                        <select class="form-control" id="categoryFilter">
-                            <option value="">Всички категории</option>
-                            <option value="Js">JavaScript</option>
-                            <option value="Algorithms">Алгоритми</option>
-                            <option value="Csharp">C#</option>
-                            <option value="Python">Python</option>
-                            <option value="Java">Java</option>
-                            <option value="C">C</option>
-                            <option value="CPlusPlus">C++</option>
-                            <option value="Ruby">Ruby</option>
-                            <option value="Go">Go</option>
-                            <option value="Rust">Rust</option>
-                            <option value="Swift">Swift</option>
-                            <option value="Projects">Проекти</option>
-                            <option value="Interviews">Интервюта</option>
-                            <option value="Asynchronous">Асинхронност</option>
-                            <option value="Synchronous">Синхронност</option>
-                            <option value="DOMAssembly">DOM/Assembly</option>
-                        </select>
-                        <select class="form-control" id="difficultyFilter">
-                            <option value="All">Всички трудности</option>
-                            <option value="Easy">Лесно</option>
-                            <option value="Intermediate">Средно</option>
-                            <option value="Hard">Трудно</option>
-                            <option value="Extreme">Екстремно</option>
-                            <option value="Insane">Безумно</option>
-                            <option value="HardenBeard">Твърдо</option>
-                        </select>
-                    </div>
-=======
->>>>>>> Stashed changes
                 </div>
-
-                <!-- Exercises Table -->
                 <div class="table-container">
                     <table class="exercises-table">
                         <thead>
@@ -94,20 +55,16 @@
                                 <th>Заглавие</th>
                                 <th>Точки</th>
                                 <th>Трудност</th>
+                                <th>Прегледи</th>
+                                <th>Решения</th>
                                 <th>Действия</th>
                             </tr>
                         </thead>
-                        <tbody id="exercisesTableBody">
-                            <!-- Упражненията ще се зареждат тук чрез JavaScript -->
-                        </tbody>
+                        <tbody id="exercisesTableBody"></tbody>
                     </table>
                 </div>
-
-                <!-- Pagination -->
                 <div class="pagination-container">
-                    <ul class="pagination" id="pagination">
-                        <!-- Пагинацията ще се генерира тук -->
-                    </ul>
+                    <ul class="pagination" id="pagination"></ul>
                 </div>
             </section>
         </div>
@@ -118,7 +75,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="modalExerciseTitle">Създаване на ново упражнение</h3>
-                <button class="close-modal" id="closeExerciseModal">&times;</button>
+                <button class="close-modal" id="closeExerciseModal">×</button>
             </div>
             <form id="exerciseForm">
                 <input type="hidden" id="exerciseId">
@@ -134,21 +91,12 @@
                     <label class="form-label">Трудност</label>
                     <select class="form-control" id="exerciseDifficulty" required>
                         <option value="">Избери трудност</option>
-<<<<<<< Updated upstream
-                        <option value="Easy">Лесно</option>
-                        <option value="Intermediate">Средно</option>
-                        <option value="Hard">Трудно</option>
-                        <option value="Extreme">Екстремно</option>
-                        <option value="Insane">Безумно</option>
-                        <option value="HardenBeard">Твърдо</option>
-=======
-                        <option value="0">Лесно</option> 
-                        <option value="1">Средно</option> 
-                        <option value="2">Трудно</option> 
-                        <option value="3">Екстремно</option> 
-                        <option value="4">Безумно</option> 
-                        <option value="5">Твърдо</option> 
->>>>>>> Stashed changes
+                        <option value="0">Лесно</option>
+                        <option value="1">Средно</option>
+                        <option value="2">Трудно</option>
+                        <option value="3">Екстремно</option>
+                        <option value="4">Безумно</option>
+                        <option value="5">Твърдо</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -168,7 +116,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Потвърждение за изтриване</h3>
-                <button class="close-modal" id="closeDeleteModal">&times;</button>
+                <button class="close-modal" id="closeDeleteModal">×</button>
             </div>
             <div class="modal-body">
                 <p>Сигурни ли сте, че искате да изтриете това упражнение? Това действие е необратимо.</p>
@@ -182,16 +130,11 @@
     </div>
 
     <script>
-        // Array to store exercises from the database
         let exercises = [];
-
-        // Pagination configuration
         let currentPage = 1;
         const itemsPerPage = 10;
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger menu toggle
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
 
@@ -202,7 +145,6 @@
                 icon.classList.toggle('fa-times');
             });
 
-            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
                     adminNav.classList.remove('active');
@@ -211,47 +153,28 @@
                 }
             });
 
-            // Modal event listeners
             document.getElementById('createExerciseBtn').addEventListener('click', openCreateModal);
             document.getElementById('closeExerciseModal').addEventListener('click', closeExerciseModal);
             document.getElementById('cancelExercise').addEventListener('click', closeExerciseModal);
-
-            // Form submission
             document.getElementById('exerciseForm').addEventListener('submit', createExercise);
-
-            // Search events
             document.getElementById('searchBtn').addEventListener('click', applyFilters);
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') applyFilters();
             });
-
-            // Delete modal events
             document.getElementById('confirmDelete').addEventListener('click', deleteExercise);
-            document.getElementById('cancelDelete').addEventListener('click', function() {
-                document.getElementById('deleteModal').classList.remove('active');
-            });
-            document.getElementById('closeDeleteModal').addEventListener('click', function() {
-                document.getElementById('deleteModal').classList.remove('active');
-            });
+            document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
+            document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
 
-            // Initial load of exercises
             loadExercises();
         });
 
-        // Load exercises from API
         async function loadExercises() {
             try {
                 showLoadingState();
-
                 const response = await fetch('/Admin/GetAllExercises');
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
                 exercises = Array.isArray(data) ? data : [];
-
                 updateExercisesTable();
             } catch (error) {
                 handleLoadError(error);
@@ -260,49 +183,36 @@
 
         function showLoadingState() {
             document.getElementById('exercisesTableBody').innerHTML =
-                '<tr><td colspan="5" class="text-center">Зареждане на упражнения...</td></tr>';
+                '<tr><td colspan="7" class="text-center">Зареждане на упражнения...</td></tr>';
         }
 
         function handleLoadError(error) {
             console.error('Error loading exercises:', error);
             exercises = [];
-
             document.getElementById('exercisesTableBody').innerHTML =
-                '<tr><td colspan="5" class="text-center text-danger">' +
-                'Грешка при зареждане на упражнения: ' +
-                (error.message || 'Неочаквана грешка') +
-                '</td></tr>';
-
+                `<tr><td colspan="7" class="text-center text-danger">Грешка при зареждане на упражнения: ${error.message}</td></tr>`;
             renderPagination(Math.ceil(exercises.length / itemsPerPage));
         }
 
-        // Apply search filter
         function applyFilters() {
             currentPage = 1;
             updateExercisesTable();
         }
 
-        // Update exercises table
         function updateExercisesTable() {
             const tableBody = document.getElementById('exercisesTableBody');
             const pagination = document.getElementById('pagination');
-
-            // Apply filters
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
 
-            let filteredExercises = exercises.filter(exercise => {
-                return exercise.title.toLowerCase().includes(searchTerm);
-            });
-
+            let filteredExercises = exercises.filter(exercise => exercise.title.toLowerCase().includes(searchTerm));
             const totalPages = Math.ceil(filteredExercises.length / itemsPerPage);
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, filteredExercises.length);
             const currentExercises = filteredExercises.slice(startIndex, endIndex);
 
             tableBody.innerHTML = '';
-
             if (filteredExercises.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="5" class="text-center">Няма налични упражнения</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Няма налични упражнения</td></tr>';
                 renderPagination(totalPages);
                 return;
             }
@@ -315,17 +225,9 @@
             renderPagination(totalPages);
         }
 
-                function createExerciseRow(exercise) {
+        function createExerciseRow(exercise) {
             const row = document.createElement('tr');
-
-            const difficultyNames = [
-                'Easy',         
-                'Intermidiate', 
-                'Hard',         
-                'Extreme',      
-                'Insane',       
-                'HardenBeard'   
-            ];
+            const difficultyNames = ['Easy', 'Intermediate', 'Hard', 'Extreme', 'Insane', 'HardenBeard'];
             const difficultyIndex = typeof exercise.difficulty === "number" ? exercise.difficulty : 0;
             const difficultyName = difficultyNames[difficultyIndex] || 'Easy';
 
@@ -333,9 +235,9 @@
                 <td>${exercise.id || 'N/A'}</td>
                 <td>${exercise.title || 'Без заглавие'}</td>
                 <td>${exercise.points || 0}</td>
-                <td class="difficulty-${difficultyName.toLowerCase()}">
-                    ${getDifficultyText(difficultyName)}
-                </td>
+                <td class="difficulty-${difficultyName.toLowerCase()}">${getDifficultyText(difficultyName)}</td>
+                <td>${exercise.views || 0}</td>
+                <td>${exercise.solutions || 0}</td>
                 <td class="actions">
                     <button class="btn btn-primary btn-sm" onclick="editExercise(${exercise.id})">
                         <i class="fas fa-edit"></i> Редактирай
@@ -345,7 +247,6 @@
                     </button>
                 </td>
             `;
-
             return row;
         }
 
@@ -358,76 +259,68 @@
                 'Insane': 'Безумно',
                 'HardenBeard': 'Твърдо'
             };
-            return difficultyMap[difficulty] || difficulty || 'Лесно';
+            return difficultyMap[difficulty] || difficulty || ' ';
         }
 
-        // Pagination functions
         function renderPagination(totalPages) {
             const pagination = document.getElementById('pagination');
             pagination.innerHTML = '';
-
             if (totalPages <= 1) return;
 
-            // Previous button
             addPaginationItem(pagination, 'prev', currentPage > 1, () => changePage(currentPage - 1));
-
-            // Page numbers
             const maxVisiblePages = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
             if (endPage - startPage + 1 < maxVisiblePages) {
                 startPage = Math.max(1, endPage - maxVisiblePages + 1);
             }
 
-            // First page and ellipsis
             if (startPage > 1) {
                 addPaginationItem(pagination, '1', true, () => changePage(1));
-                if (startPage > 2) {
-                    addPaginationItem(pagination, '...', false);
-                }
+                if (startPage > 2) addPaginationItem(pagination, '...', false);
             }
 
-            // Middle pages
             for (let i = startPage; i <= endPage; i++) {
                 addPaginationItem(pagination, i.toString(), true, () => changePage(i), i === currentPage);
             }
 
-            // Last page and ellipsis
             if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    addPaginationItem(pagination, '...', false);
-                }
+                if (endPage < totalPages - 1) addPaginationItem(pagination, '...', false);
                 addPaginationItem(pagination, totalPages.toString(), true, () => changePage(totalPages));
             }
 
-            // Next button
             addPaginationItem(pagination, 'next', currentPage < totalPages, () => changePage(currentPage + 1));
         }
 
         function addPaginationItem(container, content, enabled, onClick = null, isActive = false) {
             const item = document.createElement('li');
             item.className = 'page-item';
-
             const isPrev = content === 'prev';
             const isNext = content === 'next';
 
             if (isPrev || isNext) {
                 item.innerHTML = `
-                    <a href="#" class="page-link ${enabled ? '' : 'disabled'}"
-                       onclick="${enabled ? `event.preventDefault(); changePage(${currentPage + (isNext ? 1 : -1)});` : 'return false;'}">
+                    <a href="#" class="page-link ${enabled ? '' : 'disabled'}">
                         <i class="fas fa-chevron-${isPrev ? 'left' : 'right'}"></i>
                     </a>
                 `;
+                if (enabled && onClick) {
+                    item.querySelector('a').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        onClick();
+                    });
+                }
             } else {
                 item.innerHTML = `
-                    <a href="#" class="page-link ${isActive ? 'active' : ''}"
-                       onclick="${onClick ? 'event.preventDefault(); changePage(' + content + ');' : 'return false;'}">
-                        ${content}
-                    </a>
+                    <a href="#" class="page-link ${isActive ? 'active' : ''}">${content}</a>
                 `;
+                if (onClick) {
+                    item.querySelector('a').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        onClick();
+                    });
+                }
             }
-
             container.appendChild(item);
         }
 
@@ -437,60 +330,99 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Modal functions
         function openCreateModal() {
             document.getElementById('modalExerciseTitle').textContent = 'Създаване на ново упражнение';
             document.getElementById('exerciseForm').reset();
             document.getElementById('exerciseId').value = '';
             document.getElementById('saveExerciseBtn').textContent = 'Създай';
+
+            // Remove all previous submit event listeners by cloning the form
+            const oldForm = document.getElementById('exerciseForm');
+            const newForm = oldForm.cloneNode(true);
+            oldForm.parentNode.replaceChild(newForm, oldForm);
+
+            newForm.onsubmit = createExercise;
+            // Re-attach cancel button event
+            newForm.querySelector('#cancelExercise').addEventListener('click', closeExerciseModal);
+
             document.getElementById('exerciseModal').classList.add('active');
         }
 
         function closeExerciseModal() {
             document.getElementById('exerciseModal').classList.remove('active');
         }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+        }
+
         function validateExerciseData(data) {
             if (!data.Title) {
                 alert('Заглавието на упражнението е задължително!');
                 return false;
             }
-
             if (!data.Description) {
                 alert('Описанието на упражнението е задължително!');
                 return false;
             }
-
-            if (!data.Difficulty) {
+            if (data.Difficulty == null) {
                 alert('Трудността на упражнението е задължителна!');
                 return false;
             }
-
             if (!data.Points || data.Points < 1) {
                 alert('Точките трябва да са поне 1!');
                 return false;
             }
-
             return true;
         }
 
-        function handleCreateError(error) {
-            console.error('Грешка при създаване на упражнение:', error);
-            alert('Грешка при създаване на упражнение: ' +
-                 (error.message || 'Моля, опитайте отново по-късно'));
+        async function createExercise(e) {
+            e.preventDefault();
+            const form = e.target;
+            const exerciseData = {
+                Title: form.exerciseTitle.value.trim(),
+                Description: form.exerciseDescription.value.trim(),
+                Points: parseInt(form.exercisePoints.value) || 1,
+                Difficulty: parseInt(form.exerciseDifficulty.value)
+            };
+
+            if (!validateExerciseData(exerciseData)) return;
+
+            try {
+                const response = await fetch('/Admin/CreateExercise', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(exerciseData)
+                });
+
+                let result;
+                try {
+                    result = await response.json();
+                } catch (jsonError) {
+                    throw new Error(`Invalid response format: ${await response.text()}`);
+                }
+
+                if (!response.ok) throw new Error(result.message || `HTTP error: ${response.status}`);
+
+                closeExerciseModal();
+                showSuccessMessage('Упражнението е създадено успешно!');
+                await loadExercises();
+            } catch (error) {
+                console.error('Error creating exercise:', error);
+                alert(`Грешка при създаване на упражнение: ${error.message}`);
+            }
         }
 
-        // Edit exercise function
         async function editExercise(id) {
             try {
-                // First try to find in local array
-                let exercise = exercises.find(e => e.id === id);
-
-                // If not found, fetch from server
+                let exercise = exercises.find(e => e.id == id);
                 if (!exercise) {
-                    const response = await fetch(`/Admin/GetExercise/${id}`);
-                    if (!response.ok) throw new Error('Упражнението не е намерено');
+                    const response = await fetch(`/Admin/Exercise/${id}`);
+                    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     exercise = await response.json();
                 }
+
+                if (!exercise) throw new Error('Упражнението не е намерено');
 
                 document.getElementById('modalExerciseTitle').textContent = 'Редактиране на упражнение';
                 document.getElementById('exerciseId').value = exercise.id;
@@ -498,55 +430,60 @@
                 document.getElementById('exerciseDescription').value = exercise.description;
                 document.getElementById('exerciseDifficulty').value = exercise.difficulty;
                 document.getElementById('exercisePoints').value = exercise.points;
-
-                // Change form submission to update instead of create
-                document.getElementById('exerciseForm').onsubmit = updateExercise;
                 document.getElementById('saveExerciseBtn').textContent = 'Запази промените';
 
+                // Remove all previous submit event listeners by cloning the form
+                const oldForm = document.getElementById('exerciseForm');
+                const newForm = oldForm.cloneNode(true);
+                oldForm.parentNode.replaceChild(newForm, oldForm);
+
+                newForm.onsubmit = updateExercise;
+                newForm.querySelector('#cancelExercise').addEventListener('click', closeExerciseModal);
                 document.getElementById('exerciseModal').classList.add('active');
             } catch (error) {
-                console.error('Грешка при редактиране:', error);
-                alert('Грешка при зареждане на упражнение: ' + error.message);
+                console.error('Error editing exercise:', error);
+                alert(`Грешка при зареждане на упражнение: ${error.message}`);
             }
         }
 
-        // Update exercise function
-              async function createExercise(e) {
+        async function updateExercise(e) {
             e.preventDefault();
-
             const form = e.target;
             const exerciseData = {
+                Id: parseInt(form.exerciseId.value),
                 Title: form.exerciseTitle.value.trim(),
                 Description: form.exerciseDescription.value.trim(),
                 Points: parseInt(form.exercisePoints.value) || 1,
-                Difficulty: parseInt(form.exerciseDifficulty.value) // Convert to enum value
+                Difficulty: parseInt(form.exerciseDifficulty.value)
             };
 
+            if (!validateExerciseData(exerciseData)) return;
+
             try {
-                const response = await fetch('/Admin/CreateExercise', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                const response = await fetch('/Admin/UpdateExercise', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(exerciseData)
                 });
 
-                if (!response.ok) {
-                    const errorResult = await response.json();
-                    throw new Error(errorResult.message || response.statusText);
+                let result;
+                try {
+                    result = await response.json();
+                } catch (jsonError) {
+                    throw new Error(`Invalid response format: ${await response.text()}`);
                 }
 
-                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || `HTTP error: ${response.status}`);
+
                 closeExerciseModal();
-                showSuccessMessage(result.message || 'Упражнението е създадено успешно!');
+                showSuccessMessage(result.message || 'Упражнението е обновено успешно!');
                 await loadExercises();
             } catch (error) {
-                console.error("Error in createExercise:", error);
-                handleCreateError(error);
+                console.error('Error updating exercise:', error);
+                alert(`Грешка при обновяване на упражнение: ${error.message}`);
             }
         }
 
-        // Delete exercise functions
         function confirmDelete(id) {
             document.getElementById('deleteExerciseId').value = id;
             document.getElementById('deleteModal').classList.add('active');
@@ -554,46 +491,53 @@
 
         async function deleteExercise() {
             const id = document.getElementById('deleteExerciseId').value;
-
             try {
+                console.log(`Sending DELETE request for ID: ${id}`);
                 const response = await fetch(`/Admin/DeleteExercise/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                let result;
+                try {
+                    result = await response.json();
+                } catch (jsonError) {
+                    throw new Error(`Invalid response format: ${await response.text()}`);
                 }
 
-                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || `HTTP error: ${response.status}`);
+
+                closeDeleteModal();
                 showSuccessMessage(result.message || 'Упражнението е изтрито успешно!');
-                document.getElementById('deleteModal').classList.remove('active');
                 await loadExercises();
             } catch (error) {
-                console.error('Грешка при изтриване на упражнение:', error);
-                alert('Грешка при изтриване на упражнение: ' + error.message);
+                console.error('Error deleting exercise:', error);
+                alert(`Грешка при изтриване на упражнение: ${error.message}`);
             }
         }
 
-        // Helper function to show success message
         function showSuccessMessage(message) {
-            // Remove any existing alerts
             const existingAlert = document.querySelector('.alert.alert-success');
             if (existingAlert) existingAlert.remove();
 
             const alertDiv = document.createElement('div');
             alertDiv.className = 'alert alert-success';
+            alertDiv.style.cssText = `
+                background-color: rgba(39, 201, 63, 0.2);
+                color: var(--success);
+                padding: 10px 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
             alertDiv.innerHTML = `
                 <i class="fas fa-check-circle"></i> ${message}
-                <button type="button" class="close" onclick="this.parentElement.remove()">
-                    &times;
-                </button>
+                <button type="button" style="margin-left: auto; background: none; border: none; color: var(--light); cursor: pointer;">×</button>
             `;
-
-            // Add to the top of the exercises section
-            const exercisesSection = document.getElementById('exercises');
-            exercisesSection.insertBefore(alertDiv, exercisesSection.firstChild);
-
-            // Auto-remove after 5 seconds
+            alertDiv.querySelector('button').addEventListener('click', () => alertDiv.remove());
+            document.getElementById('exercises').insertBefore(alertDiv, document.getElementById('exercises').firstChild);
             setTimeout(() => alertDiv.remove(), 5000);
         }
     </script>

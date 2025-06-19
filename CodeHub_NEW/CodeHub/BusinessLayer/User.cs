@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using System.Text.Json.Serialization;
 namespace BusinessLayer 
 {
     public class User:IdentityUser
@@ -16,6 +17,7 @@ namespace BusinessLayer
         public byte[] ProfilePicture { get; set; }
         public int Points { get; set; }
         public int Level { get; set; }
+        [JsonIgnore]
         public List<Forum> Forums { get; set; }
         public User()
         {
