@@ -74,7 +74,7 @@
                                 @(exercise.Views > 0 ? (exercise.Solutions * 100 / exercise.Views) : 0)%
                             </div>
                         </div>
-                        <a asp-action="Details" asp-controller="Forum" asp-route-id="@exercise.Id" class="exercise-btn">
+                        <a asp-action="Details" asp-controller="Exercises" asp-route-id="@exercise.Id" class="exercise-btn">
                             Реши <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>

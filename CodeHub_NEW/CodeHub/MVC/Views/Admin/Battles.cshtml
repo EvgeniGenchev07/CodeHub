@@ -112,6 +112,91 @@
                 <button class="close-modal" id="closeEditModal">&times;</button>
             </div>
             <form id="editBattleForm">
+                <style>
+                    #editBattleForm {
+                        background-color: rgba(5, 5, 16, 0.8);
+                        padding: 20px;
+                        border-radius: 8px;
+                        border: 1px solid rgba(0, 247, 255, 0.3);
+                    }
+
+                        #editBattleForm .form-group {
+                            margin-bottom: 20px;
+                        }
+
+                        #editBattleForm .form-label {
+                            display: block;
+                            margin-bottom: 8px;
+                            color: var(--primary);
+                            font-weight: 500;
+                        }
+
+                        #editBattleForm .form-control {
+                            width: 100%;
+                            padding: 10px 15px;
+                            background-color: rgba(0, 0, 0, 0.4);
+                            border: 1px solid rgba(0, 247, 255, 0.2);
+                            border-radius: 5px;
+                            color: white;
+                            font-size: 1rem;
+                            transition: all 0.3s;
+                        }
+
+                            #editBattleForm .form-control:focus {
+                                outline: none;
+                                border-color: var(--primary);
+                                box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+                            }
+
+                        #editBattleForm textarea.form-control {
+                            min-height: 100px;
+                            resize: vertical;
+                        }
+
+                        #editBattleForm .form-row {
+                            display: flex;
+                            gap: 15px;
+                        }
+
+                            #editBattleForm .form-row .form-group {
+                                flex: 1;
+                            }
+
+                        #editBattleForm .form-footer {
+                            display: flex;
+                            justify-content: flex-end;
+                            gap: 10px;
+                            margin-top: 25px;
+                        }
+
+                    #editBattleTitle {
+                        color: white !important;
+                    }
+
+                    /* Responsive styles */
+                    @@media (max-width: 768px) {
+                        #editBattleForm .form-row
+
+                    {
+                        flex-direction: column;
+                        gap: 0;
+                    }
+
+                    #editBattleForm .form-row .form-group {
+                        margin-bottom: 20px;
+                    }
+
+                    #editBattleForm .form-footer {
+                        flex-direction: column;
+                    }
+
+                        #editBattleForm .form-footer button {
+                            width: 100%;
+                            margin-bottom: 10px;
+                        }
+
+                    }
+                </style>
                 <input type="hidden" id="editBattleId">
                 <div class="form-group">
                     <label class="form-label">Име на двубоя</label>
@@ -150,352 +235,511 @@
                 <h3 class="modal-title">Потвърждение за изтриване</h3>
                 <button class="close-modal" id="closeDeleteModal">&times;</button>
             </div>
-            <p>Сигурни ли сте, че искате да изтриете този двубой?</p>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <p>Сигурни ли сте, че искате да изтриете този двубой?</p>
+                </div>
+                <div class="battle-info">
+                    <p><strong>Име:</strong> <span id="deleteBattleName"></span></p>
+                    <p><strong>ID:</strong> <span id="deleteBattleIdText"></span></p>
+                </div>
+                <p class="delete-warning">Това действие е необратимо и ще изтрие всички данни, свързани с двубоя!</p>
+            </div>
             <input type="hidden" id="deleteBattleId">
-            <div class="form-footer">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline" id="cancelDelete">Отказ</button>
-                <button type="button" class="btn btn-danger" id="confirmDelete">Изтрий</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">
+                    <i class="fas fa-trash"></i> Потвърди изтриване
+                </button>
             </div>
         </div>
     </div>
-    <script>
-    let demoBattles = [];  // Данните ще дойдат от API-то
-    let currentPage = 1;
-    let itemsPerPage = 10;
-    let filteredBattles = [];
+<script>
+            document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const adminNav = document.getElementById('admin-nav');
 
-    document.addEventListener('DOMContentLoaded', function() {
-    // Хамбургер меню
-    const hamburger = document.getElementById('hamburger');
-    const adminNav = document.getElementById('admin-nav');
+            hamburger.addEventListener('click', function() {
+                adminNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
 
-    hamburger.addEventListener('click', function() {
-    adminNav.classList.toggle('active');
-    const icon = this.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
-    });
+            document.addEventListener('click', function(event) {
+                if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
+                    adminNav.classList.remove('active');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                }
+            });
 
-    document.addEventListener('click', function(event) {
-    if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
-    adminNav.classList.remove('active');
-    hamburger.querySelector('i').classList.add('fa-bars');
-    hamburger.querySelector('i').classList.remove('fa-times');
-    }
-    });
+            // Load battles from API
+            loadBattles();
 
-    // Зареждане на данните от API
-    fetch('/Admin/GetAllBattles')  // Смени с твоя реален API endpoint
-    .then(response => {
-    if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-    })
-    .then(data => {
-    demoBattles = data;
-    filteredBattles = [...demoBattles];
-    updateTable();
-    })
-    .catch(error => {
-    alert('Грешка при зареждане на двубоите: ' + error.message);
-    });
+            // Event listeners for filtering and sorting
+            document.getElementById('searchInput').addEventListener('input', filterBattles);
+            document.getElementById('statusFilter').addEventListener('change', filterBattles);
+            document.getElementById('sortBy').addEventListener('change', filterBattles);
+            document.getElementById('itemsPerPage').addEventListener('change', function() {
+                itemsPerPage = parseInt(this.value);
+                currentPage = 1;
+                updateTable();
+            });
 
-    // Слушатели за филтриране и сортиране
-    document.getElementById('searchInput').addEventListener('input', filterBattles);
-    document.getElementById('statusFilter').addEventListener('change', filterBattles);
-    document.getElementById('sortBy').addEventListener('change', filterBattles);
-    document.getElementById('itemsPerPage').addEventListener('change', function() {
-    itemsPerPage = parseInt(this.value);
-    currentPage = 1;
-    updateTable();
-    });
+            // Modal event listeners
+            document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
+            document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
+            document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
+            document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
+            document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
+            document.getElementById('editBattleForm').addEventListener('submit', saveBattleChanges);
 
-    // Модални прозорци - слушатели
-    document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
-    document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
-    document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
-    document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
-    document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
-    document.getElementById('editBattleForm').addEventListener('submit', saveBattleChanges);
+            // Create new battle button
+            document.getElementById('createBattleBtn').addEventListener('click', function() {
+                // Reset form fields
+                document.getElementById('editBattleId').value = '';
+                document.getElementById('editBattleTitle').value = '';
+                document.getElementById('editBattleDescription').value = '';
+                document.getElementById('editBattleStartDate').value = '';
+                document.getElementById('editBattleEndDate').value = '';
+                document.getElementById('editBattleReward').value = '';
 
-    // Бутон за създаване на нов двубой (примерно)
-    document.getElementById('createBattleBtn').addEventListener('click', function() {
-    alert('Форма за създаване на нов двубой ще се отвори тук.');
-    });
-    });
+                // Change modal title to "Създай двубой"
+                document.querySelector('#editModal .modal-title').textContent = 'Създай двубой';
 
-    // Филтриране
-    function filterBattles() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const statusFilter = document.getElementById('statusFilter').value;
-    const sortBy = document.getElementById('sortBy').value;
+                // Show the modal
+                document.getElementById('editModal').style.display = 'block';
+            });
+        });
 
-    filteredBattles = demoBattles.filter(battle =>
-    battle.title.toLowerCase().includes(searchTerm) ||
-    battle.description.toLowerCase().includes(searchTerm)
-    );
+        let demoBattles = [];
+        let currentPage = 1;
+        let itemsPerPage = 10;
+        let filteredBattles = [];
+        let currentEditingId = null;
+        let currentDeletingId = null;
 
-    const now = new Date();
-    if (statusFilter) {
-    filteredBattles = filteredBattles.filter(battle => {
-    const start = new Date(battle.startDate);
-    const end = new Date(battle.endDate);
+        async function loadBattles() {
+            try {
+                const response = await fetch('/Admin/GetAllBattles', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                demoBattles = await response.json();
+                filteredBattles = [...demoBattles];
+                updateTable();
+            } catch (error) {
+                console.error('Error loading battles:', error);
+                alert('Грешка при зареждане на двубоите: ' + error.message);
+            }
+        }
 
-    if (statusFilter === 'active') {
-    return now >= start && now <= end;
-    } else if (statusFilter === 'pending') {
-    return now < start;
-    } else if (statusFilter === 'ended') {
-    return now > end;
-    }
-    return true;
-    });
-    }
+        function filterBattles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
 
-    filteredBattles.sort((a, b) => {
-    if (sortBy === 'newest') {
-    return new Date(b.startDate) - new Date(a.startDate);
-    } else if (sortBy === 'oldest') {
-    return new Date(a.startDate) - new Date(b.startDate);
-    } else if (sortBy === 'reward-high') {
-    return b.rewardXP - a.rewardXP;
-    } else if (sortBy === 'reward-low') {
-    return a.rewardXP - b.rewardXP;
-    }
-    return 0;
-    });
+            filteredBattles = demoBattles.filter(battle =>
+                battle.title.toLowerCase().includes(searchTerm) ||
+                (battle.description && battle.description.toLowerCase().includes(searchTerm))
+            );
 
-    currentPage = 1;
-    updateTable();
-    }
+            const now = new Date();
+            if (statusFilter) {
+                filteredBattles = filteredBattles.filter(battle => {
+                    const start = new Date(battle.startDate);
+                    const end = new Date(battle.endDate);
 
-    // Обновяване на таблицата и пагинацията
-    function updateTable() {
-    const tableBody = document.getElementById('battlesTableBody');
-    const pagination = document.getElementById('pagination');
+                    if (statusFilter === 'active') {
+                        return now >= start && now <= end;
+                    } else if (statusFilter === 'pending') {
+                        return now < start;
+                    } else if (statusFilter === 'ended') {
+                        return now > end;
+                    }
+                    return true;
+                });
+            }
 
-    const totalPages = Math.ceil(filteredBattles.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = Math.min(startIndex + itemsPerPage, filteredBattles.length);
-    const currentBattles = filteredBattles.slice(startIndex, endIndex);
+            filteredBattles.sort((a, b) => {
+                if (sortBy === 'newest') {
+                    return new Date(b.startDate) - new Date(a.startDate);
+                } else if (sortBy === 'oldest') {
+                    return new Date(a.startDate) - new Date(b.startDate);
+                } else if (sortBy === 'reward-high') {
+                    return b.rewardXP - a.rewardXP;
+                } else if (sortBy === 'reward-low') {
+                    return a.rewardXP - b.rewardXP;
+                }
+                return 0;
+            });
 
-    tableBody.innerHTML = '';
-         if (currentBattles.length === 0) 
-         {
-             tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Няма налични упражнения</td></tr>';
-             return;
-         }
-    const now = new Date();
-    currentBattles.forEach(battle => {
-    const start = new Date(battle.startDate);
-    const end = new Date(battle.endDate);
+            currentPage = 1;
+            updateTable();
+        }
 
-    let statusClass = '';
-    let statusText = '';
+        function updateTable() {
+            const tableBody = document.getElementById('battlesTableBody');
+            const pagination = document.getElementById('pagination');
 
-    if (now < start) {
-    statusClass = 'status-pending';
-    statusText = 'Предстоящ';
-    } else if (now >= start && now <= end) {
-    statusClass = 'status-active';
-    statusText = 'Активен';
-    } else {
-    statusClass = 'status-ended';
-    statusText = 'Завършен';
-    }
+            const totalPages = Math.ceil(filteredBattles.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, filteredBattles.length);
+            const currentBattles = filteredBattles.slice(startIndex, endIndex);
 
-    const row = `
-    <tr>
-        <td>${battle.id}</td>
-        <td>${battle.title}</td>
-        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-        <td>${formatDate(start)}</td>
-        <td>${formatDate(end)}</td>
-        <td>${battle.rewardXP} XP</td>
-        <td>
-            <div class="table-actions">
-                <button class="btn btn-outline btn-sm" onclick="openEditModal(${battle.id})">
-                    <i class="fas fa-edit"></i> Редактирай
-                </button>
-                <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${battle.id})">
-                    <i class="fas fa-trash"></i> Изтрий
-                </button>
-            </div>
-        </td>
-    </tr>
-    `;
-    tableBody.insertAdjacentHTML('beforeend', row);
-    });
+            tableBody.innerHTML = '';
+            if (currentBattles.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center">Няма налични двубои</td></tr>';
+                return;
+            }
 
-    // Пагинация
-    pagination.innerHTML = '';
+            const now = new Date();
+            currentBattles.forEach(battle => {
+                const start = new Date(battle.startDate);
+                const end = new Date(battle.endDate);
 
-    // Предишна страница
-    const prevItem = document.createElement('li');
-    prevItem.className = 'page-item';
-    prevItem.innerHTML = `
-    <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
-       onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
-        <i class="fas fa-chevron-left"></i>
-    </a>
-    `;
-    pagination.appendChild(prevItem);
+                let statusClass = '';
+                let statusText = '';
 
-    // Номерация страници
-    const maxVisiblePages = 5;
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                if (now < start) {
+                    statusClass = 'status-pending';
+                    statusText = 'Предстоящ';
+                } else if (now >= start && now <= end) {
+                    statusClass = 'status-active';
+                    statusText = 'Активен';
+                } else {
+                    statusClass = 'status-ended';
+                    statusText = 'Завършен';
+                }
 
-    if (endPage - startPage + 1 < maxVisiblePages) {
-    startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
+                const row = `
+                    <tr>
+                        <td>${battle.id}</td>
+                        <td>${battle.title}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>${formatDate(start)}</td>
+                        <td>${formatDate(end)}</td>
+                        <td>${battle.rewardXP} XP</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn btn-outline btn-sm" onclick="openEditModal(${battle.id})">
+                                    <i class="fas fa-edit"></i> Редактирай
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${battle.id})">
+                                    <i class="fas fa-trash"></i> Изтрий
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
 
-    if (startPage > 1) {
-    const firstItem = document.createElement('li');
-    firstItem.className = 'page-item';
-    firstItem.innerHTML = `
-    <a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
-    pagination.appendChild(firstItem);
+            updatePagination(totalPages);
+        }
 
-    if (startPage > 2) {
-    const dotsItem = document.createElement('li');
-    dotsItem.className = 'page-item';
-    dotsItem.innerHTML = `
-    <span class="page-link disabled">...</span>`;
-    pagination.appendChild(dotsItem);
-    }
-    }
+        function updatePagination(totalPages) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
 
-    for (let i = startPage; i <= endPage; i++) {
-    const pageItem = document.createElement('li');
-    pageItem.className = 'page-item';
-    pageItem.innerHTML = `
-    <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
-       onclick="changePage(${i}); return false;">${i}</a>
-    `;
-    pagination.appendChild(pageItem);
-    }
+            if (totalPages <= 1) return;
 
-    if (endPage < totalPages) {
-    if (endPage < totalPages - 1) {
-    const dotsItem = document.createElement('li');
-    dotsItem.className = 'page-item';
-    dotsItem.innerHTML = `
-    <span class="page-link disabled">...</span>`;
-    pagination.appendChild(dotsItem);
-    }
+            const prevItem = document.createElement('li');
+            prevItem.className = 'page-item';
+            prevItem.innerHTML = `
+                <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
+                   onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            `;
+            pagination.appendChild(prevItem);
 
-    const lastItem = document.createElement('li');
-    lastItem.className = 'page-item';
-    lastItem.innerHTML = `
-    <a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
-    pagination.appendChild(lastItem);
-    }
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-    // Следваща страница
-    const nextItem = document.createElement('li');
-    nextItem.className = 'page-item';
-    nextItem.innerHTML = `
-    <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
-       onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
-        <i class="fas fa-chevron-right"></i>
-    </a>
-    `;
-    pagination.appendChild(nextItem);
-    }
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
 
-    function changePage(page) {
-    currentPage = page;
-    updateTable();
-    }
+            if (startPage > 1) {
+                const firstItem = document.createElement('li');
+                firstItem.className = 'page-item';
+                firstItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
+                pagination.appendChild(firstItem);
 
-    function formatDate(date) {
-    const d = new Date(date);
-    const day = d.getDate().toString().padStart(2, '0');
-    const month = (d.getMonth() + 1).toString().padStart(2, '0');
-    const year = d.getFullYear();
-    return `${day}.${month}.${year}`;
-    }
+                if (startPage > 2) {
+                    const dotsItem = document.createElement('li');
+                    dotsItem.className = 'page-item';
+                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                    pagination.appendChild(dotsItem);
+                }
+            }
 
-    // --- Модален прозорец за редакция ---
+            for (let i = startPage; i <= endPage; i++) {
+                const pageItem = document.createElement('li');
+                pageItem.className = 'page-item';
+                pageItem.innerHTML = `
+                    <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
+                       onclick="changePage(${i}); return false;">${i}</a>
+                `;
+                pagination.appendChild(pageItem);
+            }
 
-    let currentEditingId = null;
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const dotsItem = document.createElement('li');
+                    dotsItem.className = 'page-item';
+                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
+                    pagination.appendChild(dotsItem);
+                }
 
-    function openEditModal(battleId) {
-    const battle = demoBattles.find(b => b.id === battleId);
-    if (!battle) return;
+                const lastItem = document.createElement('li');
+                lastItem.className = 'page-item';
+                lastItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
+                pagination.appendChild(lastItem);
+            }
 
-    currentEditingId = battleId;
-    document.getElementById('editBattleId').value = battle.id;
-    document.getElementById('editTitle').value = battle.title;
-    document.getElementById('editDescription').value = battle.description;
-    document.getElementById('editStartDate').value = battle.startDate.substring(0,10);
-    document.getElementById('editEndDate').value = battle.endDate.substring(0,10);
-    document.getElementById('editRewardXP').value = battle.rewardXP;
+            const nextItem = document.createElement('li');
+            nextItem.className = 'page-item';
+            nextItem.innerHTML = `
+                <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
+                   onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            `;
+            pagination.appendChild(nextItem);
+        }
 
-    document.getElementById('editBattleModal').style.display = 'block';
-    }
+        function changePage(page) {
+            currentPage = page;
+            updateTable();
+        }
 
-    function closeEditModal() {
-    document.getElementById('editBattleModal').style.display = 'none';
-    currentEditingId = null;
-    }
+        function formatDate(date) {
+            const d = new Date(date);
+            const day = d.getDate().toString().padStart(2, '0');
+            const month = (d.getMonth() + 1).toString().padStart(2, '0');
+            const year = d.getFullYear();
+            const hours = d.getHours().toString().padStart(2, '0');
+            const minutes = d.getMinutes().toString().padStart(2, '0');
+            return `${day}.${month}.${year} ${hours}:${minutes}`;
+        }
 
-    function saveBattleChanges(event) {
-    event.preventDefault();
+        function formatDateTimeForInput(date) {
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = (d.getMonth() + 1).toString().padStart(2, '0');
+            const day = d.getDate().toString().padStart(2, '0');
+            const hours = d.getHours().toString().padStart(2, '0');
+            const minutes = d.getMinutes().toString().padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
 
-    const id = currentEditingId;
-    const battle = demoBattles.find(b => b.id === id);
-    if (!battle) return;
+        function openEditModal(battleId) {
+            const battle = demoBattles.find(b => b.id === battleId);
+            if (!battle) return;
 
-    // Вземаме стойностите от формата
-    battle.title = document.getElementById('editTitle').value;
-    battle.description = document.getElementById('editDescription').value;
-    battle.startDate = document.getElementById('editStartDate').value;
-    battle.endDate = document.getElementById('editEndDate').value;
-    battle.rewardXP = parseInt(document.getElementById('editRewardXP').value);
+            currentEditingId = battleId;
+            document.getElementById('editBattleId').value = battle.id;
+            document.getElementById('editBattleTitle').value = battle.title;
+            document.getElementById('editBattleDescription').value = battle.description || '';
+            document.getElementById('editBattleStartDate').value = formatDateTimeForInput(new Date(battle.startDate));
+            document.getElementById('editBattleEndDate').value = formatDateTimeForInput(new Date(battle.endDate));
+            document.getElementById('editBattleReward').value = battle.rewardXP;
 
+            // Set modal title to "Редактиране на двубой"
+            document.querySelector('#editModal .modal-title').textContent = 'Редактиране на двубой';
 
-    // Тук можеш да добавиш извикване на API за update (PUT)
-    // Например:
-    // fetch(`/api/battles/${id}`, {
-    //   method: 'PUT',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify(battle)
-    // }).then(...)
+            document.getElementById('editModal').style.display = 'block';
+        }
 
-    closeEditModal();
-    filterBattles();
-    }
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditingId = null;
+            // Reset modal title to default
+            document.querySelector('#editModal .modal-title').textContent = 'Редактиране на двубой';
+        }
 
-    // --- Модален прозорец за изтриване ---
+        async function createNewBattle(event) {
+            event.preventDefault();
 
-    let currentDeletingId = null;
+            const form = event.target;
+            const title = form.elements['editBattleTitle'].value;
+            const description = form.elements['editBattleDescription'].value;
+            const startDate = form.elements['editBattleStartDate'].value;
+            const endDate = form.elements['editBattleEndDate'].value;
+            const rewardXP = form.elements['editBattleReward'].value;
 
-    function openDeleteModal(battleId) {
-    currentDeletingId = battleId;
-    document.getElementById('deleteBattleId').textContent = battleId;
-    document.getElementById('deleteBattleModal').style.display = 'block';
-    }
+            // Client-side validation
+            if (!title.trim()) {
+                alert('Името на двубоя е задължително!');
+                return;
+            }
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('Крайната дата трябва да бъде след началната дата!');
+                return;
+            }
+            if (parseInt(rewardXP) <= 0) {
+                alert('Наградата трябва да бъде положително число!');
+                return;
+            }
 
-    function closeDeleteModal() {
-    document.getElementById('deleteBattleModal').style.display = 'none';
-    currentDeletingId = null;
-    }
+            const formData = new URLSearchParams();
+            formData.append("title", title);
+            formData.append("description", description);
+            formData.append("startDate", startDate);
+            formData.append("endDate", endDate);
+            formData.append("rewardXP", rewardXP);
 
-    function confirmDelete() {
-    if (currentDeletingId === null) return;
+            try {
+                const response = await fetch('/Admin/CreateBattle', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
 
-    // Тук можеш да добавиш извикване на API за изтриване (DELETE)
-    // fetch(`/api/battles/${currentDeletingId}`, { method: 'DELETE' }).then(...)
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
 
-    demoBattles = demoBattles.filter(b => b.id !== currentDeletingId);
-    filteredBattles = filteredBattles.filter(b => b.id !== currentDeletingId);
+                const result = await response.json();
+                alert(result.message);
+                form.reset();
+                closeEditModal();
+                await loadBattles();
+            } catch (error) {
+                console.error('Грешка:', error);
+                alert(error.message || 'Възникна грешка при създаването на двубоя!');
+            }
+        }
 
-    closeDeleteModal();
-    updateTable();
-    }
+        async function saveBattleChanges(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('editBattleId').value;
+
+            if (!id) {
+                // Handle create operation
+                await createNewBattle(event);
+                return;
+            }
+
+            // Handle update operation
+            const title = document.getElementById('editBattleTitle').value;
+            const description = document.getElementById('editBattleDescription').value;
+            const startDate = document.getElementById('editBattleStartDate').value;
+            const endDate = document.getElementById('editBattleEndDate').value;
+            const rewardXP = parseInt(document.getElementById('editBattleReward').value);
+
+            // Client-side validation
+            if (!title.trim()) {
+                alert('Името на двубоя е задължително!');
+                return;
+            }
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('Крайната дата трябва да бъде след началната дата!');
+                return;
+            }
+            if (rewardXP <= 0) {
+                alert('Наградата трябва да бъде положително число!');
+                return;
+            }
+
+            const battleData = {
+                id: parseInt(id),
+                title,
+                description,
+                startDate: new Date(startDate).toISOString(),
+                endDate: new Date(endDate).toISOString(),
+                rewardXP
+            };
+
+            try {
+                const response = await fetch(`/Admin/UpdateBattle/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(battleData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Двубоят е обновен успешно!');
+                    closeEditModal();
+                    await loadBattles();
+                } else {
+                    throw new Error(result.message || 'Грешка при запис на двубой');
+                }
+            } catch (error) {
+                console.error('Error saving battle:', error);
+                alert(`Грешка при запис на двубой: ${error.message}`);
+            }
+        }
+
+        function openDeleteModal(battleId) {
+            const battle = demoBattles.find(b => b.id === battleId);
+            if (!battle) return;
+
+            currentDeletingId = battleId;
+            document.getElementById('deleteBattleId').value = battleId;
+            document.getElementById('deleteBattleName').textContent = battle.title;
+            document.getElementById('deleteBattleIdText').textContent = battleId;
+            document.getElementById('deleteModal').style.display = 'block';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            currentDeletingId = null;
+            document.getElementById('deleteBattleName').textContent = '';
+            document.getElementById('deleteBattleIdText').textContent = '';
+        }
+
+        async function confirmDelete() {
+            if (currentDeletingId === null) return;
+
+            try {
+                const response = await fetch(`/Admin/DeleteBattle/${currentDeletingId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                if (result.success) {
+                    demoBattles = demoBattles.filter(b => b.id !== currentDeletingId);
+                    filteredBattles = filteredBattles.filter(b => b.id !== currentDeletingId);
+                    alert('Двубоят е изтрит успешно!');
+                    closeDeleteModal();
+                    updateTable();
+                } else {
+                    throw new Error(result.message || 'Грешка при изтриване на двубой');
+                }
+            } catch (error) {
+                console.error('Error deleting battle:', error);
+                alert(`Грешка при изтриване на двубой: ${error.message}`);
+            }
+        }
 </script>
 </body>
 </html>

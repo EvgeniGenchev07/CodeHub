@@ -83,29 +83,8 @@
         </div>
     </div>
 
-    <!-- Add Comment Modal -->
-    <div class="modal" id="addCommentModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Добавяне на коментар</h3>
-                <button class="close-modal" id="closeAddCommentModal">&times;</button>
-            </div>
-            <form id="addCommentForm">
-                <input type="hidden" id="commentPostId">
-                <div class="form-group">
-                    <label class="form-label">Коментар</label>
-                    <textarea class="form-control" id="commentContent" rows="5" required></textarea>
-                </div>
-                <div class="form-footer">
-                    <button type="button" class="btn btn-outline" id="cancelAddComment">Отказ</button>
-                    <button type="submit" class="btn btn-primary">Публикувай</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <script>
-                // Global variables
+        // Global variables
         let currentPage = 1;
         const itemsPerPage = 5;
 
@@ -144,48 +123,6 @@
             document.getElementById('closeAddPostModal').addEventListener('click', closeAddPostModal);
             document.getElementById('cancelAddPost').addEventListener('click', closeAddPostModal);
             document.getElementById('addPostForm').addEventListener('submit', addNewPost);
-
-            // Comment modal
-            document.getElementById('closeAddCommentModal').addEventListener('click', closeAddCommentModal);
-            document.getElementById('cancelAddComment').addEventListener('click', closeAddCommentModal);
-            document.getElementById('addCommentForm').addEventListener('submit', addNewComment);
-
-            // Close modals when clicking outside
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('modal')) {
-                    e.target.classList.remove('active');
-                }
-            });
-
-            // Read more/less toggle
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('read-more') ||
-                    e.target.closest('.read-more')) {
-                    const button = e.target.classList.contains('read-more') ?
-                        e.target : e.target.closest('.read-more');
-                    const postId = button.dataset.postId;
-                    const fullContent = document.getElementById(`post-full-${postId}`);
-
-                    if (fullContent.style.display === 'none') {
-                        fullContent.style.display = 'block';
-                        button.innerHTML = 'По-малко <i class="fas fa-chevron-up"></i>';
-                        // Scroll to the expanded content if it's not fully visible
-                        fullContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    } else {
-                        fullContent.style.display = 'none';
-                        button.innerHTML = 'Прочети повече <i class="fas fa-chevron-down"></i>';
-                    }
-                }
-
-                // Add comment button
-                if (e.target.classList.contains('add-comment') ||
-                    e.target.closest('.add-comment')) {
-                    const button = e.target.classList.contains('add-comment') ?
-                        e.target : e.target.closest('.add-comment');
-                    const postId = button.dataset.postId;
-                    openAddCommentModal(postId);
-                }
-            });
         }
 
         // Main function to load forum posts
@@ -203,13 +140,25 @@
             }
         }
 
-        // Fetch forum posts from API
-        async function fetchForumPosts() {
-            const response = await fetch('/Admin/GetAllForumPosts');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+              async function fetchForumPosts() {
+            try {
+                const response = await fetch('/Admin/GetAllForumPosts', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const forumPosts = await response.json();
+                return forumPosts;
+            } catch (error) {
+                console.error('Error fetching forum posts:', error);
+                throw error; // Let the calling function handle the error
             }
-            return await response.json();
         }
 
         // Render posts to the page
@@ -246,9 +195,6 @@
         function createPostElement(post) {
             const postDate = new Date(post.date);
             const formattedDate = formatDate(postDate);
-            const contentPreview = post.content.length > 150 ?
-                post.content.substring(0, 150) + '...' :
-                post.content;
 
             const postElement = document.createElement('div');
             postElement.className = 'forum-post';
@@ -263,54 +209,15 @@
                     </div>
                 </div>
                 <h3 class="post-title">${escapeHtml(post.title)}</h3>
-                <div class="post-content-preview">${formatContent(contentPreview)}</div>
+                <div class="post-content-preview">${formatContent(post.content)}</div>
                 <div class="post-actions">
-                    <button class="btn btn-link read-more" data-post-id="${post.id}">
-                        Прочети повече <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <button class="btn btn-primary btn-sm add-comment" data-post-id="${post.id}">
-                        <i class="fas fa-plus"></i> Добави коментар
-                    </button>
-                </div>
-                <div class="post-full-content" id="post-full-${post.id}" style="display:none">
-                    <div class="post-content-full">${formatContent(post.content)}</div>
-                    <div class="comments-section">
-                        <h4 class="comments-title">Коментари (${post.comments?.length || 0})</h4>
-                        ${renderComments(post.comments)}
-                    </div>
+                    <a href="/Forum/Details?id=${post.id}" class="btn-link read-more">
+                        Прочети повече <i class="fas fa-chevron-right"></i>
+                    </a>
                 </div>
             `;
 
             return postElement;
-        }
-
-        // Render comments for a post
-        function renderComments(comments) {
-            if (!comments || comments.length === 0) {
-                return '<p class="no-comments">Все още няма коментари.</p>';
-            }
-
-            return comments.map(comment => {
-                const commentDate = new Date(comment.date);
-                const formattedDate = formatDate(commentDate);
-                const isAdmin = comment.author?.role === 'Admin';
-
-                return `
-                    <div class="comment">
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <div class="comment-avatar">${getInitials(comment.author?.userName || 'Unknown')}</div>
-                                <div>
-                                    <strong>${comment.author?.userName || 'Анонимен'}</strong>
-                                    ${isAdmin ? '<span class="admin-badge">ADMIN</span>' : ''}
-                                    <div class="post-date">${formattedDate}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-content">${formatContent(comment.content)}</div>
-                    </div>
-                `;
-            }).join('');
         }
 
         // Render pagination controls
@@ -409,17 +316,6 @@
             document.getElementById('addPostForm').reset();
         }
 
-        function openAddCommentModal(postId) {
-            document.getElementById('commentPostId').value = postId;
-            document.getElementById('addCommentModal').classList.add('active');
-            document.getElementById('addCommentModal').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        function closeAddCommentModal() {
-            document.getElementById('addCommentModal').classList.remove('active');
-            document.getElementById('addCommentForm').reset();
-        }
-
         // Form submission handlers
         async function addNewPost(e) {
             e.preventDefault();
@@ -433,20 +329,8 @@
             }
 
             try {
-                const response = await fetch('/Admin/CreateForumPost', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        title: title,
-                        content: content
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(await response.text());
-                }
+                // Simulate API call
+                console.log('Creating new post:', { title, content });
 
                 closeAddPostModal();
                 loadForumPosts();
@@ -454,42 +338,6 @@
             } catch (error) {
                 console.error('Error creating post:', error);
                 alert(`Грешка при публикуване на пост: ${error.message}`);
-            }
-        }
-
-        async function addNewComment(e) {
-            e.preventDefault();
-
-            const postId = parseInt(document.getElementById('commentPostId').value);
-            const content = document.getElementById('commentContent').value.trim();
-
-            if (!content) {
-                alert('Моля, въведете коментар!');
-                return;
-            }
-
-            try {
-                const response = await fetch('/Admin/AddComment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        postId: postId,
-                        content: content
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(await response.text());
-                }
-
-                closeAddCommentModal();
-                loadForumPosts();
-                alert('Коментарът беше добавен успешно!');
-            } catch (error) {
-                console.error('Error adding comment:', error);
-                alert(`Грешка при добавяне на коментар: ${error.message}`);
             }
         }
 

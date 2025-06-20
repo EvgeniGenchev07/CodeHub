@@ -76,7 +76,7 @@ namespace MVC.Controllers
         }
 
         // GET: Exercise/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace MVC.Controllers
 
             try
             {
-                var exercise = _exercisesContext.Read(id.Value);
+                var exercise = await _exercisesContext.Read(id.Value);
                 if (exercise == null)
                 {
                     TempData["ErrorMessage"] = $"Exercise with ID {id} not found";

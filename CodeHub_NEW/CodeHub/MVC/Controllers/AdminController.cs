@@ -323,7 +323,7 @@ namespace CodeHub.Controllers
         {
             try
             {
-                var forumPosts = await _forumContext.ReadAll(true, true);
+                var forumPosts = await _forumContext.ReadAll(false, true);
 
                 return Ok(forumPosts);
             }
@@ -332,6 +332,34 @@ namespace CodeHub.Controllers
                 return StatusCode(500, $"Error fetching forum posts: {ex.Message}");
             }
         }
+        [HttpPut]
+        [Route("Admin/UpdateBattle/{id}")]
+        public async Task<IActionResult> UpdateBattle(int id, [FromBody] Battle battle)
+        {
+            try
+            {
+                if (battle == null)
+                    return BadRequest("Данните за двубоя са задължителни!");
 
+                if (string.IsNullOrWhiteSpace(battle.Title))
+                    return BadRequest("Името на двубоя е задължително!");
+
+                if (battle.StartDate >= battle.EndDate)
+                    return BadRequest("Крайната дата трябва да бъде след началната дата!");
+
+                if (battle.RewardXP <= 0)
+                    return BadRequest("Наградата трябва да бъде положително число!");
+
+
+                await _battlesContext.Update(battle);
+
+                return Ok(new { success = true, message = "Двубоят е обновен успешно!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Грешка при обновяване на двубой: {ex.Message}");
+            }
+        }
+        
     }
 }
