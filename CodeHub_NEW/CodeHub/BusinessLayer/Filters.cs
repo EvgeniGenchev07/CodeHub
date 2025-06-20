@@ -19,4 +19,10 @@ public enum Filters
     Asynchronous,
     Synchronous,
     DOMAssembly,
+    React,
+    VueJs,
+    NodeJs,
+    TypeScript,
+    API,
+    DataBase,
 }
