@@ -1,4 +1,8 @@
-﻿@section Styles {
+﻿@using Azure.Core
+@using BusinessLayer
+@using System.Web
+@model List<BusinessLayer.Course>
+@section Styles {
 <link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
 }
 <!-- Page Header -->
@@ -32,7 +36,7 @@
     <div class="filters-grid">
         <div class="filter-group">
             <label class="filter-label">Търсене</label>
-            <input type="text" class="filter-input" placeholder="Търси курс..." id="search-input">
+            <input type="text" value="@(ViewBag.Search ?? "")" placeholder="Търси курс..." onchange="window.location.href = `?search=${encodeURIComponent(this.value)}&page=@ViewBag.Page&filter=@ViewBag.Filter`" class="filter-input">
         </div>
 
         <div class="filter-group">
@@ -56,30 +60,35 @@
             </select>
         </div>
 
-        <div class="filter-group">
-            <label class="filter-label">Продължителност</label>
-            <select class="filter-select" id="duration-filter">
-                <option value="">Всички</option>
-                <option value="short">До 10 часа</option>
-                <option value="medium">10-30 часа</option>
-                <option value="long">Над 30 часа</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="filter-group" style="margin-top: 20px;">
+    <div class="filter-group" style="margin-top: 5px;">
         <label class="filter-label">Популярни тагове</label>
         <div class="filter-tags">
-            <button class="filter-tag" data-tag="javascript">JavaScript</button>
-            <button class="filter-tag" data-tag="react">React</button>
-            <button class="filter-tag" data-tag="vue">Vue.js</button>
-            <button class="filter-tag" data-tag="node">Node.js</button>
-            <button class="filter-tag" data-tag="typescript">TypeScript</button>
-            <button class="filter-tag" data-tag="algorithms">Алгоритми</button>
-            <button class="filter-tag" data-tag="api">API</button>
-            <button class="filter-tag" data-tag="database">База данни</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.Js`" class="filter-tag @(ViewBag.Filter == Filters.Js ? "active" : "")">JavaScript</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.React`" class="filter-tag @(ViewBag.Filter == Filters.React ? "active" : "")">React</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.VueJs`" class="filter-tag @(ViewBag.Filter == Filters.VueJs ? "active" : "")">Vue.js</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.NodeJs`" class="filter-tag @(ViewBag.Filter == Filters.NodeJs ? "active" : "")">Node.js</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.TypeScript`" class="filter-tag @(ViewBag.Filter == Filters.TypeScript ? "active" : "")">TypeScript</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.Algorithms`" class="filter-tag @(ViewBag.Filter == Filters.Algorithms ? "active" : "")">Алгоритми</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.API`" class="filter-tag @(ViewBag.Filter == Filters.API ? "active" : "")">API</button>
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.DataBase`" class="filter-tag @(ViewBag.Filter == Filters.DataBase ? "active" : "")">База данни</button>
         </div>
     </div>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    @if (ViewBag.Page > 1)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page - 1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-left"></i></button>
+    }
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@i&filter=@ViewBag.Filter`" class="page-btn @(i == ViewBag.Page ? "active" : "")">@i</button>
+    }
+    @if (ViewBag.Page < ViewBag.TotalPages)
+    {
+        <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page + 1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+    }
 </div>
 
 <!-- Courses Grid -->
@@ -87,27 +96,19 @@
     <!-- Course Card 1 -->
     @foreach (var course in Model)
     {
-        <div class="course-card" data-level="@course.Difficulty" data-category="@course.Filters" data-duration="@course.DurationCategory">
+        <div class="course-card" data-level="@course.Difficulty" data-category="@course.Filters">
             <div class="course-header">
-                <span class="course-badge badge-@course.Difficulty.ToLower()">@course.Difficulty</span>
+                <span class="course-badge badge-@course.Difficulty.ToString().ToLower()">@course.Difficulty</span>
             </div>
 
             <div class="course-icon">
-                <i class="@course.IconClass"></i>
+                <i></i>
             </div>
 
             <h3 class="course-title">@course.Name</h3>
             <p class="course-description">@course.Description</p>
 
             <div class="course-meta">
-                <div class="meta-item">
-                    <i class="fas fa-clock"></i>
-                    <span>@course.Duration</span>
-                </div>
-                <div class="meta-item">
-                    <i class="fas fa-users"></i>
-                    <span>@course.Students+ ученици</span>
-                </div>
                 <div class="meta-item">
                     <i class="fas fa-play-circle"></i>
                     <span>@course.Lessons.Count() урока</span>
@@ -118,20 +119,10 @@
                 </div>
             </div>
 
-            <div class="course-progress">
-                <div class="progress-label">
-                    <span>Напредък</span>
-                    <span>@course.Progress%</span>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: @course.Progress%;"></div>
-                </div>
-            </div>
-
             <div class="course-tags">
-                @foreach (var tag in course.Tags)
+                @foreach (var tag in course.Filters)
                 {
-                    <span class="course-tag">@tag</span>
+                    <span class="course-tag">@tag.ToString()</span>
                 }
             </div>
 
