@@ -1,280 +1,104 @@
-﻿@section Styles {
-<link rel="stylesheet" href="~/css/battles.css" asp-append-version="true" />
-}   
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Battles";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/battles.css" asp-append-version="true" />
+}
+
 <!-- Active Battles Section -->
-<section class="active-battles">
-    <h2 class="section-title">Активни <span class="text-gradient">Двубои</span></h2>
-    <p class="section-subtitle">Присъедини се към текущите състезания и покажи своите умения срещу други програмисти</p>
+@if (Model.ActiveBattles.Count > 0)
+{
+    <section class="active-battles">
+        <h2 class="section-title">Активни <span class="text-gradient">Двубои</span></h2>
+        <p class="section-subtitle">Присъедини се към текущите състезания</p>
 
-    <div class="battles-grid">
-        <div class="battle-card">
-            <span class="battle-tag">В процес</span>
-            <h3>Оптимизиране на алгоритъм</h3>
-            <p>Състезание за най-бързо решение на класически проблем с сортиране. Напиши най-ефективната функция за сортиране на масив.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-medium"></span>
-                <span>Средно ниво</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-clock"></i> 2:35:12 остават
+        <div class="battles-grid">
+            @foreach (var battle in Model.ActiveBattles)
+            {
+                <div class="battle-card">
+                    <span class="battle-tag">В процес</span>
+                    <h3>@battle.Title</h3>
+                    <p>@battle.Description</p>
+                    <div class="battle-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i> @((battle.EndDate - DateTime.Now).ToString(@"hh\:mm\:ss")) остават
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-trophy"></i> @battle.RewardXP XP
+                        </div>
+                    </div>
+                    <div class="battle-actions">
+                        <button class="btn btn-primary">Присъедини се</button>
+                        <button class="btn btn-outline">Детайли</button>
+                    </div>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 150 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ИВ</div>
-                <div class="participant">ПК</div>
-                <div class="participant">МГ</div>
-                <div class="participant more-participants">+5</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Присъедини се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
+            }
         </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">В процес</span>
-            <h3>Създай най-добрия UI</h3>
-            <p>Двубой за създаване на най-интерактивен потребителски интерфейс с чист JavaScript. Оценява се креативност и UX.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-hard"></span>
-                <span>Напреднало</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-clock"></i> 1:12:45 остават
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 200 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">АБ</div>
-                <div class="participant">ДП</div>
-                <div class="participant more-participants">+3</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Присъедини се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">В процес</span>
-            <h3>Code Golf - Най-кратко решение</h3>
-            <p>Кой ще напише най-кратко решение на дадения проблем? Победителят е този с най-малко символи в кода.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-easy"></span>
-                <span>Начинаещ</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-clock"></i> 3:20:00 остават
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 100 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ГД</div>
-                <div class="participant">ЛМ</div>
-                <div class="participant more-participants">+8</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Присъедини се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="view-all">
-        <button class="btn btn-outline">Виж всички активни двубои</button>
-    </div>
-</section>
+    </section>
+}
 
 <!-- Upcoming Battles Section -->
-<section class="upcoming-battles">
-    <h2 class="section-title">Предстоящи <span class="text-gradient">Двубои</span></h2>
-    <p class="section-subtitle">Подготви се за следващите предизвикателства и запази място в списъка с участници</p>
+@if (Model.UpcomingBattles.Count > 0)
+{
+    <section class="upcoming-battles">
+        <h2 class="section-title">Предстоящи <span class="text-gradient">Двубои</span></h2>
+        <p class="section-subtitle">Подготви се за следващите предизвикателства</p>
 
-    <div class="battles-grid">
-        <div class="battle-card">
-            <span class="battle-tag">Започва скоро</span>
-            <h3>Битка на API-та</h3>
-            <p>Състезание за най-добра интеграция с външно API. Оценява се бързодействие и обработка на грешки.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-medium"></span>
-                <span>Средно ниво</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-calendar-alt"></i> Утре, 18:00
+        <div class="battles-grid">
+            @foreach (var battle in Model.UpcomingBattles)
+            {
+                <div class="battle-card">
+                    <span class="battle-tag">Започва скоро</span>
+                    <h3>@battle.Title</h3>
+                    <p>@battle.Description</p>
+                    <div class="battle-stats">
+                        <div class="stat">
+                            <i class="fas fa-calendar-alt"></i> @battle.StartDate.ToString("dd.MM.yyyy HH:mm")
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-trophy"></i> @battle.RewardXP XP
+                        </div>
+                    </div>
+                    <div class="battle-actions">
+                        <button class="btn btn-primary">Запиши се</button>
+                        <button class="btn btn-outline">Детайли</button>
+                    </div>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 175 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">РЗ</div>
-                <div class="participant more-participants">+2</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Запиши се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
+            }
         </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Започва скоро</span>
-            <h3>Бъгове в дивото</h3>
-            <p>Намери и поправи всички бъгове в дадения код за най-кратко време. Победителят е този с най-много поправени бъгове.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-hard"></span>
-                <span>Напреднало</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-calendar-alt"></i> След 2 дни, 20:00
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 225 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ТС</div>
-                <div class="participant">НП</div>
-                <div class="participant more-participants">+6</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Запиши се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Започва скоро</span>
-            <h3>Създай игра</h3>
-            <p>Създай проста браузърна игра с JavaScript за 2 часа. Оценява се креативност и функционалност.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-medium"></span>
-                <span>Средно ниво</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-calendar-alt"></i> Следваща седмица
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 250 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ВК</div>
-                <div class="participant more-participants">+4</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Запиши се</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="view-all">
-        <button class="btn btn-outline">Виж всички предстоящи двубои</button>
-    </div>
-</section>
+    </section>
+}
 
 <!-- Past Battles Section -->
-<section class="past-battles">
-    <h2 class="section-title">Минали <span class="text-gradient">Двубои</span></h2>
-    <p class="section-subtitle">Разгледай минали състезания и научи от решенията на победителите</p>
+@if (Model.PastBattles.Count > 0)
+{
+    <section class="past-battles">
+        <h2 class="section-title">Минали <span class="text-gradient">Двубои</span></h2>
+        <p class="section-subtitle">Разгледай минали състезания</p>
 
-    <div class="battles-grid">
-        <div class="battle-card">
-            <span class="battle-tag">Завършен</span>
-            <h3>React Компонент</h3>
-            <p>Създай преизползваем React компонент с максимална функционалност. Оценяваше се чистота на кода и документация.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-hard"></span>
-                <span>Напреднало</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-check-circle"></i> Завършен
+        <div class="battles-grid">
+            @foreach (var battle in Model.PastBattles)
+            {
+                <div class="battle-card">
+                    <span class="battle-tag">Завършен</span>
+                    <h3>@battle.Title</h3>
+                    <p>@battle.Description</p>
+                    <div class="battle-stats">
+                        <div class="stat">
+                            <i class="fas fa-check-circle"></i> Завършен
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-trophy"></i> @battle.RewardXP XP
+                        </div>
+                    </div>
+                    <div class="battle-actions">
+                        <button class="btn btn-primary">Виж решения</button>
+                        <button class="btn btn-outline">Детайли</button>
+                    </div>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 200 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ИВ</div>
-                <div class="participant">МГ</div>
-                <div class="participant more-participants">+7</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Виж решения</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
+            }
         </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Завършен</span>
-            <h3>Алгоритъм за търсене</h3>
-            <p>Състезание за най-ефективен алгоритъм за търсене в голям набор от данни. Тества се срещу различни сценарии.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-medium"></span>
-                <span>Средно ниво</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-check-circle"></i> Завършен
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 150 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ПК</div>
-                <div class="participant">АБ</div>
-                <div class="participant more-participants">+5</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Виж решения</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Завършен</span>
-            <h3>Code Review Битка</h3>
-            <p>Намери най-много проблеми в дадения код и предложи най-добрите подобрения. Оценяваха се точните забележки.</p>
-            <div class="battle-difficulty">
-                <span class="difficulty-dot difficulty-easy"></span>
-                <span>Начинаещ</span>
-            </div>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-check-circle"></i> Завършен
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 120 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ДП</div>
-                <div class="participant">ГД</div>
-                <div class="participant more-participants">+9</div>
-            </div>
-            <div class="battle-actions">
-                <button class="btn btn-primary">Виж решения</button>
-                <button class="btn btn-outline">Детайли</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="view-all">
-        <button class="btn btn-outline">Виж всички минали двубои</button>
-    </div>
-</section>
+    </section>
+}

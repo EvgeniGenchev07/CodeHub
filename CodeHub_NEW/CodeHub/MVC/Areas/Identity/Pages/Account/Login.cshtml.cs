@@ -59,27 +59,42 @@ namespace MVC.Areas.Identity.Pages.Account
             }
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
         }
-
         public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             ReturnUrl = returnUrl ?? Url.Content("~/");
+
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
-                var result = await _signInManager.CheckPasswordSignInAsync(user, Input.Password, lockoutOnFailure: true);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
+
+                var result = await _signInManager.PasswordSignInAsync(
+                    user.UserName,
+                    Input.Password,
+                    isPersistent: false,
+                    lockoutOnFailure: true);
+
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+
+                    return LocalRedirect(ReturnUrl);
                 }
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return Page();
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
             }
             return Page();
         }

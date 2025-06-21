@@ -360,6 +360,21 @@ namespace CodeHub.Controllers
                 return StatusCode(500, $"Грешка при обновяване на двубой: {ex.Message}");
             }
         }
-        
+        public async Task<IActionResult> Forum_Details(int? id)
+        {
+            if (id != null)
+            {
+                var forum = await _forumContext.Read(id.Value, true, true);
+                if (forum == null)
+                {
+                    return NotFound();
+                }
+
+                forum.Views++;
+                await _forumContext.Update(forum);
+                return PartialView(forum);
+            }
+            return RedirectToAction();
+        }
     }
 }
