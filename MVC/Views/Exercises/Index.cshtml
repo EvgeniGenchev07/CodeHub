@@ -25,16 +25,16 @@
         </div>
 
         <div class="filter-group">
-            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Easy&type=@ViewBag.Type'"
-                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Easy?"active":"")">
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=1&difficulty=@Difficulty.Easy&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty == Difficulty.Easy ? "active" : "")">
                 <i class="fas fa-bolt"></i> Лесни
             </button>
-            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Intermediate&type=@ViewBag.Type'"
-                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Intermediate?"active":"")">
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=1&difficulty=@Difficulty.Intermediate&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty == Difficulty.Intermediate ? "active" : "")">
                 <i class="fas fa-layer-group"></i> Средни
             </button>
-            <button onclick="window.location.href='?search=@(ViewBag.Search is not null?HttpUtility.UrlEncode(ViewBag.Search):"")&page=1&difficulty=@Difficulty.Hard&type=@ViewBag.Type'"
-                    class="filter-btn @(ViewBag.Difficulty==Difficulty.Hard?"active":"")">
+            <button onclick="window.location.href='?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=1&difficulty=@Difficulty.Hard&type=@ViewBag.Type'"
+                    class="filter-btn @(ViewBag.Difficulty == Difficulty.Hard ? "active" : "")">
                 <i class="fas fa-skull"></i> Трудни
             </button>
         </div>

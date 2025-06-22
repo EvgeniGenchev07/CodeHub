@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using DataLayer;
 using BusinessLayer;
+using Microsoft.AspNetCore.SignalR;
 namespace MVC
 {
     // Microsoft.VisualStudio.Web.CodeGeneration.Design v. 5.0
@@ -87,6 +88,7 @@ namespace MVC
                 options.SlidingExpiration = true;
             });
 
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,6 +118,7 @@ namespace MVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<BattleHub>("/battleHub");
             });
         }
 

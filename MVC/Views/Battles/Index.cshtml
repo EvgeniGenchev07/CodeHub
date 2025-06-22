@@ -30,8 +30,8 @@
                         </div>
                     </div>
                     <div class="battle-actions">
-                        <button class="btn btn-primary">Присъедини се</button>
-                        <button class="btn btn-outline">Детайли</button>
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Join", "Battles", new { id = battle.Id })'">Присъедини се</button>
+                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
                     </div>
                 </div>
             }
@@ -62,8 +62,8 @@
                         </div>
                     </div>
                     <div class="battle-actions">
-                        <button class="btn btn-primary">Запиши се</button>
-                        <button class="btn btn-outline">Детайли</button>
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Join", "Battles", new { id = battle.Id })'">Запиши се</button>
+                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
                     </div>
                 </div>
             }
@@ -94,8 +94,8 @@
                         </div>
                     </div>
                     <div class="battle-actions">
-                        <button class="btn btn-primary">Виж решения</button>
-                        <button class="btn btn-outline">Детайли</button>
+                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Виж решения</button>
+                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
                     </div>
                 </div>
             }
