@@ -2,7 +2,7 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/battles.css" />
     <style>
-        /* Оставете CSS стиловете непроменени */
+        /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CSS пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
         /* Keep all CSS styles unchanged */
     </style>
 }
@@ -13,7 +13,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                 </svg>
-                Обратно към двубоите
+                пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             </a>
             <h1 class="battle-title">@Model.Title</h1>
             <p class="battle-description">@Model.Description</p>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="players-container">
-            <!-- Карта на играч 1 -->
+            <!-- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1 -->
             <div class="player-card @(Model.FirstPlayer != null ? "filled" : "empty")">
                 <div class="player-avatar">
                     @if (Model.FirstPlayer is null || Model.FirstPlayer.ProfilePicture.Length == 0)
@@ -46,7 +46,7 @@
                         <img class="avatar-placeholder" alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.FirstPlayer.ProfilePicture)" />
                     }
                 </div>
-                <h3 class="player-name">@(Model.FirstPlayer?.FullName ?? "Чака се...")</h3>
+                <h3 class="player-name">@(Model.FirstPlayer?.FullName ?? "пїЅпїЅпїЅпїЅ пїЅпїЅ...")</h3>
                 @if (Model.FirstPlayer != null)
                 {
                     <div class="player-stats">
@@ -60,10 +60,10 @@
                 }
             </div>
 
-            <!-- VS лого -->
+            <!-- VS пїЅпїЅпїЅпїЅ -->
             <div class="vs-badge">VS</div>
 
-            <!-- Карта на играч 2 -->
+            <!-- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 2 -->
             <div class="player-card @(Model.SecondPlayer != null ? "filled" : "empty")">
                 <div class="player-avatar">
                     @if (Model.FirstPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
@@ -75,7 +75,7 @@
                         <img class="avatar-placeholder" alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.FirstPlayer.ProfilePicture)" />
                     }
                 </div>
-                <h3 class="player-name">@(Model.SecondPlayer?.FullName ?? "Чака се...")</h3>
+                <h3 class="player-name">@(Model.SecondPlayer?.FullName ?? "пїЅпїЅпїЅпїЅ пїЅпїЅ...")</h3>
                 @if (Model.SecondPlayer != null)
                 {
                     <div class="player-stats">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <!-- Мета информация за двубоя -->
+        <!-- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -->
         <div class="battle-meta">
             <div class="meta-item">
                 <div class="meta-icon">
@@ -100,7 +100,7 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">НАЧАЛЕН ЧАС</div>
+                    <div class="meta-label">пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ</div>
                     <div class="meta-value">@Model.StartDate.ToString("dd MMM yyyy, HH:mm")</div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">КРАЕН ЧАС</div>
+                    <div class="meta-label">пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ</div>
                     <div class="meta-value">@Model.EndDate.ToString("dd MMM yyyy, HH:mm")</div>
                 </div>
             </div>
@@ -125,13 +125,13 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">НАГРАДА</div>
-                    <div class="meta-value">@Model.RewardXP XP Точки</div>
+                    <div class="meta-label">пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</div>
+                    <div class="meta-value">@Model.RewardXP XP пїЅпїЅпїЅпїЅпїЅ</div>
                 </div>
             </div>
         </div>
 
-        <!-- Секция за статус на двубоя -->
+        <!-- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -->
         <div class="battle-status">
             @if (Model.EndDate < DateTime.Now)
             {
@@ -139,7 +139,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0.5rem;">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                     </svg>
-                    Двубоят приключи
+                    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 </div>
                 <div class="players-list" id="players-list">
                     @if (Model.FirstPlayer != null)
@@ -180,7 +180,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0.5rem;">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                     </svg>
-                    Готов за двубой - 2/2 Играчи
+                    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - 2/2 пїЅпїЅпїЅпїЅпїЅпїЅ
                 </div>
                 <div class="countdown" id="countdown-timer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -188,7 +188,7 @@
                         <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z" />
                         <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                     </svg>
-                    <span id="countdown-text">Изчислява се...</span>
+                    <span id="countdown-text">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ...</span>
                 </div>
             }
             else
@@ -198,7 +198,7 @@
                         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                     </svg>
-                    Чакане на играчи - @((Model.FirstPlayer != null ? 1 : 0) + (Model.SecondPlayer != null ? 1 : 0))/2
+                    пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - @((Model.FirstPlayer != null ? 1 : 0) + (Model.SecondPlayer != null ? 1 : 0))/2
                 </div>
                 <div class="players-list" id="players-list">
                     @if (Model.FirstPlayer != null)
@@ -237,13 +237,13 @@
             }
         </div>
 
-        <!-- Действия за двубоя -->
+        <!-- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -->
         <div class="battle-actions justify-content-between">
             <a href="/Battles" class="action-btn btn-outline">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                 </svg>
-                Обратно към списъка
+                пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             </a>
             @if (Model.EndDate < DateTime.Now)
             {
@@ -253,7 +253,7 @@
                         <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0-1A4 4 0 1 0 8 4a4 4 0 0 0 0 8z" />
                         <path d="M8 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
-                    Виж резултати
+                    пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 </a>
             }
             else if (Model.FirstPlayer == null || Model.SecondPlayer == null)
@@ -263,7 +263,7 @@
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
-                    Присъедини се
+                    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
                 </a>
             }
             else if (Model.StartDate > DateTime.Now)
@@ -273,7 +273,7 @@
                         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                     </svg>
-                    Двубоят започва скоро
+                    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                 </button>
             }
             else if (Model.EndDate > DateTime.Now)
@@ -282,7 +282,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                     </svg>
-                    Започни двубой
+                    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 </a>
             }
             else
@@ -292,7 +292,7 @@
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
                     </svg>
-                    Двубоят изтече
+                    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 </button>
             }
         </div>
