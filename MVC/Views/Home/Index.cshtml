@@ -156,68 +156,47 @@ console.log(result);</code></pre>
 <section class="section" id="battles">
     <h2 class="section-title">Активни <span class="text-gradient">Двубои</span></h2>
 
-    <div class="battles">
-        <div class="battle-card">
-            <span class="battle-tag">В процес</span>
-            <h3>Оптимизиране на алгоритъм</h3>
-            <p>Състезание за най-бързо решение на класически проблем с сортиране</p>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-clock"></i> 2:35:12
+    @if (Model.Battles.Any())
+    {
+        <div class="battles">
+            @foreach (var battle in Model.Battles)
+            {
+                <div class="battle-card">
+                    @{
+                        var battleStatus = "";
+                        if (DateTime.Now < battle.StartDate)
+                        {
+                            battleStatus = "Започва скоро";
+                        }
+                        else if (DateTime.Now > battle.EndDate)
+                        {
+                            battleStatus = "Завършен";
+                        }
+                        else
+                        {
+                            battleStatus = "В процес";
+                        }
+                    }
+                    <span class="battle-tag">@battleStatus</span>
+                    <h3>@battle.Title</h3>
+                    <p>@battle.Description</p>
+                    <div class="battle-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i> @battle.StartDate.ToString("dd.MM.yyyy HH:mm") - @battle.EndDate.ToString("dd.MM.yyyy HH:mm")
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-trophy"></i> @battle.RewardXP XP
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Присъедини се</button>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 50 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ИВ</div>
-                <div class="participant">ПК</div>
-                <div class="participant">МГ</div>
-                <div class="participant more-participants">+5</div>
-            </div>
-            <button class="btn btn-primary">Присъедини се</button>
+            }
         </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Започва скоро</span>
-            <h3>Създай най-добрия UI</h3>
-            <p>Двубой за създаване на най-интерактивен потребителски интерфейс</p>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-clock"></i> 1:00:00
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 75 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">АБ</div>
-                <div class="participant">ДП</div>
-                <div class="participant more-participants">+3</div>
-            </div>
-            <button class="btn btn-outline">Изчакай</button>
-        </div>
-
-        <div class="battle-card">
-            <span class="battle-tag">Завършен</span>
-            <h3>Code Golf - Най-кратко решение</h3>
-            <p>Кой ще напише най-кратко решение на дадения проблем?</p>
-            <div class="battle-stats">
-                <div class="stat">
-                    <i class="fas fa-check-circle"></i> Завършен
-                </div>
-                <div class="stat">
-                    <i class="fas fa-trophy"></i> 30 XP
-                </div>
-            </div>
-            <div class="battle-participants">
-                <div class="participant">ГД</div>
-                <div class="participant">ЛМ</div>
-                <div class="participant more-participants">+8</div>
-            </div>
-            <button class="btn btn-outline">Виж резултати</button>
-        </div>
-    </div>
+    }
+    else
+    {
+        <p>В момента няма активни двубои. Проверете по-късно!</p>
+    }
 </section>
 
 <!-- Forum Section -->
