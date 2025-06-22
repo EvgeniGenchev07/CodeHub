@@ -16,7 +16,6 @@
     <button class="category-btn active">Всички</button>
     <button class="category-btn">Общи</button>
     <button class="category-btn">Курсове</button>
-    <button class="category-btn">Плащания</button>
     <button class="category-btn">Сертификати</button>
     <button class="category-btn">Технически</button>
 </div>
@@ -54,18 +53,6 @@
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-text">
-                        <i class="fas fa-question-circle faq-icon"></i>
-                        Има ли безплатни курсове?
-                    </div>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Да, предлагаме няколко безплатни курса за начинаещи, които искат да опознаят основите на програмирането. Можете да ги намерите в секцията "Курсове", филтрирани като "Безплатни".</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -83,7 +70,7 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>За да се запишете на курс, трябва първо да създадете акаунт в CodeBattle. След това можете да изберете желания курс от страницата с курсове и да кликнете върху бутона "Запиши се". Ще бъдете пренасочени към страница за плащане, ако курса е платен.</p>
+                    <p>За да се запишете на курс, трябва първо да създадете акаунт в CodeBattle. След това можете да изберете желания курс от страницата с курсове и да кликнете върху бутона "Запиши се".</p>
                 </div>
             </div>
 
@@ -115,51 +102,6 @@
         </div>
     </section>
 
-    <!-- Payments Questions -->
-    <section class="faq-section">
-        <h2 class="section-title"><i class="fas fa-credit-card"></i> Плащания и Абонаменти</h2>
-
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-text">
-                        <i class="fas fa-question-circle faq-icon"></i>
-                        Какви са методите на плащане?
-                    </div>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Приемаме плащания с кредитни и дебитни карти (Visa, Mastercard), банков превод, както и чрез PayPal. Всички транзакции са защитени с криптиране и обработвани от лицензирани платежни системи.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-text">
-                        <i class="fas fa-question-circle faq-icon"></i>
-                        Мога ли да получа refund ако не съм доволен от курса?
-                    </div>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Да, предлагаме 14-дневна гаранция за връщане на парите за всички платени курсове. Ако не сте доволни от съдържанието, можете да поискате refund чрез секцията "Моите курсове" в профила си.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <div class="question-text">
-                        <i class="fas fa-question-circle faq-icon"></i>
-                        Предлагате ли корпоративни обучения?
-                    </div>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Да, предлагаме персонализирани корпоративни обучения за екипи. Можете да се свържете с нашия отдел за продажби на corporate@codebattle.bg за повече информация и персонална оферта.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Certificates Questions -->
     <section class="faq-section">
@@ -260,13 +202,13 @@
     <p class="cta-text">
         Нашият екип е винаги готов да ви помогне. Свържете се с нас чрез формата за контакт и ние ще ви отговорим в най-кратки срокове.
     </p>
-    <a href="#" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Свържете се с нас</a>
+    <a href="/AboutUs/Contacts" class="btn btn-primary btn-lg"><i class="fas fa-envelope"></i> Свържете се с нас</a>
 </section>
 
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // FAQ accordion functionality
+
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
@@ -283,7 +225,6 @@
                 });
             });
 
-            // Category filter functionality
             const categoryBtns = document.querySelectorAll('.category-btn');
             categoryBtns.forEach(btn => {
                 btn.addEventListener('click', function () {
@@ -292,26 +233,45 @@
 
                     const category = this.textContent.trim();
                     const sections = document.querySelectorAll('.faq-section');
-                    if (category === 'Всички') {
+
+
+                    sections.forEach(section => section.style.display = 'block');
+
+                    if (category !== 'Всички') {
+
+                        sections.forEach(section => {
+                            const sectionTitle = section.querySelector('.section-title').textContent;
+                            if (!sectionTitle.includes(getCategoryKeyword(category))) {
+                                section.style.display = 'none';
+                            }
+                        });
+                    }
+
+
+                    const firstVisibleSection = document.querySelector('.faq-section[style="display: block;"]') ||
+                                              document.querySelector('.faq-section');
+                    if (firstVisibleSection) {
                         window.scrollTo({
-                            top: document.querySelector('.faq-sections').offsetTop - 100,
+                            top: firstVisibleSection.offsetTop - 100,
                             behavior: 'smooth'
                         });
-                    } else if (category === 'Общи') {
-                        sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else if (category === 'Курсове') {
-                        sections[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else if (category === 'Плащания') {
-                        sections[2].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else if (category === 'Сертификати') {
-                        sections[3].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else if (category === 'Технически') {
-                        sections[4].scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
             });
 
-            // Smooth scrolling for anchor links
+            function getCategoryKeyword(category) {
+                const map = {
+                    'Общи': 'Общи',
+                    'Курсове': 'Курсове',
+                    'Сертификати': 'Сертификати',
+                    'Технически': 'Технически'
+                };
+                return map[category] || '';
+            }
+
+
+            document.querySelector('.category-btn.active').click();
+
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -324,7 +284,6 @@
                 });
             });
 
-            // FAQ item hover effect
             faqItems.forEach(item => {
                 item.addEventListener('mouseenter', function () {
                     if (!this.classList.contains('active')) {

@@ -25,7 +25,13 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         var homeViewModel = new HomeViewModel();
-        homeViewModel.Battles = (await _battleContext.ReadAll(true, true)).TakeLast(3).ToList();
+        var allBattles = await _battleContext.ReadAll(true, true);
+        var activeBattles = allBattles
+            .Where(b => b.StartDate <= DateTime.Now && b.EndDate >= DateTime.Now)
+            .OrderByDescending(b => b.StartDate)
+            .Take(3)
+            .ToList();
+        homeViewModel.Battles = activeBattles;
         homeViewModel.Forums = (await _forumContext.ReadAll(true, true)).TakeLast(3).ToList();
         homeViewModel.Courses = (await _courseContext.ReadAll(true, true)).TakeLast(3).ToList();
         return View(homeViewModel);

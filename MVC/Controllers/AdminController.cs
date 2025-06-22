@@ -26,6 +26,10 @@ namespace CodeHub.Controllers
             _exercisesContext = exerciseContext;
             _forumContext = forumContext;
         }
+        public async Task<IActionResult> Back()
+        {
+            return RedirectToAction("Index","Home");
+        }
         public async Task<IActionResult> Exercises()
         {
             return PartialView();
@@ -323,7 +327,7 @@ namespace CodeHub.Controllers
         {
             try
             {
-                var forumPosts = await _forumContext.ReadAll(false, true);
+                var forumPosts = await _forumContext.ReadAll(true, true);
 
                 return Ok(forumPosts);
             }

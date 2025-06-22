@@ -116,6 +116,7 @@ header {
         font-weight: 500;
         padding: 15px 20px;
         transition: all 0.3s;
+        gap: 8px;
         border-bottom: 3px solid transparent;
     }
 
