@@ -27,4 +27,10 @@ public class Forum
         Date = DateTime.Now;
         Views = 0;
     }
+
+    public Forum(string title, string content, User author, List<Filters> filters) : this(title, content, author)
+    {
+        Filters = filters;
+    }
+
 }
