@@ -1,0 +1,311 @@
+﻿:root {
+    --primary: #00f7ff;
+    --secondary: #ff00e4;
+    --dark: #0a0a1a;
+    --darker: #050510;
+    --light: #ffffff;
+    --gray: #cccccc;
+    --input-bg: rgba(0, 0, 0, 0.5);
+    --input-border: rgba(0, 247, 255, 0.3);
+    --neon-glow: 0 0 10px var(--primary);
+    --text-glow: 0 0 5px var(--primary);
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-content {
+    background-color: rgba(10, 10, 26, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+    border: 1px solid var(--input-border);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin-header {
+    margin-bottom: 30px;
+}
+
+.admin-title {
+    color: var(--primary);
+    font-size: 2rem;
+    text-shadow: var(--text-glow);
+}
+
+.form-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    flex: 1;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: var(--neon-glow);
+    }
+
+.form-text {
+    display: block;
+    margin-top: 8px;
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.profile-picture-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+.profile-picture-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.profile-picture-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+    box-shadow: var(--neon-glow);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+    .profile-picture-container:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px var(--primary);
+    }
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.profile-picture-container:hover .profile-picture-overlay {
+    opacity: 1;
+}
+
+.profile-picture-overlay i {
+    color: var(--primary);
+    font-size: 2.5rem;
+    text-shadow: var(--text-glow);
+}
+
+.profile-picture-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+    .input-with-icon i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+
+.password-change-card {
+    background-color: rgba(5, 5, 16, 0.6);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 30px 0;
+    transition: all 0.3s;
+}
+
+    .password-change-card:hover {
+        border-color: var(--primary);
+        box-shadow: var(--neon-glow);
+    }
+
+.password-change-title {
+    color: var(--primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+    .btn-outline:hover {
+        background: rgba(0, 247, 255, 0.1);
+        box-shadow: var(--neon-glow);
+    }
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: var(--darker);
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+    }
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Notification styles */
+.custom-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(0);
+    transition: all 0.3s ease;
+    max-width: 350px;
+}
+
+    .custom-notification.success {
+        background: linear-gradient(135deg, #00b09b, #96c93d);
+    }
+
+    .custom-notification.error {
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    }
+
+    .custom-notification.fade-out {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+.notification-content i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 992px) {
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-picture-group {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 20px;
+    }
+
+    .profile-picture-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .password-change-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-title {
+        font-size: 1.5rem;
+    }
+
+    .profile-picture-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        padding: 10px 15px 10px 40px;
+    }
+}

@@ -40,7 +40,7 @@ public class IndexModel : PageModel
         ProfilePicture = user.ProfilePicture;
         Points = user.Points;
         Level = user.Level;
-        Courses = user.Courses?.ToList() ?? new List<Course>();
+        Courses = user.Courses?.Select(uc => uc.Course).ToList() ?? new List<Course>();
         UserForums = await _dbContext.Forums
        .Where(f => f.Author.Id == user.Id)
        .OrderByDescending(f => f.Date)

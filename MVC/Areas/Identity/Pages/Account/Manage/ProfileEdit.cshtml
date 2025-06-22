@@ -1,0 +1,206 @@
+﻿@page
+@model CodeHub.Areas.Identity.Pages.Account.Manage.ProfileEditModel
+@{
+    ViewData["Title"] = "Редактиране";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/profile_edit.css">
+</head>
+<body>
+    <div class="admin-main">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1 class="admin-title">Редактиране</h1>
+            </div>
+
+            <div class="admin-form">
+                <form id="profileForm" enctype="multipart/form-data" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-row">
+                        <!-- Profile Picture Upload -->
+                        <div class="form-group profile-picture-group">
+                            <label class="form-label">Профилна снимка</label>
+                            <div class="profile-picture-wrapper">
+                                <div class="profile-picture-container">
+                                    @if (Model.ProfilePicture != null && Model.ProfilePicture.Length > 0)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
+                                             alt="Profile Picture"
+                                             class="profile-picture"
+                                             id="profile-picture-preview">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/avatar.jpg"
+                                             alt="Default Profile Picture"
+                                             class="profile-picture"
+                                             id="profile-picture-preview">
+                                    }
+                                    <div class="profile-picture-overlay">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                </div>
+                                <input type="file" id="profile-picture-input" name="profilePicture"
+                                       class="profile-picture-input" accept="image/*">
+                            </div>
+                            <small class="form-text">JPG, PNG supported</small>
+                        </div>
+
+                        <!-- Account Info -->
+                        <div class="form-group account-info-group">
+                            <div class="form-group">
+                                <label for="username" class="form-label">Username</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="username" name="username" class="form-control"
+                                           value="@Model.Username" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password Change Section -->
+                    <div class="password-change-card">
+                        <h3 class="password-change-title">
+                            <i class="fas fa-key"></i> Смяна на паролата
+                        </h3>
+                        <div class="form-group">
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="currentPassword" name="currentPassword"
+                                       class="form-control" placeholder="Сегашна парола">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock-open"></i>
+                                <input type="password" id="newPassword" name="newPassword"
+                                       class="form-control" placeholder="Нова парола">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-with-icon">
+                                <i class="fas fa-check-circle"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                       class="form-control" placeholder="Потвърдете новата парола">
+                            </div>
+                        </div>
+                        <small class="form-text">Оставете празно, за да запазите вашата парола</small>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-footer">
+                        <button type="button" class="btn btn-outline" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i> Назад
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Запазете промените
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('profileForm');
+                const profilePicInput = document.getElementById('profile-picture-input');
+                const currentProfilePic = document.getElementById('profile-picture-preview');
+
+                // Profile picture preview
+                profilePicInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            currentProfilePic.src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                // Form submission
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+                    try {
+                        const formData = new FormData(form);
+                        const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+                        const response = await fetch('/Identity/Account/Manage/ProfileEdit', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'RequestVerificationToken': token
+                            }
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            showNotification(result.message || 'Profile updated successfully!', 'success');
+
+                            if (result.profilePictureUrl) {
+                                currentProfilePic.src = result.profilePictureUrl + '?' + new Date().getTime();
+                            }
+                        } else {
+                            if (response.status === 400) {
+                                try {
+                                    const error = await response.json();
+                                    showNotification(error.message || 'Failed to update profile', 'error');
+                                } catch {
+                                    showNotification('Invalid request data', 'error');
+                                }
+                            } else {
+                                showNotification('An error occurred', 'error');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showNotification('An error occurred while updating the profile', 'error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+                    }
+                });
+
+                function showNotification(message, type) {
+                    // Remove any existing notifications
+                    const existingNotifications = document.querySelectorAll('.custom-notification');
+                    existingNotifications.forEach(notification => notification.remove());
+
+                    const notification = document.createElement('div');
+                    notification.className = `custom-notification ${type}`;
+                    notification.innerHTML = `
+                        <div class="notification-content">
+                            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                            <span>${message}</span>
+                        </div>
+                    `;
+
+                    document.body.appendChild(notification);
+
+                    // Auto-remove after 5 seconds
+                    setTimeout(() => {
+                        notification.classList.add('fade-out');
+                        setTimeout(() => notification.remove(), 300);
+                    }, 5000);
+                }
+            });
+        </script>
+    }
+</body>
+</html>
