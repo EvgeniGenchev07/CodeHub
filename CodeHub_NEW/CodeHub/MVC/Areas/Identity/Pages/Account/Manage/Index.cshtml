@@ -280,11 +280,17 @@
             <div class="profile-card">
                 @if (Model.ProfilePicture != null && Model.ProfilePicture.Length > 0)
                 {
-                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Profile Picture" class="profile-picture" id="profile-picture">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
+                         alt="Profile Picture"
+                         class="profile-picture"
+                         id="profile-picture">
                 }
                 else
                 {
-                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture" id="profile-picture">
+                    <img src="~/images/avatar.jpg"
+                         alt="Default Profile Picture"
+                         class="profile-picture"
+                         id="profile-picture">
                 }
                 <h2 class="profile-name" id="profile-name">@Model.Username</h2>
                 <p class="profile-email" id="profile-email">@Model.Email</p>
