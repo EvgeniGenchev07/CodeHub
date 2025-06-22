@@ -1,5 +1,9 @@
 ﻿using BusinessLayer;
 using DataLayer;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
@@ -7,33 +11,33 @@ namespace MVC.Controllers
     public class CoursesController : Controller
     {
         private readonly CoursesContext _coursesContext;
-
-        public CoursesController(CoursesContext coursesContext)
+        private readonly IdentityContext _context;
+        private const int pageSize = 10;
+        public CoursesController(CoursesContext coursesContext,IdentityContext identityContext)
         {
             _coursesContext = coursesContext;
+            _context = identityContext;
         }
 
         // GET: Course
-        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null, [FromQuery] Difficulty? level = null)
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] string search = null, [FromQuery]Filters? filter = null, [FromQuery] Difficulty? level = null)
         {
             try
             {
-                var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
-                allCourses = new List<Course>()
+                //var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
+                var allCourses = new List<Course>()
                 {
                     new Course()
                     {
                         Filters = new List<Filters>() { Filters.Algorithms },
                         Description = "dasdad",
                         Name = "dasdad",
-                        Lectors = new List<Lector>()
-                        {
+                        Lector= 
                             new Lector()
                             {
                                 Name = "Adada",
                                 Description = "dasdad"
-                            }
-                        },
+                            },
                         Lessons = new List<Lesson>()
                         {
                             new Lesson()
@@ -63,13 +67,16 @@ namespace MVC.Controllers
                 if (!string.IsNullOrWhiteSpace(search))
                     allCourses = allCourses.FindAll(c => c.Name.Contains(search, StringComparison.OrdinalIgnoreCase) || c.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
                 if (level.HasValue && level.Value != 0)
-                    allCourses = allCourses.FindAll(c => c.Difficulty == level.Value);
+                    allCourses = allCourses.FindAll(c => c.Difficulty == level);
+                if (filter.HasValue && filter.Value != 0)
+                    allCourses = allCourses.FindAll(c=>c.Filters.Any(f=>f == filter));
                 // Pagination
                 int totalCourses = allCourses.Count;
                 int totalPages = (int)Math.Ceiling(totalCourses / (double)pageSize);
                 allCourses = allCourses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
                 ViewBag.Page = page;
                 ViewBag.TotalPages = totalPages;
+                ViewBag.Filter = filter;
                 ViewBag.Search = search;
                 ViewBag.Level = level;
                 return View(allCourses);
@@ -97,14 +104,12 @@ namespace MVC.Controllers
                         Filters = new List<Filters>() { Filters.Algorithms },
                         Description = "dasdad",
                         Name = "dasdad",
-                        Lectors = new List<Lector>()
-                        {
+                        Lector = 
                             new Lector()
                             {
                                 Name = "Adada",
                                 Description = "dasdad"
-                            }
-                        },
+                            },
                         Lessons = new List<Lesson>()
                         {
                             new Lesson()
@@ -129,6 +134,15 @@ namespace MVC.Controllers
                         },
                         Difficulty = Difficulty.Easy,
                     };
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        User user = await _context.ReadUserAsync(User.Identity.GetUserId());
+                        if (user != null)
+                        {
+                            UserCourse userCourse = user.Courses.FirstOrDefault(course => course.Id == id);
+                            return View(userCourse);
+                        }
+                    }
                 if (course == null)
                 {
                     TempData["ErrorMessage"] = $"Course with ID {id} not found";
@@ -142,7 +156,25 @@ namespace MVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = await _context.ReadUserAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    Course course = await _coursesContext.Read(id);
+                    UserCourse userCourse = new UserCourse() { Course = course, User = user,Completion = 0};
+                    user.Courses.Add(userCourse);
+                    course.Students++;
+                    await _context.Save();
+                    return View(userCourse);
+                }
+            }
+            return View(_coursesContext.Read(id).Result);
+        }
         // GET: Course/Create
         public IActionResult Create()
         {

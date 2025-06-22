@@ -90,6 +90,10 @@ namespace DataLayer
             }
         }
 
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
+        }
         /* public async Task UpdateUserAsync(string id, string username, string name, int age)
          {
              try

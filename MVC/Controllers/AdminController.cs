@@ -141,13 +141,10 @@ namespace CodeHub.Controllers
                     return BadRequest("Описанието на курса е задължително!");
 
                 // Validate Lectors (if provided)
-                if (course.Lectors != null)
+                if (course.Lector != null)
                 {
-                    foreach (var lector in course.Lectors)
-                    {
-                        if (lector.Id <= 0)
+                        if (course.Lector.Id <= 0)
                             return BadRequest("Всеки лектор трябва да има валидно ID.");
-                    }
                 }
 
                 // Validate Lessons (if provided)
