@@ -1,23 +1,29 @@
-﻿@model dynamic
+﻿@using BusinessLayer
+@model dynamic
 @{
     ViewData["Title"] = "Battles";
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/battles.css" asp-append-version="true" />
+    <style>
+        .battle-card{
+            cursor: pointer;
+        }
+    </style>
 }
 
 <!-- Active Battles Section -->
 @if (Model.ActiveBattles.Count > 0)
 {
-    <section class="active-battles">
+    <section class="active-battles mt-5" style="margin-top: 2rem">
         <h2 class="section-title">Активни <span class="text-gradient">Двубои</span></h2>
         <p class="section-subtitle">Присъедини се към текущите състезания</p>
 
         <div class="battles-grid">
             @foreach (var battle in Model.ActiveBattles)
             {
-                <div class="battle-card">
+                <div class="battle-card" data-id="@battle.Id">
                     <span class="battle-tag">В процес</span>
                     <h3>@battle.Title</h3>
                     <p>@battle.Description</p>
@@ -29,12 +35,9 @@
                             <i class="fas fa-trophy"></i> @battle.RewardXP XP
                         </div>
                     </div>
-                    <div class="battle-actions">
-                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Join", "Battles", new { id = battle.Id })'">Присъедини се</button>
-                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
-                    </div>
                 </div>
             }
+            
         </div>
     </section>
 }
@@ -47,9 +50,9 @@
         <p class="section-subtitle">Подготви се за следващите предизвикателства</p>
 
         <div class="battles-grid">
-            @foreach (var battle in Model.UpcomingBattles)
+            @foreach (var battle in Model.UpcomingBattles as List<Battle>)
             {
-                <div class="battle-card">
+                <div class="battle-card" data-id="@battle.Id">
                     <span class="battle-tag">Започва скоро</span>
                     <h3>@battle.Title</h3>
                     <p>@battle.Description</p>
@@ -61,13 +64,10 @@
                             <i class="fas fa-trophy"></i> @battle.RewardXP XP
                         </div>
                     </div>
-                    <div class="battle-actions">
-                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Join", "Battles", new { id = battle.Id })'">Запиши се</button>
-                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
-                    </div>
                 </div>
             }
         </div>
+
     </section>
 }
 
@@ -78,10 +78,10 @@
         <h2 class="section-title">Минали <span class="text-gradient">Двубои</span></h2>
         <p class="section-subtitle">Разгледай минали състезания</p>
 
-        <div class="battles-grid">
+        <div class="battles-grid" >
             @foreach (var battle in Model.PastBattles)
             {
-                <div class="battle-card">
+                <div class="battle-card" data-id="@battle.Id">
                     <span class="battle-tag">Завършен</span>
                     <h3>@battle.Title</h3>
                     <p>@battle.Description</p>
@@ -93,12 +93,17 @@
                             <i class="fas fa-trophy"></i> @battle.RewardXP XP
                         </div>
                     </div>
-                    <div class="battle-actions">
-                        <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Виж решения</button>
-                        <button class="btn btn-outline" onclick="location.href='@Url.Action("Details", "Battles", new { id = battle.Id })'">Детайли</button>
-                    </div>
                 </div>
             }
         </div>
+        
     </section>
+}
+@section Scripts
+{
+    <script>
+                document.querySelectorAll(".battle-card").forEach(el=>el.addEventListener("click", event => {
+                    location.href = `Battles/Details/${el.getAttribute("data-id")}`;
+                }))
+            </script>
 }
