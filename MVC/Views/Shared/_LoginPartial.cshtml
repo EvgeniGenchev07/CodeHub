@@ -7,11 +7,22 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        var user = await UserManager.GetUserAsync(User);
+        var hasProfilePicture = user?.ProfilePicture != null && user.ProfilePicture.Length > 0;
+
         @if (User.IsInRole("Administrator"))
         {
             <li class="nav-item">
                 <a asp-controller="Admin" asp-action="Index" class="user-icon">
-                    <img src="~/images/admin.jpg" alt="" class="avatar" />
+                    @if (hasProfilePicture)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePicture)"
+                             alt="Admin Profile" class="avatar" />
+                    }
+                    else
+                    {
+                        <img src="~/images/admin.jpg" alt="Admin" class="avatar" />
+                    }
                 </a>
             </li>
         }
@@ -19,7 +30,15 @@
         {
             <li class="nav-item">
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" class="user-icon">
-                    <img src="~/images/avatar.jpg" alt="" class="avatar" />
+                    @if (hasProfilePicture)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePicture)"
+                             alt="User Profile" class="avatar" />
+                    }
+                    else
+                    {
+                        <img src="~/images/avatar.jpg" alt="User" class="avatar" />
+                    }
                 </a>
             </li>
         }
@@ -27,8 +46,12 @@
     else
     {
         <div class="user-actions">
-            <a asp-area="Identity" id="login" asp-page="/Account/Login" class="btn btn-outline"><i class="fas fa-sign-in-alt"></i> Вход</a>
-            <a asp-area="Identity" id="register" asp-page="/Account/Register" class="btn btn-primary"><i class="fas fa-user-plus"></i> Регистрация</a>
+            <a asp-area="Identity" id="login" asp-page="/Account/Login" class="btn btn-outline">
+                <i class="fas fa-sign-in-alt"></i> Вход
+            </a>
+            <a asp-area="Identity" id="register" asp-page="/Account/Register" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Регистрация
+            </a>
         </div>
     }
 </ul>
