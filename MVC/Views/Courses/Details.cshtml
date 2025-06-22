@@ -4,14 +4,6 @@
 }
 <!-- Course Header -->
 <section class="course-header">
-    <div class="course-breadcrumb">
-        <a href="#">Начало</a>
-        <i class="fas fa-chevron-right"></i>
-        <a href="#">Курсове</a>
-        <i class="fas fa-chevron-right"></i>
-        <span>@Model.Name</span>
-    </div>
-
     <div class="course-title-section">
         <div class="course-title-content">
             <span class="course-badge badge-beginner">Начинаещ</span>
@@ -25,426 +17,395 @@
                     <i class="fas fa-clock"></i> @Model.Lessons.Count()
                 </div>
                 <div class="meta-item">
-                    <i class="fas fa-chart-line"></i> 1500+ ученици
+                    <i class="fas fa-chart-line"></i> @Model.Students ученици
                 </div>
             </div>
 
             <div class="course-actions">
-                <button class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни курс</button>
-                <button class="btn btn-outline btn-lg"><i class="fas fa-heart"></i> Добави в любими</button>
+                <form asp-action="Details" asp-controller="Courses" asp-all-route-id="@Model.Id">
+                    <button type="submit" value="Details" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни курс</button>
+                </form>
             </div>
         </div>
 
         <div class="course-image">
-            <i class="fab fa-js"></i>
+            <i class="fab fa-@Model.Filters.First().ToString().ToLower()"></i>
         </div>
     </div>
 </section>
 
 <!-- Course Progress -->
-<section class="course-progress-section">
-    <div class="progress-header">
-        <div>
-            <h3 class="progress-title">Твоят напредък</h3>
-            <p class="progress-subtitle">Завърши 30% от курса</p>
-        </div>
-        <button class="btn btn-outline btn-sm"><i class="fas fa-certificate"></i> Сертификат</button>
-    </div>
 
-    <div class="progress-bar-container">
-        <div class="progress-bar-bg">
-            <div class="progress-bar-fill" style="width: 30%;"></div>
-        </div>
-        <div class="progress-stats">
-            <span>6/20 урока</span>
-            <span>30%</span>
-        </div>
-    </div>
-</section>
+@if (User.Identity.IsAuthenticated)
+{
+    <section class="course-progress-section">
 
+        <div class="progress-header">
+            <div>
+                <h3 class="progress-title">Твоят напредък</h3>
+                <p class="progress-subtitle">Завърши 30% от курса</p>
+            </div>
+            <button class="btn btn-outline btn-sm"><i class="fas fa-certificate"></i> Сертификат</button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 30%;"></div>
+            </div>
+            <div class="progress-stats">
+                <span>6/20 урока</span>
+                <span>30%</span>
+            </div>
+        </div>
+    </section>
+}
 <!-- Course Content -->
-<div class="course-content">
-    <!-- Main Content -->
-    <div class="course-main">
-        <!-- Current Lesson -->
-        <section class="lesson-content">
-            <div class="lesson-header">
-                <h2 class="lesson-title">Функции в JavaScript</h2>
-                <div class="lesson-meta">
-                    <span><i class="fas fa-play-circle"></i> Урок 6 от 20</span>
-                    <span><i class="fas fa-clock"></i> 15 минути</span>
+    <div class="course-content">
+        <!-- Main Content -->
+        <div class="course-main">
+            @if(User.Identity.IsAuthenticated)
+            {
+            <!-- Current Lesson -->
+            <section class="lesson-content">
+                <div class="lesson-header">
+                    <h2 class="lesson-title">Функции в JavaScript</h2>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-play-circle"></i> Урок 6 от 20</span>
+                        <span><i class="fas fa-clock"></i> 15 минути</span>
+                    </div>
+                </div>
+
+                <div class="lesson-text">
+                    <p>Функциите са една от основните градивни елементи в JavaScript. Те позволяват да групирате набор от команди, които изпълняват конкретна задача и могат да бъдат извиквани многократно.</p>
+
+                    <h3>Деклариране на функции</h3>
+                    <p>Има няколко начина за деклариране на функция:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                            <span class="code-title">functions.js</span>
+                        </div>
+
+                    </div>
+
+                    <h3>Параметри и аргументи</h3>
+                    <p>Функциите могат да приемат параметри, които се подават като аргументи при извикването им:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                            <span class="code-title">parameters.js</span>
+                        </div>
+
+                    </div>
+
+                    <h3>Обхват на функциите</h3>
+                    <p>Функциите имат собствен обхват (scope). Променливи, декларирани вътре в функция, не са достъпни извън нея:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-dot red"></span>
+                            <span class="code-dot yellow"></span>
+                            <span class="code-dot green"></span>
+                            <span class="code-title">scope.js</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="lesson-actions">
+                    <button class="action-btn prev-btn">
+                        <i class="fas fa-arrow-left"></i> Предишен урок
+                    </button>
+
+                    <button class="action-btn complete-btn">
+                        <i class="fas fa-check-circle"></i> Маркирай като завършен
+                    </button>
+
+                    <button class="action-btn next-btn">
+                        Следващ урок <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+            }
+            <!-- Course Modules -->
+            <section class="modules-section">
+                <h2 class="section-title">Съдържание на <span class="text-gradient">курса</span></h2>
+
+                <div class="modules-list">
+                    <!-- Module 1 -->
+                    @foreach (var lesson in Model.Lessons)
+                    {
+                        
+                    <div class="module-card completed">
+                        <div class="module-header">
+                            <div class="module-title">
+                                <i class="fas fa-chevron-right module-icon"></i>
+                                <span>1. Въведение в JavaScript</span>
+                            </div>
+                            <span class="module-status completed">Завършен</span>
+                        </div>
+
+                        <div class="module-content">
+                            <div class="lessons-list">
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">1.1 Какво е JavaScript?</div>
+                                    <div class="lesson-duration">8 мин</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    <div class="module-card completed">
+                        <div class="module-header">
+                            <div class="module-title">
+                                <i class="fas fa-chevron-right module-icon"></i>
+                                <span>2. Променливи и типове данни</span>
+                            </div>
+                            <span class="module-status completed">Завършен</span>
+                        </div>
+
+                        <div class="module-content">
+                            <div class="lessons-list">
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">2.1 Деклариране на променливи</div>
+                                    <div class="lesson-duration">10 мин</div>
+                                </div>
+
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">2.2 Основни типове данни</div>
+                                    <div class="lesson-duration">14 мин</div>
+                                </div>
+
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">2.3 Оператори и изрази</div>
+                                    <div class="lesson-duration">18 мин</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 3 -->
+                    <div class="module-card active">
+                        <div class="module-header">
+                            <div class="module-title">
+                                <i class="fas fa-chevron-down module-icon"></i>
+                                <span>3. Функции и обхват</span>
+                            </div>
+                            <span class="module-status">В процес</span>
+                        </div>
+
+                        <div class="module-content">
+                            <div class="lessons-list">
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">3.1 Деклариране на функции</div>
+                                    <div class="lesson-duration">12 мин</div>
+                                </div>
+
+                                <div class="lesson-item completed">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="lesson-title">3.2 Параметри и аргументи</div>
+                                    <div class="lesson-duration">10 мин</div>
+                                </div>
+
+                                <div class="lesson-item active">
+                                    <div class="lesson-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="lesson-title">3.3 Обхват на функциите</div>
+                                    <div class="lesson-duration">15 мин</div>
+                                </div>
+
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">4</div>
+                                    <div class="lesson-title">3.4 Връщане на стойности</div>
+                                    <div class="lesson-duration">8 мин</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 4 -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-title">
+                                <i class="fas fa-chevron-right module-icon"></i>
+                                <span>4. Условни конструкции и цикли</span>
+                            </div>
+                            <span class="module-status">Незапочнат</span>
+                        </div>
+
+                        <div class="module-content">
+                            <div class="lessons-list">
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">1</div>
+                                    <div class="lesson-title">4.1 If/else конструкции</div>
+                                    <div class="lesson-duration">12 мин</div>
+                                </div>
+
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">2</div>
+                                    <div class="lesson-title">4.2 Switch оператор</div>
+                                    <div class="lesson-duration">10 мин</div>
+                                </div>
+
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">3</div>
+                                    <div class="lesson-title">4.3 For и while цикли</div>
+                                    <div class="lesson-duration">15 мин</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 5 -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-title">
+                                <i class="fas fa-chevron-right module-icon"></i>
+                                <span>5. Работа с масиви и обекти</span>
+                            </div>
+                            <span class="module-status">Незапочнат</span>
+                        </div>
+
+                        <div class="module-content">
+                            <div class="lessons-list">
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">1</div>
+                                    <div class="lesson-title">5.1 Създаване и манипулация на масиви</div>
+                                    <div class="lesson-duration">14 мин</div>
+                                </div>
+
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">2</div>
+                                    <div class="lesson-title">5.2 Методи на масивите</div>
+                                    <div class="lesson-duration">18 мин</div>
+                                </div>
+
+                                <div class="lesson-item">
+                                    <div class="lesson-icon">3</div>
+                                    <div class="lesson-title">5.3 Работа с обекти</div>
+                                    <div class="lesson-duration">12 мин</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="course-sidebar">
+            <!-- Instructor Card -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-user-tie"></i> Инструктор</h3>
+
+                <div class="instructor-info">
+                    <div class="instructor-avatar">ИВ</div>
+                    <div>
+                        <div class="instructor-name">Иван Василев</div>
+                        <div class="instructor-title">Senior JavaScript Developer</div>
+                    </div>
+                </div>
+
+                <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
+                    Иван има над 8 години опит в разработката на JavaScript приложения. Работил е върху проекти за големи компании и сега се фокусира върху образованието на нови разработчици.
+                </p>
+
+                <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Изпрати съобщение</button>
+            </div>
+
+            <!-- Course Stats Card -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-chart-bar"></i> Статистика</h3>
+
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Ученици:</span>
+                        <span class="stat-value">1,524</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Уроци:</span>
+                        <span class="stat-value">20</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Общо време:</span>
+                        <span class="stat-value">5.5 часа</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Рейтинг:</span>
+                        <span class="stat-value">4.9/5</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Завършени:</span>
+                        <span class="stat-value">68%</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-text">
-                <p>Функциите са една от основните градивни елементи в JavaScript. Те позволяват да групирате набор от команди, които изпълняват конкретна задача и могат да бъдат извиквани многократно.</p>
+            <!-- Resources Card -->
+            <div class="sidebar-card">
+                <h3 class="sidebar-title"><i class="fas fa-book"></i> Ресурси</h3>
 
-                <h3>Деклариране на функции</h3>
-                <p>Има няколко начина за деклариране на функция:</p>
+                <div class="resources-list">
+                    <a href="#" class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="resource-title">JavaScript Основи - PDF</div>
+                    </a>
 
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                        <span class="code-title">functions.js</span>
-                    </div>
-                    <pre><code>// Function Declaration
-function greet(name) {
-  return `Здравей, ${name}!`;
-}
+                    <a href="#" class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="resource-title">Официална документация</div>
+                    </a>
 
-// Function Expression
-const greet = function(name) {
-  return `Здравей, ${name}!`;
-};
+                    <a href="#" class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="resource-title">Примери от урока</div>
+                    </a>
 
-// Arrow Function (ES6)
-const greet = (name) => {
-  return `Здравей, ${name}!`;
-};
-
-// Съкратен вариант на Arrow Function
-const greet = name => `Здравей, ${name}!`;</code></pre>
-                </div>
-
-                <h3>Параметри и аргументи</h3>
-                <p>Функциите могат да приемат параметри, които се подават като аргументи при извикването им:</p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                        <span class="code-title">parameters.js</span>
-                    </div>
-                    <pre><code>function sum(a, b) {
-  return a + b;
-}
-
-const result = sum(5, 3); // 8</code></pre>
-                </div>
-
-                <h3>Обхват на функциите</h3>
-                <p>Функциите имат собствен обхват (scope). Променливи, декларирани вътре в функция, не са достъпни извън нея:</p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                        <span class="code-title">scope.js</span>
-                    </div>
-                    <pre><code>function example() {
-  const message = "Това е локална променлива";
-  console.log(message); // Работи
-}
-
-example();
-console.log(message); // Грешка: message не е дефинирана</code></pre>
+                    <a href="#" class="resource-item">
+                        <div class="resource-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="resource-title">Допълнителни задачи</div>
+                    </a>
                 </div>
             </div>
-
-            <div class="lesson-actions">
-                <button class="action-btn prev-btn">
-                    <i class="fas fa-arrow-left"></i> Предишен урок
-                </button>
-
-                <button class="action-btn complete-btn">
-                    <i class="fas fa-check-circle"></i> Маркирай като завършен
-                </button>
-
-                <button class="action-btn next-btn">
-                    Следващ урок <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- Course Modules -->
-        <section class="modules-section">
-            <h2 class="section-title">Съдържание на <span class="text-gradient">курса</span></h2>
-
-            <div class="modules-list">
-                <!-- Module 1 -->
-                <div class="module-card completed">
-                    <div class="module-header">
-                        <div class="module-title">
-                            <i class="fas fa-chevron-right module-icon"></i>
-                            <span>1. Въведение в JavaScript</span>
-                        </div>
-                        <span class="module-status completed">Завършен</span>
-                    </div>
-
-                    <div class="module-content">
-                        <div class="lessons-list">
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">1.1 Какво е JavaScript?</div>
-                                <div class="lesson-duration">8 мин</div>
-                            </div>
-
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">1.2 Настройка на среда</div>
-                                <div class="lesson-duration">12 мин</div>
-                            </div>
-
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">1.3 Първи стъпки в синтаксиса</div>
-                                <div class="lesson-duration">15 мин</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 2 -->
-                <div class="module-card completed">
-                    <div class="module-header">
-                        <div class="module-title">
-                            <i class="fas fa-chevron-right module-icon"></i>
-                            <span>2. Променливи и типове данни</span>
-                        </div>
-                        <span class="module-status completed">Завършен</span>
-                    </div>
-
-                    <div class="module-content">
-                        <div class="lessons-list">
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">2.1 Деклариране на променливи</div>
-                                <div class="lesson-duration">10 мин</div>
-                            </div>
-
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">2.2 Основни типове данни</div>
-                                <div class="lesson-duration">14 мин</div>
-                            </div>
-
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">2.3 Оператори и изрази</div>
-                                <div class="lesson-duration">18 мин</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 3 -->
-                <div class="module-card active">
-                    <div class="module-header">
-                        <div class="module-title">
-                            <i class="fas fa-chevron-down module-icon"></i>
-                            <span>3. Функции и обхват</span>
-                        </div>
-                        <span class="module-status">В процес</span>
-                    </div>
-
-                    <div class="module-content">
-                        <div class="lessons-list">
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">3.1 Деклариране на функции</div>
-                                <div class="lesson-duration">12 мин</div>
-                            </div>
-
-                            <div class="lesson-item completed">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="lesson-title">3.2 Параметри и аргументи</div>
-                                <div class="lesson-duration">10 мин</div>
-                            </div>
-
-                            <div class="lesson-item active">
-                                <div class="lesson-icon">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                                <div class="lesson-title">3.3 Обхват на функциите</div>
-                                <div class="lesson-duration">15 мин</div>
-                            </div>
-
-                            <div class="lesson-item">
-                                <div class="lesson-icon">4</div>
-                                <div class="lesson-title">3.4 Връщане на стойности</div>
-                                <div class="lesson-duration">8 мин</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 4 -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <div class="module-title">
-                            <i class="fas fa-chevron-right module-icon"></i>
-                            <span>4. Условни конструкции и цикли</span>
-                        </div>
-                        <span class="module-status">Незапочнат</span>
-                    </div>
-
-                    <div class="module-content">
-                        <div class="lessons-list">
-                            <div class="lesson-item">
-                                <div class="lesson-icon">1</div>
-                                <div class="lesson-title">4.1 If/else конструкции</div>
-                                <div class="lesson-duration">12 мин</div>
-                            </div>
-
-                            <div class="lesson-item">
-                                <div class="lesson-icon">2</div>
-                                <div class="lesson-title">4.2 Switch оператор</div>
-                                <div class="lesson-duration">10 мин</div>
-                            </div>
-
-                            <div class="lesson-item">
-                                <div class="lesson-icon">3</div>
-                                <div class="lesson-title">4.3 For и while цикли</div>
-                                <div class="lesson-duration">15 мин</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 5 -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <div class="module-title">
-                            <i class="fas fa-chevron-right module-icon"></i>
-                            <span>5. Работа с масиви и обекти</span>
-                        </div>
-                        <span class="module-status">Незапочнат</span>
-                    </div>
-
-                    <div class="module-content">
-                        <div class="lessons-list">
-                            <div class="lesson-item">
-                                <div class="lesson-icon">1</div>
-                                <div class="lesson-title">5.1 Създаване и манипулация на масиви</div>
-                                <div class="lesson-duration">14 мин</div>
-                            </div>
-
-                            <div class="lesson-item">
-                                <div class="lesson-icon">2</div>
-                                <div class="lesson-title">5.2 Методи на масивите</div>
-                                <div class="lesson-duration">18 мин</div>
-                            </div>
-
-                            <div class="lesson-item">
-                                <div class="lesson-icon">3</div>
-                                <div class="lesson-title">5.3 Работа с обекти</div>
-                                <div class="lesson-duration">12 мин</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </aside>
     </div>
 
-    <!-- Sidebar -->
-    <aside class="course-sidebar">
-        <!-- Instructor Card -->
-        <div class="sidebar-card">
-            <h3 class="sidebar-title"><i class="fas fa-user-tie"></i> Инструктор</h3>
-
-            <div class="instructor-info">
-                <div class="instructor-avatar">ИВ</div>
-                <div>
-                    <div class="instructor-name">Иван Василев</div>
-                    <div class="instructor-title">Senior JavaScript Developer</div>
-                </div>
-            </div>
-
-            <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
-                Иван има над 8 години опит в разработката на JavaScript приложения. Работил е върху проекти за големи компании и сега се фокусира върху образованието на нови разработчици.
-            </p>
-
-            <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Изпрати съобщение</button>
-        </div>
-
-        <!-- Course Stats Card -->
-        <div class="sidebar-card">
-            <h3 class="sidebar-title"><i class="fas fa-chart-bar"></i> Статистика</h3>
-
-            <div class="stats-list">
-                <div class="stat-item">
-                    <span class="stat-label">Ученици:</span>
-                    <span class="stat-value">1,524</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Уроци:</span>
-                    <span class="stat-value">20</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Общо време:</span>
-                    <span class="stat-value">5.5 часа</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Рейтинг:</span>
-                    <span class="stat-value">4.9/5</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Завършени:</span>
-                    <span class="stat-value">68%</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Resources Card -->
-        <div class="sidebar-card">
-            <h3 class="sidebar-title"><i class="fas fa-book"></i> Ресурси</h3>
-
-            <div class="resources-list">
-                <a href="#" class="resource-item">
-                    <div class="resource-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <div class="resource-title">JavaScript Основи - PDF</div>
-                </a>
-
-                <a href="#" class="resource-item">
-                    <div class="resource-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <div class="resource-title">Официална документация</div>
-                </a>
-
-                <a href="#" class="resource-item">
-                    <div class="resource-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="resource-title">Примери от урока</div>
-                </a>
-
-                <a href="#" class="resource-item">
-                    <div class="resource-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="resource-title">Допълнителни задачи</div>
-                </a>
-            </div>
-        </div>
-    </aside>
-</div>
 
 @section Scripts {
-    <script>
+        <script>
           // Module accordion functionality
             const moduleHeaders = document.querySelectorAll('.module-header');
             moduleHeaders.forEach(header => {
@@ -518,4 +479,5 @@ console.log(message); // Грешка: message не е дефинирана</cod
                 });
             });
     </script>
-}
+    }
+    

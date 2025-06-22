@@ -11,6 +11,7 @@ namespace BusinessLayer
         public Difficulty Difficulty { get; set; }
         public List<Lector> Lectors { get; set; }
         public List<Lesson> Lessons { get; set; }
+        public int Students { get; set; }
 
         public Course()
         {

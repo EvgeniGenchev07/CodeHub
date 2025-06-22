@@ -127,9 +127,10 @@
             </div>
 
             <div class="course-actions">
-                <button class="btn btn-primary">Продължи</button>
-                <button class="btn btn-outline">Детайли</button>
+                <a class="btn btn-primary" href="@Url.Action("Details", "Courses", new { id = course.Id })">Продължи</a>
+                <a class="btn btn-outline" href="@Url.Action("Details", "Courses", new { id = course.Id })">Детайли</a>
             </div>
         </div>
     }
+    </div>
 </div>

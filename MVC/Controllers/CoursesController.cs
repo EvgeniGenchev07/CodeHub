@@ -1,9 +1,6 @@
 ﻿using BusinessLayer;
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MVC.Controllers
 {
@@ -17,12 +14,65 @@ namespace MVC.Controllers
         }
 
         // GET: Course
-        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null,[FromQuery] Difficulty level = 0)
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null, [FromQuery] Difficulty? level = null)
         {
             try
             {
-                List<Course> courses = await _coursesContext.ReadAll(useNavigationalProperties: true);
-                return View(courses);
+                var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
+                allCourses = new List<Course>()
+                {
+                    new Course()
+                    {
+                        Filters = new List<Filters>() { Filters.Algorithms },
+                        Description = "dasdad",
+                        Name = "dasdad",
+                        Lectors = new List<Lector>()
+                        {
+                            new Lector()
+                            {
+                                Name = "Adada",
+                                Description = "dasdad"
+                            }
+                        },
+                        Lessons = new List<Lesson>()
+                        {
+                            new Lesson()
+                            {
+                                Description = "dasdad",
+                                Title = "dasdad",
+                                Video = new byte[]{1,3,4,5,6,5,7},
+                                Exercises = new List<Exercise>()
+                                {
+                                    new Exercise()
+                                    {
+                                        Date = DateTime.Now,
+                                        Solutions = 12,
+                                        Points = 12,
+                                        Views = 12,
+                                        Description = "dasdasd",
+                                        Title = "dasdasd",
+                                        Difficulty = Difficulty.Extreme,
+                                    }
+                                }
+                            }
+                        },
+                        Difficulty = Difficulty.Easy,
+                    }
+                };
+                // Filtering
+                if (!string.IsNullOrWhiteSpace(search))
+                    allCourses = allCourses.FindAll(c => c.Name.Contains(search, StringComparison.OrdinalIgnoreCase) || c.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
+                if (level.HasValue && level.Value != 0)
+                    allCourses = allCourses.FindAll(c => c.Difficulty == level.Value);
+                // Pagination
+                int totalCourses = allCourses.Count;
+                int totalPages = (int)Math.Ceiling(totalCourses / (double)pageSize);
+                allCourses = allCourses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                ViewBag.Page = page;
+                ViewBag.TotalPages = totalPages;
+                ViewBag.Search = search;
+                ViewBag.Level = level;
+                return View(allCourses);
             }
             catch (Exception ex)
             {
@@ -30,14 +80,8 @@ namespace MVC.Controllers
                 return View(new List<Course>());
             }
         }
-        //This is only for test the design
-        public IActionResult Details()
-        {
-            return View();
-        }
-        /*
         // GET: Course/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -47,7 +91,44 @@ namespace MVC.Controllers
 
             try
             {
-                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                //var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                   var course =  new Course()
+                    {
+                        Filters = new List<Filters>() { Filters.Algorithms },
+                        Description = "dasdad",
+                        Name = "dasdad",
+                        Lectors = new List<Lector>()
+                        {
+                            new Lector()
+                            {
+                                Name = "Adada",
+                                Description = "dasdad"
+                            }
+                        },
+                        Lessons = new List<Lesson>()
+                        {
+                            new Lesson()
+                            {
+                                Description = "dasdad",
+                                Title = "dasdad",
+                                Video = new byte[]{1,3,4,5,6,5,7},
+                                Exercises = new List<Exercise>()
+                                {
+                                    new Exercise()
+                                    {
+                                        Date = DateTime.Now,
+                                        Solutions = 12,
+                                        Points = 12,
+                                        Views = 12,
+                                        Description = "dasdasd",
+                                        Title = "dasdasd",
+                                        Difficulty = Difficulty.Extreme,
+                                    }
+                                }
+                            }
+                        },
+                        Difficulty = Difficulty.Easy,
+                    };
                 if (course == null)
                 {
                     TempData["ErrorMessage"] = $"Course with ID {id} not found";
@@ -60,7 +141,7 @@ namespace MVC.Controllers
                 TempData["ErrorMessage"] = $"Error retrieving course details: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
-        }*/
+        }
 
         // GET: Course/Create
         public IActionResult Create()
@@ -72,13 +153,13 @@ namespace MVC.Controllers
         // POST: Course/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Description,Difficulty")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Difficulty")] Course course)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _coursesContext.Create(course);
+                    await _coursesContext.Create(course);
                     TempData["SuccessMessage"] = "Course created successfully";
                     return RedirectToAction(nameof(Index));
                 }
@@ -87,29 +168,26 @@ namespace MVC.Controllers
                     ModelState.AddModelError("", $"Error creating course: {ex.Message}");
                 }
             }
-
             ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
             return View(course);
         }
 
         // GET: Course/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 TempData["ErrorMessage"] = "Course ID not provided";
                 return RedirectToAction(nameof(Index));
             }
-
             try
             {
-                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
                 if (course == null)
                 {
                     TempData["ErrorMessage"] = $"Course with ID {id} not found";
                     return RedirectToAction(nameof(Index));
                 }
-
                 ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
                 return View(course);
             }
@@ -123,19 +201,18 @@ namespace MVC.Controllers
         // POST: Course/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Description,Difficulty,Lectors,Lessons")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Difficulty,Lectors,Lessons")] Course course)
         {
             if (id != course.Id)
             {
                 TempData["ErrorMessage"] = "Course ID mismatch";
                 return RedirectToAction(nameof(Index));
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _coursesContext.Update(course, useNavigationalProperties: true);
+                    await _coursesContext.Update(course, useNavigationalProperties: true);
                     TempData["SuccessMessage"] = "Course updated successfully";
                     return RedirectToAction(nameof(Index));
                 }
@@ -144,29 +221,26 @@ namespace MVC.Controllers
                     ModelState.AddModelError("", $"Error updating course: {ex.Message}");
                 }
             }
-
             ViewBag.DifficultyLevels = Enum.GetValues(typeof(Difficulty));
             return View(course);
         }
 
         // GET: Course/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 TempData["ErrorMessage"] = "Course ID not provided";
                 return RedirectToAction(nameof(Index));
             }
-
             try
             {
-                var course = _coursesContext.Read(id.Value, useNavigationalProperties: true);
+                var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
                 if (course == null)
                 {
                     TempData["ErrorMessage"] = $"Course with ID {id} not found";
                     return RedirectToAction(nameof(Index));
                 }
-
                 return View(course);
             }
             catch (Exception ex)
@@ -179,18 +253,17 @@ namespace MVC.Controllers
         // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             try
             {
-                _coursesContext.Delete(id);
+                await _coursesContext.Delete(id);
                 TempData["SuccessMessage"] = "Course deleted successfully";
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"Error deleting course: {ex.Message}";
             }
-
             return RedirectToAction(nameof(Index));
         }
     }

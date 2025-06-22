@@ -1,0 +1,78 @@
+@model BusinessLayer.Battle
+@section Styles {
+    <link rel="stylesheet" href="~/css/battles.css" />
+    <style>
+        .modern-card {
+            background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 32px rgba(80, 80, 180, 0.08);
+            padding: 2.5rem 2rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .avatar {
+            width: 64px; height: 64px; border-radius: 50%; background: #e0e7ff; display: inline-block; margin: 0 1rem;
+        }
+        .modern-btn {
+            background: linear-gradient(90deg, #6366f1, #60a5fa);
+            color: #fff; border: none; border-radius: 2rem; padding: 0.75rem 2rem; font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(80,80,180,0.10); transition: background 0.3s, box-shadow 0.3s;
+        }
+        .modern-btn:hover { background: linear-gradient(90deg, #60a5fa, #6366f1); box-shadow: 0 4px 16px rgba(80,80,180,0.18); }
+        .waiting { color: #6366f1; font-weight: 600; margin-top: 1.5rem; }
+        .ready { color: #16a34a; font-weight: 700; margin-top: 1.5rem; }
+    </style>
+}
+<div class="modern-card">
+    <a href="@Url.Action("Details", "Battles", new { id = Model.Id })" class="back-link"><i class="fas fa-arrow-left"></i> Детайли за двубоя</a>
+    <h1 class="battle-title">Присъединяване към: @Model.Title</h1>
+    <p class="battle-description">@Model.Description</p>
+    <div style="display:flex; justify-content:center; align-items:center; margin:2rem 0;">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <span style="font-size:2rem; color:#6366f1; font-weight:700;">VS</span>
+        <div class="avatar"><i class="fas fa-user"></i></div>
+    </div>
+    <div class="battle-meta" style="margin-bottom:1.5rem;">
+        <div><i class="fas fa-calendar-alt"></i> Начало: <span>@Model.StartDate.ToString("dd.MM.yyyy HH:mm")</span></div>
+        <div><i class="fas fa-calendar-check"></i> Край: <span>@Model.EndDate.ToString("dd.MM.yyyy HH:mm")</span></div>
+        <div><i class="fas fa-trophy"></i> Награда: <span>@Model.RewardXP XP</span></div>
+    </div>
+    <div id="join-state" class="waiting">Изчакване на другия играч...</div>
+    <form id="join-form" method="post" action="@Url.Action("Join", "Battles", new { id = Model.Id })" style="margin-top:2rem;">
+        <button type="submit" class="modern-btn">Потвърди присъединяване</button>
+        <a href="@Url.Action("Details", "Battles", new { id = Model.Id })" class="btn btn-outline" style="margin-left:1rem;">Отказ</a>
+    </form>
+</div>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const battleId = '@Model.Id';
+        const userName = '@(User.Identity?.Name ?? "Потребител")';
+        const joinState = document.getElementById('join-state');
+        const joinForm = document.getElementById('join-form');
+        let joined = false;
+        // Connect to SignalR
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/battleHub?battleId=" + battleId)
+            .build();
+        connection.on("PlayersUpdated", function(players) {
+            if (players.length === 1) {
+                joinState.textContent = 'Изчакване на другия играч...';
+                joinState.className = 'waiting';
+            } else if (players.length === 2) {
+                joinState.textContent = 'И двамата играчи са готови! Можете да започнете двубоя.';
+                joinState.className = 'ready';
+            }
+        });
+        connection.start().then(function() {
+            // Optionally, auto-join if already confirmed
+        });
+        joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            joinState.textContent = 'Свързване...';
+            joinState.className = 'waiting';
+            connection.invoke('JoinBattle', parseInt(battleId), userName);
+        });
+    </script>
+} 

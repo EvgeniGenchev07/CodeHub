@@ -1,0 +1,71 @@
+@model BusinessLayer.Battle
+@section Styles {
+    <link rel="stylesheet" href="~/css/battles.css" />
+    <style>
+        .modern-card {
+            background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 32px rgba(80, 80, 180, 0.08);
+            padding: 2.5rem 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .avatar {
+            width: 64px; height: 64px; border-radius: 50%; background: #e0e7ff; display: inline-block; margin: 0 1rem;
+        }
+        .modern-btn {
+            background: linear-gradient(90deg, #6366f1, #60a5fa);
+            color: #fff; border: none; border-radius: 2rem; padding: 0.75rem 2rem; font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(80,80,180,0.10); transition: background 0.3s, box-shadow 0.3s;
+        }
+        .modern-btn:hover { background: linear-gradient(90deg, #60a5fa, #6366f1); box-shadow: 0 4px 16px rgba(80,80,180,0.18); }
+        .waiting { color: #6366f1; font-weight: 600; margin-top: 1.5rem; }
+        .ready { color: #16a34a; font-weight: 700; margin-top: 1.5rem; }
+    </style>
+}
+<div class="modern-card">
+    <a href="/Battles" class="back-link"><i class="fas fa-arrow-left"></i> Всички двубои</a>
+    <h1 class="battle-title">@Model.Title</h1>
+    <p class="battle-description">@Model.Description</p>
+    <div style="display:flex; justify-content:center; align-items:center; margin:2rem 0;">
+        <div class="avatar"><i class="fas fa-user"></i><div style="font-size:0.9rem;">@Model.FirstPlayer?.FullName ?? "-"</div></div>
+        <span style="font-size:2rem; color:#6366f1; font-weight:700;">VS</span>
+        <div class="avatar"><i class="fas fa-user"></i><div style="font-size:0.9rem;">@Model.SecondPlayer?.FullName ?? "-"</div></div>
+    </div>
+    <div class="battle-meta" style="margin-bottom:1.5rem;">
+        <div><i class="fas fa-calendar-alt"></i> Начало: <span>@Model.StartDate.ToString("dd.MM.yyyy HH:mm")</span></div>
+        <div><i class="fas fa-calendar-check"></i> Край: <span>@Model.EndDate.ToString("dd.MM.yyyy HH:mm")</span></div>
+        <div><i class="fas fa-trophy"></i> Награда: <span>@Model.RewardXP XP</span></div>
+    </div>
+    <div id="battle-state" class="waiting">Изчакване на играчи...</div>
+    <div id="players-list" style="margin:1.5rem 0; font-size:1.1rem;"></div>
+    <div class="battle-actions" style="margin-top:2rem;">
+        <a href="@Url.Action("Join", "Battles", new { id = Model.Id })" class="modern-btn">Присъедини се</a>
+        <a href="/Battles" class="btn btn-outline" style="margin-left:1rem;">Назад</a>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const battleId = '@Model.Id';
+        const userName = '@(User.Identity?.Name ?? "Потребител")';
+        const battleState = document.getElementById('battle-state');
+        const playersList = document.getElementById('players-list');
+        // Connect to SignalR
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/battleHub?battleId=" + battleId)
+            .build();
+        connection.on("PlayersUpdated", function(players) {
+            playersList.innerHTML = 'Играч(и): ' + players.map(p => `<b>${p}</b>`).join(' и ');
+            if (players.length === 1) {
+                battleState.textContent = 'Изчакване на другия играч...';
+                battleState.className = 'waiting';
+            } else if (players.length === 2) {
+                battleState.textContent = 'И двамата играчи са готови! Можете да започнете двубоя.';
+                battleState.className = 'ready';
+            }
+        });
+        connection.start();
+    </script>
+} 
