@@ -12,7 +12,7 @@ namespace BusinessLayer
     public class User:IdentityUser
     {
         public string FullName { get; set; }
-        public List<Course> Courses { get; set; }
+        public List<UserCourse> Courses { get; set; }
 
         public byte[] ProfilePicture { get; set; }
         public int Points { get; set; }
@@ -22,7 +22,7 @@ namespace BusinessLayer
         public User()
         {
             FullName = string.Empty;
-            Courses = new List<Course>();
+            Courses = new List<UserCourse>();
             Points = 0;
             Level = 1;
             ProfilePicture = Array.Empty<byte>();
@@ -40,7 +40,7 @@ namespace BusinessLayer
             NormalizedUserName = userName.ToUpper();
             UserName = userName;
             Email = email;
-            Courses = new List<Course>();
+            Courses = new List<UserCourse>();
             ProfilePicture = Array.Empty<byte>();
             Points = 0;
             Level = 0;
@@ -54,7 +54,7 @@ namespace BusinessLayer
             UserName = email;
             Email = email;
             ProfilePicture = Array.Empty<byte>();
-            Courses = new List<Course>();
+            Courses = new List<UserCourse>();
             Points = 0;
             Level = 0;
         }

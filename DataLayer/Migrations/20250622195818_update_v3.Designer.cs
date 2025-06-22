@@ -3,6 +3,7 @@ using System;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(CodeHubDbContext))]
-    partial class CodeHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250622195818_update_v3")]
+    partial class update_v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -107,7 +110,12 @@ namespace DataLayer.Migrations
                     b.Property<int>("Students")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Courses");
                 });
@@ -319,30 +327,6 @@ namespace DataLayer.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("BusinessLayer.UserCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("Completion")
-                        .HasColumnType("REAL");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserCourses");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -503,6 +487,13 @@ namespace DataLayer.Migrations
                     b.Navigation("Forum");
                 });
 
+            modelBuilder.Entity("BusinessLayer.Course", b =>
+                {
+                    b.HasOne("BusinessLayer.User", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("BusinessLayer.Exercise", b =>
                 {
                     b.HasOne("BusinessLayer.Lesson", null)
@@ -531,23 +522,6 @@ namespace DataLayer.Migrations
                     b.HasOne("BusinessLayer.Course", null)
                         .WithMany("Lessons")
                         .HasForeignKey("CourseId");
-                });
-
-            modelBuilder.Entity("BusinessLayer.UserCourse", b =>
-                {
-                    b.HasOne("BusinessLayer.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BusinessLayer.User", "User")
-                        .WithMany("Courses")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
