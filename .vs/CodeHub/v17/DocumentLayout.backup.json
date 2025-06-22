@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622200324_update_v4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataLayer\\Migrations\\20250622200324_update_v4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622212754_update-v5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataLayer\\Migrations\\20250622212754_update-v5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\datalayer\\migrations\\20250622200324_update_v4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\migrations\\20250622200324_update_v4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\usercourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\datalayer\\codehubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\codehubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622195818_update_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataLayer\\Migrations\\20250622195818_update_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,6 +33,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\datalayer\\migrations\\20250622195818_update_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\migrations\\20250622195818_update_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,34 +46,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20250622200324_update_v4.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622200324_update_v4.cs",
-              "RelativeDocumentMoniker": "DataLayer\\Migrations\\20250622200324_update_v4.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622200324_update_v4.cs",
-              "RelativeToolTip": "DataLayer\\Migrations\\20250622200324_update_v4.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T20:03:24.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserCourse.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\UserCourse.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\UserCourse.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\UserCourse.cs",
-              "RelativeToolTip": "BusinessLayer\\UserCourse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T20:01:58.699Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -84,7 +62,44 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20250622212754_update-v5.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622212754_update-v5.cs",
+              "RelativeDocumentMoniker": "DataLayer\\Migrations\\20250622212754_update-v5.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622212754_update-v5.cs",
+              "RelativeToolTip": "DataLayer\\Migrations\\20250622212754_update-v5.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T21:27:54.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "20250622200324_update_v4.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622200324_update_v4.cs",
+              "RelativeDocumentMoniker": "DataLayer\\Migrations\\20250622200324_update_v4.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622200324_update_v4.cs",
+              "RelativeToolTip": "DataLayer\\Migrations\\20250622200324_update_v4.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T20:03:24.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserCourse.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\UserCourse.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\UserCourse.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\UserCourse.cs",
+              "RelativeToolTip": "BusinessLayer\\UserCourse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T20:01:58.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CodeHubDbContext.cs",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\CodeHubDbContext.cs",
               "RelativeDocumentMoniker": "DataLayer\\CodeHubDbContext.cs",
@@ -92,38 +107,11 @@
               "RelativeToolTip": "DataLayer\\CodeHubDbContext.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:59:46.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-22T19:59:46.795Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20250622195818_update_v3.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622195818_update_v3.cs",
-              "RelativeDocumentMoniker": "DataLayer\\Migrations\\20250622195818_update_v3.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622195818_update_v3.cs",
-              "RelativeToolTip": "DataLayer\\Migrations\\20250622195818_update_v3.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:58:18.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Filters.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\Filters.cs",
-              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
-              "RelativeToolTip": "BusinessLayer\\Filters.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:55:03.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\User.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\User.cs",
@@ -136,6 +124,30 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "20250622195818_update_v3.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622195818_update_v3.cs",
+              "RelativeDocumentMoniker": "DataLayer\\Migrations\\20250622195818_update_v3.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\DataLayer\\Migrations\\20250622195818_update_v3.cs",
+              "RelativeToolTip": "DataLayer\\Migrations\\20250622195818_update_v3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T19:58:18.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Filters.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Filters.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeToolTip": "BusinessLayer\\Filters.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-22T19:55:03.867Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Lector.cs",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Lector.cs",
@@ -144,8 +156,7 @@
               "RelativeToolTip": "BusinessLayer\\Lector.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:54:58.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-22T19:54:58.542Z"
             },
             {
               "$type": "Document",
@@ -157,8 +168,7 @@
               "RelativeToolTip": "BusinessLayer\\Exercise.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:54:57.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-22T19:54:57.642Z"
             }
           ]
         }
