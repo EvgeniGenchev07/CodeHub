@@ -1,60 +1,65 @@
-﻿@model BusinessLayer.Course
+﻿@using BusinessLayer
+@model dynamic
 @section Styles {
     <link rel="stylesheet" href="~/css/courses_details.css" />
 }
+@{
+    var course = Model is Course ? Model as Course : (Model as UserCourse).Course;
+    var userCourse = Model is Course ? null : (Model as UserCourse);
+}
 <!-- Course Header -->
-<section class="course-header">
+<section class="course-header mt-5">
     <div class="course-title-section">
         <div class="course-title-content">
-            <span class="course-badge badge-beginner">Начинаещ</span>
-            <h1 class="course-title">@Model.Name</h1>
+            <span class="course-badge @(course.Difficulty==Difficulty.Easy?"badge-easy":course.Difficulty==Difficulty.Intermediate?"badge-intermediate":"badge-hard")">@course.Difficulty.ToString()</span>
+            <h1 class="course-title">@course.Name</h1>
             <p class="course-description">
-                @Model.Description
+                @course.Description
             </p>
 
             <div class="course-meta">
                 <div class="meta-item">
-                    <i class="fas fa-clock"></i> @Model.Lessons.Count()
+                    <i class="fas fa-clock"></i> @course.Lessons.Count()
                 </div>
                 <div class="meta-item">
-                    <i class="fas fa-chart-line"></i> @Model.Students ученици
+                    <i class="fas fa-chart-line"></i> @course.Students ученици
                 </div>
             </div>
 
             <div class="course-actions">
-                <form asp-action="Details" asp-controller="Courses" asp-all-route-id="@Model.Id">
+                <form asp-action="Details" asp-controller="Courses" asp-all-route-id="@course.Id">
                     <button type="submit" value="Details" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни курс</button>
                 </form>
             </div>
         </div>
 
         <div class="course-image">
-            <i class="fab fa-@Model.Filters.First().ToString().ToLower()"></i>
+            <i class="fab fa-@course.Filters.First().ToString().ToLower()"></i>
         </div>
     </div>
 </section>
 
 <!-- Course Progress -->
 
-@if (User.Identity.IsAuthenticated)
+@if (Model is UserCourse)
 {
     <section class="course-progress-section">
 
         <div class="progress-header">
             <div>
                 <h3 class="progress-title">Твоят напредък</h3>
-                <p class="progress-subtitle">Завърши 30% от курса</p>
+                <p class="progress-subtitle">Завърши @userCourse.Completion% от курса</p>
             </div>
             <button class="btn btn-outline btn-sm"><i class="fas fa-certificate"></i> Сертификат</button>
         </div>
 
         <div class="progress-bar-container">
             <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: 30%;"></div>
+                <div class="progress-bar-fill" style="width: @userCourse.Completion%;"></div>
             </div>
             <div class="progress-stats">
-                <span>6/20 урока</span>
-                <span>30%</span>
+                <span>@(userCourse.Completion*userCourse.Course.Lessons.Count)/@course.Lessons.Count урока</span>
+                <span>@userCourse.Completion%</span>
             </div>
         </div>
     </section>
@@ -63,256 +68,36 @@
     <div class="course-content">
         <!-- Main Content -->
         <div class="course-main">
-            @if(User.Identity.IsAuthenticated)
-            {
-            <!-- Current Lesson -->
-            <section class="lesson-content">
-                <div class="lesson-header">
-                    <h2 class="lesson-title">Функции в JavaScript</h2>
-                    <div class="lesson-meta">
-                        <span><i class="fas fa-play-circle"></i> Урок 6 от 20</span>
-                        <span><i class="fas fa-clock"></i> 15 минути</span>
-                    </div>
-                </div>
-
-                <div class="lesson-text">
-                    <p>Функциите са една от основните градивни елементи в JavaScript. Те позволяват да групирате набор от команди, които изпълняват конкретна задача и могат да бъдат извиквани многократно.</p>
-
-                    <h3>Деклариране на функции</h3>
-                    <p>Има няколко начина за деклариране на функция:</p>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-dot red"></span>
-                            <span class="code-dot yellow"></span>
-                            <span class="code-dot green"></span>
-                            <span class="code-title">functions.js</span>
-                        </div>
-
-                    </div>
-
-                    <h3>Параметри и аргументи</h3>
-                    <p>Функциите могат да приемат параметри, които се подават като аргументи при извикването им:</p>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-dot red"></span>
-                            <span class="code-dot yellow"></span>
-                            <span class="code-dot green"></span>
-                            <span class="code-title">parameters.js</span>
-                        </div>
-
-                    </div>
-
-                    <h3>Обхват на функциите</h3>
-                    <p>Функциите имат собствен обхват (scope). Променливи, декларирани вътре в функция, не са достъпни извън нея:</p>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-dot red"></span>
-                            <span class="code-dot yellow"></span>
-                            <span class="code-dot green"></span>
-                            <span class="code-title">scope.js</span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="lesson-actions">
-                    <button class="action-btn prev-btn">
-                        <i class="fas fa-arrow-left"></i> Предишен урок
-                    </button>
-
-                    <button class="action-btn complete-btn">
-                        <i class="fas fa-check-circle"></i> Маркирай като завършен
-                    </button>
-
-                    <button class="action-btn next-btn">
-                        Следващ урок <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </section>
-            }
             <!-- Course Modules -->
             <section class="modules-section">
                 <h2 class="section-title">Съдържание на <span class="text-gradient">курса</span></h2>
 
                 <div class="modules-list">
                     <!-- Module 1 -->
-                    @foreach (var lesson in Model.Lessons)
-                    {
-                        
-                    <div class="module-card completed">
-                        <div class="module-header">
-                            <div class="module-title">
-                                <i class="fas fa-chevron-right module-icon"></i>
-                                <span>1. Въведение в JavaScript</span>
-                            </div>
-                            <span class="module-status completed">Завършен</span>
-                        </div>
-
-                        <div class="module-content">
-                            <div class="lessons-list">
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="lesson-title">1.1 Какво е JavaScript?</div>
-                                    <div class="lesson-duration">8 мин</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @{
+                        int index = 0;
+                        double completed =Model is UserCourse? course.Lessons.Count* userCourse.Completion / 100:0;
                     }
-
-                    <div class="module-card completed">
-                        <div class="module-header">
-                            <div class="module-title">
-                                <i class="fas fa-chevron-right module-icon"></i>
-                                <span>2. Променливи и типове данни</span>
+                    @foreach (var lesson in course.Lessons)
+                    {
+                        <div class="module-card @(completed<=index+1&&completed!=0?"completed":"")">
+                            <div class="module-header">
+                                <div class="module-title">
+                                    <i class="fas fa-chevron-right module-icon"></i>
+                                    <span>@(index++). @lesson.Title</span>
+                                </div>
+                                <span class="module-status @(completed<=index&&completed!=0?"completed":"")">@(completed<=index&&completed!=0?"Завършен":"В процес")</span>
                             </div>
-                            <span class="module-status completed">Завършен</span>
-                        </div>
 
-                        <div class="module-content">
-                            <div class="lessons-list">
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
+                            <div class="module-content">
+                                <div class="lessons-list">
+                                    <div class="lesson-item @(completed<=index&&completed!=0?"completed":"")">
+                                        <div class="lesson-title">@lesson.Description</div>
                                     </div>
-                                    <div class="lesson-title">2.1 Деклариране на променливи</div>
-                                    <div class="lesson-duration">10 мин</div>
-                                </div>
-
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="lesson-title">2.2 Основни типове данни</div>
-                                    <div class="lesson-duration">14 мин</div>
-                                </div>
-
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="lesson-title">2.3 Оператори и изрази</div>
-                                    <div class="lesson-duration">18 мин</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Module 3 -->
-                    <div class="module-card active">
-                        <div class="module-header">
-                            <div class="module-title">
-                                <i class="fas fa-chevron-down module-icon"></i>
-                                <span>3. Функции и обхват</span>
-                            </div>
-                            <span class="module-status">В процес</span>
-                        </div>
-
-                        <div class="module-content">
-                            <div class="lessons-list">
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="lesson-title">3.1 Деклариране на функции</div>
-                                    <div class="lesson-duration">12 мин</div>
-                                </div>
-
-                                <div class="lesson-item completed">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="lesson-title">3.2 Параметри и аргументи</div>
-                                    <div class="lesson-duration">10 мин</div>
-                                </div>
-
-                                <div class="lesson-item active">
-                                    <div class="lesson-icon">
-                                        <i class="fas fa-play"></i>
-                                    </div>
-                                    <div class="lesson-title">3.3 Обхват на функциите</div>
-                                    <div class="lesson-duration">15 мин</div>
-                                </div>
-
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">4</div>
-                                    <div class="lesson-title">3.4 Връщане на стойности</div>
-                                    <div class="lesson-duration">8 мин</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Module 4 -->
-                    <div class="module-card">
-                        <div class="module-header">
-                            <div class="module-title">
-                                <i class="fas fa-chevron-right module-icon"></i>
-                                <span>4. Условни конструкции и цикли</span>
-                            </div>
-                            <span class="module-status">Незапочнат</span>
-                        </div>
-
-                        <div class="module-content">
-                            <div class="lessons-list">
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">1</div>
-                                    <div class="lesson-title">4.1 If/else конструкции</div>
-                                    <div class="lesson-duration">12 мин</div>
-                                </div>
-
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">2</div>
-                                    <div class="lesson-title">4.2 Switch оператор</div>
-                                    <div class="lesson-duration">10 мин</div>
-                                </div>
-
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">3</div>
-                                    <div class="lesson-title">4.3 For и while цикли</div>
-                                    <div class="lesson-duration">15 мин</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Module 5 -->
-                    <div class="module-card">
-                        <div class="module-header">
-                            <div class="module-title">
-                                <i class="fas fa-chevron-right module-icon"></i>
-                                <span>5. Работа с масиви и обекти</span>
-                            </div>
-                            <span class="module-status">Незапочнат</span>
-                        </div>
-
-                        <div class="module-content">
-                            <div class="lessons-list">
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">1</div>
-                                    <div class="lesson-title">5.1 Създаване и манипулация на масиви</div>
-                                    <div class="lesson-duration">14 мин</div>
-                                </div>
-
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">2</div>
-                                    <div class="lesson-title">5.2 Методи на масивите</div>
-                                    <div class="lesson-duration">18 мин</div>
-                                </div>
-
-                                <div class="lesson-item">
-                                    <div class="lesson-icon">3</div>
-                                    <div class="lesson-title">5.3 Работа с обекти</div>
-                                    <div class="lesson-duration">12 мин</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </section>
         </div>
@@ -324,18 +109,17 @@
                 <h3 class="sidebar-title"><i class="fas fa-user-tie"></i> Инструктор</h3>
 
                 <div class="instructor-info">
-                    <div class="instructor-avatar">ИВ</div>
+                    <div class="instructor-avatar"><i class="fas fa-user"></i></div>
                     <div>
-                        <div class="instructor-name">Иван Василев</div>
-                        <div class="instructor-title">Senior JavaScript Developer</div>
+                        <div class="instructor-name">@course.Lector.Name</div>
                     </div>
                 </div>
 
                 <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
-                    Иван има над 8 години опит в разработката на JavaScript приложения. Работил е върху проекти за големи компании и сега се фокусира върху образованието на нови разработчици.
+                    @course.Lector.Description
                 </p>
 
-                <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Изпрати съобщение</button>
+                <a href="mailto:@course.Name.ToLower()@@codehub.com"  class="btn btn-outline" style="width: 100%;text-decoration: none;"><i class="fas fa-envelope"></i> Изпрати съобщение</a>
             </div>
 
             <!-- Course Stats Card -->
@@ -345,61 +129,26 @@
                 <div class="stats-list">
                     <div class="stat-item">
                         <span class="stat-label">Ученици:</span>
-                        <span class="stat-value">1,524</span>
+                        <span class="stat-value">@Model.Students</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Уроци:</span>
-                        <span class="stat-value">20</span>
+                        <span class="stat-value">@Model.Lessons.Count</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Общо време:</span>
-                        <span class="stat-value">5.5 часа</span>
+                        <span class="stat-value">@(Model.Lessons.Count*30) мин</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Рейтинг:</span>
-                        <span class="stat-value">4.9/5</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Завършени:</span>
-                        <span class="stat-value">68%</span>
-                    </div>
+                @if (Model is UserCourse)
+                    {
+                        <div class="stat-item">
+                            <span class="stat-label">Завършени:</span>
+                            <span class="stat-value">@userCourse.Completion%</span>
+                        </div>
+                    }
                 </div>
             </div>
-
-            <!-- Resources Card -->
-            <div class="sidebar-card">
-                <h3 class="sidebar-title"><i class="fas fa-book"></i> Ресурси</h3>
-
-                <div class="resources-list">
-                    <a href="#" class="resource-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="resource-title">JavaScript Основи - PDF</div>
-                    </a>
-
-                    <a href="#" class="resource-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <div class="resource-title">Официална документация</div>
-                    </a>
-
-                    <a href="#" class="resource-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="resource-title">Примери от урока</div>
-                    </a>
-
-                    <a href="#" class="resource-item">
-                        <div class="resource-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="resource-title">Допълнителни задачи</div>
-                    </a>
-                </div>
-            </div>
+            
         </aside>
     </div>
 

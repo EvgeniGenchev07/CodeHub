@@ -24,7 +24,7 @@ public class IndexModel : PageModel
     public byte[] ProfilePicture { get; set; }
     public int Points { get; set; }
     public int Level { get; set; }
-    public List<Course> Courses { get; set; }
+    public List<UserCourse> Courses { get; set; }
     public List<Forum> UserForums { get; set; } 
 
     public async Task<IActionResult> OnGetAsync()
@@ -40,7 +40,7 @@ public class IndexModel : PageModel
         ProfilePicture = user.ProfilePicture;
         Points = user.Points;
         Level = user.Level;
-        Courses = user.Courses?.ToList() ?? new List<Course>();
+        Courses = user.Courses?.ToList() ?? new List<UserCourse>();
         UserForums = await _dbContext.Forums
        .Where(f => f.Author.Id == user.Id)
        .OrderByDescending(f => f.Date)

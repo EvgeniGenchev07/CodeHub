@@ -9,7 +9,7 @@ namespace BusinessLayer
         public string Description { get; set; }
         public List<Filters> Filters { get; set; }
         public Difficulty Difficulty { get; set; }
-        public List<Lector> Lectors { get; set; }
+        public Lector Lector { get; set; }
         public List<Lesson> Lessons { get; set; }
         public int Students { get; set; }
 
@@ -22,7 +22,6 @@ namespace BusinessLayer
             Name = name;
             Description = description;
             Filters = new List<Filters>();
-            Lectors = new List<Lector>();
             Lessons = new List<Lesson>();
             Difficulty = difficulty;
         }

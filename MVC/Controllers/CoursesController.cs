@@ -1,5 +1,9 @@
 ﻿using BusinessLayer;
 using DataLayer;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
@@ -7,10 +11,12 @@ namespace MVC.Controllers
     public class CoursesController : Controller
     {
         private readonly CoursesContext _coursesContext;
+        private readonly IdentityContext _context;
 
-        public CoursesController(CoursesContext coursesContext)
+        public CoursesController(CoursesContext coursesContext,IdentityContext identityContext)
         {
             _coursesContext = coursesContext;
+            _context = identityContext;
         }
 
         // GET: Course
@@ -18,22 +24,20 @@ namespace MVC.Controllers
         {
             try
             {
-                var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
-                allCourses = new List<Course>()
+                //var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
+                var allCourses = new List<Course>()
                 {
                     new Course()
                     {
                         Filters = new List<Filters>() { Filters.Algorithms },
                         Description = "dasdad",
                         Name = "dasdad",
-                        Lectors = new List<Lector>()
-                        {
+                        Lector= 
                             new Lector()
                             {
                                 Name = "Adada",
                                 Description = "dasdad"
-                            }
-                        },
+                            },
                         Lessons = new List<Lesson>()
                         {
                             new Lesson()
@@ -97,14 +101,12 @@ namespace MVC.Controllers
                         Filters = new List<Filters>() { Filters.Algorithms },
                         Description = "dasdad",
                         Name = "dasdad",
-                        Lectors = new List<Lector>()
-                        {
+                        Lector = 
                             new Lector()
                             {
                                 Name = "Adada",
                                 Description = "dasdad"
-                            }
-                        },
+                            },
                         Lessons = new List<Lesson>()
                         {
                             new Lesson()
@@ -129,6 +131,15 @@ namespace MVC.Controllers
                         },
                         Difficulty = Difficulty.Easy,
                     };
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        User user = await _context.ReadUserAsync(User.Identity.GetUserId());
+                        if (user != null)
+                        {
+                            UserCourse userCourse = user.Courses.FirstOrDefault(course => course.Id == id);
+                            return View(userCourse);
+                        }
+                    }
                 if (course == null)
                 {
                     TempData["ErrorMessage"] = $"Course with ID {id} not found";
@@ -142,7 +153,25 @@ namespace MVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = await _context.ReadUserAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    Course course = await _coursesContext.Read(id);
+                    UserCourse userCourse = new UserCourse() { Course = course, User = user,Completion = 0};
+                    user.Courses.Add(userCourse);
+                    course.Students++;
+                    await _context.Save();
+                    return View(userCourse);
+                }
+            }
+            return View(_coursesContext.Read(id).Result);
+        }
         // GET: Course/Create
         public IActionResult Create()
         {

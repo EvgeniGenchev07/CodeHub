@@ -47,10 +47,19 @@
     margin-bottom: 15px;
     display: inline-block;
 }
-
-.badge-beginner {
+.badge-easy {
     background-color: rgba(39, 201, 63, 0.2);
     color: var(--success);
+}
+
+.badge-intermediate {
+    background-color: rgba(255, 189, 46, 0.2);
+    color: var(--warning);
+}
+
+.badge-hard {
+    background-color: rgba(255, 95, 86, 0.2);
+    color: var(--danger);
 }
 
 .course-title {
@@ -280,15 +289,6 @@
     cursor: pointer;
 }
 
-    .lesson-item:hover {
-        background-color: rgba(0, 247, 255, 0.05);
-    }
-
-    .lesson-item.active {
-        background-color: rgba(0, 247, 255, 0.1);
-        border-left: 3px solid var(--primary);
-    }
-
     .lesson-item.completed .lesson-title {
         color: var(--success);
     }
@@ -452,7 +452,7 @@
 }
 
 .lesson-title {
-    font-size: 1.8rem;
+    font-size: 1rem;
     margin-bottom: 15px;
 }
 

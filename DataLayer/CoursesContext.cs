@@ -24,7 +24,7 @@ namespace DataLayer
 
             if (useNavigationalProperties)
                 query = query
-                    .Include(l => l.Lectors)
+                    .Include(l => l.Lector)
                     .Include(l => l.Lessons);
             if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
@@ -41,7 +41,7 @@ namespace DataLayer
 
             if (useNavigationalProperties)
                 query = query
-                    .Include(l => l.Lectors)
+                    .Include(l => l.Lector)
                     .Include(l => l.Lessons);
             if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
@@ -56,15 +56,9 @@ namespace DataLayer
 
             if (useNavigationalProperties)
             {
-                List<Lector> lectors = new List<Lector>(item.Lectors.Count);
-                for (int i = 0; i < item.Lectors.Count; ++i)
-                {
-                    Lector lectorFromDb = dbContext.Lectors.Find(item.Lectors[i].Id);
-                    if (lectorFromDb != null) lectors.Add(lectorFromDb);
-                    else lectors.Add(item.Lectors[i]);
-                }
-
-                courseFromDb.Lectors = lectors;
+                var lector = dbContext.Lectors.FirstOrDefault(l=>l.Id==item.Lector.Id);
+                if (lector != null)
+                courseFromDb.Lector = lector;
 
                 List<Lesson> lessons = new List<Lesson>(item.Lessons.Count);
                 for (int i = 0; i < item.Lessons.Count; ++i)
