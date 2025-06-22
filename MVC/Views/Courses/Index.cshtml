@@ -36,60 +36,33 @@
     <div class="filters-grid">
         <div class="filter-group">
             <label class="filter-label">Търсене</label>
-            <input type="text" value="@(ViewBag.Search ?? "")" placeholder="Търси курс..." onchange="window.location.href = `?search=${encodeURIComponent(this.value)}&page=@ViewBag.Page&filter=@ViewBag.Filter`" class="filter-input">
+            <input type="text" value="@(ViewBag.Search ?? "")" placeholder="Търси курс..." onchange="window.location.href = `?search=${encodeURIComponent(this.value)}&page=@ViewBag.Page&filter=@ViewBag.Filter&level=@ViewBag.Level`" class="filter-input">
         </div>
 
         <div class="filter-group">
             <label class="filter-label">Ниво</label>
             <select class="filter-select" id="level-filter">
-                <option value="">Всички нива</option>
-                <option value="beginner">Начинаещ</option>
-                <option value="intermediate">Средно ниво</option>
-                <option value="advanced">Напреднал</option>
+                <option  value="@Difficulty.All">Всички нива</option>
+                <option  value="@Difficulty.Easy">Начинаещ</option>
+                <option value="@Difficulty.Intermediate">Средно ниво</option>
+                <option value="@Difficulty.Hard">Напреднал</option>
             </select>
         </div>
 
         <div class="filter-group">
             <label class="filter-label">Категория</label>
             <select class="filter-select" id="category-filter">
-                <option value="">Всички категории</option>
-                <option value="javascript">JavaScript</option>
-                <option value="frontend">Frontend</option>
-                <option value="backend">Backend</option>
-                <option value="frameworks">Frameworks</option>
+                <option value="@Filters.All">Всички категории</option>
+                <option value="@Filters.Js">JavaScript</option>
+                <option value="@Filters.Projects">Frontend</option>
+                <option value="@Filters.Algorithms">Backend</option>
+                <option value="@Filters.API">Frameworks</option>
             </select>
-        </div>
-
-        <div class="filter-group" style="margin-top: 5px;">
-            <label class="filter-label">Популярни тагове</label>
-            <div class="filter-tags">
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.Js`" class="filter-tag @(ViewBag.Filter == Filters.Js ? "active" : "")">JavaScript</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.React`" class="filter-tag @(ViewBag.Filter == Filters.React ? "active" : "")">React</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.VueJs`" class="filter-tag @(ViewBag.Filter == Filters.VueJs ? "active" : "")">Vue.js</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.NodeJs`" class="filter-tag @(ViewBag.Filter == Filters.NodeJs ? "active" : "")">Node.js</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.TypeScript`" class="filter-tag @(ViewBag.Filter == Filters.TypeScript ? "active" : "")">TypeScript</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.Algorithms`" class="filter-tag @(ViewBag.Filter == Filters.Algorithms ? "active" : "")">Алгоритми</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.API`" class="filter-tag @(ViewBag.Filter == Filters.API ? "active" : "")">API</button>
-                <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@Filters.DataBase`" class="filter-tag @(ViewBag.Filter == Filters.DataBase ? "active" : "")">База данни</button>
-            </div>
         </div>
     </div>
 
     <!-- Pagination -->
-    <div class="pagination">
-        @if (ViewBag.Page > 1)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page - 1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-left"></i></button>
-        }
-        @for (int i = 1; i <= ViewBag.TotalPages; i++)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@i&filter=@ViewBag.Filter`" class="page-btn @(i == ViewBag.Page ? "active" : "")">@i</button>
-        }
-        @if (ViewBag.Page < ViewBag.TotalPages)
-        {
-            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page + 1)&filter=@ViewBag.Filter`" class="page-btn"><i class="fas fa-chevron-right"></i></button>
-        }
-    </div>
+    
 
     <!-- Courses Grid -->
     <div class="courses-container" id="courses-container">
@@ -136,10 +109,39 @@
                 window.location.href = `@Url.Action("Details", "Courses", new { id = course.Id })`;
             });
         });
+        
     </script>
             }
         }
+        
     </div>
-    
-</div>
+        <script>
+        const categoryFilter = document.getElementById("category-filter");
+        categoryFilter.value = "@(ViewBag.Filter is null?"": ViewBag.Filter.ToString() as string)"
+        categoryFilter.childNodes.forEach(el=>{
+            el.addEventListener("click", (event)=>{
+                window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=${el.value}&level=@ViewBag.Level`;
+            })});
+        const levelFilter = document.getElementById("level-filter");
+        levelFilter.value = "@(ViewBag.Level is null?"All":ViewBag.Level.ToString() as string)"
+        levelFilter.childNodes.forEach(el=>el.addEventListener("click", (event)=>{
+            window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@ViewBag.Page&filter=@ViewBag.Filter&level=${el.value}`;
+        }));
+    </script>
 
+
+    <div class="pagination">
+        @if (ViewBag.Page > 1)
+        {
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page - 1)&filter=@ViewBag.Filter&level=@ViewBag.Level`" class="page-btn"><i class="fas fa-chevron-left"></i></button>
+        }
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@i&filter=@ViewBag.Filter&level=@ViewBag.Level`" class="page-btn @(i == ViewBag.Page ? "active" : "")">@i</button>
+        }
+        @if (ViewBag.Page < ViewBag.TotalPages)
+        {
+            <button onclick="window.location.href = `?search=@(ViewBag.Search is not null ? HttpUtility.UrlEncode(ViewBag.Search) : "")&page=@(ViewBag.Page + 1)&filter=@ViewBag.Filter&level=@ViewBag.Level`" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+        }
+    </div>
+</div>

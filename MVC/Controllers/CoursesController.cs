@@ -12,7 +12,7 @@ namespace MVC.Controllers
     {
         private readonly CoursesContext _coursesContext;
         private readonly IdentityContext _context;
-
+        private const int pageSize = 10;
         public CoursesController(CoursesContext coursesContext,IdentityContext identityContext)
         {
             _coursesContext = coursesContext;
@@ -20,7 +20,7 @@ namespace MVC.Controllers
         }
 
         // GET: Course
-        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = null, [FromQuery] string sort = null, [FromQuery] string order = null, [FromQuery] Difficulty? level = null)
+        public async Task<IActionResult> Index([FromQuery] int page = 1, [FromQuery] string search = null, [FromQuery]Filters? filter = null, [FromQuery] Difficulty? level = null)
         {
             try
             {
@@ -67,13 +67,16 @@ namespace MVC.Controllers
                 if (!string.IsNullOrWhiteSpace(search))
                     allCourses = allCourses.FindAll(c => c.Name.Contains(search, StringComparison.OrdinalIgnoreCase) || c.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
                 if (level.HasValue && level.Value != 0)
-                    allCourses = allCourses.FindAll(c => c.Difficulty == level.Value);
+                    allCourses = allCourses.FindAll(c => c.Difficulty == level);
+                if (filter.HasValue && filter.Value != 0)
+                    allCourses = allCourses.FindAll(c=>c.Filters.Any(f=>f == filter));
                 // Pagination
                 int totalCourses = allCourses.Count;
                 int totalPages = (int)Math.Ceiling(totalCourses / (double)pageSize);
                 allCourses = allCourses.Skip((page - 1) * pageSize).Take(pageSize).ToList();
                 ViewBag.Page = page;
                 ViewBag.TotalPages = totalPages;
+                ViewBag.Filter = filter;
                 ViewBag.Search = search;
                 ViewBag.Level = level;
                 return View(allCourses);
