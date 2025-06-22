@@ -2,17 +2,21 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/battles.css" />
     <style>
+        :root{
+            --primary: #00f7ff;
+            --secondary: #ff00e4;
+        }
         .modern-card {
-            background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+            background: transparent;
             border-radius: 1.5rem;
             box-shadow: 0 4px 32px rgba(80, 80, 180, 0.08);
             padding: 2.5rem 2rem;
-            max-width: 500px;
+            max-width: 800px;
             margin: 2rem auto;
             text-align: center;
         }
         .avatar {
-            width: 64px; height: 64px; border-radius: 50%; background: #e0e7ff; display: inline-block; margin: 0 1rem;
+            width: 64px; height: 64px; border-radius: 50%; background: #00f7ff; display: inline-block; margin: 0 1rem;
         }
         .modern-btn {
             background: linear-gradient(90deg, #6366f1, #60a5fa);
@@ -22,14 +26,25 @@
         .modern-btn:hover { background: linear-gradient(90deg, #60a5fa, #6366f1); box-shadow: 0 4px 16px rgba(80,80,180,0.18); }
         .waiting { color: #6366f1; font-weight: 600; margin-top: 1.5rem; }
         .ready { color: #16a34a; font-weight: 700; margin-top: 1.5rem; }
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
     </style>
 }
 <div class="modern-card">
-    <a href="@Url.Action("Details", "Battles", new { id = Model.Id })" class="back-link"><i class="fas fa-arrow-left"></i> Детайли за двубоя</a>
     <h1 class="battle-title">Присъединяване към: @Model.Title</h1>
     <p class="battle-description">@Model.Description</p>
     <div style="display:flex; justify-content:center; align-items:center; margin:2rem 0;">
-        <div class="avatar"><i class="fas fa-user"></i></div>
+        <div class="user-avatar-avatar justify-content-center align-content-center text-center d-flex flex-row"><span style="margin: auto auto;color: #f0f0f0" class="fas align-content-center align-self-center fa-user"></span></div>
         <span style="font-size:2rem; color:#6366f1; font-weight:700;">VS</span>
         <div class="avatar"><i class="fas fa-user"></i></div>
     </div>
@@ -38,10 +53,14 @@
         <div><i class="fas fa-calendar-check"></i> Край: <span>@Model.EndDate.ToString("dd.MM.yyyy HH:mm")</span></div>
         <div><i class="fas fa-trophy"></i> Награда: <span>@Model.RewardXP XP</span></div>
     </div>
+    <div style="color: #6366f1" class="spinner-border"></div>
     <div id="join-state" class="waiting">Изчакване на другия играч...</div>
     <form id="join-form" method="post" action="@Url.Action("Join", "Battles", new { id = Model.Id })" style="margin-top:2rem;">
+        <div class="form-group d-flex flex-row justify-content-between">
+            <a href="@Url.Action("Details", "Battles", new { id = Model.Id })" class="btn btn-outline" style="margin-left:1rem;">Отказ</a>
+            
         <button type="submit" class="modern-btn">Потвърди присъединяване</button>
-        <a href="@Url.Action("Details", "Battles", new { id = Model.Id })" class="btn btn-outline" style="margin-left:1rem;">Отказ</a>
+        </div>
     </form>
 </div>
 @section Scripts {
