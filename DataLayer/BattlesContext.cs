@@ -76,10 +76,8 @@ namespace DataLayer
             {
                 var existingBattle = await Read(item.Id, useNavigationalProperties);
 
-                // Update scalar properties
                 dbContext.Entry(existingBattle).CurrentValues.SetValues(item);
 
-                // Update navigation properties if needed
                 if (useNavigationalProperties)
                 {
                     existingBattle.FirstPlayer = item.FirstPlayer;

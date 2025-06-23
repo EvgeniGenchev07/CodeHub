@@ -488,4 +488,44 @@ textarea.form-control {
         min-height: 56px; /* или колкото е височината на навигацията */
         box-sizing: border-box;
     }
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
 
+.badge-all {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.badge-easy {
+    background-color: #4caf50;
+    color: white;
+}
+
+.badge-intermediate {
+    background-color: #2196f3;
+    color: white;
+}
+
+.badge-hard {
+    background-color: #ff9800;
+    color: white;
+}
+
+.badge-extreme {
+    background-color: #f44336;
+    color: white;
+}
+
+.badge-insane {
+    background-color: #9c27b0;
+    color: white;
+}
+
+.badge-hardenbeard {
+    background-color: #795548;
+    color: white;
+}
