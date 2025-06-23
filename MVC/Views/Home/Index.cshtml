@@ -95,7 +95,7 @@ console.log(result);</code></pre>
                     <i class="fab fa-js"></i>
                 </div>
                 <h3>@item.Name</h3>
-                <p>@item.Description.Substring(0,50)...</p>
+                <p>@(item.Description.Length<50?item.Description:item.Description.Substring(0,50))...</p>
                 <div class="course-meta">
                     <span><i class="fas fa-clock"></i> @item.Lessons.Count урока</span>
                     <span><i class="fas fa-users"></i>@item.Students ученици</span>

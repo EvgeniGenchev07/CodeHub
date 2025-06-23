@@ -83,7 +83,7 @@
     <div class="popup-content">
         <span class="close-btn" onclick="closeVideoPopup()">&times;</span>
         <video id="video-player" controls autoplay>
-            <source src="your-video.mp4" type="video/mp4">
+            <source id="video-source" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -276,29 +276,42 @@
                     }
                 });
             });
-              document.querySelectorAll(".lesson-item").forEach((el) => {
-          {
-              el.addEventListener('click', function() {
-                  fetch(`../Video?courseId=${el.getAttribute("data-courseId")}&id=${el.getAttribute("data-id")}`)
-                      .then(res => res.arrayBuffer())
-                      .then(buffer => {
-                          const blob = new Blob([buffer], {type: 'video/mp4'});
-                          const url = URL.createObjectURL(blob);
-                          document.getElementById("videoPopup").style.display = "flex";
-                          const video = document.getElementById("video-player");
-                          video.src = url;
-                          video.controls = true;
-                          video.autoplay = true;
-                          video.loop = false;
-                          video.playbackRate = 0.5;
-                          video.addEventListener("ended", (event) => {
-                              closeVideoPopup();
-                              fetch(`../VideoCompletion/${el.getAttribute("data-courseId")}`).then(res=>{});
-                          })
-                        });
-              });
-          }})
+                
+                document.querySelectorAll(".lesson-item").forEach((el) =>
+                {
+                    {
+                        el.addEventListener('click', function() {
+                            fetch(`.. / Video ? courseId = ${
+                                el.getAttribute("data-courseId")
+                            }
+                            &id = ${
+                                el.getAttribute("data-id")
+                            }`)
+                            .then(res => res.arrayBuffer())
+                                .then(buffer =>
+                                {
+                                    const blob  = new Blob([buffer],  { type: 'video/mp4' });
+                                    const url  = URL.createObjectURL(blob);
+                                    const video  = document.getElementById("video-player");
+                                    video.src = url;
+                                    video.controls = true;
+                                    video.querySelector('#video-source').src = url;
+                                    video.autoplay = true;
+                                    video.loop = false;
+                                    video.playbackRate = 0.5;
+                                    video.addEventListener("ended", (event) => {
+                                        closeVideoPopup();
+                                        fetch(`.. / VideoCompletion /${
+                                            el.getAttribute("data-courseId")
+                                        }`).then(res => { });
+                                    })
+                                    console.log(video.src);
+                                    document.getElementById("videoPopup").style.display = "flex";
 
+                                });
+                        });
+                    }
+                });
           function closeVideoPopup() {
               const popup = document.getElementById("videoPopup");
               const video = popup.querySelector("video");

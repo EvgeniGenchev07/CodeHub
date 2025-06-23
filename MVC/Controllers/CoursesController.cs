@@ -24,32 +24,7 @@ namespace MVC.Controllers
         {
             try
             {
-                //var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
-                var allCourses = new List<Course>()
-                {
-                    new Course()
-                    {
-                        Filters = new List<Filters>() { Filters.Algorithms },
-                        Description = "dasdad",
-                        Name = "dasdad",
-                        Lector= 
-                            new Lector()
-                            {
-                                Name = "Adada",
-                                Description = "dasdad"
-                            },
-                        Lessons = new List<Lesson>()
-                        {
-                            new Lesson()
-                            {
-                                Description = "dasdad",
-                                Title = "dasdad",
-                                Video = new byte[]{1,3,4,5,6,5,7}
-                            }
-                        },
-                        Difficulty = Difficulty.Easy,
-                    }
-                };
+                var allCourses = await _coursesContext.ReadAll(useNavigationalProperties: true);
                 // Filtering
                 if (!string.IsNullOrWhiteSpace(search))
                     allCourses = allCourses.FindAll(c => c.Name.Contains(search, StringComparison.OrdinalIgnoreCase) || c.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
@@ -85,36 +60,14 @@ namespace MVC.Controllers
 
             try
             {
-                //var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
-                   var course =  new Course()
-                    {
-                        Filters = new List<Filters>() { Filters.Algorithms },
-                        Description = "dasdad",
-                        Name = "dasdad",
-                        Lector = 
-                            new Lector()
-                            {
-                                Name = "Adada",
-                                Description = "dasdad"
-                            },
-                        Lessons = new List<Lesson>()
-                        {
-                            new Lesson()
-                            {
-                                Description = "dasdad",
-                                Title = "dasdad",
-                                Video = new byte[]{1,3,4,5,6,5,7}
-                            }
-                        },
-                        Difficulty = Difficulty.Easy,
-                    };
+                  var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
                     if (User.Identity.IsAuthenticated)
                     {
                         User user = await _context.ReadUserAsync(User.Identity.GetUserId());
                         if (user != null)
                         {
                             UserCourse userCourse = user.Courses.FirstOrDefault(course => course.Id == id);
-                            return View(userCourse);
+                            if(userCourse != null) return View(userCourse);
                         }
                     }
                 if (course == null)
@@ -131,7 +84,6 @@ namespace MVC.Controllers
             }
         }
         [HttpPost]
-        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int id)
         {
             if (User.Identity.IsAuthenticated)
@@ -235,7 +187,6 @@ namespace MVC.Controllers
         {
             if (courseId != null && id != null)
             {
-                return Ok(new byte[]{1,2,3,4,5,6});
                 Course corse =  await _coursesContext.Read(courseId.Value, useNavigationalProperties: true,true);
                 Lesson lesson = corse.Lessons.FirstOrDefault(l => l.Id == id);
                 if (lesson != null)
