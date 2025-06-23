@@ -15,7 +15,7 @@ namespace DataLayer
         public async Task Create(Course item)
         {
             dbContext.Courses.Add(item);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<Course> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
@@ -71,14 +71,14 @@ namespace DataLayer
                 courseFromDb.Lessons = lessons;
             }
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task Delete(int key)
         {
             Course course = await Read(key);
             dbContext.Courses.Remove(course);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

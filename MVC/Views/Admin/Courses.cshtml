@@ -129,40 +129,40 @@
                     <div class="form-group">
                         <label class="form-label">Трудност</label>
                         <select class="form-control" id="editCourseDifficulty" name="difficulty" required>
-                            <option value="Easy">Easy</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Hard">Hard</option>
-                            <option value="Extreme">Extreme</option>
-                            <option value="Insane">Insane</option>
-                            <option value="HardenBeard">HardenBeard</option>
+                            <option value="0">Easy</option>
+                            <option value="1">Intermediate</option>
+                            <option value="2">Hard</option>
+                            <option value="3">Extreme</option>
+                            <option value="4">Insane</option>
+                            <option value="5">HardenBeard</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Филтри</label>
                     <select class="form-control" id="editCourseFilters" name="filters" multiple>
-                        <option value="Js">JavaScript</option>
-                        <option value="Algorithms">Алгоритми</option>
-                        <option value="Csharp">C#</option>
-                        <option value="Python">Python</option>
-                        <option value="Java">Java</option>
-                        <option value="C">C</option>
-                        <option value="CPlusPlus">C++</option>
-                        <option value="Ruby">Ruby</option>
-                        <option value="Go">Go</option>
-                        <option value="Rust">Rust</option>
-                        <option value="Swift">Swift</option>
-                        <option value="Projects">Проекти</option>
-                        <option value="Interviews">Интервюта</option>
-                        <option value="Asynchronous">Асинхронност</option>
-                        <option value="Synchronous">Синхронност</option>
-                        <option value="DOMAssembly">DOM & Assembly</option>
-                        <option value="React">React</option>
-                        <option value="VueJs">Vue.js</option>
-                        <option value="NodeJs">Node.js</option>
-                        <option value="TypeScript">TypeScript</option>
-                        <option value="API">API</option>
-                        <option value="DataBase">Бази данни</option>
+                        <option value="0">JavaScript</option>
+                        <option value="1">Алгоритми</option>
+                        <option value="2">C#</option>
+                        <option value="3">Python</option>
+                        <option value="4">Java</option>
+                        <option value="5">C</option>
+                        <option value="6">C++</option>
+                        <option value="7">Ruby</option>
+                        <option value="8">Go</option>
+                        <option value="9">Rust</option>
+                        <option value="10">Swift</option>
+                        <option value="11">Проекти</option>
+                        <option value="12">Интервюта</option>
+                        <option value="13">Асинхронност</option>
+                        <option value="14">Синхронност</option>
+                        <option value="15">DOM & Assembly</option>
+                        <option value="16">React</option>
+                        <option value="17">Vue.js</option>
+                        <option value="18">Node.js</option>
+                        <option value="19">TypeScript</option>
+                        <option value="20">API</option>
+                        <option value="21">Бази данни</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -215,7 +215,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function() {
             // Hamburger меню
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
@@ -243,12 +243,97 @@
             let itemsPerPage = 10;
             let filteredCourses = [];
 
-            // Зареждане на данни
+            // Enum мапинги
+            const difficultyMap = {
+                0: 'Easy',
+                1: 'Intermediate',
+                2: 'Hard',
+                3: 'Extreme',
+                4: 'Insane',
+                5: 'HardenBeard'
+            };
+
+            const filterMap = {
+                0: 'JavaScript',
+                1: 'Алгоритми',
+                2: 'C#',
+                3: 'Python',
+                4: 'Java',
+                5: 'C',
+                6: 'C++',
+                7: 'Ruby',
+                8: 'Go',
+                9: 'Rust',
+                10: 'Swift',
+                11: 'Проекти',
+                12: 'Интервюта',
+                13: 'Асинхронност',
+                14: 'Синхронност',
+                15: 'DOM & Assembly',
+                16: 'React',
+                17: 'Vue.js',
+                18: 'Node.js',
+                19: 'TypeScript',
+                20: 'API',
+                21: 'Бази данни'
+            };
+
+            // Хелпер функции за конвертиране
+            function convertDifficulty(difficultyValue) {
+                return difficultyMap[difficultyValue] || difficultyValue;
+            }
+
+            function convertFilters(filterValues) {
+                if (Array.isArray(filterValues)) {
+                    return filterValues.map(f => filterMap[f] || f);
+                }
+                return filterValues;
+            }
+
+            function convertDifficultyToValue(difficultyText) {
+                const reverseMap = {
+                    'Easy': 0,
+                    'Intermediate': 1,
+                    'Hard': 2,
+                    'Extreme': 3,
+                    'Insane': 4,
+                    'HardenBeard': 5
+                };
+                return reverseMap[difficultyText] || 0;
+            }
+
+            function convertFilterToValue(filterText) {
+                const reverseMap = {
+                    'JavaScript': 0,
+                    'Алгоритми': 1,
+                    'C#': 2,
+                    'Python': 3,
+                    'Java': 4,
+                    'C': 5,
+                    'C++': 6,
+                    'Ruby': 7,
+                    'Go': 8,
+                    'Rust': 9,
+                    'Swift': 10,
+                    'Проекти': 11,
+                    'Интервюта': 12,
+                    'Асинхронност': 13,
+                    'Синхронност': 14,
+                    'DOM & Assembly': 15,
+                    'React': 16,
+                    'Vue.js': 17,
+                    'Node.js': 18,
+                    'TypeScript': 19,
+                    'API': 20,
+                    'Бази данни': 21
+                };
+                return reverseMap[filterText] || 0;
+            }
+
             loadCourses();
             loadLectors();
             loadLessons();
 
-            // Event listeners за филтриране и сортиране
             document.getElementById('searchInput').addEventListener('input', filterCourses);
             document.getElementById('difficultyFilter').addEventListener('change', filterCourses);
             document.getElementById('sortBy').addEventListener('change', filterCourses);
@@ -258,7 +343,6 @@
                 updateTable();
             });
 
-            // Event listeners за модали
             document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
             document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
             document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
@@ -266,14 +350,12 @@
             document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
             document.getElementById('editCourseForm').addEventListener('submit', saveCourseChanges);
 
-            // Бутон за създаване на курс
             document.getElementById('createCourseBtn').addEventListener('click', function() {
                 resetEditModal();
                 document.querySelector('#editModal .modal-title').textContent = 'Създай курс';
                 document.getElementById('editModal').style.display = 'block';
             });
 
-            // Функции за зареждане на данни
             async function loadCourses() {
                 try {
                     const response = await fetch('/Admin/GetAllCourses');
@@ -282,6 +364,14 @@
                         throw new Error(error.message || 'Грешка при извличане на курсове');
                     }
                     demoCourses = await response.json();
+
+                    demoCourses.forEach(course => {
+                        course.difficulty = convertDifficulty(course.difficulty);
+                        if (course.filters) {
+                            course.filters = convertFilters(course.filters);
+                        }
+                    });
+
                     filteredCourses = [...demoCourses];
                     updateTable();
                 } catch (error) {
@@ -313,6 +403,11 @@
                         throw new Error(error.message || 'Грешка при извличане на уроци');
                     }
                     demoLessons = await response.json();
+
+                    demoLessons.forEach(lesson => {
+                        lesson.difficulty = convertDifficulty(lesson.difficulty);
+                    });
+
                     renderLessonCheckboxes();
                 } catch (error) {
                     console.error('Error loading lessons:', error);
@@ -522,6 +617,11 @@
                             throw new Error(error.message || 'Грешка при извличане на курс');
                         }
                         course = await response.json();
+
+                        course.difficulty = convertDifficulty(course.difficulty);
+                        if (course.filters) {
+                            course.filters = course.filters.map(f => convertFilters(f));
+                        }
                     } else {
                         course = {
                             name: '',
@@ -536,12 +636,20 @@
                     document.getElementById('editCourseId').value = course.id || '';
                     document.getElementById('editCourseName').value = course.name;
                     document.getElementById('editCourseDescription').value = course.description || '';
-                    document.getElementById('editCourseDifficulty').value = course.difficulty || 'Easy';
 
-                    // Изчистваме и попълваме филтрите
+                    // Селектиране на правилната трудност
+                    const difficultySelect = document.getElementById('editCourseDifficulty');
+                    for (let i = 0; i < difficultySelect.options.length; i++) {
+                        if (difficultySelect.options[i].text === course.difficulty) {
+                            difficultySelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Обработка на филтрите
                     const filtersSelect = document.getElementById('editCourseFilters');
                     Array.from(filtersSelect.options).forEach(option => {
-                        option.selected = course.filters && course.filters.includes(option.value);
+                        option.selected = course.filters && course.filters.includes(option.text);
                     });
 
                     if (course.lector && course.lector.id) {
@@ -620,26 +728,31 @@
                     return;
                 }
 
+
+                const difficultyText = document.getElementById('editCourseDifficulty').value;
+                const difficultyValue = convertDifficultyToValue(difficultyText);
+
                 const selectedFilters = [];
                 const filtersSelect = document.getElementById('editCourseFilters');
                 Array.from(filtersSelect.selectedOptions).forEach(option => {
-                    selectedFilters.push(option.value);
+                    selectedFilters.push(convertFilterToValue(option.text));
                 });
 
                 const selectedLessons = [];
                 const lessonCheckboxes = document.querySelectorAll('.lesson-checkbox:checked');
                 lessonCheckboxes.forEach(checkbox => {
-                    selectedLessons.push(parseInt(checkbox.value));
+                    selectedLessons.push({ Id: parseInt(checkbox.value) });
                 });
 
                 const courseData = {
-                    id: id || 0,
-                    name: name,
-                    description: formData.get('description'),
-                    difficulty: formData.get('difficulty'),
-                    filters: selectedFilters,
-                    lectorId: formData.get('lectorId') || null,
-                    lessonIds: selectedLessons
+                    Id: id ? parseInt(id) : 0,
+                    Name: name,
+                    Description: formData.get('description') || '',
+                    Difficulty: difficultyValue,
+                    Filters: selectedFilters,
+                    Lector: formData.get('lectorId') ? { Id: parseInt(formData.get('lectorId')) } : null,
+                    Lessons: selectedLessons,
+                    Students: 0
                 };
 
                 try {

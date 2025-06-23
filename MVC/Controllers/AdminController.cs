@@ -326,7 +326,7 @@ namespace CodeHub.Controllers
         {
             try
             {
-                var courses = _coursesContext.ReadAll();
+                var courses = await _coursesContext.ReadAll(true,true); 
                 if (courses == null)
                 {
                     return Ok(new List<Course>());
@@ -339,42 +339,82 @@ namespace CodeHub.Controllers
             }
         }
         [HttpPost]
-        public IActionResult CreateCourse([FromBody] Course course)
+        public async Task<IActionResult> CreateCourse([FromBody] Course course)
         {
             try
             {
+                if (course == null)
+                    return BadRequest("Course data is required!");
+
                 if (string.IsNullOrWhiteSpace(course.Name))
                     return BadRequest("Заглавието на курса е задължително!");
 
                 if (string.IsNullOrWhiteSpace(course.Description))
                     return BadRequest("Описанието на курса е задължително!");
 
-                // Validate Lectors (if provided)
-                if (course.Lector != null)
-                {
-                        if (course.Lector.Id <= 0)
-                            return BadRequest("Всеки лектор трябва да има валидно ID.");
-                }
+                course.Filters ??= new List<Filters>();
+                course.Lessons ??= new List<Lesson>();
 
-                // Validate Lessons (if provided)
-                if (course.Lessons != null)
+                if (course.Filters != null)
                 {
-                    foreach (var lesson in course.Lessons)
+                    var validFilters = new List<Filters>();
+                    foreach (var filter in course.Filters)
                     {
-                        if (lesson.Id <= 0)
-                            return BadRequest("Всеки урок трябва да има валидно ID.");
+                        if (Enum.IsDefined(typeof(Filters), filter))
+                        {
+                            validFilters.Add(filter);
+                        }
+                        else
+                        {
+                            return BadRequest($"Невалиден филтър: {filter}");
+                        }
                     }
+                    course.Filters = validFilters;
                 }
 
-                _coursesContext.Create(course);
+                if (course.Lector != null && course.Lector.Id > 0)
+                {
+                    var lector = await _dbContext.Lectors.FindAsync(course.Lector.Id);
+                    if (lector == null)
+                        return BadRequest("Лекторът не е намерен!");
+                    course.Lector = lector;
+                }
+                else
+                {
+                    course.Lector = null;
+                }
 
-                return Ok(new { success = true, message = "Курсът е създаден успешно!" });
+                if (course.Lessons != null && course.Lessons.Any())
+                {
+                    var lessonIds = course.Lessons.Select(l => l.Id).ToList();
+                    var existingLessons = await _dbContext.Lessons
+                        .Where(l => lessonIds.Contains(l.Id))
+                        .ToListAsync();
+
+                    if (existingLessons.Count != lessonIds.Count)
+                        return BadRequest("Някои уроци не са намерени!");
+
+                    course.Lessons = existingLessons;
+                }
+
+                course.Students = 0;
+
+                _dbContext.Courses.Add(course);
+                await _dbContext.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Курсът е създаден успешно!",
+                    courseId = course.Id
+                });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Грешка при създаване на курс: {ex.Message}");
             }
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAllExercises()
         {
