@@ -1,0 +1,324 @@
+<div class="community-container">
+    <!-- Partners Section -->
+    <section class="community-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-handshake"></i> Our Partners
+            </h2>
+            <p class="section-subtitle">Strategic alliances powering our platform</p>
+        </div>
+        
+        <div class="partners-grid">
+            <!-- Partner Card 1 -->
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partner+1" alt="Partner Logo">
+                </div>
+                <div class="partner-info">
+                    <h3>Tech Innovators</h3>
+                    <p class="partner-description">Providing cutting-edge gaming technology</p>
+                    <div class="partner-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-globe"></i> techinnovators.com
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Partner Card 2 -->
+            <div class="partner-card">
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partner+2" alt="Partner Logo">
+                </div>
+                <div class="partner-info">
+                    <h3>Game Studios</h3>
+                    <p class="partner-description">Official content partners</p>
+                    <div class="partner-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-globe"></i> gamestudios.com
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More partners... -->
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="community-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i> The Team
+            </h2>
+            <p class="section-subtitle">The minds behind the battles</p>
+        </div>
+        
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="https://via.placeholder.com/150x150?text=Dev+1" alt="Team Member">
+                    <div class="team-socials">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Alex Johnson</h3>
+                    <p class="team-role">Lead Developer</p>
+                    <p class="team-bio">Battle system architect and gameplay engineer</p>
+                </div>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="https://via.placeholder.com/150x150?text=Designer" alt="Team Member">
+                    <div class="team-socials">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Sam Wilson</h3>
+                    <p class="team-role">UI/UX Designer</p>
+                    <p class="team-bio">Crafted the battle interface and visual experience</p>
+                </div>
+            </div>
+            
+            <!-- More team members... -->
+        </div>
+    </section>
+</div>
+
+<style>
+/* Base Styles */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --accent: #00f7ff;
+    --dark: #0f172a;
+    --card-bg: #1e293b;
+    --border: rgba(80, 80, 180, 0.2);
+    --text: #f8fafc;
+    --hint: #94a3b8;
+}
+
+.community-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: var(--text);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.section-subtitle {
+    color: var(--hint);
+    font-size: 1.1rem;
+}
+
+/* Partners Grid */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.partner-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.partner-logo {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.partner-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.partner-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.partner-description {
+    color: var(--hint);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.partner-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+}
+
+/* Team Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-avatar {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-socials {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-card:hover .team-socials {
+    opacity: 1;
+}
+
+.team-socials a {
+    color: white;
+    background: rgba(99, 102, 241, 0.7);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.team-socials a:hover {
+    transform: scale(1.1);
+    background: var(--primary);
+}
+
+.team-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.team-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.team-role {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.team-bio {
+    color: var(--hint);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .partner-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .partner-meta {
+        justify-content: center;
+    }
+}
+
+@@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />

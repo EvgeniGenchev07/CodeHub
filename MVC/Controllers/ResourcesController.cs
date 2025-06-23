@@ -8,5 +8,9 @@ namespace CodeHub.Controllers
         {
             return View();
         }
+        public IActionResult Partners()
+        {
+            return View();
+        }
     }
 }

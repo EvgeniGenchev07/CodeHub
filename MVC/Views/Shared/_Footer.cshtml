@@ -7,7 +7,7 @@
                 </div>
                 <p class="footer-text">Научи програмирането чрез игри, двубои и реални предизвикателства. Присъедини се към нашата общност днес!</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-x-twitter"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
                     <a href="#"><i class="fab fa-discord"></i></a>
@@ -15,13 +15,13 @@
             </div>
 
             <div class="footer-links">
-                <h4>Курсове</h4>
+                <h4>Страници</h4>
                 <ul>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">Python</a></li>
-                    <li><a href="#">C#</a></li>
-                    <li><a href="#">C</a></li>
-                    <li><a href="#">Java</a></li>
+                    <li><a asp-action="Index" asp-controller="Home">Начало</a></li>
+                    <li><a asp-action="Index" asp-controller="Courses">Курсове</a></li>
+                    <li><a asp-action="Index" asp-controller="Battles">Битки</a></li>
+                    <li><a asp-action="Index" asp-controller="Forum">Форум</a></li>
+                    <li><a asp-action="Index" asp-controller="Exercises">Упражниния</a></li>
                 </ul>
             </div>
 
@@ -31,7 +31,7 @@
                     <li><a href="#">Документация</a></li>
                     <li><a href="/Resources/FAQ">Често задавани въпроси</a></li>
                     <li><a href="/forum">Блог</a></li>
-                    <li><a href="#">Партньори</a></li>
+                    <li><a asp-controller="Resources" asp-action="Partners">Партньори</a></li>
                 </ul>
             </div>
 
@@ -39,9 +39,9 @@
                 <h4>За нас</h4>
                 <ul>
                     <li><a href="#">Екип</a></li>
-                    <li><a href="/AboutUs/Contacts">Контакти</a></li>
-                    <li><a href="#">Условия</a></li>
-                    <li><a href="#">Поверителност</a></li>
+                    <li><a asp-controller="AboutUs" asp-action="Contacts">Контакти</a></li>
+                    <li><a asp-controller="AboutUs" asp-action="Conditions">Условия</a></li>
+                    <li><a asp-controller="AboutUs" asp-action="Privacy">Поверителност</a></li>
                 </ul>
             </div>
         </div>

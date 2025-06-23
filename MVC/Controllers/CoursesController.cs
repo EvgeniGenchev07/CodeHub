@@ -98,42 +98,7 @@ namespace MVC.Controllers
 
             try
             {
-                //var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
-                   var course =  new Course()
-                    {
-                        Filters = new List<Filters>() { Filters.Algorithms },
-                        Description = "dasdad",
-                        Name = "dasdad",
-                        Lector = 
-                            new Lector()
-                            {
-                                Name = "Adada",
-                                Description = "dasdad"
-                            },
-                        Lessons = new List<Lesson>()
-                        {
-                            new Lesson()
-                            {
-                                Description = "dasdad",
-                                Title = "dasdad",
-                                Video = new byte[]{1,3,4,5,6,5,7},
-                                Exercises = new List<Exercise>()
-                                {
-                                    new Exercise()
-                                    {
-                                        Date = DateTime.Now,
-                                        Solutions = 12,
-                                        Points = 12,
-                                        Views = 12,
-                                        Description = "dasdasd",
-                                        Title = "dasdasd",
-                                        Difficulty = Difficulty.Extreme,
-                                    }
-                                }
-                            }
-                        },
-                        Difficulty = Difficulty.Easy,
-                    };
+                var course = await _coursesContext.Read(id.Value, useNavigationalProperties: true);
                     if (User.Identity.IsAuthenticated)
                     {
                         User user = await _context.ReadUserAsync(User.Identity.GetUserId());
