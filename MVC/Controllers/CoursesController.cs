@@ -91,7 +91,7 @@ namespace MVC.Controllers
                 User user = await _context.ReadUserAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
-                    Course course = await _coursesContext.Read(id);
+                    Course course = await _coursesContext.Read(id,true);
                     UserCourse userCourse = new UserCourse() { Course = course, User = user,Completion = 0};
                     user.Courses.Add(userCourse);
                     course.Students++;

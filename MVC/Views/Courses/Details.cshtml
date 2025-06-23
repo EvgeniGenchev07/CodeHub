@@ -66,15 +66,16 @@
                     <i class="fas fa-chart-line"></i> @course.Students ученици
                 </div>
             </div>
-
-            <div class="course-actions">
-                <form asp-action="Details" asp-controller="Courses" asp-all-route-id="@course.Id">
-                    <button type="submit" value="Details" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни курс</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="course-image">
+@if (Model is Course)
+            {
+                <div class="course-actions">
+                    <form asp-action="Details" asp-controller="Courses" asp-all-route-id="@course.Id">
+                        <button type="submit" value="Details" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни курс</button>
+                    </form>
+                </div>
+            }
+        </div >
+            <div class="course-image">
             <i class="fab fa-@course.Filters.First().ToString().ToLower()"></i>
         </div>
     </div>
@@ -107,7 +108,7 @@
                 <div class="progress-bar-fill" style="width: @userCourse.Completion%;"></div>
             </div>
             <div class="progress-stats">
-                <span>@(userCourse.Completion*userCourse.Course.Lessons.Count)/@course.Lessons.Count урока</span>
+                <span>@(userCourse.Completion*course.Lessons.Count)/@course.Lessons.Count урока</span>
                 <span>@userCourse.Completion%</span>
             </div>
         </div>
@@ -178,15 +179,15 @@
                 <div class="stats-list">
                     <div class="stat-item">
                         <span class="stat-label">Ученици:</span>
-                        <span class="stat-value">@Model.Students</span>
+                        <span class="stat-value">@course.Students</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Уроци:</span>
-                        <span class="stat-value">@Model.Lessons.Count</span>
+                        <span class="stat-value">@course.Lessons.Count</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Общо време:</span>
-                        <span class="stat-value">@(Model.Lessons.Count*30) мин</span>
+                        <span class="stat-value">@(course.Lessons.Count*30) мин</span>
                     </div>
                 @if (Model is UserCourse)
                     {
