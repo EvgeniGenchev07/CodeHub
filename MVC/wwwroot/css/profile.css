@@ -4,6 +4,7 @@
     --light: #ffffff;
     --darker: #1a1a2e;
     --neon-glow: 0 0 10px rgba(0, 247, 255, 0.7);
+    --error: #ff4d4d;
 }
 
 * {
@@ -34,14 +35,6 @@ body {
     margin-bottom: 50px;
 }
 
-@@media (max-width: 768px) {
-    .profile-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-/* Profile Card */
 .profile-card {
     background-color: rgba(10, 10, 26, 0.6);
     border: 1px solid rgba(0, 247, 255, 0.2);
@@ -95,7 +88,6 @@ body {
     color: var(--gray);
 }
 
-/* Edit Button */
 .edit-btn {
     background: transparent;
     color: var(--primary);
@@ -119,7 +111,29 @@ body {
         transform: translateY(-2px);
     }
 
-/* Profile Details */
+.logout-btn {
+    background: transparent;
+    color: var(--error);
+    border: 2px solid var(--error);
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+    .logout-btn:hover {
+        background: rgba(255, 77, 77, 0.1);
+        box-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+        transform: translateY(-2px);
+    }
+
 .profile-details {
     background-color: rgba(10, 10, 26, 0.6);
     border: 1px solid rgba(0, 247, 255, 0.2);
@@ -137,7 +151,6 @@ body {
     text-align: center;
 }
 
-/* Courses Grid */
 .courses-grid {
     display: grid;
     gap: 20px;
@@ -173,7 +186,6 @@ body {
     margin-top: 15px;
 }
 
-/* Forum Posts */
 .forum-post {
     background-color: var(--darker);
     border-radius: 8px;
@@ -214,7 +226,6 @@ body {
     padding-right: 10px;
 }
 
-/* Empty State Styles */
 .empty-state-container {
     display: flex;
     justify-content: center;
@@ -239,7 +250,6 @@ body {
         color: var(--primary);
     }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -257,3 +267,83 @@ body {
     ::-webkit-scrollbar-thumb:hover {
         background: #00d9e0;
     }
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .profile-container {
+        grid-template-columns: 250px 1fr;
+        gap: 20px;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-details {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .courses-grid.has-courses {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        padding: 0 15px;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-name {
+        font-size: 1.3rem;
+    }
+
+    .profile-email {
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .edit-btn, .logout-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .course-card, .forum-post {
+        padding: 12px;
+    }
+
+    .courses-grid.has-courses {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

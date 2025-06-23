@@ -195,14 +195,15 @@ console.log(result);</code></pre>
     }
     else
     {
-        <p>В момента няма активни двубои. Проверете по-късно!</p>
+        <p style="text-align:center">В момента няма активни двубои. Проверете по-късно!</p>
     }
 </section>
 
 <!-- Forum Section -->
 <section class="section" id="forum">
     <h2 class="section-title">Последни <span class="text-gradient">Дискусии</span></h2>
-
+    @if (Model.Forums.Any())
+    {
     <div class="forum-posts">
         @foreach (var post in Model.Forums)
         {
@@ -239,6 +240,11 @@ console.log(result);</code></pre>
             </a>
         }
     </div>
+    }
+    else
+    {
+        <p style="text-align:center">Все още няма дискусии във форума. Бъди първият, който ще започне!</p>
+    }
 </section>
 @{
     static string PostTime(DateTime postTime)
