@@ -231,6 +231,20 @@ namespace MVC.Controllers
             return View(course);
         }
 
+        public async Task<IActionResult> Video(int? courseId,int? id)
+        {
+            if (courseId != null && id != null)
+            {
+                return Ok(new byte[]{1,2,3,4,5,6});
+                Course corse =  await _coursesContext.Read(courseId.Value, useNavigationalProperties: true,true);
+                Lesson lesson = corse.Lessons.FirstOrDefault(l => l.Id == id);
+                if (lesson != null)
+                {
+                    return Ok(lesson.Video);
+                }
+            }
+            return BadRequest();
+        }
         // GET: Course/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
