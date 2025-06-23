@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/admin_battles.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">
             <span class="logo-icon"><i class="fas fa-code"></i></span>
@@ -20,7 +19,6 @@
         </button>
     </header>
 
-    <!-- Admin Navigation -->
     <nav class="admin-nav" id="admin-nav">
         <ul class="admin-nav-links">
             <li><a href="/admin/index"><i class="fas fa-home"></i> Начало</a></li>
@@ -34,9 +32,7 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <main class="admin-main">
-        <!-- Content -->
         <div class="admin-content">
             <section id="battles">
                 <div class="admin-header">
@@ -44,7 +40,6 @@
                     <button class="btn btn-primary" id="createBattleBtn"><i class="fas fa-plus"></i> Нов двубой</button>
                 </div>
 
-                <!-- Table Controls -->
                 <div class="table-controls">
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
@@ -68,7 +63,6 @@
                     </div>
                 </div>
 
-                <!-- Battles Table -->
                 <table class="admin-table">
                     <thead>
                         <tr>
@@ -82,11 +76,9 @@
                         </tr>
                     </thead>
                     <tbody id="battlesTableBody">
-                        <!-- Данните ще се зареждат тук чрез JavaScript -->
                     </tbody>
                 </table>
 
-                <!-- Pagination -->
                 <div class="pagination-container">
                     <div class="items-per-page">
                         <span>Брой на страница:</span>
@@ -99,14 +91,12 @@
                     </div>
 
                     <ul class="pagination" id="pagination">
-                        <!-- Пагинацията ще се генерира тук -->
                     </ul>
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Edit Battle Modal -->
     <div class="modal" id="editModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -175,7 +165,6 @@
                         color: white !important;
                     }
 
-                    /* Responsive styles */
                     @@media (max-width: 768px) {
                         #editBattleForm .form-row
 
@@ -230,7 +219,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div class="modal" id="deleteModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -259,7 +247,6 @@
     </div>
 <script>
             document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger menu
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
 

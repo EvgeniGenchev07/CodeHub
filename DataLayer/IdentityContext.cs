@@ -56,7 +56,6 @@ namespace DataLayer
                     return null;
                 }
 
-                // Проверка на паролата с правилния метод
                 var passwordValid = await _userManager.CheckPasswordAsync(user, password);
                 return passwordValid ? user : null;
             }
@@ -134,7 +133,6 @@ namespace DataLayer
         {
             try
             {
-                // Identity return Null if there is no user!
                 return await _userManager.FindByEmailAsync(name);
             }
             catch (Exception ex)

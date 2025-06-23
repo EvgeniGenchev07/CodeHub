@@ -85,53 +85,18 @@
 
                 <!-- Courses Table -->
                 <h2 class="admin-title">Последни Курсове</h2>
-                <table class="admin-table">
+                <table class="admin-table" id="coursesTable">
                     <thead>
                         <tr>
                             <th>Име</th>
                             <th>Ниво</th>
-                            <th>Уроци</th>
-                            <th>Ученици</th>
+                            <th>Описание</th>
+                            <th>Лектор</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>JavaScript Основи</td>
-                            <td><span class="status-badge badge-beginner">Начинаещ</span></td>
-                            <td>20</td>
-                            <td>1,500+</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>DOM Манипулация</td>
-                            <td><span class="status-badge badge-intermediate">Средно ниво</span></td>
-                            <td>15</td>
-                            <td>850+</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Асинхронен JavaScript</td>
-                            <td><span class="status-badge badge-advanced">Напреднал</span></td>
-                            <td>12</td>
-                            <td>500+</td>
-                            <td>
-                                <div class="table-actions">
-                                    <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        <!-- Courses will be loaded here dynamically -->
                     </tbody>
                 </table>
 
@@ -179,14 +144,12 @@
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
 
-
             hamburger.addEventListener('click', function () {
                 adminNav.classList.toggle('active');
                 const icon = this.querySelector('i');
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-times');
             });
-
 
             document.addEventListener('click', function (event) {
                 if (!adminNav.contains(event.target) && !hamburger.contains(event.target)) {
@@ -230,7 +193,9 @@
                 }
             });
 
+            // Load both battles and courses on page load
             loadBattles();
+            loadCourses();
         });
 
         function resetFormToCreateMode() {
@@ -245,11 +210,9 @@
             }
         }
 
-
         function clearForm() {
             resetFormToCreateMode();
         }
-
 
         async function createNewBattle(event) {
             const form = event.target;
@@ -289,7 +252,6 @@
 
         async function editBattle(battleId) {
             try {
-
                 const response = await fetch(`/Admin/GetAllBattles`);
                 const battles = await response.json();
                 const battle = battles.find(b => b.id == battleId);
@@ -298,12 +260,10 @@
                     throw new Error('Двубоят не е намерен!');
                 }
 
-
                 const formTitle = document.querySelector('#dashboard h2.admin-title:last-of-type');
                 if (formTitle) {
                     formTitle.textContent = `Редактиране на двубой: ${battle.title}`;
                 }
-
 
                 const form = document.getElementById('battleForm');
                 form.elements['title'].value = battle.title;
@@ -400,7 +360,6 @@
 
                 const now = new Date();
 
- 
                 battles.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
                 const recentBattles = battles.slice(0, 3);
@@ -445,6 +404,106 @@
             } catch (error) {
                 console.error('Грешка при зареждане на двубои:', error);
                 alert('Възникна грешка при зареждането на двубоите!');
+            }
+        }
+
+        async function loadCourses() {
+            try {
+                const response = await fetch('/Admin/GetAllCourses');
+                const courses = await response.json();
+
+                // Sort courses by creation date (newest first) and take last 3
+                const sortedCourses = courses.sort((a, b) => new Date(b.createdDate || 0) - new Date(a.createdDate || 0));
+                const recentCourses = sortedCourses.slice(0, 3);
+
+                const tableBody = document.querySelector('#coursesTable tbody');
+                tableBody.innerHTML = '';
+
+                recentCourses.forEach(course => {
+                    // Determine difficulty level from the Difficulty enum property
+                    let levelClass = '';
+                    let levelText = '';
+
+                     switch(course.difficulty) {
+                            case 0: // All
+                                levelClass = 'status-badge badge-all';
+                                levelText = 'Всички';
+                                break;
+                            case 1: // Easy
+                                levelClass = 'status-badge badge-easy';
+                                levelText = 'Лесно';
+                                break;
+                            case 2: // Intermediate
+                                levelClass = 'status-badge badge-intermediate';
+                                levelText = 'Средно ниво';
+                                break;
+                            case 3: // Hard
+                                levelClass = 'status-badge badge-hard';
+                                levelText = 'Трудно';
+                                break;
+                            case 4: // Extreme
+                                levelClass = 'status-badge badge-extreme';
+                                levelText = 'Екстремно';
+                                break;
+                            case 5: // Insane
+                                levelClass = 'status-badge badge-insane';
+                                levelText = 'Невъзможно';
+                                break;
+                            case 6: // HardenBeard
+                                levelClass = 'status-badge badge-hardenbeard';
+                                levelText = 'За брадати';
+                                break;
+                            default:
+                                levelClass = 'status-badge';
+                                levelText = 'Неопределено';
+                                break;
+                    }
+
+                    const row = `
+                        <tr data-id="${course.id}">
+                            <td>${course.name}</td>
+                            <td><span class="${levelClass}">${levelText}</span></td>
+                            <td>${course.description || 'Няма описание'}</td>
+                            <td>${course.lector ? course.lector.name : 'Няма лектор'}</td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="btn btn-danger btn-sm" onclick="deleteCourse(${course.id})"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', row);
+                });
+
+            } catch (error) {
+                console.error('Грешка при зареждане на курсове:', error);
+                alert('Възникна грешка при зареждането на курсовете!');
+            }
+        }
+
+        async function deleteCourse(courseId) {
+            if (!confirm('Сигурни ли сте, че искате да изтриете този курс?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/Admin/DeleteCourse/${courseId}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error);
+                }
+
+                const result = await response.json();
+                alert(result.message || 'Курсът е изтрит успешно!');
+
+                // Reload courses after deletion
+                loadCourses();
+            } catch (error) {
+                console.error('Грешка:', error);
+                alert(error.message || 'Възникна грешка при изтриването на курса!');
             }
         }
     </script>
