@@ -89,8 +89,7 @@
                     <thead>
                         <tr>
                             <th>Име</th>
-                            <th>Ниво</th>
-                            <th>Описание</th>
+                            <th>Ученици</th>
                             <th>Лектор</th>
                             <th>Действия</th>
                         </tr>
@@ -100,7 +99,6 @@
                     </tbody>
                 </table>
 
-                <!-- Add New Battle Form -->
                 <h2 class="admin-title">Създай нов двубой</h2>
                 <form class="admin-form" id="battleForm">
                     <div class="form-row">
@@ -193,7 +191,6 @@
                 }
             });
 
-            // Load both battles and courses on page load
             loadBattles();
             loadCourses();
         });
@@ -412,7 +409,6 @@
                 const response = await fetch('/Admin/GetAllCourses');
                 const courses = await response.json();
 
-                // Sort courses by creation date (newest first) and take last 3
                 const sortedCourses = courses.sort((a, b) => new Date(b.createdDate || 0) - new Date(a.createdDate || 0));
                 const recentCourses = sortedCourses.slice(0, 3);
 
@@ -420,50 +416,10 @@
                 tableBody.innerHTML = '';
 
                 recentCourses.forEach(course => {
-                    // Determine difficulty level from the Difficulty enum property
-                    let levelClass = '';
-                    let levelText = '';
-
-                     switch(course.difficulty) {
-                            case 0: // All
-                                levelClass = 'status-badge badge-all';
-                                levelText = 'Всички';
-                                break;
-                            case 1: // Easy
-                                levelClass = 'status-badge badge-easy';
-                                levelText = 'Лесно';
-                                break;
-                            case 2: // Intermediate
-                                levelClass = 'status-badge badge-intermediate';
-                                levelText = 'Средно ниво';
-                                break;
-                            case 3: // Hard
-                                levelClass = 'status-badge badge-hard';
-                                levelText = 'Трудно';
-                                break;
-                            case 4: // Extreme
-                                levelClass = 'status-badge badge-extreme';
-                                levelText = 'Екстремно';
-                                break;
-                            case 5: // Insane
-                                levelClass = 'status-badge badge-insane';
-                                levelText = 'Невъзможно';
-                                break;
-                            case 6: // HardenBeard
-                                levelClass = 'status-badge badge-hardenbeard';
-                                levelText = 'За брадати';
-                                break;
-                            default:
-                                levelClass = 'status-badge';
-                                levelText = 'Неопределено';
-                                break;
-                    }
-
                     const row = `
                         <tr data-id="${course.id}">
                             <td>${course.name}</td>
-                            <td><span class="${levelClass}">${levelText}</span></td>
-                            <td>${course.description || 'Няма описание'}</td>
+                            <td>${course.students || 0}</td>
                             <td>${course.lector ? course.lector.name : 'Няма лектор'}</td>
                             <td>
                                 <div class="table-actions">
@@ -499,7 +455,7 @@
                 const result = await response.json();
                 alert(result.message || 'Курсът е изтрит успешно!');
 
-                // Reload courses after deletion
+
                 loadCourses();
             } catch (error) {
                 console.error('Грешка:', error);
