@@ -44,20 +44,7 @@ namespace MVC.Controllers
                             {
                                 Description = "dasdad",
                                 Title = "dasdad",
-                                Video = new byte[]{1,3,4,5,6,5,7},
-                                Exercises = new List<Exercise>()
-                                {
-                                    new Exercise()
-                                    {
-                                        Date = DateTime.Now,
-                                        Solutions = 12,
-                                        Points = 12,
-                                        Views = 12,
-                                        Description = "dasdasd",
-                                        Title = "dasdasd",
-                                        Difficulty = Difficulty.Extreme,
-                                    }
-                                }
+                                Video = new byte[]{1,3,4,5,6,5,7}
                             }
                         },
                         Difficulty = Difficulty.Easy,
@@ -116,20 +103,7 @@ namespace MVC.Controllers
                             {
                                 Description = "dasdad",
                                 Title = "dasdad",
-                                Video = new byte[]{1,3,4,5,6,5,7},
-                                Exercises = new List<Exercise>()
-                                {
-                                    new Exercise()
-                                    {
-                                        Date = DateTime.Now,
-                                        Solutions = 12,
-                                        Points = 12,
-                                        Views = 12,
-                                        Description = "dasdasd",
-                                        Title = "dasdasd",
-                                        Difficulty = Difficulty.Extreme,
-                                    }
-                                }
+                                Video = new byte[]{1,3,4,5,6,5,7}
                             }
                         },
                         Difficulty = Difficulty.Easy,

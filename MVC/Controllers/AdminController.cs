@@ -18,13 +18,15 @@ namespace CodeHub.Controllers
         private readonly ForumContext _forumContext;
         public AdminController(BattlesContext battlesContext,
             CodeHubDbContext dbContext, CoursesContext coursesContext,
-            ExercisesContext exerciseContext, ForumContext forumContext)
+            ExercisesContext exerciseContext, ForumContext forumContext,
+            LessonsContext lessonContext)
         {
             _battlesContext = battlesContext;
             _dbContext = dbContext;
             _coursesContext = coursesContext;
             _exercisesContext = exerciseContext;
             _forumContext = forumContext;
+            _lessonsContext = lessonContext;
         }
         public async Task<IActionResult> Back()
         {
@@ -47,16 +49,150 @@ namespace CodeHub.Controllers
         {
             return PartialView();
         }
+        public async Task<IActionResult> Lessons()
+        {
+            return PartialView();
+        }
         public async Task<IActionResult> Index()
         {
-            ViewBag.ActiveUsers = await _dbContext.Users.CountAsync() - 1;
+            ViewBag.ActiveUsers = await _dbContext.Users.CountAsync();
             ViewBag.Battles = await _dbContext.Battles.CountAsync();
             ViewBag.Courses = await _dbContext.Courses.CountAsync();
             ViewBag.ForumPosts = await _dbContext.Forums.CountAsync();
 
             return PartialView();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllLessons()
+        {
+            try
+            {
+                if (_lessonsContext == null) return Ok(new List<Lesson>());
+                var lessons = await _lessonsContext.ReadAll(false,true);
+                return Ok(lessons);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при извличане на уроци: {ex.Message}" });
+            }
+        }
 
+        [HttpGet]
+        [Route("Admin/GetLesson/{id}")]
+        public async Task<IActionResult> GetLesson(int id)
+        {
+            try
+            {
+                var lesson = await _lessonsContext.Read(id);
+                return Ok(lesson);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при извличане на урок: {ex.Message}" });
+            }
+        }
+
+        [HttpPost]
+        [Route("Admin/CreateLesson")]
+        public async Task<IActionResult> CreateLesson([FromForm] string title, [FromForm] string description, [FromForm] IFormFile video)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(title))
+                    return BadRequest(new { success = false, message = "Името на урока е задължително!" });
+
+                if (video == null)
+                    return BadRequest(new { success = false, message = "Видео файлът е задължителен!" });
+
+                if (!video.ContentType.StartsWith("video/"))
+                    return BadRequest(new { success = false, message = "Невалиден формат на видео файл!" });
+
+                if (video.Length > 50 * 1024 * 1024)
+                    return BadRequest(new { success = false, message = "Видео файлът трябва да е по-малък от 50MB!" });
+
+                byte[] videoBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    await video.CopyToAsync(memoryStream);
+                    videoBytes = memoryStream.ToArray();
+                }
+
+                var lesson = new Lesson
+                {
+                    Title = title,
+                    Description = description,
+                    Video = videoBytes
+                };
+
+                await _lessonsContext.Create(lesson);
+                return Ok(new { success = true, message = "Урокът е създаден успешно!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при създаване на урок: {ex.Message}" });
+            }
+        }
+
+        [HttpPut]
+        [Route("Admin/UpdateLesson/{id}")]
+        public async Task<IActionResult> UpdateLesson(int id, [FromForm] string title, [FromForm] string description, [FromForm] IFormFile video)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(title))
+                    return BadRequest(new { success = false, message = "Името на урока е задължително!" });
+
+                var lesson = await _lessonsContext.Read(id);
+                lesson.Title = title;
+                lesson.Description = description;
+
+                if (video != null)
+                {
+                    if (!video.ContentType.StartsWith("video/"))
+                        return BadRequest(new { success = false, message = "Невалиден формат на видео файл!" });
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await video.CopyToAsync(memoryStream);
+                        lesson.Video = memoryStream.ToArray();
+                    }
+                }
+
+                await _lessonsContext.Update(lesson);
+                return Ok(new { success = true, message = "Урокът е обновен успешно!" });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при обновяване на урок: {ex.Message}" });
+            }
+        }
+
+        [HttpDelete]
+        [Route("Admin/DeleteLesson/{id}")]
+        public async Task<IActionResult> DeleteLesson(int id)
+        {
+            try
+            {
+                await _lessonsContext.Delete(id);
+                return Ok(new { success = true, message = "Урокът е изтрит успешно!" });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при изтриване на урок: {ex.Message}" });
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> CreateBattle(
             string title,

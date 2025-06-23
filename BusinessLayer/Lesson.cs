@@ -12,8 +12,7 @@ namespace BusinessLayer
         [Key] public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public byte[] Video { get; set; }
-        public List<Exercise> Exercises { get; set; }
+        public byte[] Video { get; set; } = Array.Empty<byte>();
 
         public Lesson()
         {
@@ -24,7 +23,7 @@ namespace BusinessLayer
             Title = title;
             Description = description;
             Video = video;
-            Exercises = new List<Exercise>();
+
         }
     }
 }
