@@ -84,6 +84,7 @@
     },
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
 =======
@@ -101,6 +102,18 @@
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
 >>>>>>> Stashed changes
+=======
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\mvc\\wwwroot\\css\\admin_courses.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\wwwroot\\css\\admin_courses.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\mvc\\views\\admin\\battles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\battles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -111,9 +124,13 @@
         {
           "DockedWidth": 200,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           "SelectedChildIndex": 6,
 =======
           "SelectedChildIndex": 3,
+>>>>>>> Stashed changes
+=======
+          "SelectedChildIndex": 7,
 >>>>>>> Stashed changes
           "Children": [
             {
@@ -132,6 +149,7 @@
               "$type": "Document",
 <<<<<<< Updated upstream
               "DocumentIndex": 1,
+<<<<<<< Updated upstream
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\html\\CodeHub\\BusinessLayer\\Course.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\Course.cs",
@@ -222,13 +240,16 @@
               "$type": "Document",
               "DocumentIndex": 2,
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\html\\CodeHub\\MVC\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
               "ToolTip": "C:\\html\\CodeHub\\MVC\\Controllers\\AdminController.cs",
               "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAPsBAAAAAAAAAAAgwBUCAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAFsCAAAAAAAAAAAgwHUCAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< Updated upstream
               "WhenOpened": "2025-06-23T08:31:04.909Z",
 =======
               "Title": "Error.cshtml",
@@ -239,6 +260,35 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-23T10:33:04.611Z",
+>>>>>>> Stashed changes
+=======
+              "WhenOpened": "2025-06-23T11:59:59.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "admin_courses.css",
+              "DocumentMoniker": "C:\\html\\CodeHub\\MVC\\wwwroot\\css\\admin_courses.css",
+              "RelativeDocumentMoniker": "MVC\\wwwroot\\css\\admin_courses.css",
+              "ToolTip": "C:\\html\\CodeHub\\MVC\\wwwroot\\css\\admin_courses.css",
+              "RelativeToolTip": "MVC\\wwwroot\\css\\admin_courses.css",
+              "ViewState": "AgIAAJIDAAAAAAAAAAAYwJ8DAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-23T11:53:02.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Battles.cshtml",
+              "DocumentMoniker": "C:\\html\\CodeHub\\MVC\\Views\\Admin\\Battles.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Battles.cshtml",
+              "ToolTip": "C:\\html\\CodeHub\\MVC\\Views\\Admin\\Battles.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Admin\\Battles.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T11:46:55.75Z",
 >>>>>>> Stashed changes
               "EditorCaption": ""
             },
@@ -442,11 +492,15 @@
 <<<<<<< Updated upstream
               "ToolTip": "C:\\html\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml*",
               "RelativeToolTip": "MVC\\Views\\Admin\\Courses.cshtml*",
+<<<<<<< Updated upstream
               "ViewState": "AgIAAD8BAAAAAAAAAAAAAEsBAAAAAAAAAAAAAA==",
 =======
               "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeToolTip": "MVC\\Views\\Admin\\Courses.cshtml",
               "ViewState": "AgIAAKwCAAAAAAAAAAAkwMcCAAAHAAAAAAAAAA==",
+>>>>>>> Stashed changes
+=======
+              "ViewState": "AgIAAJwBAAAAAAAAAAArwLQBAABNAAAAAAAAAA==",
 >>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-23T08:26:25.441Z"
