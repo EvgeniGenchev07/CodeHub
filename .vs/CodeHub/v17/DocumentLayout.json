@@ -1,22 +1,112 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\html\\CodeHub\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|c:\\html\\codehub\\datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{061B2F2D-8AE4-4984-8C19-C4B9E666780B}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\coursescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\views\\resources\\partners.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\resources\\partners.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\_statusmessage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\_statusmessage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\forgotpasswordconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\lockout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\lockout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\wwwroot\\css\\admin_courses.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\wwwroot\\css\\admin_courses.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2626B077-F202-4027-B7DA-8DCBD9EFF276}|Seeder\\Seeder.csproj|c:\\users\\user\\documents\\github\\codehub\\seeder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2626B077-F202-4027-B7DA-8DCBD9EFF276}|Seeder\\Seeder.csproj|solutionrelative:seeder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\difficulty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\users\\user\\documents\\github\\codehub\\mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|c:\\html\\codehub\\mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C7813102-595B-431F-809C-9DF1D10A48AB}|MVC\\MVC.csproj|solutionrelative:mvc\\views\\admin\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\html\\codehub\\businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\user\\documents\\github\\codehub\\businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A29F3AA-AAF0-40E3-9F30-6D5D6815BF23}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\filters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -26,12 +116,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -47,6 +133,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< Updated upstream
               "Title": "CoursesContext.cs",
               "DocumentMoniker": "C:\\html\\CodeHub\\DataLayer\\CoursesContext.cs",
               "RelativeDocumentMoniker": "DataLayer\\CoursesContext.cs",
@@ -73,28 +160,298 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\html\\CodeHub\\MVC\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\html\\CodeHub\\MVC\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T08:31:04.909Z",
+=======
+              "Title": "Partners.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Resources\\Partners.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Resources\\Partners.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Resources\\Partners.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Resources\\Partners.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:55:46.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Logout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:36:31.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:36:39.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:32:59.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:32:56.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:33:06.055Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Error.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Error.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Error.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:33:04.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_StatusMessage.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:51:23.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ForgotPasswordConfirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:51:45.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:51:35.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:51:21.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:50:29.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Lockout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:47:41.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_Footer.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Shared\\_Footer.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Shared\\_Footer.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Shared\\_Footer.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Shared\\_Footer.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:42:19.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MVC\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:42:16.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T10:38:53.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "MVC\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-23T10:34:51.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "admin_courses.css",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\wwwroot\\css\\admin_courses.css",
+              "RelativeDocumentMoniker": "MVC\\wwwroot\\css\\admin_courses.css",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\wwwroot\\css\\admin_courses.css",
+              "RelativeToolTip": "MVC\\wwwroot\\css\\admin_courses.css",
+              "ViewState": "AgIAAOUBAAAAAAAAAAAQwPkBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-23T09:19:08.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\Seeder\\Program.cs",
+              "RelativeDocumentMoniker": "Seeder\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\Seeder\\Program.cs",
+              "RelativeToolTip": "Seeder\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T09:16:27.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Filters.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Filters.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Filters.cs",
+              "RelativeToolTip": "BusinessLayer\\Filters.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T08:49:19.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Difficulty.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Difficulty.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\Difficulty.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\BusinessLayer\\Difficulty.cs",
+              "RelativeToolTip": "BusinessLayer\\Difficulty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T08:46:04.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+>>>>>>> Stashed changes
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "MVC\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "MVC\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-23T08:31:04.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "Courses.cshtml",
-              "DocumentMoniker": "C:\\html\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeDocumentMoniker": "MVC\\Views\\Admin\\Courses.cshtml",
-              "ToolTip": "C:\\html\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\CodeHub\\MVC\\Views\\Admin\\Courses.cshtml",
               "RelativeToolTip": "MVC\\Views\\Admin\\Courses.cshtml",
               "ViewState": "AgIAAD8BAAAAAAAAAAAAAEsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-23T08:26:25.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-23T08:26:25.441Z"
             }
           ]
         }
