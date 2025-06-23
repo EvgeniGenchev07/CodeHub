@@ -48,6 +48,9 @@
                 <button class="edit-btn" onclick="goToEditProfile()">
                     <i class="fas fa-edit"></i> Редактирай профил
                 </button>
+                <button class="logout-btn" onclick="Logout()" >
+                    <i class="fas fa-sign-out-alt"></i> Изход
+                </button>
             </div>
 
             <!-- Profile Details -->
@@ -125,6 +128,9 @@
     <script>
         function goToEditProfile() {
             window.location.href = '@Url.Page("/Account/Manage/ProfileEdit")';
+        }
+        function Logout() {
+            window.location.href = '@Url.Page("/Account/Logout")';
         }
     </script>
 }

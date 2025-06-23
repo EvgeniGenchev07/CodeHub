@@ -133,9 +133,6 @@ namespace DataLayer.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("LessonId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
 
@@ -150,8 +147,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LessonId");
 
                     b.ToTable("Exercises");
                 });
@@ -514,13 +509,6 @@ namespace DataLayer.Migrations
                     b.Navigation("Lector");
                 });
 
-            modelBuilder.Entity("BusinessLayer.Exercise", b =>
-                {
-                    b.HasOne("BusinessLayer.Lesson", null)
-                        .WithMany("Exercises")
-                        .HasForeignKey("LessonId");
-                });
-
             modelBuilder.Entity("BusinessLayer.Forum", b =>
                 {
                     b.HasOne("BusinessLayer.User", "Author")
@@ -613,11 +601,6 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("BusinessLayer.Forum", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("BusinessLayer.Lesson", b =>
-                {
-                    b.Navigation("Exercises");
                 });
 
             modelBuilder.Entity("BusinessLayer.User", b =>

@@ -69,7 +69,7 @@ namespace MVC.Controllers
         // POST: Lesson/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Video,Exercises")] Lesson lesson, List<int> selectedExercises)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Video,Exercises")] Lesson lesson)
         {
             if (ModelState.IsValid)
             {
@@ -87,20 +87,6 @@ namespace MVC.Controllers
                             }
                         }
                     }
-
-                    if (selectedExercises != null)
-                    {
-                        lesson.Exercises = new List<Exercise>();
-                        foreach (var exerciseId in selectedExercises)
-                        {
-                            var exercise = await _exercisesContext.Read(exerciseId);
-                            if (exercise != null)
-                            {
-                                lesson.Exercises.Add(exercise);
-                            }
-                        }
-                    }
-
                     _lessonsContext.Create(lesson);
                     TempData["SuccessMessage"] = "Lesson created successfully";
                     return RedirectToAction(nameof(Index));
@@ -146,7 +132,7 @@ namespace MVC.Controllers
         // POST: Lesson/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Video,Exercises")] Lesson lesson, List<int> selectedExercises)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Video,Exercises")] Lesson lesson)
         {
             if (id != lesson.Id)
             {
@@ -174,19 +160,6 @@ namespace MVC.Controllers
                     {
                         var existingLesson = await _lessonsContext.Read(id);
                         lesson.Video = existingLesson.Video;
-                    }
-
-                    if (selectedExercises != null)
-                    {
-                        lesson.Exercises = new List<Exercise>();
-                        foreach (var exerciseId in selectedExercises)
-                        {
-                            var exercise = await _exercisesContext.Read(exerciseId); // Await the Task to get the Exercise object
-                            if (exercise != null)
-                            {
-                                lesson.Exercises.Add(exercise);
-                            }
-                        }
                     }
 
                     _lessonsContext.Update(lesson, useNavigationalProperties: true);

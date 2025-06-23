@@ -19,17 +19,14 @@ namespace DataLayer
 
         public async Task Create(Lesson item)
         {
-            dbContext.Lessons.Add(item);
-            dbContext.SaveChanges();
+            await dbContext.Lessons.AddAsync(item);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<Lesson> Read(int key, bool useNavigationalProperties = false, bool isReadOnly = false)
         {
             IQueryable<Lesson> query = dbContext.Lessons;
 
-            if (useNavigationalProperties)
-                query = query
-                    .Include(e => e.Exercises);
             if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
             Lesson lesson = query.FirstOrDefault(l => l.Id == key);
@@ -43,9 +40,7 @@ namespace DataLayer
         {
             IQueryable<Lesson> query = dbContext.Lessons;
 
-            if (useNavigationalProperties)
-                query = query
-                    .Include(e => e.Exercises);
+
             if (isReadOnly) query = query.AsNoTrackingWithIdentityResolution();
 
             return query.ToList();
@@ -56,19 +51,6 @@ namespace DataLayer
             Lesson lessonFromDb = await Read(item.Id, useNavigationalProperties);
 
             dbContext.Entry<Lesson>(lessonFromDb).CurrentValues.SetValues(item);
-
-            if (useNavigationalProperties)
-            {
-                List<Exercise> exercises = new List<Exercise>(item.Exercises.Count);
-                for (int i = 0; i < item.Exercises.Count; ++i)
-                {
-                    Exercise exerciseFromDb = dbContext.Exercises.Find(item.Exercises[i].Id);
-                    if (exerciseFromDb != null) exercises.Add(exerciseFromDb);
-                    else exercises.Add(item.Exercises[i]);
-                }
-
-                lessonFromDb.Exercises = exercises;
-            }
 
             dbContext.SaveChanges();
         }
