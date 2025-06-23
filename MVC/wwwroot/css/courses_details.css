@@ -288,7 +288,9 @@
     transition: all 0.3s;
     cursor: pointer;
 }
-
+.lesson-item:hover {
+    background-color: rgba(0, 247, 255, 0.4);
+}
     .lesson-item.completed .lesson-title {
         color: var(--success);
     }
