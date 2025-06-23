@@ -69,7 +69,7 @@ namespace MVC.Areas.Identity.Pages.Account
 
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Невалиден опит за влизане.");
                     return Page();
                 }
 
@@ -81,18 +81,18 @@ namespace MVC.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Потребителят е влязъл.");
 
                     return LocalRedirect(ReturnUrl);
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Потребителският акаунт е заключен.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Невалиден опит за влизане.");
                     return Page();
                 }
             }

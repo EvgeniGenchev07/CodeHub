@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeBattle Admin - Курсове</title>
+    <title>CodeHub Admin - Курсове</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="~/css/admin_courses.css" />
+    <link rel="stylesheet" href="/css/admin_courses.css">
 </head>
 <body>
     <!-- Header -->
@@ -20,12 +20,13 @@
         </button>
     </header>
 
+    <!-- Admin Navigation -->
     <nav class="admin-nav" id="admin-nav">
         <ul class="admin-nav-links">
             <li><a href="/admin/index"><i class="fas fa-home"></i> Начало</a></li>
             <li><a href="/admin/battles"><i class="fas fa-trophy"></i> Двубои</a></li>
-            <li><a href="/admin/lessons"><i class="fas fa-book"></i> Уроци</a></li>
             <li><a href="/admin/courses" class="active"><i class="fas fa-graduation-cap"></i> Курсове</a></li>
+            <li><a href="/admin/lessons"><i class="fas fa-book"></i> Уроци</a></li>
             <li><a href="/admin/exercises"><i class="fas fa-graduation-cap"></i> Упражнения</a></li>
             <li><a href="/admin/forum"><i class="fas fa-comments"></i> Форум</a></li>
             <li><a href="/admin/back"><i class="fas fa-sign-out-alt"></i> Назад</a></li>
@@ -40,10 +41,7 @@
             <section id="courses">
                 <div class="admin-header">
                     <h1 class="admin-title">Всички Курсове</h1>
-                    <div class="button-group">
-                        <button class="btn btn-primary" id="createCourseBtn"><i class="fas fa-plus"></i> Нов курс</button>
-                        <button class="btn btn-success" id="createLessonBtn"><i class="fas fa-plus"></i> Нов урок</button>
-                    </div>
+                    <button class="btn btn-primary" id="createCourseBtn"><i class="fas fa-plus"></i> Нов курс</button>
                 </div>
 
                 <!-- Table Controls -->
@@ -55,17 +53,20 @@
 
                     <div class="filter-group">
                         <select class="filter-select" id="difficultyFilter">
-                            <option value="">Всички нива</option>
-                            <option value="beginner">Начинаещи</option>
-                            <option value="intermediate">Напреднали</option>
-                            <option value="advanced">Експерти</option>
+                            <option value="all">Всички трудности</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Hard">Hard</option>
+                            <option value="Extreme">Extreme</option>
+                            <option value="Insane">Insane</option>
+                            <option value="HardenBeard">HardenBeard</option>
                         </select>
 
                         <select class="filter-select" id="sortBy">
                             <option value="newest">Най-нови</option>
                             <option value="oldest">Най-стари</option>
-                            <option value="name-asc">Име (А-Я)</option>
-                            <option value="name-desc">Име (Я-А)</option>
+                            <option value="title-asc">По име (A-Z)</option>
+                            <option value="title-desc">По име (Z-A)</option>
                         </select>
                     </div>
                 </div>
@@ -77,9 +78,8 @@
                             <th>ID</th>
                             <th>Име</th>
                             <th>Описание</th>
-                            <th>Ниво</th>
-                            <th>Лектори</th>
-                            <th>Уроци</th>
+                            <th>Трудност</th>
+                            <th>Филтри</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
@@ -108,158 +108,80 @@
         </div>
     </main>
 
-    <!-- Add Course Modal -->
-    <div class="modal" id="addCourseModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Добавяне на нов курс</h3>
-                <button class="close-modal" id="closeAddModal">×</button>
-            </div>
-            <form id="addCourseForm">
-                <div class="form-group">
-                    <label class="form-label">Име на курса</label>
-                    <input type="text" class="form-control" id="courseName" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Описание</label>
-                    <textarea class="form-control" id="courseDescription" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Ниво на трудност</label>
-                    <select class="form-control" id="courseDifficulty" required>
-                        <option value="beginner">Начинаещ</option>
-                        <option value="intermediate">Напреднал</option>
-                        <option value="advanced">Експерт</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Лектори</label>
-                    <div id="lectorsContainer">
-                        <!-- Лекторите ще се добавят динамично тук -->
-                    </div>
-                    <button type="button" class="btn btn-outline btn-sm" id="addLectorBtn" style="margin-top: 10px;">
-                        <i class="fas fa-plus"></i> Добави лектор
-                    </button>
-                </div>
-                <div class="form-footer">
-                    <button type="button" class="btn btn-outline" id="cancelAdd">Отказ</button>
-                    <button type="submit" class="btn btn-primary">Създай курс</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Edit Course Modal -->
-    <div class="modal" id="editCourseModal">
+    <div class="modal" id="editModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Редактиране на курс</h3>
                 <button class="close-modal" id="closeEditModal">×</button>
             </div>
             <form id="editCourseForm">
-                <input type="hidden" id="editCourseId">
+                <input type="hidden" id="editCourseId" name="id">
                 <div class="form-group">
                     <label class="form-label">Име на курса</label>
-                    <input type="text" class="form-control" id="editCourseName" required>
+                    <input type="text" class="form-control" id="editCourseName" name="name" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Описание</label>
-                    <textarea class="form-control" id="editCourseDescription" rows="3" required></textarea>
+                    <textarea class="form-control" id="editCourseDescription" name="description" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Трудност</label>
+                        <select class="form-control" id="editCourseDifficulty" name="difficulty" required>
+                            <option value="0">Easy</option>
+                            <option value="1">Intermediate</option>
+                            <option value="2">Hard</option>
+                            <option value="3">Extreme</option>
+                            <option value="4">Insane</option>
+                            <option value="5">HardenBeard</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Ниво на трудност</label>
-                    <select class="form-control" id="editCourseDifficulty" required>
-                        <option value="beginner">Начинаещ</option>
-                        <option value="intermediate">Напреднал</option>
-                        <option value="advanced">Експерт</option>
+                    <label class="form-label">Филтри</label>
+                    <select class="form-control" id="editCourseFilters" name="filters" multiple>
+                        <option value="0">JavaScript</option>
+                        <option value="1">Алгоритми</option>
+                        <option value="2">C#</option>
+                        <option value="3">Python</option>
+                        <option value="4">Java</option>
+                        <option value="5">C</option>
+                        <option value="6">C++</option>
+                        <option value="7">Ruby</option>
+                        <option value="8">Go</option>
+                        <option value="9">Rust</option>
+                        <option value="10">Swift</option>
+                        <option value="11">Проекти</option>
+                        <option value="12">Интервюта</option>
+                        <option value="13">Асинхронност</option>
+                        <option value="14">Синхронност</option>
+                        <option value="15">DOM & Assembly</option>
+                        <option value="16">React</option>
+                        <option value="17">Vue.js</option>
+                        <option value="18">Node.js</option>
+                        <option value="19">TypeScript</option>
+                        <option value="20">API</option>
+                        <option value="21">Бази данни</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Лектори</label>
-                    <div id="editLectorsContainer">
-                        <!-- Лекторите ще се добавят динамично тук -->
-                    </div>
-                    <button type="button" class="btn btn-outline btn-sm" id="editAddLectorBtn" style="margin-top: 10px;">
-                        <i class="fas fa-plus"></i> Добави лектор
-                    </button>
+                    <label class="form-label">Лектор</label>
+                    <select class="form-control" id="editCourseLector" name="lectorId">
+                        <!-- Лекторите ще се зареждат тук чрез JavaScript -->
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Уроци</label>
-                    <div id="editLessonsContainer">
-                        <!-- Уроците ще се показват тук като списък -->
+                    <div class="lessons-container" id="lessonsContainer">
+                        <!-- Уроците ще се генерират тук чрез JavaScript -->
                     </div>
-                    <button type="button" class="btn btn-success btn-sm" onclick="openSearchLessonsModal(document.getElementById('editCourseId').value)" style="margin-top: 10px;">
-                        <i class="fas fa-plus"></i> Добави уроци
-                    </button>
                 </div>
                 <div class="form-footer">
                     <button type="button" class="btn btn-outline" id="cancelEdit">Отказ</button>
                     <button type="submit" class="btn btn-primary">Запази промените</button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!-- Add Lesson Modal -->
-    <div class="modal" id="addLessonModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Добавяне на нов урок</h3>
-                <button class="close-modal" id="closeAddLessonModal">×</button>
-            </div>
-            <form id="addLessonForm">
-                <div class="form-group">
-                    <label class="form-label">Заглавие на урока</label>
-                    <input type="text" class="form-control" id="lessonTitle" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Описание</label>
-                    <textarea class="form-control" id="lessonDescription" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Видео файл</label>
-                    <input type="file" class="form-control" id="lessonVideo" accept="video/*">
-                </div>
-                <div class="form-footer">
-                    <button type="button" class="btn btn-outline" id="cancelAddLesson">Отказ</button>
-                    <button type="submit" class="btn btn-primary">Създай урок</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Search Lessons Modal -->
-    <div class="modal" id="searchLessonsModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Добавяне на уроци</h3>
-                <button class="close-modal" id="closeSearchLessonsModal">×</button>
-            </div>
-            <input type="hidden" id="searchLessonsCourseId">
-            <div class="form-group">
-                <label class="form-label">Търсене на уроци</label>
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" id="lessonSearchInput" placeholder="Търсене по заглавие или описание...">
-                </div>
-            </div>
-            <div class="search-lessons-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Заглавие</th>
-                            <th>Описание</th>
-                            <th>Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody id="searchLessonsTableBody">
-                        <!-- Уроците ще се зареждат тук -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-footer">
-                <button type="button" class="btn btn-outline" id="cancelSearchLessons">Затвори</button>
-            </div>
         </div>
     </div>
 
@@ -270,108 +192,31 @@
                 <h3 class="modal-title">Потвърждение за изтриване</h3>
                 <button class="close-modal" id="closeDeleteModal">×</button>
             </div>
-            <p>Сигурни ли сте, че искате да изтриете този курс? Всички свързани уроци и упражнения също ще бъдат изтрити.</p>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <p>Сигурни ли сте, че искате да изтриете този курс?</p>
+                </div>
+                <div class="course-info">
+                    <p><strong>Име:</strong> <span id="deleteCourseName"></span></p>
+                    <p><strong>ID:</strong> <span id="deleteCourseIdText"></span></p>
+                    <p><strong>Трудност:</strong> <span id="deleteCourseDifficulty"></span></p>
+                </div>
+                <p class="delete-warning">Това действие е необратимо и ще изтрие всички данни, свързани с курса, включително уроци и упражнения!</p>
+            </div>
             <input type="hidden" id="deleteCourseId">
-            <div class="form-footer">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline" id="cancelDelete">Отказ</button>
-                <button type="button" class="btn btn-danger" id="confirmDelete">Изтрий</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="deleteLessonModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Потвърждение за изтриване</h3>
-                <button class="close-modal" id="closeDeleteLessonModal">×</button>
-            </div>
-            <p>Сигурни ли сте, че искате да изтриете този урок? Това действие е необратимо.</p>
-            <input type="hidden" id="deleteLessonId">
-            <div class="form-footer">
-                <button type="button" class="btn btn-outline" id="cancelDeleteLesson">Отказ</button>
-                <button type="button" class="btn btn-danger" id="confirmDeleteLesson">Изтрий</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">
+                    <i class="fas fa-trash"></i> Потвърди изтриване
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        async function fetchCourses() {
-            try {
-                const response = await fetch('/Admin/GetAllCourses');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching courses:', error);
-                return [];
-            }
-        }
-        // Данни за демонстрация
-        let demoCourses = [
-            {
-                id: 1,
-                name: "Въведение в програмирането",
-                description: "Научи основите на програмирането с Python",
-                difficulty: "beginner",
-                lectors: ["Иван Петров", "Мария Иванова"],
-                lessons: [{ id: 1, title: "Въведение в Python" }, { id: 2, title: "Променливи" }],
-                lessonCount: 2
-            },
-            {
-                id: 2,
-                name: "Уеб разработка с JavaScript",
-                description: "Създаване на модерни уеб приложения",
-                difficulty: "intermediate",
-                lectors: ["Георги Димитров"],
-                lessons: [{ id: 3, title: "Основи на JavaScript" }],
-                lessonCount: 1
-            },
-            {
-                id: 3,
-                name: "Машинно обучение",
-                description: "Напреднали техники за машинно обучение",
-                difficulty: "advanced",
-                lectors: ["Анна Стоянова", "Петър Георгиев", "Стефан Киров"],
-                lessons: [],
-                lessonCount: 0
-            },
-            {
-                id: 4,
-                name: "Бази данни и SQL",
-                description: "Проектиране и работа с релационни бази данни",
-                difficulty: "intermediate",
-                lectors: ["Димитър Василев"],
-                lessons: [{ id: 4, title: "Въведение в SQL" }],
-                lessonCount: 1
-            },
-            {
-                id: 5,
-                name: "Основен HTML и CSS",
-                description: "Създаване на статични уеб страници",
-                difficulty: "beginner",
-                lectors: ["Елена Маркова"],
-                lessons: [],
-                lessonCount: 0
-            }
-        ];
-
-        let demoLessons = [
-            { id: 1, title: "Въведение в Python", description: "Основи на Python", courseId: 1 },
-            { id: 2, title: "Променливи", description: "Работа с променливи в Python", courseId: 1 },
-            { id: 3, title: "Основи на JavaScript", description: "Въведение в JS", courseId: 2 },
-            { id: 4, title: "Въведение в SQL", description: "Основи на SQL заявки", courseId: 4 },
-            { id: 5, title: "Стилизиране с CSS", description: "Основи на CSS", courseId: null }
-        ];
-
-        // Конфигурация на пагинацията
-        let currentPage = 1;
-        let itemsPerPage = 10;
-        let filteredCourses = [...demoCourses];
-
-        // Инициализация на страницата
-        document.addEventListener('DOMContentLoaded', function() {
-            // Хамбургер меню
+                document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger меню
             const hamburger = document.getElementById('hamburger');
             const adminNav = document.getElementById('admin-nav');
 
@@ -390,10 +235,105 @@
                 }
             });
 
-            // Инициализиране на таблицата и пагинацията
-            updateTable();
+            // Глобални променливи
+            let demoCourses = [];
+            let demoLectors = [];
+            let demoLessons = [];
+            let currentPage = 1;
+            let itemsPerPage = 10;
+            let filteredCourses = [];
 
-            // Слушатели за промени във филтрите
+            // Enum мапинги
+            const difficultyMap = {
+                0: 'Easy',
+                1: 'Intermediate',
+                2: 'Hard',
+                3: 'Extreme',
+                4: 'Insane',
+                5: 'HardenBeard'
+            };
+
+            const filterMap = {
+                0: 'JavaScript',
+                1: 'Алгоритми',
+                2: 'C#',
+                3: 'Python',
+                4: 'Java',
+                5: 'C',
+                6: 'C++',
+                7: 'Ruby',
+                8: 'Go',
+                9: 'Rust',
+                10: 'Swift',
+                11: 'Проекти',
+                12: 'Интервюта',
+                13: 'Асинхронност',
+                14: 'Синхронност',
+                15: 'DOM & Assembly',
+                16: 'React',
+                17: 'Vue.js',
+                18: 'Node.js',
+                19: 'TypeScript',
+                20: 'API',
+                21: 'Бази данни'
+            };
+
+            // Хелпер функции за конвертиране
+            function convertDifficulty(difficultyValue) {
+                return difficultyMap[difficultyValue] || difficultyValue;
+            }
+
+            function convertFilters(filterValues) {
+                if (Array.isArray(filterValues)) {
+                    return filterValues.map(f => filterMap[f] || f);
+                }
+                return filterValues;
+            }
+
+            function convertDifficultyToValue(difficultyText) {
+                const reverseMap = {
+                    'Easy': 0,
+                    'Intermediate': 1,
+                    'Hard': 2,
+                    'Extreme': 3,
+                    'Insane': 4,
+                    'HardenBeard': 5
+                };
+                return reverseMap[difficultyText] || 0;
+            }
+
+            function convertFilterToValue(filterText) {
+                const reverseMap = {
+                    'JavaScript': 0,
+                    'Алгоритми': 1,
+                    'C#': 2,
+                    'Python': 3,
+                    'Java': 4,
+                    'C': 5,
+                    'C++': 6,
+                    'Ruby': 7,
+                    'Go': 8,
+                    'Rust': 9,
+                    'Swift': 10,
+                    'Проекти': 11,
+                    'Интервюта': 12,
+                    'Асинхронност': 13,
+                    'Синхронност': 14,
+                    'DOM & Assembly': 15,
+                    'React': 16,
+                    'Vue.js': 17,
+                    'Node.js': 18,
+                    'TypeScript': 19,
+                    'API': 20,
+                    'Бази данни': 21
+                };
+                return reverseMap[filterText] || 0;
+            }
+
+            loadCourses();
+            loadLectors();
+            loadLessons();
+
             document.getElementById('searchInput').addEventListener('input', filterCourses);
             document.getElementById('difficultyFilter').addEventListener('change', filterCourses);
             document.getElementById('sortBy').addEventListener('change', filterCourses);
@@ -403,502 +343,483 @@
                 updateTable();
             });
 
-            // Слушатели за модалните прозорци
-            document.getElementById('createCourseBtn').addEventListener('click', openAddModal);
-            document.getElementById('closeAddModal').addEventListener('click', closeAddModal);
-            document.getElementById('cancelAdd').addEventListener('click', closeAddModal);
-            document.getElementById('createLessonBtn').addEventListener('click', openAddLessonModal);
             document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
             document.getElementById('cancelEdit').addEventListener('click', closeEditModal);
             document.getElementById('closeDeleteModal').addEventListener('click', closeDeleteModal);
             document.getElementById('cancelDelete').addEventListener('click', closeDeleteModal);
             document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
-            document.getElementById('closeAddLessonModal').addEventListener('click', closeAddLessonModal);
-            document.getElementById('cancelAddLesson').addEventListener('click', closeAddLessonModal);
-            document.getElementById('closeSearchLessonsModal').addEventListener('click', closeSearchLessonsModal);
-            document.getElementById('cancelSearchLessons').addEventListener('click', closeSearchLessonsModal);
-
-            // Слушатели за формите
-            document.getElementById('addCourseForm').addEventListener('submit', addNewCourse);
             document.getElementById('editCourseForm').addEventListener('submit', saveCourseChanges);
-            document.getElementById('addLessonForm').addEventListener('submit', addNewLesson);
-            document.getElementById('lessonSearchInput').addEventListener('input', searchLessons);
 
-            // Слушатели за бутоните за добавяне на лектори
-            document.getElementById('addLectorBtn').addEventListener('click', addLectorField);
-            document.getElementById('editAddLectorBtn').addEventListener('click', addEditLectorField);
-        });
-
-        // Функция за филтриране на курсовете
-        function filterCourses() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const difficultyFilter = document.getElementById('difficultyFilter').value;
-            const sortBy = document.getElementById('sortBy').value;
-
-            filteredCourses = demoCourses.filter(course =>
-                course.name.toLowerCase().includes(searchTerm) ||
-                course.description.toLowerCase().includes(searchTerm)
-            );
-
-            if (difficultyFilter) {
-                filteredCourses = filteredCourses.filter(course =>
-                    course.difficulty === difficultyFilter
-                );
-            }
-
-            filteredCourses.sort((a, b) => {
-                if (sortBy === 'newest') {
-                    return b.id - a.id;
-                } else if (sortBy === 'oldest') {
-                    return a.id - b.id;
-                } else if (sortBy === 'name-asc') {
-                    return a.name.localeCompare(b.name);
-                } else if (sortBy === 'name-desc') {
-                    return b.name.localeCompare(a.name);
-                }
-                return 0;
+            document.getElementById('createCourseBtn').addEventListener('click', function() {
+                resetEditModal();
+                document.querySelector('#editModal .modal-title').textContent = 'Създай курс';
+                document.getElementById('editModal').style.display = 'block';
             });
 
-            currentPage = 1;
-            updateTable();
-        }
+            async function loadCourses() {
+                try {
+                    const response = await fetch('/Admin/GetAllCourses');
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || 'Грешка при извличане на курсове');
+                    }
+                    demoCourses = await response.json();
 
-        // Функция за обновяване на таблицата и пагинацията
-        function updateTable() {
-            const tableBody = document.getElementById('coursesTableBody');
-            const pagination = document.getElementById('pagination');
+                    demoCourses.forEach(course => {
+                        course.difficulty = convertDifficulty(course.difficulty);
+                        if (course.filters) {
+                            course.filters = convertFilters(course.filters);
+                        }
+                    });
 
-            const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, filteredCourses.length);
-            const currentCourses = filteredCourses.slice(startIndex, endIndex);
-
-            tableBody.innerHTML = '';
-
-            currentCourses.forEach(course => {
-                let difficultyClass = '';
-                let difficultyText = '';
-
-                switch(course.difficulty) {
-                    case 'beginner':
-                        difficultyClass = 'status-beginner';
-                        difficultyText = 'Начинаещ';
-                        break;
-                    case 'intermediate':
-                        difficultyClass = 'status-intermediate';
-                        difficultyText = 'Напреднал';
-                        break;
-                    case 'advanced':
-                        difficultyClass = 'status-advanced';
-                        difficultyText = 'Експерт';
-                        break;
-                }
-
-                const row = `
-                    <tr>
-                        <td>${course.id}</td>
-                        <td>${course.name}</td>
-                        <td>${course.description}</td>
-                        <td><span class="status-badge ${difficultyClass}">${difficultyText}</span></td>
-                        <td>${course.lectors.join(', ')}</td>
-                        <td>${course.lessonCount}</td>
-                        <td>
-                            <div class="table-actions">
-                                <button class="btn btn-outline btn-sm" onclick="openEditModal(${course.id})">
-                                    <i class="fas fa-edit"></i> Редактирай
-                                </button>
-                                <button class="btn btn-success btn-sm" onclick="openSearchLessonsModal(${course.id})">
-                                    <i class="fas fa-plus"></i> Добави урок
-                                </button>
-                                <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${course.id})">
-                                    <i class="fas fa-trash"></i> Изтрий
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-                tableBody.insertAdjacentHTML('beforeend', row);
-            });
-
-            pagination.innerHTML = '';
-
-            const prevItem = document.createElement('li');
-            prevItem.className = 'page-item';
-            prevItem.innerHTML = `
-                <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
-                   onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
-                    <i class="fas fa-chevron-left"></i>
-                </a>
-            `;
-            pagination.appendChild(prevItem);
-
-            const maxVisiblePages = 5;
-            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-
-            if (startPage > 1) {
-                const firstItem = document.createElement('li');
-                firstItem.className = 'page-item';
-                firstItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
-                pagination.appendChild(firstItem);
-
-                if (startPage > 2) {
-                    const dotsItem = document.createElement('li');
-                    dotsItem.className = 'page-item';
-                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
-                    pagination.appendChild(dotsItem);
+                    filteredCourses = [...demoCourses];
+                    updateTable();
+                } catch (error) {
+                    console.error('Error loading courses:', error);
+                    alert('Грешка при зареждане на курсовете: ' + error.message);
                 }
             }
 
-            for (let i = startPage; i <= endPage; i++) {
-                const pageItem = document.createElement('li');
-                pageItem.className = 'page-item';
-                pageItem.innerHTML = `
-                    <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
-                       onclick="changePage(${i}); return false;">${i}</a>
-                `;
-                pagination.appendChild(pageItem);
-            }
-
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    const dotsItem = document.createElement('li');
-                    dotsItem.className = 'page-item';
-                    dotsItem.innerHTML = `<span class="page-link disabled">...</span>`;
-                    pagination.appendChild(dotsItem);
+            async function loadLectors() {
+                try {
+                    const response = await fetch('/Admin/GetAllLectors');
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || 'Грешка при извличане на лектори');
+                    }
+                    demoLectors = await response.json();
+                    renderLectorDropdown();
+                } catch (error) {
+                    console.error('Error loading lectors:', error);
+                    alert('Грешка при зареждане на лекторите: ' + error.message);
                 }
-
-                const lastItem = document.createElement('li');
-                lastItem.className = 'page-item';
-                lastItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
-                pagination.appendChild(lastItem);
             }
 
-            const nextItem = document.createElement('li');
-            nextItem.className = 'page-item';
-            nextItem.innerHTML = `
-                <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
-                   onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
-                    <i class="fas fa-chevron-right"></i>
-                </a>
-            `;
-            pagination.appendChild(nextItem);
-        }
+            async function loadLessons() {
+                try {
+                    const response = await fetch('/Admin/GetAllLessons');
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || 'Грешка при извличане на уроци');
+                    }
+                    demoLessons = await response.json();
 
-        // Функция за промяна на страницата
-        function changePage(page) {
-            currentPage = page;
-            updateTable();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+                    demoLessons.forEach(lesson => {
+                        lesson.difficulty = convertDifficulty(lesson.difficulty);
+                    });
 
-        // Функции за модалните прозорци
-        function openAddModal() {
-            document.getElementById('addCourseModal').style.display = 'flex';
-            document.getElementById('lectorsContainer').innerHTML = '';
-            addLectorField();
-        }
+                    renderLessonCheckboxes();
+                } catch (error) {
+                    console.error('Error loading lessons:', error);
+                    alert('Грешка при зареждане на уроците: ' + error.message);
+                }
+            }
 
-        function closeAddModal() {
-            document.getElementById('addCourseModal').style.display = 'none';
-            document.getElementById('addCourseForm').reset();
-        }
+            function renderLectorDropdown() {
+                const dropdown = document.getElementById('editCourseLector');
+                dropdown.innerHTML = '<option value="">-- Избери лектор --</option>';
 
-        function openEditModal(courseId) {
-            const course = demoCourses.find(c => c.id === courseId);
-            if (!course) return;
-
-            document.getElementById('editCourseId').value = course.id;
-            document.getElementById('editCourseName').value = course.name;
-            document.getElementById('editCourseDescription').value = course.description;
-            document.getElementById('editCourseDifficulty').value = course.difficulty;
-
-            const lectorsContainer = document.getElementById('editLectorsContainer');
-            lectorsContainer.innerHTML = '';
-            course.lectors.forEach(lector => addEditLectorField(lector));
-
-            const lessonsContainer = document.getElementById('editLessonsContainer');
-            lessonsContainer.innerHTML = '';
-            if (course.lessons.length === 0) {
-                lessonsContainer.innerHTML = '<p>Няма добавени уроци.</p>';
-            } else {
-                course.lessons.forEach(lesson => {
-                    const lessonDiv = document.createElement('div');
-                    lessonDiv.className = 'lesson-item';
-                    lessonDiv.innerHTML = `
-                        <span>${lesson.title}</span>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="removeLessonFromCourse(${course.id}, ${lesson.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    `;
-                    lessonsContainer.appendChild(lessonDiv);
+                demoLectors.forEach(lector => {
+                    const option = document.createElement('option');
+                    option.value = lector.id;
+                    option.textContent = lector.name;
+                    dropdown.appendChild(option);
                 });
             }
 
-            document.getElementById('editCourseModal').style.display = 'flex';
-        }
+            function renderLessonCheckboxes() {
+                const container = document.getElementById('lessonsContainer');
+                container.innerHTML = '';
 
-        function closeEditModal() {
-            document.getElementById('editCourseModal').style.display = 'none';
-            document.getElementById('editCourseForm').reset();
-        }
+                demoLessons.forEach(lesson => {
+                    const lessonDiv = document.createElement('div');
+                    lessonDiv.className = 'lesson-item';
+                    lessonDiv.innerHTML = `
+                        <input type="checkbox" id="lesson-${lesson.id}" class="lesson-checkbox" value="${lesson.id}">
+                        <div class="lesson-info">
+                            <span class="lesson-title">${lesson.title}</span>
+                            <span class="lesson-difficulty ${getDifficultyClass(lesson.difficulty)}">${lesson.difficulty}</span>
+                        </div>
+                    `;
+                    container.appendChild(lessonDiv);
+                });
 
-        function openAddLessonModal() {
-            document.getElementById('addLessonModal').style.display = 'flex';
-        }
+                const addLessonBtn = document.createElement('div');
+                addLessonBtn.className = 'add-lesson-btn';
+                addLessonBtn.innerHTML = `<i class="fas fa-plus"></i> Добави нов урок`;
+                addLessonBtn.addEventListener('click', () => {
+                    window.open('/admin/lessons/create', '_blank');
+                });
+                container.appendChild(addLessonBtn);
+            }
 
-        function closeAddLessonModal() {
-            document.getElementById('addLessonModal').style.display = 'none';
-            document.getElementById('addLessonForm').reset();
-        }
+            function filterCourses() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const difficultyFilter = document.getElementById('difficultyFilter').value;
+                const sortBy = document.getElementById('sortBy').value;
 
-        function openSearchLessonsModal(courseId) {
-            document.getElementById('searchLessonsCourseId').value = courseId;
-            document.getElementById('searchLessonsModal').style.display = 'flex';
-            document.getElementById('lessonSearchInput').value = '';
-            searchLessons();
-        }
+                filteredCourses = demoCourses.filter(course => {
+                    const matchesSearch = course.name.toLowerCase().includes(searchTerm) ||
+                        (course.description && course.description.toLowerCase().includes(searchTerm));
 
-        function closeSearchLessonsModal() {
-            document.getElementById('searchLessonsModal').style.display = 'none';
-            document.getElementById('searchLessonsTableBody').innerHTML = '';
-        }
+                    const matchesDifficulty = difficultyFilter === 'all' ||
+                        course.difficulty === difficultyFilter;
 
-        function openDeleteModal(courseId) {
-            document.getElementById('deleteCourseId').value = courseId;
-            document.getElementById('deleteModal').style.display = 'flex';
-        }
+                    return matchesSearch && matchesDifficulty;
+                });
 
-        function closeDeleteModal() {
-            document.getElementById('deleteModal').style.display = 'none';
-        }
+                filteredCourses.sort((a, b) => {
+                    if (sortBy === 'newest') return b.id - a.id;
+                    if (sortBy === 'oldest') return a.id - b.id;
+                    if (sortBy === 'title-asc') return a.name.localeCompare(b.name);
+                    if (sortBy === 'title-desc') return b.name.localeCompare(a.name);
+                    return 0;
+                });
 
-        function confirmDelete() {
-            const courseId = parseInt(document.getElementById('deleteCourseId').value);
-            demoCourses = demoCourses.filter(course => course.id !== courseId);
-            demoLessons = demoLessons.map(lesson => lesson.courseId === courseId ? { ...lesson, courseId: null } : lesson);
-            filterCourses();
-            closeDeleteModal();
-            alert('Курсът беше изтрит успешно!');
-        }
+                currentPage = 1;
+                updateTable();
+            }
 
-        // Функция за търсене на уроци
-        function searchLessons() {
-            const searchTerm = document.getElementById('lessonSearchInput').value.toLowerCase();
-            const courseId = parseInt(document.getElementById('searchLessonsCourseId').value);
-            const course = demoCourses.find(c => c.id === courseId);
-            const tableBody = document.getElementById('searchLessonsTableBody');
+            function updateTable() {
+                const tableBody = document.getElementById('coursesTableBody');
+                const pagination = document.getElementById('pagination');
 
-            const filteredLessons = demoLessons.filter(lesson =>
-                (lesson.title.toLowerCase().includes(searchTerm) || lesson.description.toLowerCase().includes(searchTerm))
-            );
+                const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, filteredCourses.length);
+                const currentCourses = filteredCourses.slice(startIndex, endIndex);
 
-            tableBody.innerHTML = '';
+                tableBody.innerHTML = '';
+                if (currentCourses.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="6" class="text-center">Няма налични курсове</td></tr>';
+                    return;
+                }
 
-            filteredLessons.forEach(lesson => {
-                const isAdded = course && course.lessons.some(l => l.id === lesson.id);
-                const row = `
-                    <tr>
-                        <td>${lesson.title}</td>
-                        <td>${lesson.description}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" onclick="addLessonToCourse(${courseId}, ${lesson.id})" ${isAdded ? 'disabled' : ''}>
-                                <i class="fas fa-plus"></i> Добави
-                            </button>
-                        </td>
-                    </tr>
+                currentCourses.forEach(course => {
+                    const shortDescription = course.description && course.description.length > 50
+                        ? course.description.substring(0, 50) + '...'
+                        : course.description;
+
+                    const filtersList = course.filters && course.filters.length > 0
+                        ? course.filters.join(', ')
+                        : 'Няма';
+
+                    const row = `
+                        <tr>
+                            <td>${course.id}</td>
+                            <td>${course.name}</td>
+                            <td>${shortDescription || '-'}</td>
+                            <td><span class="difficulty-badge ${getDifficultyClass(course.difficulty)}">${course.difficulty}</span></td>
+                            <td>${filtersList}</td>
+                            <td>
+                                <div class="table-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="openEditModal(${course.id})">
+                                        <i class="fas fa-edit"></i> Редактирай
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" onclick="openDeleteModal(${course.id})">
+                                        <i class="fas fa-trash"></i> Изтрий
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', row);
+                });
+
+                updatePagination(totalPages);
+            }
+
+            function updatePagination(totalPages) {
+                const pagination = document.getElementById('pagination');
+                pagination.innerHTML = '';
+
+                if (totalPages <= 1) return;
+
+                const prevItem = document.createElement('li');
+                prevItem.className = 'page-item';
+                prevItem.innerHTML = `
+                    <a href="#" class="page-link ${currentPage === 1 ? 'disabled' : ''}"
+                       onclick="${currentPage === 1 ? 'return false;' : `changePage(${currentPage - 1}); return false;`}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
                 `;
-                tableBody.insertAdjacentHTML('beforeend', row);
-            });
-        }
+                pagination.appendChild(prevItem);
 
-        // Функция за добавяне на урок към курс
-        async function addLessonToCourse(courseId, lessonId) {
-            const course = demoCourses.find(c => c.id === courseId);
-            const lesson = demoLessons.find(l => l.id === lessonId);
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-            if (course && lesson && !course.lessons.some(l => l.id === lessonId)) {
-                course.lessons.push({ id: lesson.id, title: lesson.title });
-                course.lessonCount = course.lessons.length;
-                lesson.courseId = courseId;
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
 
-                // В реален проект:
-                // await fetch(`/Admin/AddLessonToCourse/${courseId}/${lessonId}`, { method: 'POST' });
+                if (startPage > 1) {
+                    const firstItem = document.createElement('li');
+                    firstItem.className = 'page-item';
+                    firstItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(1); return false;">1</a>`;
+                    pagination.appendChild(firstItem);
 
-                filterCourses();
-                searchLessons();
-                alert('Урокът беше добавен към курса!');
-            }
-        }
+                    if (startPage > 2) {
+                        const dotsItem = document.createElement('li');
+                        dotsItem.className = 'page-item';
+                        dotsItem.innerHTML = `<span class="page-link">...</span>`;
+                        pagination.appendChild(dotsItem);
+                    }
+                }
 
-        // Функция за премахване на урок от курс
-        function removeLessonFromCourse(courseId, lessonId) {
-            const course = demoCourses.find(c => c.id === courseId);
-            const lesson = demoLessons.find(l => l.id === lessonId);
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageItem = document.createElement('li');
+                    pageItem.className = 'page-item';
+                    pageItem.innerHTML = `
+                        <a href="#" class="page-link ${i === currentPage ? 'active' : ''}"
+                           onclick="changePage(${i}); return false;">${i}</a>
+                    `;
+                    pagination.appendChild(pageItem);
+                }
 
-            if (course && lesson) {
-                course.lessons = course.lessons.filter(l => l.id !== lessonId);
-                course.lessonCount = course.lessons.length;
-                lesson.courseId = null;
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dotsItem = document.createElement('li');
+                        dotsItem.className = 'page-item';
+                        dotsItem.innerHTML = `<span class="page-link">...</span>`;
+                        pagination.appendChild(dotsItem);
+                    }
 
-                // В реален проект:
-                // await fetch(`/Admin/RemoveLessonFromCourse/${courseId}/${lessonId}`, { method: 'DELETE' });
+                    const lastItem = document.createElement('li');
+                    lastItem.className = 'page-item';
+                    lastItem.innerHTML = `<a href="#" class="page-link" onclick="changePage(${totalPages}); return false;">${totalPages}</a>`;
+                    pagination.appendChild(lastItem);
+                }
 
-                openEditModal(courseId); // Refresh the edit modal
-                filterCourses();
-                alert('Урокът беше премахнат от курса!');
-            }
-        }
-
-        // Функции за добавяне на лектори
-        function addLectorField(value = '') {
-            const lectorsContainer = document.getElementById('lectorsContainer');
-            const lectorId = Date.now();
-
-            const lectorDiv = document.createElement('div');
-            lectorDiv.className = 'form-row';
-            lectorDiv.innerHTML = `
-                <div class="form-group" style="flex: 1;">
-                    <input type="text" class="form-control" value="${value}" placeholder="Име на лектор" required>
-                </div>
-                <button type="button" class="btn btn-danger btn-sm" onclick="removeLectorField(this)">
-                    <i class="fas fa-trash"></i>
-                </button>
-            `;
-            lectorsContainer.appendChild(lectorDiv);
-        }
-
-        function addEditLectorField(value = '') {
-            const lectorsContainer = document.getElementById('editLectorsContainer');
-            const lectorId = Date.now();
-
-            const lectorDiv = document.createElement('div');
-            lectorDiv.className = 'form-row';
-            lectorDiv.innerHTML = `
-                <div class="form-group" style="flex: 1;">
-                    <input type="text" class="form-control" value="${value}" placeholder="Име на лектор" required>
-                </div>
-                <button type="button" class="btn btn-danger btn-sm" onclick="removeLectorField(this)">
-                    <i class="fas fa-trash"></i>
-                </button>
-            `;
-            lectorsContainer.appendChild(lectorDiv);
-        }
-
-        function removeLectorField(button) {
-            button.parentElement.remove();
-        }
-
-        // Функции за обработка на формите
-        async function addNewCourse(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('courseName').value;
-            const description = document.getElementById('courseDescription').value;
-            const difficulty = document.getElementById('courseDifficulty').value;
-
-            const lectorInputs = document.querySelectorAll('#lectorsContainer input');
-            const lectors = Array.from(lectorInputs).map(input => input.value.trim()).filter(lector => lector !== '');
-
-            if (lectors.length === 0) {
-                alert('Моля, добавете поне един лектор!');
-                return;
+                const nextItem = document.createElement('li');
+                nextItem.className = 'page-item';
+                nextItem.innerHTML = `
+                    <a href="#" class="page-link ${currentPage === totalPages ? 'disabled' : ''}"
+                       onclick="${currentPage === totalPages ? 'return false;' : `changePage(${currentPage + 1}); return false;`}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                `;
+                pagination.appendChild(nextItem);
             }
 
-            const newId = demoCourses.length > 0 ? Math.max(...demoCourses.map(c => c.id)) + 1 : 1;
-
-            const newCourse = {
-                id: newId,
-                name,
-                description,
-                difficulty,
-                lectors,
-                lessons: [],
-                lessonCount: 0
-            };
-
-            // В реален проект:
-            // await fetch('/Admin/CreateCourse', { method: 'POST', body: JSON.stringify(newCourse) });
-            demoCourses.push(newCourse);
-            filterCourses();
-            closeAddModal();
-            alert('Курсът беше създаден успешно!');
-        }
-
-        async function saveCourseChanges(e) {
-            e.preventDefault();
-
-            const courseId = parseInt(document.getElementById('editCourseId').value);
-            const name = document.getElementById('editCourseName').value;
-            const description = document.getElementById('editCourseDescription').value;
-            const difficulty = document.getElementById('editCourseDifficulty').value;
-
-            const lectorInputs = document.querySelectorAll('#editLectorsContainer input');
-            const lectors = Array.from(lectorInputs).map(input => input.value.trim()).filter(lector => lector !== '');
-
-            if (lectors.length === 0) {
-                alert('Моля, добавете поне един лектор!');
-                return;
+            function changePage(page) {
+                currentPage = page;
+                updateTable();
             }
 
-            const courseIndex = demoCourses.findIndex(c => c.id === courseId);
-            if (courseIndex !== -1) {
-                demoCourses[courseIndex] = {
-                    ...demoCourses[courseIndex],
-                    name,
-                    description,
-                    difficulty,
-                    lectors
+            async function openEditModal(id) {
+                try {
+                    let course;
+                    if (id) {
+                        const response = await fetch(`/Admin/GetCourse/${id}`);
+                        if (!response.ok) {
+                            const error = await response.json();
+                            throw new Error(error.message || 'Грешка при извличане на курс');
+                        }
+                        course = await response.json();
+
+                        course.difficulty = convertDifficulty(course.difficulty);
+                        if (course.filters) {
+                            course.filters = course.filters.map(f => convertFilters(f));
+                        }
+                    } else {
+                        course = {
+                            name: '',
+                            description: '',
+                            difficulty: 'Easy',
+                            filters: [],
+                            lector: null,
+                            lessons: []
+                        };
+                    }
+
+                    document.getElementById('editCourseId').value = course.id || '';
+                    document.getElementById('editCourseName').value = course.name;
+                    document.getElementById('editCourseDescription').value = course.description || '';
+
+                    // Селектиране на правилната трудност
+                    const difficultySelect = document.getElementById('editCourseDifficulty');
+                    for (let i = 0; i < difficultySelect.options.length; i++) {
+                        if (difficultySelect.options[i].text === course.difficulty) {
+                            difficultySelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Обработка на филтрите
+                    const filtersSelect = document.getElementById('editCourseFilters');
+                    Array.from(filtersSelect.options).forEach(option => {
+                        option.selected = course.filters && course.filters.includes(option.text);
+                    });
+
+                    if (course.lector && course.lector.id) {
+                        document.getElementById('editCourseLector').value = course.lector.id;
+                    } else {
+                        document.getElementById('editCourseLector').value = '';
+                    }
+
+                    if (course.lessons && course.lessons.length > 0) {
+                        course.lessons.forEach(lessonId => {
+                            const checkbox = document.getElementById(`lesson-${lessonId}`);
+                            if (checkbox) {
+                                checkbox.checked = true;
+                            }
+                        });
+                    }
+
+                    document.querySelector('#editModal .modal-title').textContent = id ? 'Редактиране на курс' : 'Създай курс';
+                    document.getElementById('editModal').style.display = 'block';
+                } catch (error) {
+                    console.error('Error opening edit modal:', error);
+                    alert('Грешка при отваряне на курса за редактиране: ' + error.message);
+                }
+            }
+
+            function resetEditModal() {
+                document.getElementById('editCourseId').value = '';
+                document.getElementById('editCourseName').value = '';
+                document.getElementById('editCourseDescription').value = '';
+                document.getElementById('editCourseDifficulty').value = 'Easy';
+                document.getElementById('editCourseLector').value = '';
+
+                const filtersSelect = document.getElementById('editCourseFilters');
+                Array.from(filtersSelect.options).forEach(option => {
+                    option.selected = false;
+                });
+
+                const lessonCheckboxes = document.querySelectorAll('.lesson-checkbox');
+                lessonCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+            }
+
+            function closeEditModal() {
+                document.getElementById('editModal').style.display = 'none';
+            }
+
+            function openDeleteModal(id) {
+                const course = demoCourses.find(c => c.id === id);
+                if (!course) {
+                    alert('Курсът не е намерен!');
+                    return;
+                }
+
+                document.getElementById('deleteCourseId').value = course.id;
+                document.getElementById('deleteCourseName').textContent = course.name;
+                document.getElementById('deleteCourseIdText').textContent = course.id;
+                document.getElementById('deleteCourseDifficulty').textContent = course.difficulty;
+                document.getElementById('deleteModal').style.display = 'block';
+            }
+
+            function closeDeleteModal() {
+                document.getElementById('deleteModal').style.display = 'none';
+            }
+
+            async function saveCourseChanges(e) {
+                e.preventDefault();
+
+                const form = document.getElementById('editCourseForm');
+                const formData = new FormData(form);
+                const id = formData.get('id');
+                const name = formData.get('name');
+
+                if (!name) {
+                    alert('Моля, попълнете име на курса!');
+                    return;
+                }
+
+
+                const difficultyText = document.getElementById('editCourseDifficulty').value;
+                const difficultyValue = convertDifficultyToValue(difficultyText);
+
+                const selectedFilters = [];
+                const filtersSelect = document.getElementById('editCourseFilters');
+                Array.from(filtersSelect.selectedOptions).forEach(option => {
+                    selectedFilters.push(convertFilterToValue(option.text));
+                });
+
+                const selectedLessons = [];
+                const lessonCheckboxes = document.querySelectorAll('.lesson-checkbox:checked');
+                lessonCheckboxes.forEach(checkbox => {
+                    selectedLessons.push({ Id: parseInt(checkbox.value) });
+                });
+
+                const courseData = {
+                    Id: id ? parseInt(id) : 0,
+                    Name: name,
+                    Description: formData.get('description') || '',
+                    Difficulty: difficultyValue,
+                    Filters: selectedFilters,
+                    Lector: formData.get('lectorId') ? { Id: parseInt(formData.get('lectorId')) } : null,
+                    Lessons: selectedLessons,
+                    Students: 0
                 };
 
-                // В реален проект:
-                // await fetch(`/Admin/UpdateCourse/${courseId}`, { method: 'PUT', body: JSON.stringify(demoCourses[courseIndex]) });
-                filterCourses();
-                closeEditModal();
-                alert('Промените бяха запазени успешно!');
+                try {
+                    const url = id ? `/Admin/UpdateCourse/${id}` : '/Admin/CreateCourse';
+                    const method = id ? 'PUT' : 'POST';
+
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(courseData)
+                    });
+
+                    const result = await response.json();
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Грешка при запазване на курс');
+                    }
+
+                    await loadCourses();
+                    closeEditModal();
+                    alert(result.message);
+                } catch (error) {
+                    console.error('Error saving course:', error);
+                    alert('Грешка при запазване на курса: ' + error.message);
+                }
             }
-        }
 
-        async function addNewLesson(e) {
-            e.preventDefault();
+            async function confirmDelete() {
+                const id = document.getElementById('deleteCourseId').value;
 
-            const title = document.getElementById('lessonTitle').value;
-            const description = document.getElementById('lessonDescription').value;
-            const videoFile = document.getElementById('lessonVideo').files[0];
+                try {
+                    const response = await fetch(`/Admin/DeleteCourse/${id}`, {
+                        method: 'DELETE'
+                    });
 
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('description', description);
-            if (videoFile) {
-                formData.append('video', videoFile);
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.message || 'Грешка при изтриване на курс');
+                    }
+                    const result = await response.json();
+
+                    await loadCourses();
+                    closeDeleteModal();
+                    alert(result.message);
+                } catch (error) {
+                    console.error('Error deleting course:', error);
+                    alert('Грешка при изтриване на курса: ' + error.message);
+                }
             }
 
-            try {
-                // В реален проект:
-                // const response = await fetch('/Admin/CreateLesson', { method: 'POST', body: formData });
-                // const newLesson = await response.json();
-
-                const newLessonId = demoLessons.length > 0 ? Math.max(...demoLessons.map(l => l.id)) + 1 : 1;
-                const newLesson = {
-                    id: newLessonId,
-                    title,
-                    description,
-                    courseId: null
-                };
-
-                demoLessons.push(newLesson);
-                filterCourses();
-                closeAddLessonModal();
-                alert('Урокът беше създаден успешно!');
-            } catch (error) {
-                console.error('Грешка при създаване на урок:', error);
-                alert('Възникна грешка при създаването на урока.');
+            function getDifficultyClass(difficulty) {
+                switch(difficulty) {
+                    case 'Easy': return 'difficulty-beginner';
+                    case 'Intermediate': return 'difficulty-intermediate';
+                    case 'Hard': return 'difficulty-advanced';
+                    case 'Extreme': return 'difficulty-extreme';
+                    case 'Insane': return 'difficulty-insane';
+                    case 'HardenBeard': return 'difficulty-hardenbeard';
+                    default: return '';
+                }
             }
-        }
+
+            window.openEditModal = openEditModal;
+            window.openDeleteModal = openDeleteModal;
+            window.changePage = changePage;
+        });
     </script>
 </body>
 </html>
