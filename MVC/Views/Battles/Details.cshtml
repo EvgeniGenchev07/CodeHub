@@ -1,4 +1,8 @@
+@using Microsoft.AspNet.Identity
 @model BusinessLayer.Battle
+@{
+    ViewData["Title"] = "Битка";
+}
 @section Styles {
     <link rel="stylesheet" href="~/css/battles.css" />
     <style>
@@ -408,12 +412,6 @@
 <div class="battle-container">
     <div class="battle-card">
         <div class="battle-header">
-            <a href="/Battles" class="back-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg>
-                Back to Battles
-            </a>
             <h1 class="battle-title">@Model.Title</h1>
             <p class="battle-description">@Model.Description</p>
             
@@ -427,9 +425,13 @@
                     progressPercent = Math.Max(0, Math.Min(100, progressPercent));
                 }
             }
+            @if (Model.StartDate < DateTime.Now)
+            {
+                
             <div class="progress-container">
                 <div class="progress-bar" style="width: @progressPercent%"></div>
             </div>
+            }
         </div>
         
         <div class="players-container">
@@ -445,7 +447,7 @@
                         <img class="avatar-placeholder" alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.FirstPlayer.ProfilePicture)"/>
                     }
                 </div>
-                <h3 class="player-name">@(Model.FirstPlayer?.FullName ?? "Waiting...")</h3>
+                <h3 class="player-name">@(Model.StartDate < DateTime.Now?Model.FirstPlayer?.UserName ?? "Търсене...":"Играч 1")</h3>
                 @if (Model.FirstPlayer != null)
                 {
                     <div class="player-stats">
@@ -465,7 +467,7 @@
             <!-- Player 2 Card -->
             <div class="player-card @(Model.SecondPlayer != null ? "filled" : "empty")">
                 <div class="player-avatar">
-                    @if (Model.FirstPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
+                    @if (Model.SecondPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
                     {
                         <span style="color: #f0f0f0" class="avatar-placeholder fa fa-user"></span>
                     }
@@ -474,7 +476,7 @@
                         <img class="avatar-placeholder" alt="" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.FirstPlayer.ProfilePicture)"/>
                     }
                 </div>
-                <h3 class="player-name">@(Model.SecondPlayer?.FullName ?? "Waiting...")</h3>
+                <h3 class="player-name">@(Model.StartDate < DateTime.Now?Model.SecondPlayer?.UserName ?? "Търсене...":"Играч 2")</h3>
                 @if (Model.SecondPlayer != null)
                 {
                     <div class="player-stats">
@@ -500,8 +502,8 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">START TIME</div>
-                    <div class="meta-value">@Model.StartDate.ToString("dd MMM yyyy, HH:mm")</div>
+                    <div class="meta-label">НАЧАЛО</div>
+                    <div class="meta-value">@Model.StartDate.ToString("dd.MM.yyyy, HH:mm")</div>
                 </div>
             </div>
             
@@ -513,8 +515,8 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">END TIME</div>
-                    <div class="meta-value">@Model.EndDate.ToString("dd MMM yyyy, HH:mm")</div>
+                    <div class="meta-label">КРАЙ</div>
+                    <div class="meta-value">@Model.EndDate.ToString("dd.MM.yyyy, HH:mm")</div>
                 </div>
             </div>
             
@@ -525,8 +527,8 @@
                     </svg>
                 </div>
                 <div class="meta-content">
-                    <div class="meta-label">REWARD</div>
-                    <div class="meta-value">@Model.RewardXP XP Points</div>
+                    <div class="meta-label">Награда</div>
+                    <div class="meta-value">@Model.RewardXP XP Точки</div>
                 </div>
             </div>
         </div>
@@ -539,7 +541,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0.5rem;">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
-                    Battle Completed
+                    Битката Завърши
                 </div>
                 <div class="players-list" id="players-list">
                     @if (Model.FirstPlayer != null)
@@ -560,7 +562,7 @@
                     {
                         <div class="player-tag">
                             <div class="player-tag-avatar">
-                                @if (Model.FirstPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
+                                @if (Model.SecondPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
                                 {
                                     <span style="color: #f0f0f0" class="avatar-placeholder fa fa-user"></span>
                                 }
@@ -579,7 +581,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0.5rem;">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
-                    Battle Ready - 2/2 Players
+                    Битката е Готова - 2/2 Играчи
                 </div>
                 <div class="countdown" id="countdown-timer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -587,18 +589,21 @@
                         <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
                         <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                     </svg>
-                    <span id="countdown-text">Calculating...</span>
+                    <span id="countdown-text">Калкулиране...</span>
                 </div>
             }
             else
             {
-                <div class="status-badge status-waiting">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 0.5rem;">
-                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                    </svg>
-                    Waiting for Players - @((Model.FirstPlayer != null ? 1 : 0) + (Model.SecondPlayer != null ? 1 : 0))/2
-                </div>
+                    <div class="status-badge status-waiting">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             viewBox="0 0 16 16" style="margin-right: 0.5rem;">
+                            <path
+                                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                        @(Model.StartDate < DateTime.Now?$"Чакане за Играчи - {((Model.FirstPlayer != null ? 1 : 0) + (Model.SecondPlayer != null ? 1 : 0))}/2":"Подготви се...")
+                    </div>
+
                 <div class="players-list" id="players-list">
                     @if (Model.FirstPlayer != null)
                     {
@@ -619,7 +624,7 @@
                     {
                         <div class="player-tag">
                             <div class="player-tag-avatar">
-                                @if (Model.FirstPlayer is null || Model.SecondPlayer.ProfilePicture.Length == 0)
+                                @if (Model.SecondPlayer.ProfilePicture.Length == 0)
                                 {
                                     <span style="color: #f0f0f0" class="avatar-placeholder fa fa-user"></span>
                                 }
@@ -640,7 +645,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                 </svg>
-                Back to List
+                Назад
             </a>
             @if (Model.EndDate < DateTime.Now)
             {
@@ -650,18 +655,20 @@
                         <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0-1A4 4 0 1 0 8 4a4 4 0 0 0 0 8z"/>
                         <path d="M8 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
-                    View Results
+                    Виж Резултатите
                 </a>
             }
-            else if (Model.FirstPlayer == null || Model.SecondPlayer == null)
+            else if ((Model.FirstPlayer == null || Model.SecondPlayer == null) && Model.StartDate < DateTime.Now)
             {
-                <a href="@Url.Action("Join", "Battles", new { id = Model.Id })" class="action-btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                    Join Battle
-                </a>
+                <form asp-action="Details" asp-controller="Battles" method="post" asp-route-id="@Model.Id">
+                    <button style="pointer-events:@(User.Identity.GetUserId() == Model.FirstPlayer?.Id || User.Identity.GetUserId() == Model.SecondPlayer?.Id?"none":"all")" id="join-battle-btn" type="submit" class="action-btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Присъедини се към Битката
+                    </button>
+                </form>
             }
             else if (Model.StartDate > DateTime.Now)
             {
@@ -670,7 +677,7 @@
                         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
                     </svg>
-                    Battle Starts Soon
+                    Битката започва скоро
                 </button>
             }
             else if (Model.EndDate > DateTime.Now)
@@ -679,7 +686,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                     </svg>
-                    Start Battle
+                    Започни Битката
                 </a>
             }
             else
@@ -689,7 +696,7 @@
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                     </svg>
-                    Battle Expired
+                    Битката Изтече
                 </button>
             }
 
@@ -697,3 +704,19 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+        const battleId = '@Model.Id';
+        const userName = '@(User.Identity?.Name ?? "Потребител")';
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/battleHub?battleId=" + battleId)
+            .build();
+        connection.on("PlayersUpdated", function(players) {
+            if (players.length === 1) {
+                console.log("waiting")
+            } else if (players.length === 2) {
+                setTimeout(()=>{},10)
+                window.location.href = `Battles/Start/${battleId}`
+            }
+        });
+    </script>
