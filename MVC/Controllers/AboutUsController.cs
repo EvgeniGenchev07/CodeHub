@@ -16,5 +16,9 @@ namespace CodeHub.Controllers
         {
             return View();
         }
+        public IActionResult Crew()
+        {
+            return View();
+        }
     }
 }
