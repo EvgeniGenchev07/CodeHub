@@ -62,6 +62,79 @@ namespace CodeHub.Controllers
 
             return PartialView();
         }
+        [HttpGet("Admin/GetCourse/{id}")]
+        public async Task<IActionResult> GetCourse(int id)
+        {
+            try
+            {
+                var course = await _coursesContext.Read(id, true, true);
+                return Ok(course);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при извличане на курс: {ex.Message}" });
+            }
+        }
+
+        [HttpPut("Admin/UpdateCourse/{id}")]
+        public async Task<IActionResult> UpdateCourse(int id, [FromBody] Course course)
+        {
+            try
+            {
+                if (course == null)
+                    return BadRequest(new { success = false, message = "Данните за курса са задължителни!" });
+
+                if (string.IsNullOrWhiteSpace(course.Name))
+                    return BadRequest(new { success = false, message = "Името на курса е задължително!" });
+
+                await _coursesContext.Update(course, true);
+                return Ok(new { success = true, message = "Курсът е обновен успешно!" });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при обновяване на курс: {ex.Message}" });
+            }
+        }
+
+        [HttpDelete("Admin/DeleteCourse/{id}")]
+        public async Task<IActionResult> DeleteCourse(int id)
+        {
+            try
+            {
+                await _coursesContext.Delete(id);
+                return Ok(new { success = true, message = "Курсът е изтрит успешно!" });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при изтриване на курс: {ex.Message}" });
+            }
+        }
+
+        [HttpGet("Admin/GetAllLectors")]
+        public async Task<IActionResult> GetAllLectors()
+        {
+            try
+            {
+                var lectors = await _dbContext.Lectors.ToListAsync();
+                return Ok(lectors);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = $"Грешка при извличане на лектори: {ex.Message}" });
+            }
+        }
         [HttpGet]
         public async Task<IActionResult> GetAllLessons()
         {
