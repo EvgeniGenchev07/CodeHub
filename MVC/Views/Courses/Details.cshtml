@@ -160,7 +160,7 @@
                 <div class="instructor-info">
                     <div class="instructor-avatar"><i class="fas fa-user"></i></div>
                     <div>
-                        <div class="instructor-name">@course.Lector.Name</div>
+                        <div class="instructor-name">@course.Lector.Name</div>  
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@
                     @course.Lector.Description
                 </p>
 
-                <a href="mailto:@course.Name.ToLower()@@codehub.com"  class="btn btn-outline" style="width: 100%;text-decoration: none;"><i class="fas fa-envelope"></i> Изпрати съобщение</a>
+                <a href="mailto:@course.Lector.Name.ToLower()@@codehub.com"  class="btn btn-outline" style="width: 100%;text-decoration: none;"><i class="fas fa-envelope"></i> Изпрати съобщение</a>
             </div>
 
             <!-- Course Stats Card -->
@@ -289,12 +289,15 @@
                           video.src = url;
                           video.controls = true;
                           video.autoplay = true;
+                          video.loop = false;
+                          video.playbackRate = 0.5;
+                          video.addEventListener("ended", (event) => {
+                              closeVideoPopup();
+                              fetch(`../VideoCompletion/${el.getAttribute("data-courseId")}`).then(res=>{});
+                          })
                         });
               });
           }})
-          function openVideoPopup() {
-             
-          }
 
           function closeVideoPopup() {
               const popup = document.getElementById("videoPopup");

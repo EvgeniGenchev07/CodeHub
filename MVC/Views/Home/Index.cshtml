@@ -10,7 +10,7 @@
         <h1 class="hero-title">Научи <span class="text-gradient">JavaScript</span> чрез игри и предизвикателства</h1>
         <p class="hero-text">Присъедини се към нашата общност от програмисти, участвай в двубои, решавай задачи и стани най-добрият!</p>
         <div class="hero-actions">
-            <button class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни сега</button>
+            <a style="text-decoration: none" asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Започни сега</a>
             <button class="btn btn-outline btn-lg"><i class="fas fa-eye"></i> Демо урок</button>
         </div>
     </div>
@@ -87,69 +87,29 @@ console.log(result);</code></pre>
     <h2 class="section-title">Нашите <span class="text-gradient">Курсове</span></h2>
 
     <div class="courses">
-        <div class="course-card">
-            <span class="course-badge badge-beginner">Начинаещ</span>
-            <div class="course-icon">
-                <i class="fab fa-js"></i>
-            </div>
-            <h3>JavaScript Основи</h3>
-            <p>Научи основите на JavaScript за 4 седмици с интерактивни упражнения</p>
-            <div class="course-meta">
-                <span><i class="fas fa-clock"></i> 20 урока</span>
-                <span><i class="fas fa-users"></i> 1500+ ученици</span>
-            </div>
-            <div class="course-progress">
-                <div class="progress-bar" style="width: 30%;"></div>
-                <div class="progress-text">
-                    <span>Напредък</span>
-                    <span>30%</span>
+        @foreach (var item in Model.Courses)
+        {
+            <div class="course-card" data-id="@item.Id">
+                <span class="course-badge badge-beginner">Начинаещ</span>
+                <div class="course-icon">
+                    <i class="fab fa-js"></i>
+                </div>
+                <h3>@item.Name</h3>
+                <p>@item.Description.Substring(0,50)...</p>
+                <div class="course-meta">
+                    <span><i class="fas fa-clock"></i> @item.Lessons.Count урока</span>
+                    <span><i class="fas fa-users"></i>@item.Students ученици</span>
                 </div>
             </div>
-            <button class="btn btn-outline">Продължи</button>
-        </div>
-
-        <div class="course-card">
-            <span class="course-badge badge-intermediate">Средно ниво</span>
-            <div class="course-icon">
-                <i class="fas fa-layer-group"></i>
-            </div>
-            <h3>DOM Манипулация</h3>
-            <p>Работа с HTML и CSS чрез JavaScript и създаване на динамични уеб приложения</p>
-            <div class="course-meta">
-                <span><i class="fas fa-clock"></i> 15 урока</span>
-                <span><i class="fas fa-users"></i> 850+ ученици</span>
-            </div>
-            <div class="course-progress">
-                <div class="progress-bar" style="width: 10%;"></div>
-                <div class="progress-text">
-                    <span>Напредък</span>
-                    <span>10%</span>
-                </div>
-            </div>
-            <button class="btn btn-outline">Започни</button>
-        </div>
-
-        <div class="course-card">
-            <span class="course-badge badge-advanced">Напреднал</span>
-            <div class="course-icon">
-                <i class="fas fa-bolt"></i>
-            </div>
-            <h3>Асинхронен JavaScript</h3>
-            <p>Научи Promises, async/await, API заявки и обработка на грешки</p>
-            <div class="course-meta">
-                <span><i class="fas fa-clock"></i> 12 урока</span>
-                <span><i class="fas fa-users"></i> 500+ ученици</span>
-            </div>
-            <div class="course-progress">
-                <div class="progress-bar" style="width: 0%;"></div>
-                <div class="progress-text">
-                    <span>Напредък</span>
-                    <span>0%</span>
-                </div>
-            </div>
-            <button class="btn btn-outline">Започни</button>
-        </div>
+        }
     </div>
+    <script>
+        document.querySelectorAll(".course-card").forEach(card => {
+            card.addEventListener("click", event => {
+               window.location.href = `/Courses/Details/${card.getAttribute("data-id")}` 
+            });
+        })
+    </script>
 </section>
 
 <!-- Battles Section -->

@@ -245,6 +245,31 @@ namespace MVC.Controllers
             }
             return BadRequest();
         }
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> VideoCompletion(int? id)
+        {
+            if (id != null)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var user =  await _context.ReadUserAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        user.Courses.ForEach(uc=>
+                        {
+                            if (uc.Course.Id==id)
+                            {
+                                uc.Completion += 1*100/uc.Course.Lessons.Count;
+                                _context.Save();
+                                return;
+                            }
+                        });
+                    }
+                }
+            }
+            return BadRequest();
+        }
+        
         // GET: Course/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
